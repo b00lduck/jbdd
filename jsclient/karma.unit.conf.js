@@ -12,8 +12,7 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 
         preprocessors: {
-            'app/!(bower_components)/**/*.html': ['ng-html2js'],
-            'app/!(bower_components)/**/*.js': ['coverage']
+            'app/!(bower_components)/**/*.html': ['ng-html2js']
         },
 
         ngHtml2JsPreprocessor: {
