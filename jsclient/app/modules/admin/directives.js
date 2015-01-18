@@ -14,8 +14,12 @@ angular.module('Admin')
 
                 controller: 'UserPlayerAssignGridDirectiveController',
 
+                scope: {
+                    getUserId: '&userid'
+                },
+
                 link: function (scope, element, attrs, controller) {
-                    controller.init(attrs);
+                    controller.init();
                 }
 
             };
