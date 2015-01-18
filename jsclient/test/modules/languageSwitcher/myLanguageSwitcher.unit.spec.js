@@ -66,7 +66,7 @@ describe('myLanguageSwitcher directive', function () {
 
         scope.changeLanguage('nl_NL');
 
-        expect($translate.use).not.toHaveBeenCalledWith('nl_NL');
+        expect($translate.use).not.toHaveBeenCalled();
     });
 
 

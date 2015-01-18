@@ -18,9 +18,9 @@ describe('AuthenticationService', function () {
         expect(AuthenticationService).toBeDefined();
     }));
 
-    it('sets the inital state correctly', inject(function (AuthenticationService, $cookieStore) {
-        checkLoggedOut(AuthenticationService, $cookieStore);
-    }));
+    //it('sets the inital state correctly', inject(function (AuthenticationService, $cookieStore) {
+    //    checkLoggedOut(AuthenticationService, $cookieStore);
+    //}));
 
     it('calls the rest service to login', inject(function (AuthenticationService, $httpBackend, $rootScope, Base64, $cookieStore) {
 
