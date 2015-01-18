@@ -33,7 +33,6 @@ describe('AuthenticationService', function () {
         checkLoggedIn('username', ['ROLE1'], 'bla', AuthenticationService, $cookieStore);
     }));
 
-
     it('calls the rest service to login', inject(function (AuthenticationService, $httpBackend, $rootScope, Base64, $cookieStore) {
 
         var username = 'username';
