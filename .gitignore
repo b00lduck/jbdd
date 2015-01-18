@@ -28,7 +28,7 @@ target/
 .gradle
 
 # JS files
-###########################
+###########g################
 node_modules
 jsclient/app/bower_components
 coverage
