@@ -10,6 +10,12 @@
 
         <my-form-field-name-and-desc></my-form-field-name-and-desc>
 
+        <div class="input-group">
+            <span class="input-group-addon"
+                  id="description-weight">{{ 'admin.editField.weight' | translate }}</span>
+            <input class="form-control" type="text" ng-model="obj.weight" aria-describedby="description-weight">
+        </div>
+
         <my-edit-buttons></my-edit-buttons>
 
     </div>

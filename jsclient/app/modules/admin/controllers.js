@@ -29,6 +29,7 @@ angular.module('Admin')
                 'good': {
                     columnDefs: [
                         {name: 'name.de-DE', displayNameI18n: 'i18n.name'},
+                        {name: 'weight', displayNameI18n: 'good.weight'},
                     ]
                 }
 
@@ -115,9 +116,9 @@ angular.module('Admin')
 
         }])
 
-    .controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q',
+    .controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q', '$attrs',
 
-        function ($scope, DataService, $q) {
+        function ($scope, DataService, $q, $attrs) {
 
             var leftGridApi,
                 rightGridApi,
@@ -222,8 +223,8 @@ angular.module('Admin')
                 });
             }
 
-            this.init = function (attrs) {
-                userId = attrs.userid;
+            this.init = function () {
+                userId = $scope.getUserId();
 
                 $scope.leftGridOptions = getBasicGridConfig();
                 $scope.rightGridOptions = getBasicGridConfig();
@@ -258,5 +259,7 @@ angular.module('Admin')
                 var rows = $scope.leftGridOptions.data;
                 moveArrayRight(rows);
             };
+
+            this.init();
 
         }]);
