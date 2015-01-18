@@ -15,7 +15,7 @@ target/
 !eclipse/settings/.pmd
 !buildSrc/
 node_modules
-app/bower_components
+jsclient/app/bower_components
 
 # IDEA generated files
 ###########################
