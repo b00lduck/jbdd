@@ -29,6 +29,7 @@ angular.module('Admin')
                 'good': {
                     columnDefs: [
                         {name: 'name.de-DE', displayNameI18n: 'i18n.name'},
+                        {name: 'weight', displayNameI18n: 'good.weight'},
                     ]
                 }
 
