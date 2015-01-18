@@ -1,0 +1,75 @@
+{
+  "admin": {
+    "button": {
+      "create": "erstellen",
+      "save": "speichern",
+      "cancel": "abbrechen"
+    },
+    "myUserPlayerAssignGrids": {
+      "header": "Zugewiesene Spieler bearbeiten"
+    },
+    "editField": {
+      "id": "ID",
+      "enabled": "Aktiviert",
+      "username": "Benutzername",
+      "name": "Name",
+      "description": "Beschreibung"
+    },
+    "newid": "neue ID, wird beim Speichern generiert",
+    "title": {
+      "userEditor": "Benutzerdetails bearbeiten",
+      "goodEditor": "Güterdetails bearbeiten",
+      "playerEditor": "Spielerdetails bearbeiten"
+    }
+  },
+  "dataGrid": {
+    "columnHeader": {
+      "fixed": {
+        "id": "ID",
+        "enabled": "aktiv",
+        "deletable": "löschbar"
+      },
+      "i18n": {
+        "name": "Name"
+      },
+      "user": {
+        "username": "Beutzername",
+        "email": "eMail",
+        "numPlayers": "Anzahl Spielerobjekte"
+      },
+      "player": {
+        "nickname": "Nickname"
+      },
+      "good": {
+      }
+    }
+  },
+  "authentication": {
+    "username": "Benutzername",
+    "password": "Passwort",
+    "logout": "Ausloggen",
+    "notLoggedIn": "nicht angemeldet",
+    "roles": "Zugeteilte Rollen"
+  },
+  "navigation": {
+    "admin": {
+      "admin": "Administration",
+      "players": "Spieler",
+      "users": "Benutzerkonten",
+      "goods": "Güter"
+    },
+    "title": "JBdD"
+  },
+  "errors": {
+    "login": {
+      "message": {
+        "failed": "Login fehlgeschlagen!"
+      },
+      "details": {
+        "unauthorized": "Username und/oder Password falsch.",
+        "unknown": "Es ist ein unbekannter Fehler aufgetreten.",
+        "couldNotConnect": "Verbindung zum Server fehlgeschlagen."
+      }
+    }
+  }
+}

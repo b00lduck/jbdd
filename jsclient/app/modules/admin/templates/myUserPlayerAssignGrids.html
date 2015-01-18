@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ 'admin.myUserPlayerAssignGrids.header' | translate }}</h3>
+    </div>
+    <div class="panel-body">
+        <div style="float: left; width: 40%;">
+            <div ui-grid-selection ui-grid="leftGridOptions"></div>
+        </div>
+        <div style="float: left; width: 20%; text-align: center;">
+            <button ng-click="moveSelectionLeft()">&lt;</button>
+            <br/>
+            <button ng-click="moveSelectionRight()">&gt;</button>
+            <br/>
+            <button ng-click="moveAllLeft()">&lt;&lt;</button>
+            <br/>
+            <button ng-click="moveAllRight()">&gt;&gt;</button>
+            <br/>
+        </div>
+        <div style="float: left; width: 40%;">
+            <div ui-grid-selection ui-grid="rightGridOptions"></div>
+        </div>
+    </div>
+</div>

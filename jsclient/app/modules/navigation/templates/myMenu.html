@@ -1,0 +1,17 @@
+<ul ng-if="userIsAnyAdmin()" class="nav navbar-nav">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{
+            'navigation.admin.admin' | translate }} <span
+                    class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-if="userIsUserAdmin()"><a href="#/admin/user">{{ 'navigation.admin.users' | translate
+                }}</a></li>
+            <li ng-if="userIsPlayerAdmin()"><a href="#/admin/player">{{ 'navigation.admin.players' |
+                translate }}</a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a href="#/admin/good">{{ 'navigation.admin.goods' | translate }}</a></li>
+        </ul>
+    </li>
+</ul>

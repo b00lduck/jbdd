@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-heading">myLoginInfo</div>
+    <div class="panel-body">
+        <div>
+            <b>{{ 'authentication.username' | translate }}:</b> {{ isLoggedIn() ? getUsername() :
+            'authentication.notLoggedIn' | translate }}<br/>
+            <b>{{ 'authentication.roles' | translate }}:</b> {{ getRoles().length }}<br/>
+        </div>
+
+        <ul>
+            <div ng-repeat="role in getRoles()">
+                <li>{{ role }}</li>
+            </div>
+        </ul>
+
+        <div ng-if="isLoggedIn()">
+            <button ng-click="logout()">{{ 'authentication.logout' | translate }}</button>
+        </div>
+    </div>
+</div>

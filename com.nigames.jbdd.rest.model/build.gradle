@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+dependencies {
+	compile(
+			[group: 'org.slf4j',     name: 'slf4j-api',         version: slf4jVersion],
+			[group: 'javax.ws.rs',   name: 'javax.ws.rs-api',   version: wsrsVersion]
+	)
+
+	testCompile(
+			[group: 'junit',         name: 'junit',             version: jUnitVersion],
+			[group: 'org.hamcrest',  name: 'hamcrest-core',     version: hamcrestVersion]
+	)
+}
+
+idea {
+	module {
+		jdkName = javaVersion
+		name = "${group}.rest.model"
+		downloadJavadoc = true
+		downloadSources = true
+	}
+}
