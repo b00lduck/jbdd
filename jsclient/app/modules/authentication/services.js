@@ -23,7 +23,7 @@ angular.module('Authentication')
 
 
             var tempAuthInfo = $cookieStore.get('globalAuthInfo');
-            if (typeof (tempAuthInfo) !== 'undefined') {
+            if (typeof (tempAuthInfo) === 'undefined') {
                 resetCredentials();
             }
 
@@ -104,7 +104,8 @@ angular.module('Authentication')
 
                 var tempAuthInfo = $cookieStore.get('globalAuthInfo');
 
-                if (null !== globalAuthInfo.currentUser.username) {
+                if ((typeof(globalAuthInfo.currentUser.username) !== 'undefined') &&
+                    (null !== globalAuthInfo.currentUser.username)) {
                     return true;
                 }
 
