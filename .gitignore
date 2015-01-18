@@ -1,0 +1,31 @@
+# Eclipse generated files #
+###########################
+bin/
+build/
+buildSrc/.gradle/
+target/
+.project
+.pydevproject
+.settings/
+.classpath
+.pmd
+.checkstyle
+.gradle
+!eclipse/settings/.checkstyle
+!eclipse/settings/.pmd
+!buildSrc/
+node_modules
+app/bower_components
+
+# IDEA generated files
+###########################
+.idea/
+*.iml
+
+# Gradle generated files
+###########################
+/gradlew.bat
+/gradlew
+/gradle
+.gradle
+coverage
