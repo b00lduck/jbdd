@@ -21,7 +21,6 @@ angular.module('Authentication')
                 $cookieStore.put('globalAuthInfo', globalAuthInfo);
             };
 
-
             var tempAuthInfo = $cookieStore.get('globalAuthInfo');
             if (typeof (tempAuthInfo) === 'undefined') {
                 resetCredentials();

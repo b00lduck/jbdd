@@ -18,9 +18,21 @@ describe('AuthenticationService', function () {
         expect(AuthenticationService).toBeDefined();
     }));
 
-    //it('sets the inital state correctly', inject(function (AuthenticationService, $cookieStore) {
-    //    checkLoggedOut(AuthenticationService, $cookieStore);
-    //}));
+    it('sets the inital state correctly on missing cookie', inject(function (AuthenticationService, $cookieStore) {
+        checkLoggedOut(AuthenticationService, $cookieStore);
+    }));
+
+    it('sets the inital state correctly on existing cookie', inject(function (AuthenticationService, $cookieStore) {
+        $cookieStore.put('globalAuthInfo', {
+            currentUser: {
+                username: 'username',
+                roles: ['ROLE1'],
+                auth: 'bla'
+            }
+        });
+        checkLoggedIn('username', ['ROLE1'], 'bla', AuthenticationService, $cookieStore);
+    }));
+
 
     it('calls the rest service to login', inject(function (AuthenticationService, $httpBackend, $rootScope, Base64, $cookieStore) {
 
@@ -260,6 +272,22 @@ describe('AuthenticationService', function () {
         expect(AuthenticationService.isLoggedIn()).toBe(false);
         expect(AuthenticationService.getUsername()).toBe(null);
         expect(AuthenticationService.getRoles()).toEqual([]);
+
+        expect(AuthenticationService.userIsUserAdmin()).toBe(false);
+        expect(AuthenticationService.userIsPlayerAdmin()).toBe(false);
+        expect(AuthenticationService.userIsAnyAdmin()).toBe(false);
+    }
+
+    function checkLoggedIn(username, roles, auth, AuthenticationService, $cookieStore) {
+        var cookieAuthInfo = $cookieStore.get('globalAuthInfo');
+
+        expect(cookieAuthInfo.currentUser.username).toEqual(username);
+        expect(cookieAuthInfo.currentUser.roles).toEqual(roles);
+        expect(cookieAuthInfo.currentUser.auth).toEqual(auth);
+
+        expect(AuthenticationService.isLoggedIn()).toBe(true);
+        expect(AuthenticationService.getUsername()).toBe(username);
+        expect(AuthenticationService.getRoles()).toEqual(roles);
 
         expect(AuthenticationService.userIsUserAdmin()).toBe(false);
         expect(AuthenticationService.userIsPlayerAdmin()).toBe(false);
