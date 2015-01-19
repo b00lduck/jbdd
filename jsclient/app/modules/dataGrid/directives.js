@@ -1,6 +1,7 @@
 /*jslint node: true */
 'use strict';
 
+//noinspection OverlyComplexFunctionJS
 angular.module('DataGrid')
 
     .directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService', '$modal', '$location', 'DataService',
@@ -47,10 +48,8 @@ angular.module('DataGrid')
                     configuredColumnDefs[i].displayName = $translate.instant(i18nKey);
                 }
 
-                //noinspection NestedFunctionCallJS (save memory)
-                return getFixedColumnsLeft()
-                    .concat(configuredColumnDefs)
-                    .concat(getFixedColumnsRight());
+                //noinspection NestedFunctionCallJS
+                return getFixedColumnsLeft().concat(configuredColumnDefs).concat(getFixedColumnsRight());
             };
 
             var pagingOptions = {
@@ -165,6 +164,7 @@ angular.module('DataGrid')
                             var path = scope[attrs.config]().editUrlGetter(entity.id);
                             $location.path(path);
                         }
+
                     };
 
                     $rootScope.$on('$translateChangeSuccess', function (event, value) {

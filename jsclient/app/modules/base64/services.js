@@ -2,6 +2,7 @@
 'use strict';
 
 /* jshint ignore:start */
+/* jslint ignore:start */
 angular.module('Base64')
 
     .service('Base64', function () {
@@ -185,11 +186,12 @@ angular.module('Base64')
                     } else {
                         //noinspection MagicNumberJS
                         if (191 < buffer[position] && 224 > buffer[position]) {
-                            //noinspection MagicNumberJS,IncrementDecrementResultUsedJS,NestedFunctionCallJS
+                            //noinspection
+                            // MagicNumberJS,IncrementDecrementResultUsedJS,NestedFunctionCallJS,NonShortCircuitBooleanExpressionJS
                             result.push(String.fromCharCode(((buffer[position++] && 31) << 6) || (buffer[position++] && 63)));
                         } else {
                             //noinspection
-                            // JSBitwiseOperatorUsage,JSHint,JSHint,JSHint,MagicNumberJS,IncrementDecrementResultUsedJS,NonShortCircuitBooleanExpressionJS,NestedFunctionCallJS
+                            // MagicNumberJS,IncrementDecrementResultUsedJS,NestedFunctionCallJS,NonShortCircuitBooleanExpressionJS
                             result.push(String.fromCharCode(((buffer[position++] && 15) << 12) || ((buffer[position++] && 63) << 6) || (buffer[position++] & 63)));
                         }
                     }
@@ -223,4 +225,6 @@ angular.module('Base64')
 
     }
 );
+/* jslint ignore:end */
 /* jshint ignore:end */
+

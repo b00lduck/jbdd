@@ -29,7 +29,7 @@ angular.module('Admin')
                 'good': {
                     columnDefs: [
                         {name: 'name.de-DE', displayNameI18n: 'i18n.name'},
-                        {name: 'weight', displayNameI18n: 'good.weight'},
+                        {name: 'weight', displayNameI18n: 'good.weight'}
                     ]
                 }
 
@@ -66,7 +66,15 @@ angular.module('Admin')
 
             var id = $routeParams.id;
 
-            if (id !== 'new') {
+            if ('new' === id) {
+                $scope.obj = {};
+                $scope.obj.id = $translate.instant('admin.newid');
+
+                $rootScope.$on('$translateChangeSuccess', function () {
+                    $scope.obj.id = $translate.instant('admin.newid');
+                });
+
+            } else {
                 DataService.getItem(resourceName, id).then(
                     function (payload) {
                         $scope.obj = payload.data;
@@ -75,14 +83,6 @@ angular.module('Admin')
                         window.alert('ERROR');
                         // TODO: proper error handling
                     });
-            } else {
-                $scope.obj = {};
-                $scope.obj.id = $translate.instant('admin.newid');
-
-                $rootScope.$on('$translateChangeSuccess', function () {
-                    $scope.obj.id = $translate.instant('admin.newid');
-                });
-
             }
             $scope.id = id;
 
@@ -91,7 +91,7 @@ angular.module('Admin')
             };
 
             $scope.save = function () {
-                if (id === 'new') {
+                if ('new' === id) {
                     DataService.createItem(resourceName, $scope.obj).then(
                         function () {
                             $location.path(listUrl);
@@ -170,12 +170,13 @@ angular.module('Admin')
             }
 
             function getMoveArrayLeftPromise(rows) {
-                var promises = [];
-                var length = rows.length;
-                var i;
+                var promises = [],
+                    length = rows.length,
+                    i,
+                    promise;
 
                 for (i = 0; i < length; i++) {
-                    var promise = DataService.assignPlayerToUser(userId, rows[i].id);
+                    promise = DataService.assignPlayerToUser(userId, rows[i].id);
                     promises.push(promise);
                 }
 
@@ -183,12 +184,13 @@ angular.module('Admin')
             }
 
             function getMoveArrayRightPromise(rows) {
-                var promises = [];
-                var length = rows.length;
-                var i;
+                var promises = [],
+                    length = rows.length,
+                    i,
+                    promise;
 
                 for (i = 0; i < length; i++) {
-                    var promise = DataService.removePlayerFromUser(userId, rows[i].id);
+                    promise = DataService.removePlayerFromUser(userId, rows[i].id);
                     promises.push(promise);
                 }
 

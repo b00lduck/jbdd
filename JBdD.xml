@@ -120,14 +120,6 @@
   <inspection_tool class="CStyleArrayDeclaration" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="CachedNumberConstructorCall" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="CallToNativeMethodWhileLocked" enabled="true" level="WARNING" enabled_by_default="true" />
-  <inspection_tool class="CallToSimpleGetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
-    <option name="ignoreGetterCallsOnOtherObjects" value="false" />
-    <option name="onlyReportPrivateGetter" value="false" />
-  </inspection_tool>
-  <inspection_tool class="CallToSimpleSetterInClass" enabled="true" level="WARNING" enabled_by_default="true">
-    <option name="ignoreSetterCallsOnOtherObjects" value="false" />
-    <option name="onlyReportPrivateSetter" value="false" />
-  </inspection_tool>
   <inspection_tool class="CallToStringConcatCanBeReplacedByOperator" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="CastConflictsWithInstanceof" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="CastThatLosesPrecision" enabled="true" level="WARNING" enabled_by_default="true">
@@ -164,7 +156,7 @@
   <inspection_tool class="ClassNameSameAsAncestorName" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="ClassNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="m_regex" value="[A-Z][A-Za-z\d]*" />
-    <option name="m_minLength" value="8" />
+    <option name="m_minLength" value="3" />
     <option name="m_maxLength" value="64" />
   </inspection_tool>
   <inspection_tool class="ClassNestingDepth" enabled="true" level="WARNING" enabled_by_default="true">
@@ -230,7 +222,7 @@
     <option name="onlyCheckImmutables" value="true" />
     <option name="m_regex" value="[A-Z][A-Z_\d]*" />
     <option name="m_minLength" value="5" />
-    <option name="m_maxLength" value="32" />
+    <option name="m_maxLength" value="64" />
   </inspection_tool>
   <inspection_tool class="ConstantOnRHSOfComparison" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="ConstantOnRHSOfComparisonJS" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -482,15 +474,26 @@
   </inspection_tool>
   <inspection_tool class="HtmlNonExistentInternetResource" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="HtmlTagCanBeJavadocTag" enabled="true" level="WARNING" enabled_by_default="true" />
+  <inspection_tool class="HtmlUnknownAnchorTarget" enabled="false" level="WARNING" enabled_by_default="false" />
   <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="myValues">
       <value>
-        <list size="5">
+        <list size="15">
           <item index="0" class="java.lang.String" itemvalue="ng-show" />
           <item index="1" class="java.lang.String" itemvalue="ng-submit" />
           <item index="2" class="java.lang.String" itemvalue="ng-disabled" />
           <item index="3" class="java.lang.String" itemvalue="ng-if" />
           <item index="4" class="java.lang.String" itemvalue="ng-click" />
+          <item index="5" class="java.lang.String" itemvalue="ui-grid" />
+          <item index="6" class="java.lang.String" itemvalue="ui-grid-paging" />
+          <item index="7" class="java.lang.String" itemvalue="external-scopes" />
+          <item index="8" class="java.lang.String" itemvalue="ng-dblclick" />
+          <item index="9" class="java.lang.String" itemvalue="ng-class" />
+          <item index="10" class="java.lang.String" itemvalue="ui-grid-cell" />
+          <item index="11" class="java.lang.String" itemvalue="ng-model" />
+          <item index="12" class="java.lang.String" itemvalue="ng-readonly" />
+          <item index="13" class="java.lang.String" itemvalue="ui-grid-selection" />
+          <item index="14" class="java.lang.String" itemvalue="ng-repeat" />
         </list>
       </value>
     </option>
@@ -499,19 +502,30 @@
   <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="myValues">
       <value>
-        <list size="7">
+        <list size="17">
           <item index="0" class="java.lang.String" itemvalue="nobr" />
           <item index="1" class="java.lang.String" itemvalue="noembed" />
           <item index="2" class="java.lang.String" itemvalue="comment" />
           <item index="3" class="java.lang.String" itemvalue="noscript" />
           <item index="4" class="java.lang.String" itemvalue="embed" />
           <item index="5" class="java.lang.String" itemvalue="script" />
-          <item index="6" class="java.lang.String" itemvalue="my-login-info" />
+          <item index="6" class="java.lang.String" itemvalue="jbdd-data-grid" />
+          <item index="7" class="java.lang.String" itemvalue="my-form-field-id" />
+          <item index="8" class="java.lang.String" itemvalue="my-form-field-enabled" />
+          <item index="9" class="java.lang.String" itemvalue="my-form-field-name-and-desc" />
+          <item index="10" class="java.lang.String" itemvalue="my-menu" />
+          <item index="11" class="java.lang.String" itemvalue="my-navbar" />
+          <item index="12" class="java.lang.String" itemvalue="my-language-switcher" />
+          <item index="13" class="java.lang.String" itemvalue="my-edit-buttons" />
+          <item index="14" class="java.lang.String" itemvalue="my-login-info" />
+          <item index="15" class="java.lang.String" itemvalue="my-edit-buttons" />
+          <item index="16" class="java.lang.String" itemvalue="my-user-player-assign-grids" />
         </list>
       </value>
     </option>
     <option name="myCustomValuesEnabled" value="true" />
   </inspection_tool>
+  <inspection_tool class="HtmlUnknownTarget" enabled="false" level="WARNING" enabled_by_default="false" />
   <inspection_tool class="IOResource" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="ignoredTypesString" value="java.io.ByteArrayOutputStream,java.io.ByteArrayInputStream,java.io.StringBufferInputStream,java.io.CharArrayWriter,java.io.CharArrayReader,java.io.StringWriter,java.io.StringReader" />
     <option name="insideTryAllowed" value="false" />
@@ -548,7 +562,7 @@
   <inspection_tool class="InstanceMethodNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="m_regex" value="[a-z][A-Za-z\d]*" />
     <option name="m_minLength" value="4" />
-    <option name="m_maxLength" value="32" />
+    <option name="m_maxLength" value="48" />
   </inspection_tool>
   <inspection_tool class="InstanceVariableNamingConvention" enabled="false" level="WARNING" enabled_by_default="false">
     <option name="m_regex" value="[a-z][A-Za-z0-9]*" />
@@ -573,7 +587,7 @@
   </inspection_tool>
   <inspection_tool class="InterfaceNamingConvention" enabled="true" level="WARNING" enabled_by_default="true">
     <option name="m_regex" value="[A-Z][A-Za-z\d]*" />
-    <option name="m_minLength" value="8" />
+    <option name="m_minLength" value="4" />
     <option name="m_maxLength" value="64" />
   </inspection_tool>
   <inspection_tool class="InterfaceNeverImplemented" enabled="true" level="WARNING" enabled_by_default="true">
@@ -664,7 +678,7 @@
     <option name="m_maxLength" value="20" />
   </inspection_tool>
   <inspection_tool class="LocalVariableNamingConventionJS" enabled="true" level="WARNING" enabled_by_default="true">
-    <option name="m_regex" value="[a-z][A-Za-z]*" />
+    <option name="m_regex" value="[a-z][A-Za-z0-9]*" />
     <option name="m_minLength" value="1" />
     <option name="m_maxLength" value="32" />
   </inspection_tool>
@@ -780,7 +794,7 @@
   <inspection_tool class="NonAtomicOperationOnVolatileField" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="NonBlockStatementBodyJS" enabled="true" level="WARNING" enabled_by_default="true" />
   <inspection_tool class="NonBooleanMethodNameMayNotStartWithQuestion" enabled="true" level="WARNING" enabled_by_default="true">
-    <option name="questionString" value="is,can,has,should,could,will,shall,check,contains,equals,startsWith,endsWith" />
+    <option name="questionString" value="is,can,has,should,could,will,shall,contains,equals,startsWith,endsWith" />
     <option name="ignoreBooleanMethods" value="false" />
     <option name="onlyWarnOnBaseMethods" value="true" />
   </inspection_tool>
