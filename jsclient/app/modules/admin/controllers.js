@@ -116,9 +116,9 @@ angular.module('Admin')
 
         }])
 
-    .controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q', '$attrs',
+    .controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q',
 
-        function ($scope, DataService, $q, $attrs) {
+        function ($scope, DataService, $q) {
 
             var leftGridApi,
                 rightGridApi,
