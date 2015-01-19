@@ -321,7 +321,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         // only update password if its present in the dto
         if (null != user.getPassword()) {
 
-            if (user.getPassword() != null && user.getPassword().isEmpty()) {
+            if (user.getPassword().isEmpty()) {
                 user.setPassword(createRandomPassword());
                 LOG.info("user {} has empty password, creating random", user.getUsername());
             }
