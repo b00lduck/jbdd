@@ -64,7 +64,7 @@ public interface UserService extends AbstractDtoServiceInterface<User, UserEntit
     User findByUsername(final String username);
 
     @PreAuthorize("hasRole('" + ROLE_ADMIN_USER + "')")
-    boolean doesUsernameExist(final String username);
+    boolean isUsernameExisting(final String username);
 
     @PreAuthorize("hasRole('" + ROLE_SYSTEM + "')")
     void addRole(final long userId, final String role);

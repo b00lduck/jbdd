@@ -45,7 +45,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
             final UserDetails sysAcc = new SystemUserDetails();
 
-            //noinspection unchecked
+            //noinspection unchecked,rawtypes
             auth.getAuthorities().addAll((Collection) sysAcc.getAuthorities());
 
             user = userService.findByUsername(username);
