@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-fdescribe('UserPlayerAssignGridDirectiveController', function () {
+describe('UserPlayerAssignGridDirectiveController', function () {
 
     var scope,
         controller,
