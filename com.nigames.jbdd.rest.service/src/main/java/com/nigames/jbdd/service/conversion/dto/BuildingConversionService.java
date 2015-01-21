@@ -34,7 +34,7 @@ public class BuildingConversionService extends AbstractConversionService<Buildin
 
     @Override
     protected void updateDtoFromEntity(final Building dto, final BuildingEntity entity) {
-        // Nothing to do here (yet).
+        dto.setDeletable(true);
     }
 
     @Override

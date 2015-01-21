@@ -31,7 +31,7 @@ public class BuildingEntity extends AbstractItemEntity implements BuyableEntityA
     /**
      * The {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspect} aspect of this Building.
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private final BuyableEntityAspectImpl isBuyable = new BuyableEntityAspectImpl();
 
     /**
@@ -46,7 +46,6 @@ public class BuildingEntity extends AbstractItemEntity implements BuyableEntityA
      */
     @OneToOne(optional = true)
     private JobEntity job;
-
 
     @Override
     public int getScore() {
