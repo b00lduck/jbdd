@@ -14,6 +14,7 @@ public class CanBeEnabledImpl implements CanBeEnabled {
         this.enabled = enabled;
     }
 
+    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -25,9 +26,7 @@ public class CanBeEnabledImpl implements CanBeEnabled {
 
         final CanBeEnabledImpl that = (CanBeEnabledImpl) o;
 
-        //noinspection AccessingNonPublicFieldOfAnotherObject
         return enabled == that.enabled;
-
     }
 
     @Override

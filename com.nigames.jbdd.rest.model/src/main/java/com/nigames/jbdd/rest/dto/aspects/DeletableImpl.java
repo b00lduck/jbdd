@@ -14,6 +14,7 @@ public class DeletableImpl implements Deletable {
 		this.deletable = deletable;
 	}
 
+	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -25,7 +26,6 @@ public class DeletableImpl implements Deletable {
 
 		final DeletableImpl that = (DeletableImpl) o;
 
-		//noinspection AccessingNonPublicFieldOfAnotherObject
 		return deletable == that.deletable;
 
 	}

@@ -1,10 +1,8 @@
 package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.BuildingRequestInterface;
-import com.nigames.jbdd.rest.api.GoodRequestInterface;
 import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.config.TestApplicationConfig;
 import com.nigames.jbdd.service.rest.helper.I18nGenerator;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
@@ -37,6 +35,7 @@ public class BuildingRestRequestTest extends AbstractRestRequestTest<Building, B
     protected Building assembleTestDto(final int index) {
         final Building dto = new Building();
         dto.setEnabled(true);
+        dto.setDeletable(true);
         dto.setName(I18nGenerator.getNameMap(index));
         dto.setDescription(I18nGenerator.getDescMap(index));
         return dto;

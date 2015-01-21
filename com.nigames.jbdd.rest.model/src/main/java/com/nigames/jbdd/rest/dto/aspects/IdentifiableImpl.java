@@ -27,7 +27,6 @@ public class IdentifiableImpl implements Identifiable {
         final IdentifiableImpl that = (IdentifiableImpl) o;
 
         return id == that.id;
-
     }
 
     @Override

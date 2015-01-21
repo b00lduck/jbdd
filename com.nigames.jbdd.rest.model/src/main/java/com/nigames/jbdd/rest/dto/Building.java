@@ -78,4 +78,29 @@ public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabl
 		this.deletable.setDeletable(deletable);
 	}
 
+	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Building building = (Building) o;
+
+		if (!buyable.equals(building.buyable)) return false;
+		if (!canBeEnabled.equals(building.canBeEnabled)) return false;
+		if (!deletable.equals(building.deletable)) return false;
+		if (!hasNameAndDesc.equals(building.hasNameAndDesc)) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = hasNameAndDesc.hashCode();
+		result = 31 * result + canBeEnabled.hashCode();
+		result = 31 * result + buyable.hashCode();
+		result = 31 * result + deletable.hashCode();
+		return result;
+	}
+
 }
