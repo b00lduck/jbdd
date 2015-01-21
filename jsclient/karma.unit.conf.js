@@ -34,7 +34,7 @@ module.exports = function (config) {
             'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
 
-            'app/!(bower_components)/**/module.js',
+            'app/!(bower_components)/**/admin.module.js',
             'app/!(bower_components)/**/*.js',
             'app/*.js',
             'app/!(bower_components)/**/*.html',
