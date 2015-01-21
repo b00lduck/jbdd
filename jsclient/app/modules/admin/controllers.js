@@ -31,6 +31,12 @@ angular.module('Admin')
                         {name: 'name.de-DE', displayNameI18n: 'i18n.name'},
                         {name: 'weight', displayNameI18n: 'good.weight'}
                     ]
+                },
+
+                'building': {
+                    columnDefs: [
+                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                    ]
                 }
 
             };

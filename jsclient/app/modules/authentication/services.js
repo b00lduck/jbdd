@@ -132,10 +132,15 @@ angular.module('Authentication')
                 return Utils.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_PLAYER');
             };
 
+            service.userIsBuildingAdmin = function () {
+                return Utils.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_BUILDING');
+            };
+
             service.userIsAnyAdmin = function () {
-                return (service.userIsPlayerAdmin()) || (service.userIsUserAdmin());
+                return (service.userIsPlayerAdmin() || service.userIsUserAdmin() || service.userIsBuildingAdmin());
             };
 
             return service;
+
         }]);
 

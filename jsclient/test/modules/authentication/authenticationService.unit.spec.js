@@ -59,6 +59,7 @@ describe('AuthenticationService', function () {
 
         expect(AuthenticationService.userIsUserAdmin()).toBe(false);
         expect(AuthenticationService.userIsPlayerAdmin()).toBe(false);
+        expect(AuthenticationService.userIsBuildingAdmin()).toBe(false);
         expect(AuthenticationService.userIsAnyAdmin()).toBe(false);
 
         logout(username, password, $httpBackend, $rootScope, AuthenticationService, Base64, $cookieStore);
@@ -75,6 +76,7 @@ describe('AuthenticationService', function () {
 
         expect(AuthenticationService.userIsUserAdmin()).toBe(true);
         expect(AuthenticationService.userIsPlayerAdmin()).toBe(true);
+        expect(AuthenticationService.userIsBuildingAdmin()).toBe(false);
         expect(AuthenticationService.userIsAnyAdmin()).toBe(true);
 
         logout(username, password, $httpBackend, $rootScope, AuthenticationService, Base64, $cookieStore);
@@ -91,6 +93,7 @@ describe('AuthenticationService', function () {
 
         expect(AuthenticationService.userIsUserAdmin()).toBe(true);
         expect(AuthenticationService.userIsPlayerAdmin()).toBe(false);
+        expect(AuthenticationService.userIsBuildingAdmin()).toBe(false);
         expect(AuthenticationService.userIsAnyAdmin()).toBe(true);
 
         logout(username, password, $httpBackend, $rootScope, AuthenticationService, Base64, $cookieStore);
@@ -107,6 +110,24 @@ describe('AuthenticationService', function () {
 
         expect(AuthenticationService.userIsUserAdmin()).toBe(false);
         expect(AuthenticationService.userIsPlayerAdmin()).toBe(true);
+        expect(AuthenticationService.userIsBuildingAdmin()).toBe(false);
+        expect(AuthenticationService.userIsAnyAdmin()).toBe(true);
+
+        logout(username, password, $httpBackend, $rootScope, AuthenticationService, Base64, $cookieStore);
+
+    }));
+
+    it('calls the rest service to login as building admin correctly', inject(function (AuthenticationService, $httpBackend, $rootScope, Base64, $cookieStore) {
+
+        var username = 'adminusername';
+        var password = 'adminpassword';
+        var roles = ['ROLE_ADMIN_BUILDING'];
+
+        login(username, password, roles, $httpBackend, $rootScope, AuthenticationService, Base64);
+
+        expect(AuthenticationService.userIsUserAdmin()).toBe(false);
+        expect(AuthenticationService.userIsPlayerAdmin()).toBe(false);
+        expect(AuthenticationService.userIsBuildingAdmin()).toBe(true);
         expect(AuthenticationService.userIsAnyAdmin()).toBe(true);
 
         logout(username, password, $httpBackend, $rootScope, AuthenticationService, Base64, $cookieStore);

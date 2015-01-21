@@ -25,6 +25,10 @@ angular.module('Navigation')
                     return AuthenticationService.userIsPlayerAdmin();
                 };
 
+                scope.userIsBuildingAdmin = function () {
+                    return AuthenticationService.userIsBuildingAdmin();
+                };
+
             }
 
         };

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class UserRole implements IsDto, Identifiable {
+public final class UserRole implements IsDto, Identifiable {
 
 	/**
 	 * System role. A user may not have this role at all.
@@ -19,8 +19,9 @@ public class UserRole implements IsDto, Identifiable {
 	public static final String ROLE_ADMIN_USER = "ROLE_ADMIN_USER";
 	public static final String ROLE_ADMIN_PLAYER = "ROLE_ADMIN_PLAYER";
 	public static final String ROLE_PLAYER = "ROLE_PLAYER";
+	public static final String ROLE_ADMIN_BUILDING = "ROLE_ADMIN_BUILDING";
+
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
-	private long id;
 
 	private String roleName;
 

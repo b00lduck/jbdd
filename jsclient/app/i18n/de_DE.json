@@ -56,7 +56,8 @@
       "admin": "Administration",
       "players": "Spieler",
       "users": "Benutzerkonten",
-      "goods": "Güter"
+      "goods": "Güter",
+      "building": "Gebäude"
     },
     "title": "JBdD"
   },

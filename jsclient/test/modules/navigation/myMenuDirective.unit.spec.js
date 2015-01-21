@@ -18,11 +18,13 @@ describe('myMenu directive', function () {
 
         var isUserAdmin = false;
         var isPlayerAdmin = false;
+        var isBuildingAdmin = false;
 
         authServiceMock = {
             userIsAnyAdmin: function () { return isUserAdmin || isPlayerAdmin; },
             userIsUserAdmin: function () { return isUserAdmin; },
             userIsPlayerAdmin: function () { return isPlayerAdmin; },
+            userIsBuildingAdmin: function () { return isBuildingAdmin; },
 
             isLoggedIn: function () { return true; },
 
@@ -44,6 +46,12 @@ describe('myMenu directive', function () {
             setStateD: function () {
                 isUserAdmin = true;
                 isPlayerAdmin = true;
+            },
+
+            setStateE: function () {
+                isUserAdmin = true;
+                isPlayerAdmin = true;
+                isBuildingAdmin = true;
             }
 
         };
@@ -137,6 +145,15 @@ describe('myMenu directive', function () {
         var element = $compile('<my-menu></my-menu>')($rootScope);
         $rootScope.$digest();
         expect(element.html()).toContain('navigation.admin.user');
+
+    });
+
+    it('shows the building user menu only if user has the appropiate role', function () {
+
+        authServiceMock.setStateE();
+        var element = $compile('<my-menu></my-menu>')($rootScope);
+        $rootScope.$digest();
+        expect(element.html()).toContain('navigation.admin.building');
 
     });
 
