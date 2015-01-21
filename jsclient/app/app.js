@@ -1,16 +1,18 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('jbddApp', [
-    'Authentication',
-    'Navigation',
-    'Home',
-    'Admin',
-    'ngRoute',
-    'ngCookies',
-    'ngTouch',
-    'pascalprecht.translate'
-])
+define(['angular'], function (ng) {
+
+    return ng.module('jbddApp', [
+        'Authentication',
+        'Navigation',
+        'Home',
+        'Admin',
+        'ngRoute',
+        'ngCookies',
+        'ngTouch',
+        'pascalprecht.translate'
+    ])
 
     .config(['$routeProvider', function ($routeProvider) {
 
@@ -39,7 +41,7 @@ angular.module('jbddApp', [
             .otherwise({redirectTo: '/'});
     }])
 
-    .config(['$translateProvider', function($translateProvider){
+        .config(['$translateProvider', function ($translateProvider) {
 
         $translateProvider.useStaticFilesLoader({
             prefix: 'i18n/',
@@ -70,3 +72,5 @@ angular.module('jbddApp', [
 
             });
         }]);
+
+});
