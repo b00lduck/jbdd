@@ -1,4 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Utils', []);
+define(['UtilsService'],
+
+ function (UtilsService) {
+     var app = angular.module('Utils', []);
+     app.factory('Utils', UtilsService);
+ });

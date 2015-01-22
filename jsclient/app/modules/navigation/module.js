@@ -1,4 +1,8 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Navigation', ['LanguageSwitcher', 'Authentication']);
+define(['AuthenticationModule'],
+
+    function(AuthenticationService, AuthenticationDirective, AuthenticationController) {
+        return angular.module('Navigation', []);
+    });

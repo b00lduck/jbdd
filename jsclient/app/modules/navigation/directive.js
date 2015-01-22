@@ -1,6 +1,7 @@
 /*jslint node: true */
 'use strict';
 
+
 angular.module('Navigation')
 
     .directive('myMenu', ['AuthenticationService', function (AuthenticationService) {

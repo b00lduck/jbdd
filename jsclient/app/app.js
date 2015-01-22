@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'angular-route'], function (angularAMD) {
+define(['angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule', 'HomeModule', 'AdminModule'], function (angularAMD) {
 
     var app = angular.module('jbddApp', ['Authentication','Navigation','Home','Admin','ngRoute','ngCookies','ngTouch','pascalprecht.translate']);
 

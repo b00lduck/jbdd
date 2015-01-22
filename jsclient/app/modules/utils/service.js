@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Utils')
+define([], function () {
 
-    .service('Utils', function () {
+    return function () {
 
         this.contains = function (haystack, needle) {
 
@@ -25,6 +25,5 @@ angular.module('Utils')
             return false;
 
         };
-
-    });
-
+    };
+});

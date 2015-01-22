@@ -1,7 +1,11 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Authentication', ['Utils', 'Base64']);
+define(['AuthenticationService', 'AuthenticationDirective', 'AuthenticationController'],
 
-
-
+    function(AuthenticationService, AuthenticationDirective, AuthenticationController) {
+        return angular.module('Authentication', [])
+            .service('Authentication', AuthenticationService)
+            .directive('myLoginInfo', AuthenticationDirective)
+            .controller('AuthenticationController', AuthenticationController);
+    });

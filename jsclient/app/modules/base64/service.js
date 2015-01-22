@@ -2,10 +2,10 @@
 'use strict';
 
 /* jshint ignore:start */
+define([], function() {
 /* jslint ignore:start */
-angular.module('Base64')
 
-    .service('Base64', function () {
+    return function() {
 
         var alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
         var lookup = null;
@@ -223,8 +223,9 @@ angular.module('Base64')
 
         return service;
 
-    }
-);
+    };
+
+});
 /* jslint ignore:end */
 /* jshint ignore:end */
 

@@ -15,20 +15,36 @@ requirejs.config({
         'angular-ui-grid': 'bower_components/angular-ui-grid/ui-grid',
         angularAMD: 'bower_components/angularAMD/angularAMD',
         bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
-        jquery: 'bower_components/jquery/dist/jquery'
+        jquery: 'bower_components/jquery/dist/jquery',
+        AdminModule: 'modules/admin/module',
+        HomeModule: 'modules/home/module',
+        HomeController: 'modules/home/controller',
+        UtilsModule: 'modules/utils/module',
+        UtilsService: 'modules/utils/service',
+        NavigationModule: 'modules/navigation/module',
+        NavigationDirective: 'modules/navigation/directive',
+        Base64Module: 'modules/base64/module',
+        Base64Service: 'modules/base64/service',
+        AuthenticationModule: 'modules/authentication/module',
+        AuthenticationController: 'modules/authentication/controller',
+        AuthenticationDirective: 'modules/authentication/directive',
+        AuthenticationService: 'modules/authentication/service'
     },
     shim: {
-        angular: {
-            exports: 'angular'
-        },
+        angularAMD: [
+            'angular'
+        ],
+        'angular-route': [
+            'angular'
+        ],
         bootstrap: {
             deps: [
                 'jquery'
             ]
-        }
+        },
     },
     deps: [
-        './bootstrap'
+        'app'
     ],
     packages: [
 
@@ -40,19 +56,19 @@ requirejs.config({
 
  <!-- module utils -->
  <script src="modules/utils/module.js"></script>
- <script src="modules/utils/services.js"></script>
+ <script src="modules/utils/service.js"></script>
 
  <!-- module base64 -->
  <script src="modules/base64/module.js"></script>
- <script src="modules/base64/services.js"></script>
+ <script src="modules/base64/service.js"></script>
 
  <!-- module dataService -->
  <script src="modules/data/module.js"></script>
- <script src="modules/data/services.js"></script>
+ <script src="modules/data/service.js"></script>
 
  <!-- module authentication -->
  <script src="modules/authentication/module.js"></script>
- <script src="modules/authentication/services.js"></script>
+ <script src="modules/authentication/service.js"></script>
  <script src="modules/authentication/directives.js"></script>
  <script src="modules/authentication/controllers.js"></script>
 

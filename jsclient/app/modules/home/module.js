@@ -1,6 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Home', []);
+define(['HomeController'],
 
-
+    function (HomeController) {
+        return angular.module('Home', [])
+            .controller('HomeController', HomeController);
+    });
