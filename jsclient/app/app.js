@@ -1,60 +1,49 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular'], function (ng) {
+define(['angularAMD', 'angular-route'], function (angularAMD) {
 
-    return ng.module('jbddApp', [
-        'Authentication',
-        'Navigation',
-        'Home',
-        'Admin',
-        'ngRoute',
-        'ngCookies',
-        'ngTouch',
-        'pascalprecht.translate'
-    ])
+    var app = angular.module('jbddApp', ['Authentication','Navigation','Home','Admin','ngRoute','ngCookies','ngTouch','pascalprecht.translate']);
 
-    .config(['$routeProvider', function ($routeProvider) {
+    app.config(function ($routeProvider) {
 
         $routeProvider
-            .when('/', {
+            .when('/', angularAMD.route({
                 controller: 'LoginController',
                 templateUrl: 'modules/authentication/views/login.html',
                 hideMenus: true
-            })
+            }))
 
-            .when('/home', {
+            .when('/home', angularAMD.route({
                 controller: 'HomeController',
                 templateUrl: 'modules/home/views/home.html'
-            })
+            }))
 
-            .when('/admin/:resource', {
+            .when('/admin/:resource', angularAMD.route({
                 controller: 'AdminListController',
                 templateUrl: 'modules/admin/views/list.html'
-            })
+            }))
 
-            .when('/admin/:resource/:id', {
+            .when('/admin/:resource/:id', angularAMD.route({
                 controller: 'AdminEditController',
                 templateUrl: function (params) { return 'modules/admin/views/edit_' + params.resource + '.html'; }
-            })
+            }))
 
             .otherwise({redirectTo: '/'});
-    }])
+    });
 
-        .config(['$translateProvider', function ($translateProvider) {
+    app.config(function ($translateProvider) {
 
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'i18n/',
-            suffix: '.json'
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'i18n/',
+                suffix: '.json'
+            });
+
+            $translateProvider.preferredLanguage('en_GB');
+
         });
 
-        $translateProvider.preferredLanguage('en_GB');
-
-    }])
-
-
-    .run(['$rootScope', '$location', 'AuthenticationService',
-        function ($rootScope, $location, AuthenticationService) {
+    app.run(function ($rootScope, $location, AuthenticationService) {
 
             $rootScope.$on('$locationChangeStart', function (event, next, current) {
                 // redirect to login page if not logged in
@@ -71,6 +60,7 @@ define(['angular'], function (ng) {
                 }
 
             });
-        }]);
+        });
 
+    return angularAMD.bootstrap(app);
 });

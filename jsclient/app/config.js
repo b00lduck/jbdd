@@ -13,9 +13,8 @@ requirejs.config({
         'angular-translate-loader-static-files': 'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
         'angular-ui-bootstrap-bower': 'bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'angular-ui-grid': 'bower_components/angular-ui-grid/ui-grid',
+        angularAMD: 'bower_components/angularAMD/angularAMD',
         bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
-        requirejs: 'bower_components/requirejs/require',
-        'requirejs-domready': 'bower_components/requirejs-domready/domReady',
         jquery: 'bower_components/jquery/dist/jquery'
     },
     shim: {
@@ -31,7 +30,9 @@ requirejs.config({
     deps: [
         './bootstrap'
     ],
-    packages: []
+    packages: [
+
+    ]
 });
 
 
