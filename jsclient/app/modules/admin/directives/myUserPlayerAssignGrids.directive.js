@@ -1,10 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('Admin')
+define(['DataModule'], function () {
 
-    .directive('myUserPlayerAssignGrids', ['DataService', '$q',
-        function (DataService, $q) {
+    var myUserPlayerAssignGrids = function (DataService, $q) {
 
             return {
                 restrict: 'E',
@@ -18,4 +17,8 @@ angular.module('Admin')
                 }
             };
 
-        }]);
+    };
+
+    return ['DataService', '$q', myUserPlayerAssignGrids];
+
+});

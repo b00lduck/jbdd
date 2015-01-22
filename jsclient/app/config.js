@@ -17,18 +17,33 @@ requirejs.config({
         bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
         jquery: 'bower_components/jquery/dist/jquery',
         AdminModule: 'modules/admin/module',
-        HomeModule: 'modules/home/module',
-        HomeController: 'modules/home/controller',
-        UtilsModule: 'modules/utils/module',
-        UtilsService: 'modules/utils/service',
-        NavigationModule: 'modules/navigation/module',
-        NavigationDirective: 'modules/navigation/directive',
-        Base64Module: 'modules/base64/module',
-        Base64Service: 'modules/base64/service',
+        AdminEditController: 'modules/admin/controllers/adminEdit.controller',
+        AdminListController: 'modules/admin/controllers/adminList.controller',
+        UserPlayerAssignGridDirectiveController: 'modules/admin/controllers/userPlayerAssignGridDirective.controller',
+        myEditButtonsDirective: 'modules/admin/directives/myEditButtons.directive',
+        myFormFieldIdDirective: 'modules/admin/directives/myFormFieldId.directive',
+        myFormFieldEnabledDirective: 'modules/admin/directives/myFormFieldEnabled.directive',
+        myFormFieldNameAndDescDirective: 'modules/admin/directives/myFormFieldNameAndDesc.directive',
+        myUserPlayerAssignGridsDirective: 'modules/admin/directives/myUserPlayerAssignGrids.directive',
         AuthenticationModule: 'modules/authentication/module',
         AuthenticationController: 'modules/authentication/controller',
         AuthenticationDirective: 'modules/authentication/directive',
-        AuthenticationService: 'modules/authentication/service'
+        AuthenticationService: 'modules/authentication/service',
+        Base64Module: 'modules/base64/module',
+        Base64Service: 'modules/base64/service',
+        DataModule: 'modules/data/module',
+        DataService: 'modules/data/service',
+        DataGridModule: 'modules/dataGrid/module',
+        DataGridDirective: 'modules/dataGrid/directive',
+        DeleteModalInstanceController: 'modules/dataGrid/controller',
+        HomeModule: 'modules/home/module',
+        HomeController: 'modules/home/controller',
+        LanguageSwitcherModule: 'modules/home/languageSwitcher/module',
+        LanguageSwitcherDirective: 'modules/home/languageSwitcher/directive',
+        NavigationModule: 'modules/navigation/module',
+        NavigationDirective: 'modules/navigation/directive',
+        UtilsModule: 'modules/utils/module',
+        UtilsService: 'modules/utils/service'
     },
     shim: {
         angularAMD: [
@@ -41,7 +56,7 @@ requirejs.config({
             deps: [
                 'jquery'
             ]
-        },
+        }
     },
     deps: [
         'app'
@@ -91,7 +106,7 @@ requirejs.config({
 
  <!-- module admin -->
  <script src="modules/admin/admin.module.js"></script>
- <script src="modules/admin/directives/myFormFields.directive.js"></script>
+ <script src="modules/admin/directives/myEditButtons.directive.js"></script>
  <script src="modules/admin/directives/myUserPlayerAssignGrids.directive.js"></script>
  <script src="modules/admin/controllers/adminList.controller.js"></script>
  <script src="modules/admin/controllers/adminEdit.controller.js"></script>

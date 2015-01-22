@@ -1,6 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('LanguageSwitcher', ['pascalprecht.translate']);
+define(['LanguageSwitcherDirective'],
 
-
+    function (LanguageSwitcherDirective) {
+        return angular.module('LanguageSwitcher', ['pascalprecht.translate'])
+            .directive('myLanguageSwitcher', LanguageSwitcherDirective);
+    });
