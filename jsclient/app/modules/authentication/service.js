@@ -2,7 +2,7 @@
 'use strict';
 
 /* jshint ignore:start */
-define(['Base64Module', 'UtilsModule'], function () {
+define(['Base64Module', 'UtilsModule', 'angular-translate'], function () {
 
     var AuthenticationService = function (Base64, $http, $cookieStore, $rootScope, $timeout, $location, $q, $translate, Utils) {
 

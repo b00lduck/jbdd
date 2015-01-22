@@ -3,17 +3,17 @@
 
 requirejs.config({
     paths: {
-        myComponent: 'app/app.js',
+        app: 'app',
         angular: 'bower_components/angular/angular',
+        'angular-route': 'bower_components/angular-route/angular-route',
+        angularAMD: 'bower_components/angularAMD/angularAMD',
         'angular-cookies': 'bower_components/angular-cookies/angular-cookies',
         'angular-mocks': 'bower_components/angular-mocks/angular-mocks',
-        'angular-route': 'bower_components/angular-route/angular-route',
         'angular-touch': 'bower_components/angular-touch/angular-touch',
         'angular-translate': 'bower_components/angular-translate/angular-translate',
         'angular-translate-loader-static-files': 'bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files',
         'angular-ui-bootstrap-bower': 'bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'angular-ui-grid': 'bower_components/angular-ui-grid/ui-grid',
-        angularAMD: 'bower_components/angularAMD/angularAMD',
         bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
         jquery: 'bower_components/jquery/dist/jquery',
         AdminModule: 'modules/admin/module',
@@ -46,11 +46,20 @@ requirejs.config({
         UtilsService: 'modules/utils/service'
     },
     shim: {
+        app: [
+            'angularAMD'
+        ],
         angularAMD: [
             'angular'
         ],
         'angular-route': [
             'angular'
+        ],
+        'angular-cookies': [
+            'angular'
+        ],
+        'angular-translate': [
+            'angular-translate-loader-static-files'
         ],
         bootstrap: {
             deps: [
@@ -60,9 +69,6 @@ requirejs.config({
     },
     deps: [
         'app'
-    ],
-    packages: [
-
     ]
 });
 

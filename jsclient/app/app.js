@@ -1,7 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule', 'HomeModule', 'AdminModule'], function (angularAMD) {
+define(['angular-translate', 'angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule', 'HomeModule', 'AdminModule',
+    'angular-cookies', 'angular-translate'
+], function (angularAMD) {
 
     var app = angular.module('jbddApp', ['Authentication','Navigation','Home','Admin','ngRoute','ngCookies','ngTouch','pascalprecht.translate']);
 
@@ -63,4 +65,5 @@ define(['angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule
         });
 
     return angularAMD.bootstrap(app);
+
 });

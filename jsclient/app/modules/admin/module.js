@@ -12,12 +12,12 @@ define(['angular-ui-grid', 'AdminEditController', 'AdminListController', 'UserPl
         return angular.module('Admin', ['DataGrid', 'ui.grid.selection'])
             .controller('AdminEditController', AdminEditController)
             .controller('AdminListController', AdminListController)
-            .controller('UserPlayerAssignGridDirectiveController', UserPlayerAssignGridDirectiveController)
-            .directive('myEditButtons', myEditButtonsDirective)
-            .directive('myFormFieldId', myFormFieldIdDirective)
-            .directive('myFormFieldEnabled', myFormFieldEnabledDirective)
-            .directive('myFormFieldNameAndDesc', myFormFieldNameAndDescDirective)
-            .directive('myUserPlayerAssignGrids', myUserPlayerAssignGridsDirective);
+            .controller('UserPlayerAssignGridDirectiveController', UserPlayerAssignGridDirectiveController);
+        //.directive('myEditButtons', myEditButtonsDirective)
+        //.directive('myFormFieldId', myFormFieldIdDirective)
+        //.directive('myFormFieldEnabled', myFormFieldEnabledDirective)
+        //.directive('myFormFieldNameAndDesc', myFormFieldNameAndDescDirective)
+        //.directive('myUserPlayerAssignGrids', myUserPlayerAssignGridsDirective);
 
     }
 );
