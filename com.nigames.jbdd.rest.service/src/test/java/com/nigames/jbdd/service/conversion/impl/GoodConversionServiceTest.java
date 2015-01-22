@@ -24,11 +24,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 public class GoodConversionServiceTest extends AbstractConversionServiceTest<Good, GoodEntity> {
 
     @Autowired
-    private transient GoodConversionService GoodConversionService;
+    private transient GoodConversionService goodConversionService;
 
     @Override
     protected GoodConversionService getConversionService() {
-        return GoodConversionService;
+        return goodConversionService;
     }
 
     @Override
@@ -45,6 +45,7 @@ public class GoodConversionServiceTest extends AbstractConversionServiceTest<Goo
     @Override
     protected void checkDto(final Good dto) {
         Assert.assertEquals(222, dto.getWeight());
+        Assert.assertEquals(true, dto.isDeletable());
     }
 
     @Override

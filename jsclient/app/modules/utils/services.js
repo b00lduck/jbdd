@@ -9,12 +9,13 @@ angular.module('Utils')
 
             var i;
 
-            if (typeof (haystack) === 'undefined') {
+            if ('undefined' === typeof (haystack)) {
                 return false;
             }
 
             i = haystack.length;
 
+            //noinspection IncrementDecrementResultUsedJS
             while (i--) {
                 if (haystack[i] === needle) {
                     return true;

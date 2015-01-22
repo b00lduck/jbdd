@@ -230,6 +230,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
             playerEntity.setUser(userEntity);
         } else {
             LOG.error("User {} lacks ROLE_PLAYER role, not creating player", userEntity.getUsername());
+            //noinspection StringConcatenation
             throw new InsufficientPermissionsException("Add player to user failed: User is lacking " + ROLE_PLAYER);
         }
     }
@@ -252,7 +253,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     }
 
     @Transactional
-    public boolean doesUsernameExist(final String username) {
+    public boolean isUsernameExisting(final String username) {
         final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_USERNAME);
         query.setParameter("username", username);
 
@@ -265,7 +266,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     }
 
     @Transactional
-    public boolean doesEmailExist(final String email) {
+    public boolean isEmailExisting(final String email) {
         final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_EMAIL);
         query.setParameter("email", email);
 
@@ -321,7 +322,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         // only update password if its present in the dto
         if (null != user.getPassword()) {
 
-            if (user.getPassword() != null && user.getPassword().isEmpty()) {
+            if (user.getPassword().isEmpty()) {
                 user.setPassword(createRandomPassword());
                 LOG.info("user {} has empty password, creating random", user.getUsername());
             }
@@ -343,7 +344,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
         if (!originalUser.getUsername().equals(user.getUsername())) {
             // Username has changed
-            if (doesUsernameExist(user.getUsername())) {
+            if (isUsernameExisting(user.getUsername())) {
                 throw new UsernameAlreadyInUseException(user.getUsername());
             }
 
@@ -351,7 +352,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
         if (!originalUser.getEmail().equals(user.getEmail())) {
             // Email has changed
-            if (doesEmailExist(user.getEmail())) {
+            if (isEmailExisting(user.getEmail())) {
                 throw new EmailAlreadyInUseException(user.getEmail());
             }
 

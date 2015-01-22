@@ -7,6 +7,7 @@ import com.nigames.jbdd.service.conversion.dto.AbstractConversionService;
 import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
 import com.nigames.jbdd.service.conversion.impl.modules.EnabledIdConversionServiceTestModule;
 import com.nigames.jbdd.service.conversion.impl.modules.NameDescConversionServiceTestModule;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -43,6 +44,7 @@ public class BuildingConversionServiceTest extends AbstractConversionServiceTest
 
     @Override
     protected void checkDto(final Building dto) {
+        Assert.assertEquals(true, dto.isDeletable());
     }
 
     @Override

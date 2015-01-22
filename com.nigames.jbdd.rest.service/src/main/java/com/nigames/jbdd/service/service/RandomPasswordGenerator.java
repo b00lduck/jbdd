@@ -13,7 +13,7 @@ import java.security.SecureRandom;
 @Component
 public class RandomPasswordGenerator {
 
-    private static final int BITS = 32;
+    private static final int LENGTH_IN_BITS = 32;
     private static final int RADIX = 36;
 
     private final transient SecureRandom random = new SecureRandom();
@@ -24,7 +24,7 @@ public class RandomPasswordGenerator {
      * @return new password
      */
     public String getRandomPassword() {
-        return new BigInteger(BITS, random).toString(RADIX);
+        return new BigInteger(LENGTH_IN_BITS, random).toString(RADIX);
     }
 
 }

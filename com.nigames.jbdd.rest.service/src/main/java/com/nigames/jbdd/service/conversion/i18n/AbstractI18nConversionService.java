@@ -27,7 +27,12 @@ public abstract class AbstractI18nConversionService<EntityType extends I18n> {
 
     public void updateEntityFromDto(final Map<String, String> dto, final EntityType entity) {
         for (final String lang : Languages.getLanguageTagList()) {
-            entity.set(lang, deNull(dto.get(lang)));
+            if (dto == null) {
+                entity.set(lang, "");
+            } else {
+                entity.set(lang, deNull(dto.get(lang)));
+            }
+
         }
     }
 

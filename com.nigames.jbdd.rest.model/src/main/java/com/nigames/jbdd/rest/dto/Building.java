@@ -10,12 +10,13 @@ import java.util.Map;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 
-public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Buyable {
+public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
 	private final Buyable buyable = new BuyableImpl();
+	private final Deletable deletable = new DeletableImpl();
 
 	@Override
 	public boolean isEnabled() {
@@ -65,6 +66,41 @@ public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabl
 	@Override
 	public void setBuildtime(final int buildtime) {
 		buyable.setBuildtime(buildtime);
+	}
+
+	@Override
+	public boolean isDeletable() {
+		return deletable.isDeletable();
+	}
+
+	@Override
+	public void setDeletable(boolean deletable) {
+		this.deletable.setDeletable(deletable);
+	}
+
+	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Building building = (Building) o;
+
+		if (!buyable.equals(building.buyable)) return false;
+		if (!canBeEnabled.equals(building.canBeEnabled)) return false;
+		if (!deletable.equals(building.deletable)) return false;
+		if (!hasNameAndDesc.equals(building.hasNameAndDesc)) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = hasNameAndDesc.hashCode();
+		result = 31 * result + canBeEnabled.hashCode();
+		result = 31 * result + buyable.hashCode();
+		result = 31 * result + deletable.hashCode();
+		return result;
 	}
 
 }

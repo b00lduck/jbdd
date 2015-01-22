@@ -43,8 +43,8 @@ public class HasNameAndDescImpl implements HasNameAndDesc {
         if (!description.equals(that.description)) {
             return false;
         }
-        return name.equals(that.name);
 
+        return name.equals(that.name);
     }
 
     @Override

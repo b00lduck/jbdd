@@ -10,7 +10,7 @@ import java.util.List;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class User implements IsDto, Identifiable, CanBeEnabled, Deletable {
+public final class User implements IsDto, Identifiable, CanBeEnabled, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();

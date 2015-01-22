@@ -27,13 +27,11 @@ angular.module('Data')
             };
 
             var getResourceBaseUrl = function (resourceName) {
-                var url = restServiceBaseUrl + resourceName;
-                return url;
+                return restServiceBaseUrl + resourceName;
             };
 
             var getItemUrl = function (resourceName, id) {
-                var url = restServiceBaseUrl + resourceName + '/' + id;
-                return url;
+                return restServiceBaseUrl + resourceName + '/' + id;
             };
 
             var getPagedResourceListUrl = function (resourceName, pagingOptions) {
@@ -74,8 +72,8 @@ angular.module('Data')
             };
 
             service.createItem = function (resourceName, obj) {
-                delete obj.id;
                 var url = getResourceBaseUrl(resourceName);
+                delete obj.id;
                 return queryRestServicePost(url, obj);
             };
 

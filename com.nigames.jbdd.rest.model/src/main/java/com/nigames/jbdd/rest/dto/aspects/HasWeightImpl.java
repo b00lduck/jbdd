@@ -27,7 +27,6 @@ public class HasWeightImpl implements HasWeight {
         final HasWeightImpl hasWeight = (HasWeightImpl) o;
 
         return weight == hasWeight.weight;
-
     }
 
     @Override

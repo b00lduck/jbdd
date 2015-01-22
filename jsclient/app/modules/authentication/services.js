@@ -22,7 +22,7 @@ angular.module('Authentication')
             };
 
             var tempAuthInfo = $cookieStore.get('globalAuthInfo');
-            if (typeof (tempAuthInfo) === 'undefined') {
+            if ('undefined' === typeof (tempAuthInfo)) {
                 resetCredentials();
             }
 
@@ -55,8 +55,8 @@ angular.module('Authentication')
                             resetCredentials();
                             delete $http.defaults.headers.common.Authorization;
 
-                            if (data === null) {
-                                if (status === 0) {
+                            if (null === data) {
+                                if (0 === status) {
                                     errorObject.message = 'errors.login.message.failed';
                                     errorObject.details = 'errors.login.details.couldNotConnect';
                                 } else {
@@ -64,7 +64,7 @@ angular.module('Authentication')
                                     errorObject.details = 'errors.login.details.unknown';
                                 }
                             } else {
-                                if (status === 401) {
+                                if (401 === status) {
                                     errorObject.message = 'errors.login.message.failed';
                                     errorObject.details = 'errors.login.details.unauthorized';
                                 } else {
@@ -103,12 +103,12 @@ angular.module('Authentication')
 
                 var tempAuthInfo = $cookieStore.get('globalAuthInfo');
 
-                if ((typeof(globalAuthInfo.currentUser.username) !== 'undefined') &&
+                if (('undefined' !== typeof(globalAuthInfo.currentUser.username)) &&
                     (null !== globalAuthInfo.currentUser.username)) {
                     return true;
                 }
 
-                if (typeof tempAuthInfo === 'undefined') {
+                if ('undefined' === typeof tempAuthInfo) {
                     resetCredentials();
                     return false;
                 }
@@ -132,10 +132,15 @@ angular.module('Authentication')
                 return Utils.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_PLAYER');
             };
 
+            service.userIsBuildingAdmin = function () {
+                return Utils.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_BUILDING');
+            };
+
             service.userIsAnyAdmin = function () {
-                return (service.userIsPlayerAdmin()) || (service.userIsUserAdmin());
+                return (service.userIsPlayerAdmin() || service.userIsUserAdmin() || service.userIsBuildingAdmin());
             };
 
             return service;
+
         }]);
 
