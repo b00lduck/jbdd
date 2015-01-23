@@ -3,7 +3,7 @@
 
 define(['app', 'angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (app) {
 
-    app.directive('jbddDataGrid', ['$translate', '$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
+    app.directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
         '$modal', '$location', 'DataService',
         function ($http, $templateCache, uiGridConstants, $translate, $rootScope, i18nService, $modal, $location, DataService) {
 
