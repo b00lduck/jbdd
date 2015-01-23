@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (app) {
+define(['app', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (app) {
 
     app.directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
         '$modal', '$location', 'DataService',
@@ -167,13 +167,13 @@ define(['app', 'angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], 
 
                     };
 
-                    /*
-                     $rootScope.$on('$translateChangeSuccess', function (event, value) {
+
+                    $rootScope.$on('$translateChangeSuccess', function (event, value) {
                      var langSimple = value.language.substr(0, 2);
                      i18nService.setCurrentLang(langSimple);
                      refreshGridOptions();
                      });
-                     */
+
 
                     refreshGridOptions();
 

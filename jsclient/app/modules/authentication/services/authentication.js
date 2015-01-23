@@ -3,8 +3,8 @@
 
 define(['app', 'Base64Service', 'UtilsService', 'angular-cookies'], function (app) {
 
-    app.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'UtilsService',
-        function (Base64, $http, $cookieStore, $location, $q, UtilsService) {
+    app.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'UtilsService', '$rootScope',
+        function (Base64, $http, $cookieStore, $location, $q, UtilsService, $rootScope) {
 
             var service = {};
 
@@ -21,9 +21,21 @@ define(['app', 'Base64Service', 'UtilsService', 'angular-cookies'], function (ap
                 $cookieStore.put('globalAuthInfo', globalAuthInfo);
             };
 
-            var tempAuthInfo = $cookieStore.get('globalAuthInfo');
-            if ('undefined' === typeof (tempAuthInfo)) {
-                resetCredentials();
+            function checkLocation() {
+
+                // redirect to login page if not logged in
+                if ('/' !== $location.path() && !service.isLoggedIn()) {
+                    $location.path('/');
+                }
+
+                if ('/' === $location.path() && service.isLoggedIn()) {
+                    $location.path('/home');
+                }
+
+                if ('' === $location.path() && service.isLoggedIn()) {
+                    $location.path('/home');
+                }
+
             }
 
             service.login = function (username, password) {
@@ -140,8 +152,24 @@ define(['app', 'Base64Service', 'UtilsService', 'angular-cookies'], function (ap
                 return (service.userIsPlayerAdmin() || service.userIsUserAdmin() || service.userIsBuildingAdmin());
             };
 
+
+            // Check Auth info on startup
+            if ('undefined' === typeof ($cookieStore.get('globalAuthInfo'))) {
+                resetCredentials();
+            }
+
+            // Set location change event
+            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                checkLocation();
+            });
+            checkLocation();
+
+
+
+
             return service;
         }]);
+
 
 });
 

@@ -1,7 +1,16 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'MyNavbarDirective'], function (app) {
+define(['app',
+    'MyNavbarDirective',
+    'MyEditButtonsDirective',
+    'MyFormFieldEnabledDirective',
+    'MyFormFieldIdDirective',
+    'MyFormFieldNameAndDescDirective',
+    'MyUserPlayerAssignGridsDirective',
+    'DataService',
+
+], function (app) {
 
     app.controller('AdminEditController', ['$scope', '$routeParams', '$location', 'DataService', '$translate', '$rootScope',
         function ($scope, $routeParams, $location, DataService, $translate, $rootScope) {

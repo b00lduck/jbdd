@@ -3,9 +3,11 @@
 
 //define(['angular-translate', 'angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule', 'HomeModule',
 // 'AdminModule', 'angular-cookies', 'angular-translate'
-define(['angularAMD', 'angular-route', 'angular-translate', 'angular-translate-loader-static-files', 'bootstrap'
-
-
+define(['angularAMD',
+    'angular-route',
+    'angular-translate',
+    'angular-translate-loader-static-files',
+    'bootstrap'
 ], function (angularAMD) {
 
     //var app = angular.module('jbddApp',
@@ -19,8 +21,7 @@ define(['angularAMD', 'angular-route', 'angular-translate', 'angular-translate-l
 
             .when('/', angularAMD.route({
                 controller: 'LoginController',
-                templateUrl: 'modules/authentication/controllers/views/login.html',
-                hideMenus: true
+                templateUrl: 'modules/authentication/controllers/views/login.html'
             }))
 
             .when('/home', angularAMD.route({
@@ -52,34 +53,15 @@ define(['angularAMD', 'angular-route', 'angular-translate', 'angular-translate-l
             $translateProvider.preferredLanguage('en_GB');
 
         });
+
+
     /*
-    app.run(function ($rootScope, $location, AuthenticationService) {
 
-            $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                // redirect to login page if not logged in
-                if ('/' !== $location.path() && !AuthenticationService.isLoggedIn()) {
-                    $location.path('/');
-                }
-
-                if ('/' === $location.path() && AuthenticationService.isLoggedIn()) {
-                    $location.path('/home');
-                }
-
-                if ('' === $location.path() && AuthenticationService.isLoggedIn()) {
-                    $location.path('/home');
-                }
-
-            });
-        });
      */
-//    require(['domReady!'], function (document) {
-//        try {
-    return angularAMD.bootstrap(app);
-//        } catch (e) {
-//            console.error(e.stack || e.message || e);
-//            return null;
-//        }
-//    }
-//);
+
+    var ret = angularAMD.bootstrap(app);
+
+
+    return ret;
 
 });
