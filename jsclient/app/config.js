@@ -37,42 +37,16 @@ requirejs.config({
         LanguageSwitcherDirective: 'modules/languageSwitcher/directive',
         MyMenuDirective: 'modules/navigation/directives/myMenu',
         MyNavbarDirective: 'modules/navigation/directives/myNavbar',
-        UtilsService: 'modules/utils/service',
-        domReady: 'bower_components/domReady/domReady',
-        depend: 'bower_components/requirejs-plugins/src/depend',
-        font: 'bower_components/requirejs-plugins/src/font',
-        goog: 'bower_components/requirejs-plugins/src/goog',
-        image: 'bower_components/requirejs-plugins/src/image',
-        json: 'bower_components/requirejs-plugins/src/json',
-        mdown: 'bower_components/requirejs-plugins/src/mdown',
-        noext: 'bower_components/requirejs-plugins/src/noext',
-        propertyParser: 'bower_components/requirejs-plugins/src/propertyParser',
-        'Markdown.Converter': 'bower_components/requirejs-plugins/lib/Markdown.Converter',
-        text: 'bower_components/requirejs-plugins/lib/text'
+        UtilsService: 'modules/utils/service'
     },
     shim: {
-        app: [
-            'angularAMD'
-        ],
-        angularAMD: [
-            'angular'
-        ],
-        'angular-route': [
-            'angular'
-        ],
-        'angular-cookies': [
-            'angular'
-        ],
-        bootstrap: {
-            deps: [
-                'jquery'
-            ]
-        }
+        app: ['angularAMD'],
+        angularAMD: ['angular'],
+        bootstrap: ['jquery']
     },
-    deps: [
-        'app'
-    ],
+    deps: ['app'],
     packages: [
 
     ]
+
 });
