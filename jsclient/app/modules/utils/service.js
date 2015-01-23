@@ -1,11 +1,14 @@
 /*jslint node: true */
 'use strict';
 
-define([], function () {
 
-    return function () {
+define(['app'], function (app) {
 
-        this.contains = function (haystack, needle) {
+    app.service('UtilsService', function () {
+
+        var service = {};
+
+        service.contains = function (haystack, needle) {
 
             var i;
 
@@ -25,5 +28,8 @@ define([], function () {
             return false;
 
         };
-    };
+
+        return service;
+    });
+
 });

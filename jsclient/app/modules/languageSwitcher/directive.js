@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular-translate'], function () {
+define(['app'], function (app) {
 
-    var myLanguageSwitcher = function ($translate) {
+    app.directive('myLanguageSwitcher', ['$translate', function ($translate) {
 
         return {
 
@@ -20,13 +20,7 @@ define(['angular-translate'], function () {
                     }
 
                 };
-
             }
-
         };
-
-    };
-
-    return ['$translate', myLanguageSwitcher];
-
+    }]);
 });
