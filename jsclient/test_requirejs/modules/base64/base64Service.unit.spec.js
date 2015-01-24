@@ -3,7 +3,7 @@
 
 define(['angular', 'Base64Service'], function() {
 
-    describe('Base64 Service', function () {
+    describe('Base64Service', function () {
 
         beforeEach(function () {
             module('jbddApp');
