@@ -3,7 +3,7 @@
 
 define(['angular', 'UtilsService'], function() {
 
-    describe('Utils', function () {
+    describe('UtilsService', function () {
 
         beforeEach(function () {
             module('jbddApp');
