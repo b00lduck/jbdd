@@ -12,8 +12,7 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'requirejs'],
 
         preprocessors: {
-            'app/!(bower_components)/**/*.html': ['ng-html2js'],
-            'app/!(bower_components)/**/*.js': ['coverage']
+            'app/!(bower_components)/**/*.html': ['ng-html2js']
         },
 
         ngHtml2JsPreprocessor: {
@@ -37,6 +36,7 @@ module.exports = function (config) {
 
             {pattern: 'app/modules/**/*.js', included: false},
             {pattern: 'app/modules/**/*.html', included: false},
+            {pattern: 'app/images/**/*.png', included: false},
 
             {pattern: 'app/app.js', included: false},
 
@@ -71,7 +71,7 @@ module.exports = function (config) {
 
         // Which plugins to enable
         plugins: [
-            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-ng-html2js-preprocessor', 'karma-coverage', 'karma-requirejs'
+            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-ng-html2js-preprocessor', 'karma-requirejs'
         ],
 
         // Continuous Integration mode
@@ -82,9 +82,9 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress'],
 
         coverageReporter: {
             type: 'html',

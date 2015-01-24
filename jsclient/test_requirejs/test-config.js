@@ -1,3 +1,4 @@
+
 var allTestFiles = [];
 var TEST_REGEXP = /.*\.unit\.spec\.js$/;
 
@@ -11,6 +12,10 @@ Object.keys(window.__karma__.files).forEach(function(file) {
         allTestFiles.push('../' + pathToModule(file));
     }
 });
+
+function testsRun() {
+    window.__karma__.start();
+}
 
 requirejs.config({
     baseUrl: '/base/app',
@@ -57,6 +62,7 @@ requirejs.config({
         app: ['angular-mocks'],
         angularAMD: ['angular'],
         'angular-translate': ['angular'],
+        'angular-mocks': ['angular'],
         bootstrap: ['jquery']
     },
 
@@ -68,5 +74,5 @@ requirejs.config({
     deps: allTestFiles,
 
     // we have to kickoff jasmine, as it is asynchronous
-    callback: window.__karma__.start
+    callback: testsRun
 });

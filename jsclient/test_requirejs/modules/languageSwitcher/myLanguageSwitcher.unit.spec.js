@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular', 'angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function() {
+define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function() {
 
     describe('myLanguageSwitcher directive', function () {
 
