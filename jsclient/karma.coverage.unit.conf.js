@@ -17,8 +17,7 @@ module.exports = function (config) {
         },
 
         ngHtml2JsPreprocessor: {
-            stripPrefix: 'app/',
-            moduleName: 'precompiledTemplates'
+            stripPrefix: 'app/'
         },
 
         // list of files / patterns to load in the browser
@@ -37,6 +36,8 @@ module.exports = function (config) {
             {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
 
             {pattern: 'app/modules/**/*.js', included: false},
+            {pattern: 'app/modules/**/*.html', included: false},
+
             {pattern: 'app/app.js', included: false},
 
             {pattern: 'test_requirejs/**/*.unit.spec.js', included: false},
@@ -81,7 +82,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
         reporters: ['progress', 'coverage'],
 

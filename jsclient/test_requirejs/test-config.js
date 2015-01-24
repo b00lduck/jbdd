@@ -56,6 +56,7 @@ requirejs.config({
     shim: {
         app: ['angular-mocks'],
         angularAMD: ['angular'],
+        'angular-translate': ['angular'],
         bootstrap: ['jquery']
     },
 
