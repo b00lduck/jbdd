@@ -79,10 +79,6 @@ module.exports = function (grunt) {
                 configFile: 'karma.coverage.unit.conf.js',
                 singleRun: false,
             },
-            unit_requirejs: {
-                configFile: 'karma.requirejs.unit.conf.js',
-                singleRun: false,
-            },
             unit_chrome: {
                 configFile: 'karma.unit.conf.js',
                 singleRun: false,
