@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['../../../app/bower_components/angular/angular', 'UtilsService'], function() {
+define(['angular', 'UtilsService'], function() {
 
     describe('Utils', function () {
 
