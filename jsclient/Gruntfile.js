@@ -6,7 +6,13 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
+
     grunt.initConfig({
+        bowerRequirejs: {
+            target: {
+                rjsConfig: 'app/config.js'
+            }
+        },
         connect: {
             options: {
                 port: 9000,
@@ -52,12 +58,6 @@ module.exports = function (grunt) {
                 files: {
                     '.tmp/main/css/main.css': 'app/main/css/main.less'
                 }
-            }
-        },
-        wiredep: {
-            develop: {
-                src: ['app/index.html'],
-                ignorePath: new RegExp('^app/')
             }
         },
         watch: {
@@ -127,16 +127,17 @@ module.exports = function (grunt) {
         'karma:unit'
     ]);
     grunt.registerTask('serve', [
-        'less', 'wiredep', 'connect:develop', 'watch'
+        'less', 'bowerRequirejs', 'connect:develop', 'watch'
     ]);
     grunt.registerTask('serve-minimal', [
         'connect:develop', 'watch'
     ]);
 
-    grunt.loadNpmTasks('grunt-wiredep');
+    grunt.loadNpmTasks('grunt-bower-requirejs');
 
     grunt.loadNpmTasks('grunt-protractor-runner');
 
     grunt.loadNpmTasks('grunt-istanbul');
+
 
 };

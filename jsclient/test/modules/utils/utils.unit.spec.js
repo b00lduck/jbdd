@@ -1,27 +1,31 @@
 /*jslint node: true */
 'use strict';
 
-describe('Utils', function () {
+define(['app', 'UtilsService'], function () {
 
-    beforeEach(function () {
-        module('jbddApp');
+    describe('UtilsService', function () {
+
+        beforeEach(function () {
+            module('jbddApp');
+        });
+
+        it('should exist', inject(function (UtilsService) {
+            expect(UtilsService).toBeDefined();
+        }));
+
+        it('returns true on contain', inject(function (UtilsService) {
+            var haystack = ['FOO', null, 1, 'BAR', 'BAZ', 1, 2, 3];
+            expect(UtilsService.contains(haystack, 'BAR')).toBe(true);
+            expect(UtilsService.contains(haystack, 1)).toBe(true);
+            expect(UtilsService.contains(haystack, null)).toBe(true);
+        }));
+
+        it('returns false on not contain', inject(function (UtilsService) {
+            var haystack = ['FOO', null, 1, 'BAR', 'BAZ', 1, 2, 3];
+            var needle = 'kiffi-mc-piffi';
+            expect(UtilsService.contains(haystack, needle)).toBe(false);
+        }));
+
     });
-
-    it('should exist', inject(function (Utils) {
-        expect(Utils).toBeDefined();
-    }));
-
-    it('returns true on contain', inject(function (Utils) {
-        var haystack = ['FOO', null, 1, 'BAR', 'BAZ', 1, 2, 3];
-        expect(Utils.contains(haystack, 'BAR')).toBe(true);
-        expect(Utils.contains(haystack, 1)).toBe(true);
-        expect(Utils.contains(haystack, null)).toBe(true);
-    }));
-
-    it('returns false on not contain', inject(function (Utils) {
-        var haystack = ['FOO', null, 1, 'BAR', 'BAZ', 1, 2, 3];
-        var needle = 'kiffi-mc-piffi';
-        expect(Utils.contains(haystack, needle)).toBe(false);
-    }));
 
 });

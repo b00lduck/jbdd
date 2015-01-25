@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="jbddApp">
+<html>
 <head>
     <meta charset="utf-8">
     <script type="text/javascript">parent.uitest && parent.uitest.instrument(window);</script>
@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->
     <link rel="stylesheet" href="css/styles.css"/>
+
+    <script data-main="config" src="bower_components/requirejs/require.js"></script>
 </head>
 <body>
 
     <div class="jumbotron">
         <div class="container">
             <div class="col-xs-offset-2 col-xs-8">
-                <my-navbar></my-navbar>
                 <div ng-view></div>
             </div>
         </div>
@@ -25,65 +26,6 @@
             Das Buch des Drachen (c) 2001-2015 nigames.de
         </p>
     </div>
-
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
-    <script src="bower_components/angular-translate/angular-translate.js"></script>
-    <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
-    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-    <!-- endbower -->
-
-
-    <!-- the app -->
-    <script src="app.js"></script>
-
-    <!-- module utils -->
-    <script src="modules/utils/module.js"></script>
-    <script src="modules/utils/services.js"></script>
-
-    <!-- module base64 -->
-    <script src="modules/base64/module.js"></script>
-    <script src="modules/base64/services.js"></script>
-
-    <!-- module dataService -->
-    <script src="modules/data/module.js"></script>
-    <script src="modules/data/services.js"></script>
-
-    <!-- module authentication -->
-    <script src="modules/authentication/module.js"></script>
-    <script src="modules/authentication/services.js"></script>
-    <script src="modules/authentication/directives.js"></script>
-    <script src="modules/authentication/controllers.js"></script>
-
-    <!-- module dataGrid -->
-    <script src="modules/dataGrid/module.js"></script>
-    <script src="modules/dataGrid/controllers.js"></script>
-    <script src="modules/dataGrid/directives.js"></script>
-
-    <!-- module languageSwitcher -->
-    <script src="modules/languageSwitcher/module.js"></script>
-    <script src="modules/languageSwitcher/directives.js"></script>
-
-    <!-- module navigation -->
-    <script src="modules/navigation/module.js"></script>
-    <script src="modules/navigation/directives.js"></script>
-
-    <!-- module home -->
-    <script src="modules/home/module.js"></script>
-    <script src="modules/home/controllers.js"></script>
-
-    <!-- module admin -->
-    <script src="modules/admin/module.js"></script>
-    <script src="modules/admin/directives.js"></script>
-    <script src="modules/admin/controllers.js"></script>
-
 
     <script src="//localhost:35729/livereload.js"></script>
 </body>

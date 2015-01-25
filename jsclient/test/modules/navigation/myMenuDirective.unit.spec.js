@@ -1,174 +1,178 @@
 /*jslint node: true */
 'use strict';
 
-describe('myMenu directive', function () {
+define(['app', 'MyMenuDirective', 'modules/navigation/directives/templates/myMenu.html'], function () {
 
-    var scope,
-        $rootScope,
-        $compile,
-        $httpBackend,
-        authServiceMock;
+    describe('myMenu directive', function () {
 
-    function mockTranslations($translateProvider) {
-        $translateProvider.translations('en_GB', {});
-        $translateProvider.translations('de_DE', {});
-    }
+        var scope,
+            $rootScope,
+            $compile,
+            $httpBackend,
+            authServiceMock;
 
-    function mockAuthenticationService($provide) {
+        function mockTranslations($translateProvider) {
+            $translateProvider.translations('en_GB', {});
+            $translateProvider.translations('de_DE', {});
+        }
 
-        var isUserAdmin = false;
-        var isPlayerAdmin = false;
-        var isBuildingAdmin = false;
+        function mockAuthenticationService($provide) {
 
-        authServiceMock = {
-            userIsAnyAdmin: function () { return isUserAdmin || isPlayerAdmin; },
-            userIsUserAdmin: function () { return isUserAdmin; },
-            userIsPlayerAdmin: function () { return isPlayerAdmin; },
-            userIsBuildingAdmin: function () { return isBuildingAdmin; },
+            var isUserAdmin = false;
+            var isPlayerAdmin = false;
+            var isBuildingAdmin = false;
 
-            isLoggedIn: function () { return true; },
+            authServiceMock = {
+                userIsAnyAdmin: function () { return isUserAdmin || isPlayerAdmin; },
+                userIsUserAdmin: function () { return isUserAdmin; },
+                userIsPlayerAdmin: function () { return isPlayerAdmin; },
+                userIsBuildingAdmin: function () { return isBuildingAdmin; },
 
-            setStateA: function () {
-                isUserAdmin = false;
-                isPlayerAdmin = false;
-            },
+                isLoggedIn: function () { return true; },
 
-            setStateB: function () {
-                isUserAdmin = true;
-                isPlayerAdmin = false;
-            },
+                setStateA: function () {
+                    isUserAdmin = false;
+                    isPlayerAdmin = false;
+                },
 
-            setStateC: function () {
-                isUserAdmin = false;
-                isPlayerAdmin = true;
-            },
+                setStateB: function () {
+                    isUserAdmin = true;
+                    isPlayerAdmin = false;
+                },
 
-            setStateD: function () {
-                isUserAdmin = true;
-                isPlayerAdmin = true;
-            },
+                setStateC: function () {
+                    isUserAdmin = false;
+                    isPlayerAdmin = true;
+                },
 
-            setStateE: function () {
-                isUserAdmin = true;
-                isPlayerAdmin = true;
-                isBuildingAdmin = true;
-            }
+                setStateD: function () {
+                    isUserAdmin = true;
+                    isPlayerAdmin = true;
+                },
 
-        };
+                setStateE: function () {
+                    isUserAdmin = true;
+                    isPlayerAdmin = true;
+                    isBuildingAdmin = true;
+                }
 
-        $provide.value('AuthenticationService', authServiceMock);
-    }
+            };
 
-    beforeEach(function () {
+            $provide.value('AuthenticationService', authServiceMock);
+        }
 
-        module('jbddApp', function ($provide, $translateProvider) {
-            mockTranslations($translateProvider);
-            mockAuthenticationService($provide);
+        beforeEach(function () {
+
+            module('jbddApp', function ($provide, $translateProvider) {
+                mockTranslations($translateProvider);
+                mockAuthenticationService($provide);
+            });
+
+            module('precompiledTemplates');
+
         });
 
-        module('precompiledTemplates');
+        beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
+            $compile = _$compile_;
+            $rootScope = _$rootScope_;
+            $httpBackend = _$httpBackend_;
+        }));
 
-    });
+        it('shows the admin menu only if user has any admin role', function () {
 
-    beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-        $httpBackend = _$httpBackend_;
-    }));
+            authServiceMock.setStateA();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.admin');
 
-    it('shows the admin menu only if user has any admin role', function () {
+            authServiceMock.setStateB();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.admin');
 
-        authServiceMock.setStateA();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.admin');
+            authServiceMock.setStateC();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.admin');
 
-        authServiceMock.setStateB();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.admin');
+            authServiceMock.setStateD();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.admin');
 
-        authServiceMock.setStateC();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.admin');
+        });
 
-        authServiceMock.setStateD();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.admin');
+        it('shows the admin player menu only if user has the appropiate role', function () {
 
-    });
+            authServiceMock.setStateA();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.player');
 
-    it('shows the admin player menu only if user has the appropiate role', function () {
+            authServiceMock.setStateB();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.player');
 
-        authServiceMock.setStateA();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.player');
+            authServiceMock.setStateC();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.player');
 
-        authServiceMock.setStateB();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.player');
+            authServiceMock.setStateD();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.player');
 
-        authServiceMock.setStateC();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.player');
+        });
 
-        authServiceMock.setStateD();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.player');
+        it('shows the admin user menu only if user has the appropiate role', function () {
 
-    });
+            authServiceMock.setStateA();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.user');
 
-    it('shows the admin user menu only if user has the appropiate role', function () {
+            authServiceMock.setStateB();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.user');
 
-        authServiceMock.setStateA();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.user');
+            authServiceMock.setStateC();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.user');
 
-        authServiceMock.setStateB();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.user');
+            authServiceMock.setStateD();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.user');
 
-        authServiceMock.setStateC();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.user');
+        });
 
-        authServiceMock.setStateD();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.user');
+        it('shows the building user menu only if user has the appropiate role', function () {
 
-    });
+            authServiceMock.setStateE();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.building');
 
-    it('shows the building user menu only if user has the appropiate role', function () {
-
-        authServiceMock.setStateE();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.building');
-
-    });
+        });
 
 
-    it('shows the admin goods menu', function () {
+        it('shows the admin goods menu', function () {
 
-        authServiceMock.setStateA();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).not.toContain('navigation.admin.good');
+            authServiceMock.setStateA();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).not.toContain('navigation.admin.good');
 
-        authServiceMock.setStateB();
-        var element = $compile('<my-menu></my-menu>')($rootScope);
-        $rootScope.$digest();
-        expect(element.html()).toContain('navigation.admin.good');
+            authServiceMock.setStateB();
+            var element = $compile('<my-menu></my-menu>')($rootScope);
+            $rootScope.$digest();
+            expect(element.html()).toContain('navigation.admin.good');
+
+        });
 
     });
 
