@@ -7,7 +7,7 @@ requirejs.config({
         'angular-route': 'bower_components/angular-route/angular-route',
         async: 'bower_components/requirejs-plugins/src/async',
         angularAMD: 'bower_components/angularAMD/angularAMD',
-        'ngload': 'bower_components/angularAMD/ngload',
+        ngload: 'bower_components/angularAMD/ngload',
         'angular-cookies': 'bower_components/angular-cookies/angular-cookies',
         'angular-mocks': 'bower_components/angular-mocks/angular-mocks',
         'angular-touch': 'bower_components/angular-touch/angular-touch',
@@ -40,13 +40,20 @@ requirejs.config({
         UtilsService: 'modules/utils/service'
     },
     shim: {
-        app: ['angularAMD'],
-        angularAMD: ['angular'],
-        bootstrap: ['jquery']
+        app: [
+            'angularAMD'
+        ],
+        angularAMD: [
+            'angular'
+        ],
+        bootstrap: [
+            'jquery'
+        ]
     },
-    deps: ['app'],
+    deps: [
+        'app'
+    ],
     packages: [
 
     ]
-
 });
