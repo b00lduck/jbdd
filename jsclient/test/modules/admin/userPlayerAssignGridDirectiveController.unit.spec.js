@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'UserPlayerAssignGridDirectiveController'], function () {
+define(['app', 'adminUserPlayerAssignGrid'], function () {
 
     describe('UserPlayerAssignGridDirectiveController', function () {
 

@@ -1,7 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'MyNavbarDirective', 'JbddDataGridDirective'], function (angularAMD) {
+define(['angularAMD',
+    'MyNavbarDirective',
+    'adminListDataGrid'], function (angularAMD) {
 
     angularAMD.controller('AdminListController', ['$scope', '$routeParams', '$location',
         function ($scope, $routeParams, $location) {

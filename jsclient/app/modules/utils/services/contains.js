@@ -4,7 +4,7 @@
 
 define(['angularAMD'], function (angularAMD) {
 
-    angularAMD.service('UtilsService', function () {
+    angularAMD.service('ContainsService', function () {
 
         var service = {};
 

@@ -1,13 +1,13 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'UserPlayerAssignGridDirectiveController'], function (angularAMD) {
+define(['angularAMD', 'adminUserPlayerAssignGrid'], function (angularAMD) {
 
-    angularAMD.directive('myUserPlayerAssignGrids', function () {
+    angularAMD.directive('myUserPlayerAssignGrid', function () {
 
         return {
             restrict: 'E',
-            templateUrl: 'modules/admin/directives/templates/myUserPlayerAssignGrids.html',
+            templateUrl: 'modules/admin/modules/userPlayerAssignGrid/directives/templates/myUserPlayerAssignGrid.html',
             controller: 'UserPlayerAssignGridDirectiveController',
             scope: {
                 getUserId: '&userid'

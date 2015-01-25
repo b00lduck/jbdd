@@ -1,10 +1,10 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'Base64Service', 'UtilsService', 'angular-cookies'], function (angularAMD) {
+define(['angularAMD', 'Base64Service', 'ContainsService', 'angular-cookies'], function (angularAMD) {
 
-    angularAMD.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'UtilsService', '$rootScope',
-        function (Base64Service, $http, $cookieStore, $location, $q, UtilsService, $rootScope) {
+    angularAMD.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'ContainsService', '$rootScope',
+        function (Base64Service, $http, $cookieStore, $location, $q, ContainsService, $rootScope) {
 
             var service = {};
 
@@ -137,15 +137,15 @@ define(['angularAMD', 'Base64Service', 'UtilsService', 'angular-cookies'], funct
             };
 
             service.userIsUserAdmin = function () {
-                return UtilsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_USER');
+                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_USER');
             };
 
             service.userIsPlayerAdmin = function () {
-                return UtilsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_PLAYER');
+                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_PLAYER');
             };
 
             service.userIsBuildingAdmin = function () {
-                return UtilsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_BUILDING');
+                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_BUILDING');
             };
 
             service.userIsAnyAdmin = function () {

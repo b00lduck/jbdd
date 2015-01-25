@@ -37,26 +37,40 @@ requirejs.config({
 
         AdminEditController: 'modules/admin/controllers/adminEdit',
         AdminListController: 'modules/admin/controllers/adminList',
-        UserPlayerAssignGridDirectiveController: 'modules/admin/controllers/userPlayerAssignGridDirective',
-        MyEditButtonsDirective: 'modules/admin/directives/myEditButtons',
-        MyFormFieldIdDirective: 'modules/admin/directives/myFormFieldId',
-        MyFormFieldEnabledDirective: 'modules/admin/directives/myFormFieldEnabled',
-        MyFormFieldNameAndDescDirective: 'modules/admin/directives/myFormFieldNameAndDesc',
-        MyUserPlayerAssignGridsDirective: 'modules/admin/directives/myUserPlayerAssignGrids',
+
         LoginController: 'modules/authentication/controllers/login',
         MyLoginInfoDirective: 'modules/authentication/directives/myLoginInfo',
         AuthenticationService: 'modules/authentication/services/authentication',
-        LocationService: 'modules/authentication/services/location',
-        Base64Service: 'modules/base64/services/base64',
+
         DataService: 'modules/data/services/data',
-        JbddDataGridDirective: 'modules/dataGrid/directives/jbddDataGrid',
         DeleteModalInstanceController: 'modules/dataGrid/controllers/deleteModalInstance',
         HomeController: 'modules/home/controllers/home',
         LanguageSwitcherDirective: 'modules/languageSwitcher/directive',
         MyMenuDirective: 'modules/navigation/directives/myMenu',
         MyNavbarDirective: 'modules/navigation/directives/myNavbar',
-        UtilsService: 'modules/utils/service'
+
+        Base64Service: 'modules/utils/services/base64',
+        ContainsService: 'modules/utils/services/contains'
     },
+
+    packages: [
+        {
+            name: 'adminBuyableCostEditor',
+            location: 'modules/admin/modules/buyableCostEditor'
+        },
+        {
+            name: 'adminFormElements',
+            location: 'modules/admin/modules/formElements'
+        },
+        {
+            name: 'adminUserPlayerAssignGrid',
+            location: 'modules/admin/modules/userPlayerAssignGrid'
+        },
+        {
+            name: 'adminListDataGrid',
+            location: 'modules/admin/modules/listDataGrid'
+        }
+    ],
 
     shim: {
         app: ['angular-mocks'],
@@ -73,10 +87,6 @@ requirejs.config({
         'modules/navigation/directives/templates/myMenu.html': ['angular'],
         'modules/navigation/directives/templates/myNavbar.html': ['angular']
     },
-
-    packages: [
-
-    ],
 
     // dynamically load all test files
     deps: allTestFiles,

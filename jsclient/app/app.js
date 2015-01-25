@@ -49,14 +49,6 @@ define(['angularAMD',
 
         });
 
-
-    /*
-
-     */
-
-    var ret = angularAMD.bootstrap(app);
-
-
-    return ret;
+    return angularAMD.bootstrap(app);
 
 });

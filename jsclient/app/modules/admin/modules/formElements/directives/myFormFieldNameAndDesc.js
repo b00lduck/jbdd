@@ -7,7 +7,7 @@ define(['angularAMD'], function (angularAMD) {
 
         return {
             restrict: 'E',
-            templateUrl: 'modules/admin/directives/templates/myFormFieldNameAndDesc.html'
+            templateUrl: 'modules/admin/modules/formElements/directives/templates/myFormFieldNameAndDesc.html'
         };
 
     });

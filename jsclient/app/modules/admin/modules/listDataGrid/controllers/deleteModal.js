@@ -3,7 +3,7 @@
 
 define(['angularAMD'], function (angularAMD) {
 
-    angularAMD.controller('LoginController', ['$scope', '$modalInstance', 'entity',
+    angularAMD.controller('DeleteModalController', ['$scope', '$modalInstance', 'entity',
         function ($scope, $modalInstance, entity) {
 
             $scope.ok = function () {

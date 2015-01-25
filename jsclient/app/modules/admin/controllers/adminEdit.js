@@ -2,12 +2,9 @@
 'use strict';
 
 define(['angularAMD',
-    'MyNavbarDirective',
-    'MyEditButtonsDirective',
-    'MyFormFieldEnabledDirective',
-    'MyFormFieldIdDirective',
-    'MyFormFieldNameAndDescDirective',
-    'MyUserPlayerAssignGridsDirective',
+    'adminUserPlayerAssignGrid',
+    'adminFormElements',
+    'adminBuyableCostEditor',
     'DataService',
 
 ], function (angularAMD) {

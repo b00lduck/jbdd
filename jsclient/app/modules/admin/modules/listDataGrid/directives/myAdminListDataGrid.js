@@ -1,10 +1,10 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (angularAMD) {
+define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'angular-translate', 'DataService'], function (angularAMD) {
 
-    angularAMD.directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
-        '$modal', '$location', 'DataService',
+    angularAMD.directive('myAdminListDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate',
+        '$rootScope', 'i18nService', '$modal', '$location', 'DataService',
         function ($http, $templateCache, uiGridConstants, $translate, $rootScope, i18nService, $modal, $location, DataService) {
 
             var enabledCellTemplate = '<div class="ui-grid-cell-contents ng-binding ng-scope"><span class="glyphicon glyphicon-{{ COL_FIELD == true ? \'ok-circle\' : \'ban-circle\'}}" aria-hidden="true"></span></div>';
@@ -63,7 +63,7 @@ define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'D
 
                 restrict: 'E',
 
-                templateUrl: 'modules/dataGrid/directives/templates/jbddDataGrid.html',
+                templateUrl: 'modules/admin/modules/listDataGrid/directives/templates/myAdminListDataGrid.html',
 
                 link: function (scope, element, attrs) {
 
@@ -142,8 +142,8 @@ define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'D
                         deleteItem: function (entity) {
 
                             var modalInstance = $modal.open({
-                                templateUrl: 'modules/dataGrid/templates/deleteModal.html',
-                                controller: 'DeleteModalInstanceController',
+                                templateUrl: 'modules/admin/modules/listDataGrid/directives/templates/deleteModal.html',
+                                controller: 'DeleteModalController',
                                 scope: scope,
                                 resolve: {
                                     entity: function () {
