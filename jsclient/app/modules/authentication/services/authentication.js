@@ -1,10 +1,10 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'Base64Service', 'UtilsService', 'angular-cookies'], function (app) {
+define(['angularAMD', 'Base64Service', 'UtilsService', 'angular-cookies'], function (angularAMD) {
 
-    app.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'UtilsService', '$rootScope',
-        function (Base64, $http, $cookieStore, $location, $q, UtilsService, $rootScope) {
+    angularAMD.service('AuthenticationService', ['Base64Service', '$http', '$cookieStore', '$location', '$q', 'UtilsService', '$rootScope',
+        function (Base64Service, $http, $cookieStore, $location, $q, UtilsService, $rootScope) {
 
             var service = {};
 
@@ -40,7 +40,7 @@ define(['app', 'Base64Service', 'UtilsService', 'angular-cookies'], function (ap
 
             service.login = function (username, password) {
 
-                var auth = Base64.encode(username + ':' + password);
+                var auth = Base64Service.encode(username + ':' + password);
 
                 $http.defaults.headers.common.Authorization = 'Basic ' + auth;
 

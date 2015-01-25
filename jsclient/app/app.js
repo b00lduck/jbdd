@@ -1,17 +1,12 @@
 /*jslint node: true */
 'use strict';
 
-//define(['angular-translate', 'angularAMD', 'angular-route', 'AuthenticationModule', 'NavigationModule', 'HomeModule',
-// 'AdminModule', 'angular-cookies', 'angular-translate'
 define(['angularAMD',
     'angular-route',
     'angular-translate',
     'angular-translate-loader-static-files',
     'bootstrap'
 ], function (angularAMD) {
-
-    //var app = angular.module('jbddApp',
-    // ['Authentication','Navigation','Home','Admin','ngRoute','ngCookies','ngTouch','pascalprecht.translate']);
 
     var app = angular.module('jbddApp', ['ngRoute', 'pascalprecht.translate']);
 

@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function() {
+define(['app', 'angular-translate', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function () {
 
     describe('myLanguageSwitcher directive', function () {
 
@@ -21,7 +21,7 @@ define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/langua
                 mockTranslations($translateProvider);
             });
 
-            module('modules/languageSwitcher/templates/myLanguageSwitcher.html');
+            module('precompiledTemplates');
         });
 
         beforeEach(inject(function (_$compile_, _$rootScope_, _$httpBackend_, _$translate_) {

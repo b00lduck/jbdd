@@ -64,8 +64,14 @@ requirejs.config({
         angular: ['jquery'],
         'angular-translate': ['angular'],
         'angular-mocks': ['angular'],
+        'angular-cookies': ['angular'],
+        'angular-route': ['angular'],
         bootstrap: ['jquery'],
-        'modules/languageSwitcher/templates/myLanguageSwitcher.html': ['angular']
+        'modules/languageSwitcher/templates/myLanguageSwitcher.html': ['angular'],
+        'modules/authentication/directives/templates/myLoginInfo.html': ['angular'],
+        'modules/authentication/controllers/views/login.html': ['angular'],
+        'modules/navigation/directives/templates/myMenu.html': ['angular'],
+        'modules/navigation/directives/templates/myNavbar.html': ['angular']
     },
 
     packages: [
