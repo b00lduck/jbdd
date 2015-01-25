@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular', 'Base64Service'], function () {
+define(['app', 'UserPlayerAssignGridDirectiveController'], function () {
 
     describe('UserPlayerAssignGridDirectiveController', function () {
 

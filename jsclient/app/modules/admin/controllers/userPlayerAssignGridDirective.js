@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q',
+    angularAMD.controller('UserPlayerAssignGridDirectiveController', ['$scope', 'DataService', '$q',
         function ($scope, DataService, $q) {
 
             var leftGridApi,

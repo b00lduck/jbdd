@@ -3,7 +3,7 @@
 
 define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function() {
 
-    fdescribe('myLanguageSwitcher directive', function () {
+    describe('myLanguageSwitcher directive', function () {
 
         var $rootScope,
             $compile,
@@ -37,7 +37,6 @@ define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/langua
 
             var element = $compile('<my-language-switcher></my-language-switcher>')($rootScope);
             $rootScope.$digest();
-            window.console.log(element);
 
             element.find('img:eq(0)').click();
             expect($translate.use).toHaveBeenCalledWith('de_DE');

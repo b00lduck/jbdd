@@ -4,9 +4,9 @@
 /* jshint ignore:start */
 /* jslint ignore:start */
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.service('Base64Service', function () {
+    angularAMD.service('Base64Service', function () {
 
         var service = {};
 

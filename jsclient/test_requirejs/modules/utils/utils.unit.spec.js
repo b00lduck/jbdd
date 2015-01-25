@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angular', 'UtilsService'], function() {
+define(['app', 'UtilsService'], function () {
 
     describe('UtilsService', function () {
 

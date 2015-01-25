@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'angular-route', 'AuthenticationService'], function (app) {
+define(['angularAMD', 'angular-route', 'AuthenticationService'], function (angularAMD) {
 
-    app.directive('myLoginInfo', ['$route', '$location', 'AuthenticationService',
+    angularAMD.directive('myLoginInfo', ['$route', '$location', 'AuthenticationService',
         function ($route, $location, AuthenticationService) {
 
             return {

@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'MyNavbarDirective', 'AuthenticationService'], function (app) {
+define(['angularAMD', 'MyNavbarDirective', 'AuthenticationService'], function (angularAMD) {
 
-    app.controller('LoginController', ['$scope', '$rootScope', '$location', 'AuthenticationService',
+    angularAMD.controller('LoginController', ['$scope', '$rootScope', '$location', 'AuthenticationService',
         function ($scope, $rootScope, $location, AuthenticationService) {
 
             $scope.showError = false;

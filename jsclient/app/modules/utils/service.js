@@ -2,9 +2,9 @@
 'use strict';
 
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.service('UtilsService', function () {
+    angularAMD.service('UtilsService', function () {
 
         var service = {};
 
