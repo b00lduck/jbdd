@@ -98,6 +98,11 @@ define(['angularAMD'], function (angularAMD) {
                 return queryRestServiceDelete(url);
             };
 
+            service.getAddableCostGoods = function (buyableId) {
+                var url = getResourceBaseUrl('good');
+                return queryRestServiceGet(url);
+            };
+
             return service;
 
         }

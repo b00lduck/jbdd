@@ -1,1 +1,8 @@
 Buyable cost editor (tm)
+
+<div class="form-group">
+    <label for="costs">available costs (I18n me!)</label>
+    <select class="form-control" id="costs">
+        <option ng-repeat="(key, value) in getAddableCostGoods()">{{value.name[currentLanguage()]}}</option>
+    </select>
+</div>
