@@ -1,72 +1,62 @@
 /*jslint node: true */
 'use strict';
 
-angular.module('jbddApp', [
-    'Authentication',
-    'Navigation',
-    'Home',
-    'Admin',
-    'ngRoute',
-    'ngCookies',
-    'ngTouch',
-    'pascalprecht.translate'
-])
+define(['angularAMD',
+    'angular-route',
+    'angular-translate',
+    'angular-translate-loader-static-files',
+    'bootstrap'
+], function (angularAMD) {
 
-    .config(['$routeProvider', function ($routeProvider) {
+    var app = angular.module('jbddApp', ['ngRoute', 'pascalprecht.translate']);
+
+    app.config(function ($routeProvider) {
 
         $routeProvider
-            .when('/', {
+
+            .when('/', angularAMD.route({
                 controller: 'LoginController',
-                templateUrl: 'modules/authentication/views/login.html',
-                hideMenus: true
-            })
+                templateUrl: 'modules/authentication/controllers/views/login.html'
+            }))
 
-            .when('/home', {
+            .when('/home', angularAMD.route({
                 controller: 'HomeController',
-                templateUrl: 'modules/home/views/home.html'
-            })
+                templateUrl: 'modules/home/controllers/views/home.html'
+            }))
 
-            .when('/admin/:resource', {
+            .when('/admin/:resource', angularAMD.route({
                 controller: 'AdminListController',
-                templateUrl: 'modules/admin/views/list.html'
-            })
+                templateUrl: 'modules/admin/controllers/views/list.html'
+            }))
 
-            .when('/admin/:resource/:id', {
+            .when('/admin/:resource/:id', angularAMD.route({
                 controller: 'AdminEditController',
-                templateUrl: function (params) { return 'modules/admin/views/edit_' + params.resource + '.html'; }
-            })
+                templateUrl: function (params) { return 'modules/admin/controllers/views/edit_' + params.resource + '.html'; }
+            }))
 
             .otherwise({redirectTo: '/'});
-    }])
+    });
 
-    .config(['$translateProvider', function($translateProvider){
 
-        $translateProvider.useStaticFilesLoader({
-            prefix: 'i18n/',
-            suffix: '.json'
+    app.config(function ($translateProvider) {
+
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'i18n/',
+                suffix: '.json'
+            });
+
+            $translateProvider.preferredLanguage('en_GB');
+
         });
 
-        $translateProvider.preferredLanguage('en_GB');
 
-    }])
+    /*
+
+     */
+
+    var ret = angularAMD.bootstrap(app);
 
 
-    .run(['$rootScope', '$location', 'AuthenticationService',
-        function ($rootScope, $location, AuthenticationService) {
+    return ret;
 
-            $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                // redirect to login page if not logged in
-                if ('/' !== $location.path() && !AuthenticationService.isLoggedIn()) {
-                    $location.path('/');
-                }
-
-                if ('/' === $location.path() && AuthenticationService.isLoggedIn()) {
-                    $location.path('/home');
-                }
-
-                if ('' === $location.path() && AuthenticationService.isLoggedIn()) {
-                    $location.path('/home');
-                }
-
-            });
-        }]);
+});

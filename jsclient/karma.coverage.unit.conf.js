@@ -9,7 +9,7 @@ module.exports = function (config) {
         basePath: '.',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'requirejs'],
 
         preprocessors: {
             'app/!(bower_components)/**/*.html': ['ng-html2js'],
@@ -23,24 +23,29 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'app/bower_components/jquery/dist/jquery.js',
-            'app/bower_components/angular/angular.js',
-            'app/bower_components/angular-route/angular-route.js',
-            'app/bower_components/angular-cookies/angular-cookies.js',
-            'app/bower_components/angular-touch/angular-touch.js',
-            'app/bower_components/angular-ui-grid/ui-grid.js',
-            'app/bower_components/angular-translate/angular-translate.js',
-            'app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js',
-            'app/bower_components/bootstrap/dist/js/bootstrap.js',
-            'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
-            'app/bower_components/angular-mocks/angular-mocks.js',
+            {pattern: 'app/bower_components/jquery/dist/jquery.js', included: false},
+            {pattern: 'app/bower_components/angular/angular.js', included: false},
+            {pattern: 'app/bower_components/angular-route/angular-route.js', included: false},
+            {pattern: 'app/bower_components/angularAMD/angularAMD.js', included: false},
+            {pattern: 'app/bower_components/angularAMD/ngload.js', included: false},
+            {pattern: 'app/bower_components/angular-cookies/angular-cookies.js', included: false},
+            {pattern: 'app/bower_components/angular-touch/angular-touch.js', included: false},
+            {pattern: 'app/bower_components/angular-ui-grid/ui-grid.js', included: false},
+            {pattern: 'app/bower_components/angular-translate/angular-translate.js', included: false},
+            {pattern: 'app/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js', included: false},
+            {pattern: 'app/bower_components/bootstrap/dist/js/bootstrap.js', included: false},
+            {pattern: 'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js', included: false},
+            {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
 
-            'app/!(bower_components)/**/module.js',
-            'app/!(bower_components)/**/*.js',
-            'app/*.js',
-            'app/!(bower_components)/**/*.html',
+            {pattern: 'app/modules/**/*.js', included: false},
+            {pattern: 'app/modules/**/*.html', included: false},
+            {pattern: 'app/images/**/*.png', included: false},
 
-            'test/**/*.unit.spec.js'
+            {pattern: 'app/app.js', included: false},
+
+            {pattern: 'test/**/*.unit.spec.js', included: false},
+
+            'test/test-config.js'
         ],
 
         proxies: {
@@ -48,7 +53,9 @@ module.exports = function (config) {
         },
 
         // list of files / patterns to exclude
-        exclude: [],
+        exclude: [
+            'app/config.js'
+        ],
 
         // web server port
         port: 7777,
@@ -67,7 +74,7 @@ module.exports = function (config) {
 
         // Which plugins to enable
         plugins: [
-            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-ng-html2js-preprocessor', 'karma-coverage'
+            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-coverage', 'karma-ng-html2js-preprocessor', 'karma-requirejs'
         ],
 
         // Continuous Integration mode
