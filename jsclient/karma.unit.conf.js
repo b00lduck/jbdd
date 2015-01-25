@@ -9,7 +9,7 @@ module.exports = function (config) {
         basePath: '.',
 
         // testing framework to use (jasmine/mocha/qunit/...)
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'requirejs'],
 
         preprocessors: {
             'app/!(bower_components)/**/*.html': ['ng-html2js']
@@ -47,7 +47,9 @@ module.exports = function (config) {
         },
 
         // list of files / patterns to exclude
-        exclude: [],
+        exclude: [
+            'app/config.js'
+        ],
 
         // web server port
         port: 7777,

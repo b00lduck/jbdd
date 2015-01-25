@@ -3,7 +3,7 @@
 
 define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/languageSwitcher/templates/myLanguageSwitcher.html'], function() {
 
-    describe('myLanguageSwitcher directive', function () {
+    fdescribe('myLanguageSwitcher directive', function () {
 
         var $rootScope,
             $compile,
@@ -31,7 +31,7 @@ define(['angular-translate', 'app', 'LanguageSwitcherDirective', 'modules/langua
             $translate = _$translate_;
         }));
 
-        fit('changes to german', function () {
+        it('changes to german', function () {
 
             spyOn($translate, 'use');
 
