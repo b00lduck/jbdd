@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.directive('myFormFieldEnabled', function () {
+    angularAMD.directive('myFormFieldEnabled', function () {
 
         return {
             restrict: 'E',

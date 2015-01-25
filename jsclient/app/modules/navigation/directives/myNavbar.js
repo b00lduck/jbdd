@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'MyMenuDirective', 'LanguageSwitcherDirective', 'MyLoginInfoDirective'], function (app) {
+define(['angularAMD', 'MyMenuDirective', 'LanguageSwitcherDirective', 'MyLoginInfoDirective'], function (angularAMD) {
 
-    app.directive('myNavbar', [function () {
+    angularAMD.directive('myNavbar', [function () {
 
         return {
             restrict: 'E',

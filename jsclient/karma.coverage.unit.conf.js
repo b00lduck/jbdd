@@ -12,11 +12,13 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'requirejs'],
 
         preprocessors: {
-            'app/!(bower_components)/**/*.html': ['ng-html2js']
+            'app/!(bower_components)/**/*.html': ['ng-html2js'],
+            'app/!(bower_components)/**/*.js': ['coverage']
         },
 
         ngHtml2JsPreprocessor: {
-            stripPrefix: 'app/'
+            stripPrefix: 'app/',
+            moduleName: 'precompiledTemplates'
         },
 
         // list of files / patterns to load in the browser
@@ -25,6 +27,7 @@ module.exports = function (config) {
             {pattern: 'app/bower_components/angular/angular.js', included: false},
             {pattern: 'app/bower_components/angular-route/angular-route.js', included: false},
             {pattern: 'app/bower_components/angularAMD/angularAMD.js', included: false},
+            {pattern: 'app/bower_components/angularAMD/ngload.js', included: false},
             {pattern: 'app/bower_components/angular-cookies/angular-cookies.js', included: false},
             {pattern: 'app/bower_components/angular-touch/angular-touch.js', included: false},
             {pattern: 'app/bower_components/angular-ui-grid/ui-grid.js', included: false},
@@ -40,9 +43,9 @@ module.exports = function (config) {
 
             {pattern: 'app/app.js', included: false},
 
-            {pattern: 'test_requirejs/**/*.unit.spec.js', included: false},
+            {pattern: 'test/**/*.unit.spec.js', included: false},
 
-            'test_requirejs/test-config.js'
+            'test/test-config.js'
         ],
 
         proxies: {
@@ -71,7 +74,7 @@ module.exports = function (config) {
 
         // Which plugins to enable
         plugins: [
-            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-ng-html2js-preprocessor', 'karma-requirejs'
+            'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-jasmine', 'karma-coverage', 'karma-ng-html2js-preprocessor', 'karma-requirejs'
         ],
 
         // Continuous Integration mode
@@ -84,7 +87,7 @@ module.exports = function (config) {
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
         logLevel: config.LOG_INFO,
 
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
 
         coverageReporter: {
             type: 'html',

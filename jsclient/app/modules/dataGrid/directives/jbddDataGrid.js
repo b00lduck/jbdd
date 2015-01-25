@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (app) {
+define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', 'DataService'], function (angularAMD) {
 
-    app.directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
+    angularAMD.directive('jbddDataGrid', ['$http', '$templateCache', 'uiGridConstants', '$translate', '$rootScope', 'i18nService',
         '$modal', '$location', 'DataService',
         function ($http, $templateCache, uiGridConstants, $translate, $rootScope, i18nService, $modal, $location, DataService) {
 

@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'AuthenticationService'], function (app) {
+define(['angularAMD', 'AuthenticationService'], function (angularAMD) {
 
-    app.directive('myMenu', ['AuthenticationService', function (AuthenticationService) {
+    angularAMD.directive('myMenu', ['AuthenticationService', function (AuthenticationService) {
 
         return {
 

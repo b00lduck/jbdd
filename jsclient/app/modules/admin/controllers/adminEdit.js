@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['app',
+define(['angularAMD',
     'MyNavbarDirective',
     'MyEditButtonsDirective',
     'MyFormFieldEnabledDirective',
@@ -10,9 +10,9 @@ define(['app',
     'MyUserPlayerAssignGridsDirective',
     'DataService',
 
-], function (app) {
+], function (angularAMD) {
 
-    app.controller('AdminEditController', ['$scope', '$routeParams', '$location', 'DataService', '$translate', '$rootScope',
+    angularAMD.controller('AdminEditController', ['$scope', '$routeParams', '$location', 'DataService', '$translate', '$rootScope',
         function ($scope, $routeParams, $location, DataService, $translate, $rootScope) {
 
             var resourceName = $routeParams.resource;

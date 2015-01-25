@@ -33,7 +33,7 @@ requirejs.config({
         'angular-ui-bootstrap-bower': 'bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls',
         'angular-ui-grid': 'bower_components/angular-ui-grid/ui-grid',
         bootstrap: 'bower_components/bootstrap/dist/js/bootstrap',
-        jQuery: 'bower_components/jquery/dist/jquery',
+        jquery: 'bower_components/jquery/dist/jquery',
 
         AdminEditController: 'modules/admin/controllers/adminEdit',
         AdminListController: 'modules/admin/controllers/adminList',
@@ -63,7 +63,7 @@ requirejs.config({
         angularAMD: ['angular'],
         'angular-translate': ['angular'],
         'angular-mocks': ['angular'],
-        bootstrap: ['jQuery']
+        bootstrap: ['jquery']
     },
 
     packages: [

@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'MyNavbarDirective', 'JbddDataGridDirective'], function (app) {
+define(['angularAMD', 'MyNavbarDirective', 'JbddDataGridDirective'], function (angularAMD) {
 
-    app.controller('AdminListController', ['$scope', '$routeParams', '$location',
+    angularAMD.controller('AdminListController', ['$scope', '$routeParams', '$location',
         function ($scope, $routeParams, $location) {
 
             var resourceName = $routeParams.resource;

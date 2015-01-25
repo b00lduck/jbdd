@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'MyNavbarDirective'], function (app) {
+define(['angularAMD', 'MyNavbarDirective'], function (angularAMD) {
 
-    app.controller('HomeController', function ($scope, $rootScope) {
+    angularAMD.controller('HomeController', function ($scope, $rootScope) {
 
         $scope.hello = 'hello controller module';
 

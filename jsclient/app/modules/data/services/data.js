@@ -2,9 +2,9 @@
 'use strict';
 
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.service('DataService', ['$http', '$q',
+    angularAMD.service('DataService', ['$http', '$q',
         function ($http, $q) {
 
             var restServiceBaseUrl = 'http://localhost:8080/jbdd-restservice/';

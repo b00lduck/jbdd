@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app', 'UserPlayerAssignGridDirectiveController'], function (app) {
+define(['angularAMD', 'UserPlayerAssignGridDirectiveController'], function (angularAMD) {
 
-    app.directive('myUserPlayerAssignGrids', function () {
+    angularAMD.directive('myUserPlayerAssignGrids', function () {
 
         return {
             restrict: 'E',

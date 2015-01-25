@@ -1,9 +1,9 @@
 /*jslint node: true */
 'use strict';
 
-define(['app'], function (app) {
+define(['angularAMD'], function (angularAMD) {
 
-    app.controller('LoginController', ['$scope', '$modalInstance', 'entity',
+    angularAMD.controller('LoginController', ['$scope', '$modalInstance', 'entity',
         function ($scope, $modalInstance, entity) {
 
             $scope.ok = function () {
