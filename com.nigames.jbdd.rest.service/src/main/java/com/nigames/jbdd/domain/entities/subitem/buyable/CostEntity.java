@@ -15,9 +15,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cost")
-@NamedQueries(@NamedQuery(name = "findCostsByBuyable",
-        query = "FROM CostEntity WHERE buyable=:buyable"))
+@NamedQueries({
+        @NamedQuery(name = CostEntity.NQ_BY_BUYABLE_ID, query = "SELECT c FROM CostEntity c WHERE c.id.buyableId=:buyableId"),
+        @NamedQuery(name = CostEntity.NQ_COUNT_BY_BUYABLE_ID, query = "SELECT COUNT(id.buyableId) FROM CostEntity WHERE id.buyableId=:buyableId")
+})
 public class CostEntity extends AbstractBuyableSubItemEntity {
+
+    public static final String NQ_BY_BUYABLE_ID = "CostEntity.findByBuyableId";
+    public static final String NQ_COUNT_BY_BUYABLE_ID = "CostEntity.countByBuyableId";
 
     /**
      * The embedded primary key.

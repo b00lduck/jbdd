@@ -15,7 +15,8 @@ public interface GenericRequestInterface<DtoType extends IsDto> {
 	@GET
 	@Path("/")
 	DtoList<DtoType> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                        @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size, @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                        @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                        @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
 	                        @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@DELETE

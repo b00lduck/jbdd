@@ -23,7 +23,7 @@ public interface AbstractDtoServiceInterface<DtoType extends IsDto, EntityType> 
 
     void delete(final long id);
 
-    Long getCount();
+    long getCount();
 
     List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams);
 

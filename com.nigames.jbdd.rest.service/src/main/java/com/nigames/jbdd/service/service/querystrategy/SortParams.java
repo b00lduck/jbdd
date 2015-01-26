@@ -39,6 +39,12 @@ public final class SortParams {
 
     }
 
+    public static SortParams createDefault() {
+
+        return new SortParams(null, false);
+
+    }
+
     public String getSort() {
         return sort;
     }

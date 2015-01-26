@@ -180,12 +180,13 @@ public abstract class AbstractCheckUserBean {
     @SuppressWarnings("StringConcatenation")
     @Transactional
     void checkAdminRoles() {
-        LOG.info("Setting roles of the user \"{}\" to {}, {}, {} and {}", getUsername(), ROLE_ADMIN_USER, ROLE_ADMIN_PLAYER, ROLE_ADMIN_BUILDING, ROLE_PLAYER); // NON-NLS
+        LOG.info("Setting roles of the user \"{}\"", getUsername()); // NON-NLS
         final User user = userService.findByUsername(getUsername());
         userService.removeAllRoles(user.getId());
         userService.addRole(user.getId(), ROLE_ADMIN_USER);
         userService.addRole(user.getId(), ROLE_ADMIN_PLAYER);
         userService.addRole(user.getId(), ROLE_ADMIN_BUILDING);
+        userService.addRole(user.getId(), ROLE_ADMIN_COST);
         userService.addRole(user.getId(), ROLE_PLAYER);
     }
 

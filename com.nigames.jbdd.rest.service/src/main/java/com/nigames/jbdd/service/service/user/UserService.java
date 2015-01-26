@@ -43,7 +43,7 @@ public interface UserService extends AbstractDtoServiceInterface<User, UserEntit
 
     @Override
     @PreAuthorize("hasRole('" + ROLE_ADMIN_USER + "')")
-    Long getCount();
+    long getCount();
 
     @Override
     @PreAuthorize("hasRole('" + ROLE_ADMIN_USER + "')")

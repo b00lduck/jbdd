@@ -69,7 +69,7 @@ public class GoodServiceImpl extends AbstractDtoService<Good, GoodEntity> implem
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 

@@ -37,7 +37,7 @@ public interface PlayerService extends AbstractDtoServiceInterface<Player, Playe
 
     @Override
     @PreAuthorize("hasRole('" + ROLE_ADMIN_PLAYER + "')")
-    Long getCount();
+    long getCount();
 
     @Override
     @PreAuthorize("hasRole('" + ROLE_ADMIN_PLAYER + "')")
@@ -47,13 +47,13 @@ public interface PlayerService extends AbstractDtoServiceInterface<Player, Playe
     List<Player> findByUserId(final long userId, final LimitParams limitParams, final SortParams sortParams);
 
     @PreAuthorize("hasRole('" + ROLE_ADMIN_PLAYER + "')")
-    Long getCountByUserId(final long userId);
+    long getCountByUserId(final long userId);
 
     @PreAuthorize("hasRole('" + ROLE_ADMIN_PLAYER + "')")
     List<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams);
 
     @PreAuthorize("hasRole('" + ROLE_ADMIN_PLAYER + "')")
-    Long getCountUnused();
+    long getCountUnused();
 
     @Nullable
     @PreAuthorize("hasRole('" + ROLE_SYSTEM + "')")
@@ -65,7 +65,5 @@ public interface PlayerService extends AbstractDtoServiceInterface<Player, Playe
     @Override
     @PreAuthorize("hasAnyRole('" + ROLE_SYSTEM + "','" + ROLE_ADMIN_PLAYER + "')")
     Player update(final long id, final Player dto);
-
-    // public List<AbstractResource> getAllAddablePlayerResources(final long playerId);
 
 }

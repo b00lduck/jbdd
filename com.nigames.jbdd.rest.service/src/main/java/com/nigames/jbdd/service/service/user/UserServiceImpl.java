@@ -88,7 +88,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 

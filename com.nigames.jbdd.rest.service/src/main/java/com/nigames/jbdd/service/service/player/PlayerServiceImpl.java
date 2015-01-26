@@ -83,7 +83,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 
@@ -147,7 +147,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public final Long getCountByUserId(final long userId) {
+    public final long getCountByUserId(final long userId) {
         final TypedQuery<Long> query =
                 getEntityManager().createNamedQuery("PlayerEntity.countByUserId", Long.class);
         query.setParameter("userid", userId);
@@ -162,7 +162,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public final Long getCountUnused() {
+    public final long getCountUnused() {
         final TypedQuery<Long> query =
                 getEntityManager().createNamedQuery("PlayerEntity.countUnused", Long.class);
         return query.getSingleResult();

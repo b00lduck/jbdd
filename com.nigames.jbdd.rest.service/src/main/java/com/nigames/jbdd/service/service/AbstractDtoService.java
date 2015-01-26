@@ -49,7 +49,7 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
     }
 
     @Transactional
-    protected Long getCount() {
+    protected long getCount() {
         final CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         final CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(getEntityClass())));

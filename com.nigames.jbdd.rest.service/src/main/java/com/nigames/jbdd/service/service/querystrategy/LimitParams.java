@@ -19,6 +19,11 @@ public final class LimitParams {
         return new LimitParams(first, size);
     }
 
+    public static LimitParams createDefault() {
+        return new LimitParams(null, null);
+    }
+
+
     public Long getFirst() {
         return first;
     }

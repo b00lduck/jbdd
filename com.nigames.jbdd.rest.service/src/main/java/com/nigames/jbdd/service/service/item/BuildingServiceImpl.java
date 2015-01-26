@@ -2,8 +2,8 @@ package com.nigames.jbdd.service.service.item;
 
 import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.rest.dto.Building;
-import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
+import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.BuildingQueryStrategy;
 import com.nigames.jbdd.service.service.querystrategy.LimitParams;
@@ -69,7 +69,7 @@ public class BuildingServiceImpl extends AbstractDtoService<Building, BuildingEn
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 

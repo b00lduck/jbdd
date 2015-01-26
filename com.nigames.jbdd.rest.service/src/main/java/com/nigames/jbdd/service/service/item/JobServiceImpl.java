@@ -72,7 +72,7 @@ public class JobServiceImpl extends AbstractDtoService<Job, JobEntity> implement
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 

@@ -71,7 +71,7 @@ public class StoragetypeServiceImpl extends AbstractDtoService<Storagetype, Stor
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 
