@@ -2,6 +2,7 @@ package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.UserRequestInterface;
 import com.nigames.jbdd.rest.dto.DtoList;
+import com.nigames.jbdd.rest.dto.Meta;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.rest.dto.User;
 import com.nigames.jbdd.service.service.player.PlayerService;
@@ -65,7 +66,7 @@ public class UserRequest extends AbstractRequest<User> implements UserRequestInt
 
         final Long total = playerService.getCountByUserId(id);
 
-        ret.setMeta(AbstractRequest.createMeta(total, first, size));
+        ret.setMeta(Meta.create(total, first, size));
 
         return ret;
     }

@@ -2,6 +2,7 @@ package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.PlayerRequestInterface;
 import com.nigames.jbdd.rest.dto.DtoList;
+import com.nigames.jbdd.rest.dto.Meta;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.service.player.PlayerService;
 import com.nigames.jbdd.service.service.querystrategy.LimitParams;
@@ -59,7 +60,7 @@ public class PlayerRequest extends AbstractRequest<Player> implements PlayerRequ
 
         final Long total = playerService.getCountUnused();
 
-        ret.setMeta(AbstractRequest.createMeta(total, first, size));
+        ret.setMeta(Meta.create(total, first, size));
 
         return ret;
 
