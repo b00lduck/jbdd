@@ -7,13 +7,20 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
         function ($scope, DataService, $q) {
 
-            var ret = [];
+            var addableGoods = [];
+            var buyableCosts = [];
+
             DataService.getAddableCostGoods($scope.resourceName, $scope.getBuyableId()).then(function (payload) {
-                ret = payload.data;
+                addableGoods = payload.data;
+            });
+
+            DataService.getBuyableCosts($scope.resourceName, $scope.getBuyableId()).then(function (payload) {
+                buyableCosts = payload.data.data;
+                $scope.gridOptions.data = buyableCosts;
             });
 
             $scope.getAddableCostGoods = function () {
-                return ret.data;
+                return addableGoods.data;
             };
 
             $scope.addCost = function () {
@@ -32,8 +39,7 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
             $scope.gridOptions = {
                 columnDefs: [
-                    {name: 'id', width: 55},
-                    {name: 'name'},
+                    {name: 'goodId'},
                     {name: 'amount'}
                 ],
                 enableRowSelection: true,

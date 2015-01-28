@@ -113,6 +113,12 @@ define(['angularAMD'], function (angularAMD) {
                 return queryRestServicePost(url, data);
             };
 
+            service.getBuyableCosts = function (ressourceName, buyableId) {
+                var url = getSpecificResourceUrl(ressourceName, buyableId) + '/cost';
+                return queryRestServiceGet(url);
+            };
+
+
             return service;
 
         }
