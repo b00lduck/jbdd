@@ -1,8 +1,8 @@
 package com.nigames.jbdd.rest.dto;
 
-import com.nigames.jbdd.rest.dto.aspects.Identifiable;
-import com.nigames.jbdd.rest.dto.aspects.IdentifiableImpl;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.Identifiable;
+import com.nigames.jbdd.rest.dto.facet.IdentifiableImpl;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

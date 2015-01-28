@@ -1,7 +1,7 @@
 package com.nigames.jbdd.rest.api;
 
 import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.statics.Constants;
 
 import javax.ws.rs.*;

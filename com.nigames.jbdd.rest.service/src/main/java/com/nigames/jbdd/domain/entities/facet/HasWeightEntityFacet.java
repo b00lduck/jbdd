@@ -1,11 +1,11 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 /**
  * This file is part of JBdD by nigames.de
  *
  * Created by zerlettd on 19.12.2014.
  */
-public interface HasWeightEntityAspect {
+public interface HasWeightEntityFacet {
 
     int getWeight();
 

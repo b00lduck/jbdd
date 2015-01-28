@@ -1,17 +1,17 @@
-package com.nigames.jbdd.rest.dto.aspects;
+package com.nigames.jbdd.rest.dto.facet;
 
-public class IdentifiableImpl implements Identifiable {
+public class HasWeightImpl implements HasWeight {
 
-    private long id;
+    private int weight;
 
     @Override
-    public long getId() {
-        return id;
+    public int getWeight() {
+        return weight;
     }
 
     @Override
-    public void setId(final long id) {
-        this.id = id;
+    public void setWeight(final int weight) {
+        this.weight = weight;
     }
 
     @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
@@ -24,14 +24,14 @@ public class IdentifiableImpl implements Identifiable {
             return false;
         }
 
-        final IdentifiableImpl that = (IdentifiableImpl) o;
+        final HasWeightImpl hasWeight = (HasWeightImpl) o;
 
-        return id == that.id;
+        return weight == hasWeight.weight;
     }
 
     @Override
     public int hashCode() {
-        return (int) (id ^ (id >>> 32));
+        return weight;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.nigames.jbdd.domain.entities.subitem.buyable;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -31,12 +31,12 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     private CostEntityPK id = new CostEntityPK();
 
     /**
-     * The {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
     @MapsId("buyableId")
     @JoinColumn(name = "buyable_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    private BuyableEntityAspectImpl buyable;
+    private BuyableEntityFacetImpl buyable;
 
     /**
      * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
@@ -69,14 +69,14 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     /**
      * @return Get the Buyable item
      */
-    public BuyableEntityAspectImpl getBuyable() {
+    public BuyableEntityFacetImpl getBuyable() {
         return buyable;
     }
 
     /**
      * @param buyable The Buyable item to set
      */
-    public void setBuyable(final BuyableEntityAspectImpl buyable) {
+    public void setBuyable(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
 

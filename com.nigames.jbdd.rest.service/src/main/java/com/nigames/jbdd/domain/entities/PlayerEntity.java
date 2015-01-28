@@ -1,7 +1,7 @@
 package com.nigames.jbdd.domain.entities;
 
-import com.nigames.jbdd.domain.entities.aspect.CanBeEnabledEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.auth.UserEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuyableEntity;
@@ -62,7 +62,7 @@ import java.util.List;
         @NamedQuery(name = PlayerEntity.NQ_BY_NICKNAME,
                 query = "SELECT p FROM PlayerEntity p WHERE p.nickname=:nickname")})
 
-public class PlayerEntity extends IdentifyableEntityAspectImpl implements CanBeEnabledEntityAspect {
+public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
     public static final String NQ_UNUSED_SORTED_BY_ID = "PlayerEntity.findAllUnusedSortedById";
     public static final String NQ_UNUSED_SORTED_BY_ID_DESC = "PlayerEntity.findAllUnusedSortedByIdDesc";

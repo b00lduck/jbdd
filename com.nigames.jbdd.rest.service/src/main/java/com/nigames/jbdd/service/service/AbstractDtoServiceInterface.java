@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.service;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Abstract service class interface.
  *
- * @param <DtoType>    Type of the DTO, must implement {@link com.nigames.jbdd.rest.dto.aspects.IsDto}
+ * @param <DtoType>    Type of the DTO, must implement {@link com.nigames.jbdd.rest.dto.facet.IsDto}
  * @param <EntityType> Type of the Entity
  * @author Daniel
  *         <p>

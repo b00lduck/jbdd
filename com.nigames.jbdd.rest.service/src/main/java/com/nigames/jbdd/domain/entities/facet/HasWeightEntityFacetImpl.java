@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import javax.persistence.*;
 
@@ -9,8 +9,8 @@ import javax.persistence.*;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "weightAspect")
-public final class HasWeightEntityAspectImpl implements HasWeightEntityAspect {
+@Table(name = "weightFacet")
+public final class HasWeightEntityFacetImpl implements HasWeightEntityFacet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

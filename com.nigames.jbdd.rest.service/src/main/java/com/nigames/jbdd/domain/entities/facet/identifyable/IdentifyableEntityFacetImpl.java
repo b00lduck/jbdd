@@ -1,9 +1,9 @@
-package com.nigames.jbdd.domain.entities.aspect.identifyable;
+package com.nigames.jbdd.domain.entities.facet.identifyable;
 
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class IdentifyableEntityAspectImpl implements IdentifyableEntityAspect {
+public abstract class IdentifyableEntityFacetImpl implements IdentifyableEntityFacet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

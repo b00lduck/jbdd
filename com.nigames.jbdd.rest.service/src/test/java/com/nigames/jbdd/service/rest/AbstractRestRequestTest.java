@@ -1,7 +1,7 @@
 package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.aspects.Identifiable;
+import com.nigames.jbdd.rest.dto.facet.Identifiable;
 import com.nigames.jbdd.service.rest.helper.AdminAuthenticator;
 import com.nigames.jbdd.statics.Languages;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;

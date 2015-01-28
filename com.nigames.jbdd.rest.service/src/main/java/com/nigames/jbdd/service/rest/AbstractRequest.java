@@ -2,7 +2,7 @@ package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.GenericRequestInterface;
 import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;

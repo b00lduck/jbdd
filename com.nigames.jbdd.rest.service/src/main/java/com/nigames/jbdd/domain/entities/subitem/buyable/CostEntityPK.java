@@ -18,7 +18,7 @@ public class CostEntityPK implements Serializable {
     private static final long serialVersionUID = 3074751713874794424L;
 
     /**
-     * The id of the {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The id of the {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
     @Column(name = "buyable_id")
     private Long buyableId;

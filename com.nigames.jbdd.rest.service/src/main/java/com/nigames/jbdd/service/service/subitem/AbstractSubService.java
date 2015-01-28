@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.service.subitem;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.service.AbstractJPABackedService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

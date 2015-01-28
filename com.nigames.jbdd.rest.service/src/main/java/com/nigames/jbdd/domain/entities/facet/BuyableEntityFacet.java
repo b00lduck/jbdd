@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
@@ -6,7 +6,7 @@ import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntity;
 
 import java.util.List;
 
-public interface BuyableEntityAspect {
+public interface BuyableEntityFacet {
 
     int getScore();
 

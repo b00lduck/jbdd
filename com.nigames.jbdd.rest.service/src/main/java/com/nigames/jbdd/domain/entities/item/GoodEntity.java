@@ -1,7 +1,7 @@
 package com.nigames.jbdd.domain.entities.item;
 
-import com.nigames.jbdd.domain.entities.aspect.HasWeightEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.HasWeightEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.HasWeightEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.HasWeightEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.ProductionEntity;
 
@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "good")
 @NamedQueries(@NamedQuery(name = "findAllEnabledResources", query = "SELECT g FROM GoodEntity g WHERE g.enabled=1"))
-public class GoodEntity extends AbstractItemEntity implements HasWeightEntityAspect {
+public class GoodEntity extends AbstractItemEntity implements HasWeightEntityFacet {
 
     /**
      * This is a passive backlink. Gets all {@link CostEntity} objects who use this Good.
@@ -33,7 +33,7 @@ public class GoodEntity extends AbstractItemEntity implements HasWeightEntityAsp
     private final List<ProductionEntity> referencedProductions = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    private final HasWeightEntityAspectImpl hasWeight = new HasWeightEntityAspectImpl();
+    private final HasWeightEntityFacetImpl hasWeight = new HasWeightEntityFacetImpl();
 
     @Override
     public int getWeight() {

@@ -10,7 +10,6 @@ import javax.persistence.Table;
  *
  * @author Daniel
  */
-@SuppressWarnings("EmptyClass")
 @Entity
 @Table(name = "technology")
 @NamedQueries(@NamedQuery(name = TechnologyEntity.NQ_FIND_ALL_ENABLED_TECHNOLOGIES,

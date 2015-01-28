@@ -1,4 +1,4 @@
-package com.nigames.jbdd.rest.dto.aspects;
+package com.nigames.jbdd.rest.dto.facet;
 
 @SuppressWarnings("MarkerInterface")
 public interface IsDto {

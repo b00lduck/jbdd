@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.conversion.impl;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.AbstractConversionService;
 import com.nigames.jbdd.service.conversion.impl.modules.ConversionServiceTestModuleInterface;
 import org.junit.Test;

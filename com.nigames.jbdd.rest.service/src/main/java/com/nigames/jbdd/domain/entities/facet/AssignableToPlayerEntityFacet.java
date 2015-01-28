@@ -1,8 +1,8 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 
-public interface AssignableToPlayerEntityAspect {
+public interface AssignableToPlayerEntityFacet {
 
     PlayerEntity getPlayer();
 

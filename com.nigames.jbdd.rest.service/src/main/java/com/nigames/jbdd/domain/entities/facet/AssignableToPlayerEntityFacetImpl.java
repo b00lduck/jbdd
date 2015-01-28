@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 
@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * Created by zerlettd on 19.12.2014.
  */
 @Embeddable
-public class AssignableToPlayerEntityAspectImpl implements AssignableToPlayerEntityAspect {
+public class AssignableToPlayerEntityFacetImpl implements AssignableToPlayerEntityFacet {
 
     /**
      * The owning {@link com.nigames.jbdd.domain.entities.PlayerEntity}.

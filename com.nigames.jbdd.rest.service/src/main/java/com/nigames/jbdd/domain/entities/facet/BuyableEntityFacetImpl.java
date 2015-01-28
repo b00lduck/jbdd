@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
@@ -11,15 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Abstract Database Entity for all {@link BuyableEntityAspectImpl} objects (
+ * Abstract Database Entity for all {@link BuyableEntityFacetImpl} objects (
  * {@link com.nigames.jbdd.domain.entities.item.BuildingEntity} and {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity}).
  *
  * @author Daniel
  */
 
 @Entity
-@Table(name = "buyableAspect")
-public final class BuyableEntityAspectImpl implements BuyableEntityAspect {
+@Table(name = "buyableFacet")
+public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,25 +29,25 @@ public final class BuyableEntityAspectImpl implements BuyableEntityAspect {
     private int version;
 
     /**
-     * Score added by owning one of this {@link BuyableEntityAspectImpl} object.
+     * Score added by owning one of this {@link BuyableEntityFacetImpl} object.
      */
     private int score;
 
     /**
-     * Time to build this {@link BuyableEntityAspectImpl} object per construction
+     * Time to build this {@link BuyableEntityFacetImpl} object per construction
      * worker.
      */
     private int buildtime;
 
     /**
-     * Describes if this {@link BuyableEntityAspectImpl} object can be bought multiple
-     * times. FALSE means, the {@link BuyableEntityAspectImpl} object can only be bought
+     * Describes if this {@link BuyableEntityFacetImpl} object can be bought multiple
+     * times. FALSE means, the {@link BuyableEntityFacetImpl} object can only be bought
      * once.
      */
     private boolean multi;
 
     /**
-     * Costs of this {@link BuyableEntityAspectImpl} object represented as a List of
+     * Costs of this {@link BuyableEntityFacetImpl} object represented as a List of
      * {@link CostEntity}.
      */
     @SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
@@ -56,7 +56,7 @@ public final class BuyableEntityAspectImpl implements BuyableEntityAspect {
     private List<CostEntity> costList = new ArrayList<>();
 
     /**
-     * Requirements of this {@link BuyableEntityAspectImpl} object represented as a List
+     * Requirements of this {@link BuyableEntityFacetImpl} object represented as a List
      * of {@link RequirementEntity} .
      */
     @SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
@@ -65,8 +65,8 @@ public final class BuyableEntityAspectImpl implements BuyableEntityAspect {
     private List<RequirementEntity> requirementList = new ArrayList<>();
 
     /**
-     * This is a passive backlink. Gets all {@link BuyableEntityAspectImpl} objects who
-     * have this {@link BuyableEntityAspectImpl} object as {@link RequirementEntity}.
+     * This is a passive backlink. Gets all {@link BuyableEntityFacetImpl} objects who
+     * have this {@link BuyableEntityFacetImpl} object as {@link RequirementEntity}.
      */
     @SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
     @OneToMany(fetch = FetchType.LAZY)

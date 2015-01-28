@@ -18,13 +18,13 @@ public class RequirementEntityPK implements Serializable {
     private static final long serialVersionUID = 6543507212031496817L;
 
     /**
-     * The id of the requiring {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The id of the requiring {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
     @Column(name = "buyable_id")
     private Long buyableId;
 
     /**
-     * The id of the required {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The id of the required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
     @Column(name = "required_buyable_id")
     private Long requiredBuyableId;

@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.i18n.I18n;
 import com.nigames.jbdd.domain.entities.i18n.I18nLongEntity;
@@ -14,8 +14,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "nameAndDescAspect")
-public final class HasNameAndDescEntityAspectImpl implements HasNameAndDescEntityAspect {
+@Table(name = "nameAndDescFacet")
+public final class HasNameAndDescEntityFacetImpl implements HasNameAndDescEntityFacet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

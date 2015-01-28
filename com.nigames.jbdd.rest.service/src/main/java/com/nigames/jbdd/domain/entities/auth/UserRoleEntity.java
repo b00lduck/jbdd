@@ -1,6 +1,6 @@
 package com.nigames.jbdd.domain.entities.auth;
 
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
 
 import javax.persistence.*;
 
@@ -17,7 +17,7 @@ import javax.persistence.*;
                 query = "SELECT u FROM UserRoleEntity u WHERE u.role=:role AND u.user=:user")
 )
 
-public class UserRoleEntity implements IdentifyableEntityAspect {
+public class UserRoleEntity implements IdentifyableEntityFacet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

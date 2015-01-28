@@ -1,8 +1,8 @@
 package com.nigames.jbdd.service.conversion.dto.module;
 
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
-import com.nigames.jbdd.rest.dto.aspects.Identifiable;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
+import com.nigames.jbdd.rest.dto.facet.Identifiable;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +15,7 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 
 		checkTypes(dto, entity);
 
-		((Identifiable) dto).setId(((IdentifyableEntityAspect) entity).getId());
+		((Identifiable) dto).setId(((IdentifyableEntityFacet) entity).getId());
 
 	}
 
@@ -32,8 +32,8 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 
 		// TODO: stronger types in method signature
 
-		if (!(entity instanceof IdentifyableEntityAspect)) {
-			throw new IllegalArgumentException("entity must be of type IdentifyableEntityAspect");
+		if (!(entity instanceof IdentifyableEntityFacet)) {
+			throw new IllegalArgumentException("entity must be of type IdentifyableEntityFacet");
 		}
 
 		if (!(dto instanceof Identifiable)) {

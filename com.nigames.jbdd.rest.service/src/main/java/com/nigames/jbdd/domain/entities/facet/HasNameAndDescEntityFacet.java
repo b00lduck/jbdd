@@ -1,4 +1,4 @@
-package com.nigames.jbdd.domain.entities.aspect;
+package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.i18n.I18n;
 import com.nigames.jbdd.domain.entities.i18n.I18nLongEntity;
@@ -9,7 +9,7 @@ import com.nigames.jbdd.domain.entities.i18n.I18nShortEntity;
  *
  * Created by zerlettd on 19.12.2014.
  */
-public interface HasNameAndDescEntityAspect {
+public interface HasNameAndDescEntityFacet {
 
     I18n getName();
 

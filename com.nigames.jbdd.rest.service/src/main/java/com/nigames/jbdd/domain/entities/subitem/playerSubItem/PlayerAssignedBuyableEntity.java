@@ -1,6 +1,6 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,11 +17,11 @@ import javax.validation.constraints.NotNull;
 public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
 
     /**
-     * The owned {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The owned {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
     @NotNull
     @ManyToOne
-    private BuyableEntityAspectImpl buyable;
+    private BuyableEntityFacetImpl buyable;
 
     /**
      * The remaining build time.
@@ -35,11 +35,11 @@ public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
         // nothing to do here.
     }
 
-    public BuyableEntityAspectImpl getBuyable() {
+    public BuyableEntityFacetImpl getBuyable() {
         return buyable;
     }
 
-    public void setBuyable(final BuyableEntityAspectImpl buyable) {
+    public void setBuyable(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
 
