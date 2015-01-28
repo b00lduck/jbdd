@@ -54,7 +54,7 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 	Cost deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
 
 	@PUT
-	@Path("/{itemId}")
+	@Path("/{itemId}/cost")
 	Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto);
 
 }
