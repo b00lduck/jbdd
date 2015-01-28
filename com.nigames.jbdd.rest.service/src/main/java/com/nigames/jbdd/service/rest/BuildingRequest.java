@@ -98,7 +98,7 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 
     @Override
     @PUT
-    @Path("/{itemId}")
+    @Path("/{itemId}/cost")
     public Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto) {
         return buyableRequestFacet.updateCost(itemId, dto);
     }
