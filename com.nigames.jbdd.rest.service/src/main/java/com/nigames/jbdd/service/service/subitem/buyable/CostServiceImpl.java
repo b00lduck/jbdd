@@ -1,13 +1,14 @@
 package com.nigames.jbdd.service.service.subitem.buyable;
 
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
+import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntityPK;
 import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.CostConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.CostQueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,14 +28,13 @@ import java.util.List;
 @Service
 public class CostServiceImpl extends AbstractDtoService<Cost, CostEntity> implements CostService {
 
-	private static final Logger LOG = LoggerFactory
-			.getLogger(CostServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CostServiceImpl.class);
 
 	@Autowired
-	private transient CostConversionService costConversionService;
+	private CostConversionService costConversionService;
 
 	@Autowired
-	private transient CostQueryStrategy costQueryStrategy;
+	private CostQueryStrategy costQueryStrategy;
 
 	@Override
 	@Transactional
@@ -44,14 +44,19 @@ public class CostServiceImpl extends AbstractDtoService<Cost, CostEntity> implem
 
 	@Override
 	@Transactional
-	public Cost update(final long id, final Cost dto) {
-		return super.update(id, dto);
+	public Cost update(final Cost dto) {
+		final CostEntityPK id = new CostEntityPK(dto.getBuyableId(), dto.getGoodId());
+		final CostEntity entity = getEntityManager().find(getEntityClass(), id);
+		getConversionService().updateEntity(dto, entity);
+		return getConversionService().convertToDto(entity);
 	}
 
 	@Override
 	@Transactional
-	public void delete(final long id) {
-		super.delete(id);
+	public void delete(final long buyableId, final long goodId) {
+		final CostEntityPK id = new CostEntityPK(buyableId, goodId);
+		final CostEntity entity = getEntityManager().getReference(getEntityClass(), id);
+		getEntityManager().remove(entity);
 	}
 
 	@Override

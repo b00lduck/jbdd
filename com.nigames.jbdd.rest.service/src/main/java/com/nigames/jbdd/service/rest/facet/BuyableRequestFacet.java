@@ -5,9 +5,9 @@ import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.service.item.GoodService;
+import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
-import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,16 +47,24 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
         return new DtoList<>(data, total, limitParams);
     }
 
-    public Cost createCost(final long itemId, final Cost dto) {
-        return null;
-    }
+	public Cost createCost(final long buyableId, final Cost dto) {
+		checkConsistency(buyableId, dto);
+		return costService.create(dto);
+	}
 
-    public Cost deleteCost(final long itemId, final long goodId) {
-        return null;
-    }
+	public void deleteCost(final long buyableId, final long goodId) {
+		costService.delete(buyableId, goodId);
+	}
 
-    public Cost updateCost(final long itemId, final Cost dto) {
-        return null;
-    }
+	public Cost updateCost(final long buyableId, final Cost dto) {
+		checkConsistency(buyableId, dto);
+		return costService.update(dto);
+	}
+
+	private void checkConsistency(final long buyableId, final Cost dto) {
+		if (buyableId != dto.getBuyableId()) {
+			throw new IllegalArgumentException("buyableId must match the buyableId in DTO");
+		}
+	}
 
 }

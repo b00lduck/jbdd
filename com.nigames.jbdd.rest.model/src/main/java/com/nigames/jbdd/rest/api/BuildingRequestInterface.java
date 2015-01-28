@@ -51,7 +51,7 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 
 	@DELETE
 	@Path("/{itemId}/cost/{goodId}")
-	Cost deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
+	void deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
 
 	@PUT
 	@Path("/{itemId}/cost")

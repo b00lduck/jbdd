@@ -1,14 +1,11 @@
 package com.nigames.jbdd.rest.api.aspect;
 
-import com.nigames.jbdd.rest.api.GenericRequestInterface;
-import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.statics.Constants;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
 
 public interface BuyableRequestInterface {
 
@@ -34,10 +31,10 @@ public interface BuyableRequestInterface {
 
 	@DELETE
 	@Path("/{itemId}/cost/{goodId}")
-	Cost deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
+	void deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
 
 	@PUT
-	@Path("/{itemId}")
+	@Path("/{itemId}/cost/")
 	Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto);
 
 }

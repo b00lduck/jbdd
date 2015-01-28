@@ -17,7 +17,7 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
             };
 
             $scope.addCost = function () {
-                alert($scope.selectedGood.name[$scope.currentLanguage()]);
+                DataService.addCostToBuyable($scope.resourceName, $scope.getBuyableId(), $scope.selectedGood.id);
             };
 
             $scope.removeCost = function () {

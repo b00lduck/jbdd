@@ -1,7 +1,10 @@
 package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.BuildingRequestInterface;
-import com.nigames.jbdd.rest.dto.*;
+import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.Cost;
+import com.nigames.jbdd.rest.dto.DtoList;
+import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.rest.facet.BuyableRequestFacet;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
@@ -92,8 +95,8 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
     @Override
     @DELETE
     @Path("/{itemId}/cost/{goodId}")
-    public Cost deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId) {
-        return buyableRequestFacet.deleteCost(itemId, goodId);
+    public void deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId) {
+	    buyableRequestFacet.deleteCost(itemId, goodId);
     }
 
     @Override
