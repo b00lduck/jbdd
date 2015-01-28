@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto;
 
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
+import com.nigames.jbdd.types.LimitParams;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -20,8 +20,7 @@ public class Meta {
      * Create the {@link com.nigames.jbdd.rest.dto.Meta} DTO for a {@link com.nigames.jbdd.rest.dto.DtoList}.
      *
      * @param total Total number of items
-     * @param size  Page size
-     * @param first Start at entry
+     * @param limitParams limit parameters
      * @return Meta object with the given values
      */
     @SuppressWarnings("ReuseOfLocalVariable")

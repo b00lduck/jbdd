@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto;
 
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
+import com.nigames.jbdd.types.LimitParams;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -12,7 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
- * Abstract Database Entity for all Items. Covers {@link com.nigames.jbdd.domain.entities.aspect.HasNameAndDescEntityAspect} and {@link com.nigames.jbdd.domain.entities.aspect.CanBeEnabledEntityAspect} aspects.
+ * Abstract Database Entity for all Items. Covers {@link com.nigames.jbdd.domain.entities.aspect.HasNameAndDescEntityAspect} and {@link com.nigames.jbdd.domain.entities.aspect.CanBeEnabledEntityAspect} facet.
  *
  * @author Daniel
  */

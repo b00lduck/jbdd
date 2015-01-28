@@ -1,5 +1,7 @@
 package com.nigames.jbdd.service.service.querystrategy;
 
+import com.nigames.jbdd.types.SortParams;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

@@ -6,6 +6,8 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.PlayerConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.*;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

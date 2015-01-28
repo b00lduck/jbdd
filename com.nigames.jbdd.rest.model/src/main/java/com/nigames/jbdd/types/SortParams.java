@@ -1,4 +1,4 @@
-package com.nigames.jbdd.service.service.querystrategy;
+package com.nigames.jbdd.types;
 
 import java.util.Collection;
 

@@ -3,8 +3,8 @@ package com.nigames.jbdd.service.service.player;
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.annotation.Nullable;

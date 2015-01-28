@@ -1,8 +1,8 @@
 package com.nigames.jbdd.service.service;
 
 import com.nigames.jbdd.rest.dto.aspects.IsDto;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 
 import java.util.List;
 

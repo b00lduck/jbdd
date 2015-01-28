@@ -1,6 +1,6 @@
-package com.nigames.jbdd.rest.api;
+package com.nigames.jbdd.rest.api.aspect;
 
-import com.nigames.jbdd.rest.api.aspect.BuyableRequestInterface;
+import com.nigames.jbdd.rest.api.GenericRequestInterface;
 import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.DtoList;
@@ -10,24 +10,7 @@ import com.nigames.jbdd.statics.Constants;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-@SuppressWarnings("AbstractMethodOverridesAbstractMethod")
-@Path("/building")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-public interface BuildingRequestInterface extends GenericRequestInterface<Building>, BuyableRequestInterface {
-
-	@Override
-	@GET
-	@Path("/{itemId}")
-	Building getById(@PathParam("itemId") final long itemId);
-
-	@PUT
-	@Path("/{itemId}")
-	Building update(@PathParam("itemId") final long itemId, final Building dto);
-
-	@POST
-	@Path("/")
-	Building create(final Building dto);
+public interface BuyableRequestInterface {
 
 	@GET
 	@Path("/{itemId}/cost")
@@ -40,10 +23,10 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 	@GET
 	@Path("/{itemId}/cost/addable")
 	DtoList<Good> getAddableCosts(@PathParam("itemId") final long itemId,
-							      @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-							      @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-							      @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-							      @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
+								  @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+								  @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+								  @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+								  @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@POST
 	@Path("/{itemId}/cost")

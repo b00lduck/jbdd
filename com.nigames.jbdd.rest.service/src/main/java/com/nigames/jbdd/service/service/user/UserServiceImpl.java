@@ -12,9 +12,9 @@ import com.nigames.jbdd.service.rest.exceptionprovider.InsufficientPermissionsEx
 import com.nigames.jbdd.service.rest.exceptionprovider.UsernameAlreadyInUseException;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.RandomPasswordGenerator;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
+import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.types.SortParams;
 import com.nigames.jbdd.service.service.querystrategy.UserQueryStrategy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

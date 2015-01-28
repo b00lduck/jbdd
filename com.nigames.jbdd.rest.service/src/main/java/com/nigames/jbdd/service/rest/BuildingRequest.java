@@ -2,19 +2,15 @@ package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.BuildingRequestInterface;
 import com.nigames.jbdd.rest.dto.*;
+import com.nigames.jbdd.service.rest.facet.BuyableRequestFacet;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
-import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.statics.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
-import java.util.List;
 
-@SuppressWarnings("ALL")
 @Component
 @Path("/building")
 public class BuildingRequest extends AbstractRequest<Building> implements BuildingRequestInterface {
@@ -26,7 +22,7 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
     private transient GoodService goodService;
 
     @Autowired
-    private transient CostService costService;
+    private transient BuyableRequestFacet buyableRequestFacet;
 
     @Override
     protected BuildingService getService() {
@@ -37,7 +33,8 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
     @GET
     @Path("/")
     public DtoList<Building> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-                                @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size, @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+                                @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+                                @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
                                 @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
         return super.getAll(first, size, sort, desc);
     }
@@ -65,61 +62,45 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 
     @Override
     @GET
-    @Path("/{buildingId}/cost")
-    public DtoList<Cost> getCosts(@PathParam("buildingId") final long buildingId,
-                           @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-                           @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-                           @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-                           @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
-
-        final LimitParams limitParams = LimitParams.create(first, size);
-        final SortParams sortParams = SortParams.create(sort, desc);
-
-        final List<Cost> data = costService.findByBuyableId(buildingId, limitParams, sortParams);
-        final long total = costService.getCount();
-
-        return new DtoList<>(data, total, limitParams);
-    }
-
-    @Override
-    @GET
-    @Path("/{buildingId}/cost/addable")
-    public DtoList<Good> getAddableCosts(@PathParam("buildingId") final long buildingId,
+    @Path("/{itemId}/cost")
+    public DtoList<Cost> getCosts(@PathParam("itemId") final long itemId,
                                   @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
                                   @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
                                   @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
                                   @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
+        return buyableRequestFacet.getCosts(itemId, first, size, sort, desc);
+    }
 
-
-        final LimitParams limitParams = LimitParams.create(first, size);
-        final SortParams sortParams = SortParams.create(sort, desc);
-        final long total = goodService.getCount();
-        final List<Good> data = goodService.findAll(limitParams, sortParams);
-
-        return new DtoList<>(data, total, limitParams);
-
+    @Override
+    @GET
+    @Path("/{itemId}/cost/addable")
+    public DtoList<Good> getAddableCosts(@PathParam("itemId") final long itemId,
+                                         @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+                                         @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+                                         @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+                                         @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
+        return buyableRequestFacet.getAddableCosts(itemId, first, size, sort, desc);
     }
 
     @Override
     @POST
-    @Path("/{buildingId}/cost")
-    public Cost createCost(@PathParam("buildingId") final long buildingId, final Cost dto) {
-        return null;
+    @Path("/{itemId}/cost")
+    public Cost createCost(@PathParam("itemId") final long itemId, final Cost dto) {
+        return buyableRequestFacet.createCost(itemId, dto);
     }
 
     @Override
     @DELETE
-    @Path("/{buildingId}/cost/{goodId}")
-    public Cost deleteCost(@PathParam("buildingId") final long buildingId, @PathParam("goodId") final long goodId) {
-        return null;
+    @Path("/{itemId}/cost/{goodId}")
+    public Cost deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId) {
+        return buyableRequestFacet.deleteCost(itemId, goodId);
     }
 
     @Override
     @PUT
-    @Path("/{buildingId}")
-    public Cost updateCost(@PathParam("buildingId") final long buildingId, final Cost dto) {
-        return null;
+    @Path("/{itemId}")
+    public Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto) {
+        return buyableRequestFacet.updateCost(itemId, dto);
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.nigames.jbdd.service.service.querystrategy;
+package com.nigames.jbdd.types;
 
 /**
  * This file is part of JBdD by nigames.de
