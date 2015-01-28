@@ -8,7 +8,14 @@ define(['angularAMD', '../controllers/buyableCostEditor'], function (angularAMD)
         return {
             restrict: 'E',
             templateUrl: './modules/admin/modules/buyableCostEditor/directives/templates/myBuyableCostEditor.html',
-            controller: 'BuyableCostEditorController'
+            controller: 'BuyableCostEditorController',
+            scope: {
+                getBuyableId: '&buyableid',
+                resourceName: '@resourcename'
+            },
+            link: function ($scope, $element, $attrs) {
+                $scope.resourceName = $attrs.resourcename;
+            }
         };
 
     }]);

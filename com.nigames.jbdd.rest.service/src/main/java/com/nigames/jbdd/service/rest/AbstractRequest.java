@@ -35,6 +35,7 @@ public abstract class AbstractRequest<DtoType extends IsDto> implements
         final List<DtoType> data = getService().findAll(limitParams, sortParams);
 
         return new DtoList<>(data, total, limitParams);
+
     }
 
     protected abstract AbstractDtoServiceInterface<DtoType, ?> getService();

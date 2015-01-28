@@ -22,7 +22,6 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
     @Autowired
     private GoodService goodService;
 
-
     public DtoList<Cost> getCosts(final long itemId,
                                   final Long first, final Long size,
                                   final String sort, final Boolean desc) {

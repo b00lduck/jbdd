@@ -8,7 +8,7 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
         function ($scope, DataService, $q) {
 
             var ret = [];
-            DataService.getAddableCostGoods().then(function (payload) {
+            DataService.getAddableCostGoods($scope.resourceName, $scope.getBuyableId()).then(function (payload) {
                 ret = payload.data;
             });
 
