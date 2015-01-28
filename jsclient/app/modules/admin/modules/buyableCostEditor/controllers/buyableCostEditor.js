@@ -29,6 +29,21 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                 return 'de-DE';
             };
 
+            $scope.gridOptions = {
+                columnDefs: [
+                    {name: 'id', width: 55},
+                    {name: 'name'},
+                    {name: 'amount'}
+                ],
+                enableRowSelection: true,
+                enableRowHeaderSelection: false,
+                multiSelect: true,
+                modifierKeysToMultiSelect: true,
+                noUnselect: false,
+                enableSorting: false,
+                enableSelectionBatchEvent: false
+            };
+
         }
 
     ]);

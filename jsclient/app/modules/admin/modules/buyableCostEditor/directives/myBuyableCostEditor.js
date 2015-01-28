@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', '../controllers/buyableCostEditor'], function (angularAMD) {
+define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', '../controllers/buyableCostEditor'], function (angularAMD) {
 
     angularAMD.directive('myBuyableCostEditor', ['DataService', function (DataService) {
 

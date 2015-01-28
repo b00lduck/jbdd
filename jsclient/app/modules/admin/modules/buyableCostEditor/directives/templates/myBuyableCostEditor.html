@@ -1,8 +1,26 @@
-Buyable cost editor (tm)
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Buyable cost editor (tm)</h3>
+    </div>
+    <div class="panel-body">
 
-<div class="form-group">
-    <label for="costs">available costs (I18n me!)</label>
-    <select class="form-control" id="costs">
-        <option ng-repeat="(key, value) in getAddableCostGoods()">{{value.name[currentLanguage()]}}</option>
-    </select>
+        <div class="row">
+            <div class="col-md-5">
+                <div ui-grid="gridOptions" style="height: 150px;"></div>
+            </div>
+            <div class="col-md-2">
+                <button ng-click="addCost()">&lt;</button>
+                <button ng-click="removeCost()">&gt;</button>
+            </div>
+            <div class="col-md-5">
+                <label for="costs">available costs (I18n me!)</label>
+                <select class="form-control" id="costs">
+                    <option ng-repeat="(key, value) in getAddableCostGoods()">{{value.name[currentLanguage()]}}</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
 </div>
+
