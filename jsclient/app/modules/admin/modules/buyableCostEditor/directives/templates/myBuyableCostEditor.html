@@ -13,9 +13,9 @@
                 <button ng-click="removeCost()">&gt;</button>
             </div>
             <div class="col-md-5">
-                <label for="costs">available costs (I18n me!)</label>
-                <select class="form-control" id="costs">
-                    <option ng-repeat="(key, value) in getAddableCostGoods()">{{value.name[currentLanguage()]}}</option>
+                <label for="goodToAdd">available costs (I18n me!)</label>
+                <select class="form-control" id="goodToAdd" ng-model="selectedGood"
+                        ng-options="opt as opt.name[currentLanguage()] for opt in getAddableCostGoods()">
                 </select>
             </div>
         </div>
