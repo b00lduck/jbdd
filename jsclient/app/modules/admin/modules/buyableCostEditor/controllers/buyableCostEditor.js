@@ -7,56 +7,53 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
         function ($scope, DataService, $q) {
 
-            var addableGoods = [];
-            var buyableCosts = [];
+            $scope.doubleGridConfig = {
 
-            function refresh() {
-                DataService.getAddableCostGoods($scope.resourceName, $scope.getBuyableId()).then(function (payload) {
-                    addableGoods = payload.data;
-                });
+                leftGridConfig: {
+                    columnDefs: [
+                        {name: 'buyableId', width: 55},
+                        {name: 'goodId', width: 55},
+                        {name: 'amount'}
+                    ],
+                    enableRowSelection: true,
+                    enableRowHeaderSelection: false,
+                    multiSelect: true,
+                    modifierKeysToMultiSelect: true,
+                    noUnselect: false,
+                    enableSorting: false,
+                    enableSelectionBatchEvent: false
+                },
 
-                DataService.getBuyableCosts($scope.resourceName, $scope.getBuyableId()).then(function (payload) {
-                    buyableCosts = payload.data.data;
-                    $scope.gridOptions.data = buyableCosts;
-                });
-            }
+                rightGridConfig: {
+                    columnDefs: [
+                        {name: 'id'},
+                        {name: 'name'}
+                    ],
+                    enableRowSelection: true,
+                    enableRowHeaderSelection: false,
+                    multiSelect: true,
+                    modifierKeysToMultiSelect: true,
+                    noUnselect: false,
+                    enableSorting: false,
+                    enableSelectionBatchEvent: false
+                },
 
-            refresh();
+                getLeftGridData: function () {
+                    return DataService.getBuyableCosts($scope.resourceName, $scope.getBuyableId());
+                },
 
-            $scope.getAddableCostGoods = function () {
-                return addableGoods.data;
-            };
+                getRightGridData: function () {
+                    return DataService.getAddableCostGoods($scope.resourceName, $scope.getBuyableId());
+                },
 
-            $scope.addCost = function () {
-                DataService.addCostToBuyable($scope.resourceName, $scope.getBuyableId(), $scope.selectedGood.id).then(function () {
-                    refresh();
-                }).catch(function () {
-                    alert(1);
-                });
-            };
+                moveItemToLeft: function (obj) {
+                    return DataService.addCostToBuyable($scope.resourceName, $scope.getBuyableId(), obj.id);
+                },
 
-            $scope.removeCost = function () {
-            };
+                moveItemToRight: function (obj) {
+                    return DataService.removeCostFromBuyable($scope.resourceName, $scope.getBuyableId(), obj.goodId);
+                }
 
-            $scope.setCostAmount = function () {
-            };
-
-            $scope.currentLanguage = function () {
-                return 'de-DE';
-            };
-
-            $scope.gridOptions = {
-                columnDefs: [
-                    {name: 'goodId'},
-                    {name: 'amount'}
-                ],
-                enableRowSelection: true,
-                enableRowHeaderSelection: false,
-                multiSelect: true,
-                modifierKeysToMultiSelect: true,
-                noUnselect: false,
-                enableSorting: false,
-                enableSelectionBatchEvent: false
             };
 
         }

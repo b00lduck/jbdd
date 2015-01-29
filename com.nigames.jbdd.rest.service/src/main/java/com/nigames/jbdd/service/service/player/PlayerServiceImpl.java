@@ -5,7 +5,10 @@ import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.PlayerConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
-import com.nigames.jbdd.service.service.querystrategy.*;
+import com.nigames.jbdd.service.service.querystrategy.PlayerChooseQueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.PlayerQueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.UserPlayerQueryStrategy;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
@@ -72,7 +75,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    protected List<Player> findAll(final LimitParams limitParams, final SortParams sortParams, final QueryStrategy<PlayerEntity> queryStrategy,
+    public List<Player> findAll(final LimitParams limitParams, final SortParams sortParams, final QueryStrategy<PlayerEntity> queryStrategy,
                                    final Object... queryParams) {
         return super.findAll(limitParams, sortParams, queryStrategy, queryParams);
     }

@@ -10,15 +10,7 @@ define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower'], f
             templateUrl: 'modules/admin/modules/doubleGrid/directives/templates/myDoubleGrid.html',
             controller: 'DoubleGridDirectiveController',
             scope: {
-                getLeftGridConfig: '&leftgridconfig',
-                getRightGridConfig: '&rightgridconfig',
-
-                moveItemLeft: '&moveitemleft',
-                moveItemRight: '&moveitemright',
-
-                getLeftGridData: '&getleftgriddata',
-                getRightGridData: '&getrightgriddata'
-
+                config: '='
             },
             link: function (scope, element, attrs, controller) {
                 controller.init();

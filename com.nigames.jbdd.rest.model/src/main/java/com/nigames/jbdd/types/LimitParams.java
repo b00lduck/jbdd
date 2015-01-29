@@ -23,7 +23,6 @@ public final class LimitParams {
         return new LimitParams(null, null);
     }
 
-
     public Long getFirst() {
         return first;
     }

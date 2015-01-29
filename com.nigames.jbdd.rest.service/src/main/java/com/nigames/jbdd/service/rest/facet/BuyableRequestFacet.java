@@ -5,6 +5,7 @@ import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.service.item.GoodService;
+import com.nigames.jbdd.service.service.item.facet.BuyableFacetService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
@@ -21,6 +22,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 
     @Autowired
     private GoodService goodService;
+
+	@Autowired
+	private BuyableFacetService buyableFacetService;
 
     public DtoList<Cost> getCosts(final long itemId,
                                   final Long first, final Long size,
@@ -41,8 +45,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 
         final LimitParams limitParams = LimitParams.create(first, size);
         final SortParams sortParams = SortParams.create(sort, desc);
-        final long total = goodService.getCount();
-        final List<Good> data = goodService.findAll(limitParams, sortParams);
+
+	    final long total = buyableFacetService.getAddableCostGoodsCount(itemId);
+	    final List<Good> data = buyableFacetService.getAddableCostGoods(itemId, limitParams, sortParams);
 
         return new DtoList<>(data, total, limitParams);
     }

@@ -3,7 +3,7 @@
 
 define(['angularAMD', 'doubleGrid', '../controllers/buyableCostEditor'], function (angularAMD) {
 
-    angularAMD.directive('myBuyableCostEditor', ['DataService', function (DataService) {
+    angularAMD.directive('myBuyableCostEditor', ['DataService', '$q', function (DataService, $q) {
 
         return {
             restrict: 'E',
@@ -14,47 +14,11 @@ define(['angularAMD', 'doubleGrid', '../controllers/buyableCostEditor'], functio
                 resourceName: '@resourcename'
             },
             link: function ($scope, $element, $attrs) {
+
                 $scope.resourceName = $attrs.resourcename;
 
-                $scope.leftGridConfig = {
-                    columnDefs: [
-                        {name: 'id'},
-                        {name: 'name'},
-                        {name: 'amount'}
-                    ],
-                    enableRowSelection: true,
-                    enableRowHeaderSelection: false,
-                    multiSelect: true,
-                    modifierKeysToMultiSelect: true,
-                    noUnselect: false,
-                    enableSorting: false,
-                    enableSelectionBatchEvent: false
-                };
-
-                $scope.rightGridConfig = {
-                    columnDefs: [
-                        {name: 'id'},
-                        {name: 'name'}
-                    ],
-                    enableRowSelection: true,
-                    enableRowHeaderSelection: false,
-                    multiSelect: true,
-                    modifierKeysToMultiSelect: true,
-                    noUnselect: false,
-                    enableSorting: false,
-                    enableSelectionBatchEvent: false
-                };
-
-                $scope.getLeftGridData = function() {
-
-                };
-
-                $scope.getRightGridData = function() {
-
-                };
-
-
             }
+
         };
 
     }]);

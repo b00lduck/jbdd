@@ -9,4 +9,6 @@ public interface QueryStrategy<EntityType> {
     // TODO: refactor queryParams mechanism #51
     TypedQuery<EntityType> constructSortedQuery(SortParams sortParams, Object... queryParams);
 
+	TypedQuery<Long> constructCountQuery(Object... queryParams);
+
 }

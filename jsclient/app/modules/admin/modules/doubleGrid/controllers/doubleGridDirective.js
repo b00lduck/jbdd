@@ -7,23 +7,19 @@ define(['angularAMD'], function (angularAMD) {
         function ($scope, $q) {
 
             var leftGridApi,
-                rightGridApi;
+                rightGridApi,
+                leftGridConfig,
+                rightGridConfig,
+                moveItemToLeft,
+                moveItemToRight,
+                getLeftGridData,
+                getRightGridData;
 
-            /*
-                array $scope.getLeftGridConfig();
-                array $scope.getRightGridConfig();
-                http promise $scope.getLeftGridData();
-                http promise $scope.getRightGridData();
-                promise $scope.moveItemLeft(id);
-                promise $scope.moveItemRight(id);
-
-            */
-
-            function getLeftGridData() {
-                $scope.getLeftGridData().then(
+            function internalGetLeftGridData() {
+                getLeftGridData().then(
                     function (payload) {
-                        $scope.leftGridOptions.totalItems = payload.data.meta.totalItems;
-                        $scope.leftGridOptions.data = payload.data.data;
+                        leftGridConfig.totalItems = payload.data.meta.totalItems;
+                        leftGridConfig.data = payload.data.data;
                     },
                     function () {
                         window.alert('ERROR');
@@ -31,11 +27,11 @@ define(['angularAMD'], function (angularAMD) {
                     });
             }
 
-            function getRightGridData() {
-                $scope.getRightGridData().then(
+            function internalGetRightGridData() {
+                getRightGridData().then(
                     function (payload) {
-                        $scope.rightGridOptions.totalItems = payload.data.meta.totalItems;
-                        $scope.rightGridOptions.data = payload.data.data;
+                        rightGridConfig.totalItems = payload.data.meta.totalItems;
+                        rightGridConfig.data = payload.data.data;
                     },
                     function () {
                         window.alert('ERROR');
@@ -44,8 +40,8 @@ define(['angularAMD'], function (angularAMD) {
             }
 
             function refresh() {
-                getLeftGridData();
-                getRightGridData();
+                internalGetLeftGridData();
+                internalGetRightGridData();
             }
 
             function getMoveArrayLeftPromise(rows) {
@@ -55,7 +51,7 @@ define(['angularAMD'], function (angularAMD) {
                     promise;
 
                 for (i = 0; i < length; i++) {
-                    promise = $scope.moveItemLeft(rows[i].id);
+                    promise = moveItemToLeft(rows[i]);
                     promises.push(promise);
                 }
 
@@ -69,7 +65,7 @@ define(['angularAMD'], function (angularAMD) {
                     promise;
 
                 for (i = 0; i < length; i++) {
-                    promise = $scope.moveItemRight(rows[i].id);
+                    promise = moveItemToRight(rows[i]);
                     promises.push(promise);
                 }
 
@@ -106,16 +102,24 @@ define(['angularAMD'], function (angularAMD) {
 
             this.init = function () {
 
-                $scope.leftGridOptions = $scope.getLeftGridConfig();
-                $scope.rightGridOptions = $scope.getRightGridConfig();
+                leftGridConfig = $scope.config.leftGridConfig;
+                rightGridConfig = $scope.config.rightGridConfig;
+                moveItemToLeft = $scope.config.moveItemToLeft;
+                moveItemToRight = $scope.config.moveItemToRight;
+                getLeftGridData = $scope.config.getLeftGridData;
+                getRightGridData = $scope.config.getRightGridData;
 
-                $scope.leftGridOptions.onRegisterApi = function (gridApi) {
+                leftGridConfig.onRegisterApi = function (gridApi) {
                     leftGridApi = gridApi;
                 };
 
-                $scope.rightGridOptions.onRegisterApi = function (gridApi) {
+                rightGridConfig.onRegisterApi = function (gridApi) {
                     rightGridApi = gridApi;
                 };
+
+                $scope.leftGridOptions = leftGridConfig;
+
+                $scope.rightGridOptions = rightGridConfig;
 
                 refresh();
             };
@@ -131,12 +135,12 @@ define(['angularAMD'], function (angularAMD) {
             };
 
             $scope.moveAllLeft = function () {
-                var rows = $scope.rightGridOptions.data;
+                var rows = rightGridConfig.data;
                 moveArrayLeft(rows);
             };
 
             $scope.moveAllRight = function () {
-                var rows = $scope.leftGridOptions.data;
+                var rows = leftGridConfig.data;
                 moveArrayRight(rows);
             };
 

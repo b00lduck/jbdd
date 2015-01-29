@@ -16,8 +16,20 @@ import java.util.List;
  */
 @Entity
 @Table(name = "good")
-@NamedQueries(@NamedQuery(name = "findAllEnabledResources", query = "SELECT g FROM GoodEntity g WHERE g.enabled=1"))
+@NamedQueries({
+		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID, query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id"),
+		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID_DESC, query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id DESC"),
+		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_COUNT, query = "SELECT COUNT(id) FROM GoodEntity g " + GoodEntity.QUERY_ADDABLE_COST_WHERE),
+})
 public class GoodEntity extends AbstractItemEntity implements HasWeightEntityFacet {
+
+	public static final String QUERY_ADDABLE_COST_WHERE = " WHERE g.enabled=1 ";
+	public static final String QUERY_ADDABLE_COST = "SELECT g FROM GoodEntity g " + QUERY_ADDABLE_COST_WHERE;
+
+	public static final String NQ_ADDABLE_COST_SORTED_BY_ID = "GoodEntity.1";
+	public static final String NQ_ADDABLE_COST_SORTED_BY_ID_DESC = "GoodEntity.2";
+
+	public static final String NQ_ADDABLE_COST_COUNT = "GoodEntity.0";
 
     /**
      * This is a passive backlink. Gets all {@link CostEntity} objects who use this Good.

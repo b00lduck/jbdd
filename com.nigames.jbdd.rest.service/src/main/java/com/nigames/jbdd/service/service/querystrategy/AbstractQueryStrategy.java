@@ -14,7 +14,7 @@ import java.util.Locale;
 public abstract class AbstractQueryStrategy<EntityType> implements QueryStrategy<EntityType> {
 
     @PersistenceContext
-    private transient EntityManager entityManager;
+    protected EntityManager entityManager;
 
     protected abstract Class<EntityType> getEntityClass();
 
@@ -63,6 +63,14 @@ public abstract class AbstractQueryStrategy<EntityType> implements QueryStrategy
 
         return entityManager.createQuery(criteriaQuery);
     }
+
+	@Override
+	public TypedQuery<Long> constructCountQuery(final Object... queryParams) {
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
+		criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(getEntityClass())));
+		return entityManager.createQuery(criteriaQuery);
+	}
 
     TypedQuery<EntityType> createNamedQuery(final String queryName) {
         return entityManager.createNamedQuery(queryName, getEntityClass());

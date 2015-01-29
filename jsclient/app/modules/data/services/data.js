@@ -113,11 +113,15 @@ define(['angularAMD'], function (angularAMD) {
                 return queryRestServicePost(url, data);
             };
 
+            service.removeCostFromBuyable = function (ressourceName, buyableId, goodId) {
+                var url = getSpecificResourceUrl(ressourceName, buyableId) + '/cost/' + goodId;
+                return queryRestServiceDelete(url);
+            };
+
             service.getBuyableCosts = function (ressourceName, buyableId) {
                 var url = getSpecificResourceUrl(ressourceName, buyableId) + '/cost';
                 return queryRestServiceGet(url);
             };
-
 
             return service;
 
