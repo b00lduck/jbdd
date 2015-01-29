@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', '../controllers/buyableCostEditor'], function (angularAMD) {
+define(['angularAMD', 'doubleGrid', '../controllers/buyableCostEditor'], function (angularAMD) {
 
     angularAMD.directive('myBuyableCostEditor', ['DataService', function (DataService) {
 
@@ -15,6 +15,45 @@ define(['angularAMD', 'ngload!angular-ui-grid', 'angular-ui-bootstrap-bower', '.
             },
             link: function ($scope, $element, $attrs) {
                 $scope.resourceName = $attrs.resourcename;
+
+                $scope.leftGridConfig = {
+                    columnDefs: [
+                        {name: 'id'},
+                        {name: 'name'},
+                        {name: 'amount'}
+                    ],
+                    enableRowSelection: true,
+                    enableRowHeaderSelection: false,
+                    multiSelect: true,
+                    modifierKeysToMultiSelect: true,
+                    noUnselect: false,
+                    enableSorting: false,
+                    enableSelectionBatchEvent: false
+                };
+
+                $scope.rightGridConfig = {
+                    columnDefs: [
+                        {name: 'id'},
+                        {name: 'name'}
+                    ],
+                    enableRowSelection: true,
+                    enableRowHeaderSelection: false,
+                    multiSelect: true,
+                    modifierKeysToMultiSelect: true,
+                    noUnselect: false,
+                    enableSorting: false,
+                    enableSelectionBatchEvent: false
+                };
+
+                $scope.getLeftGridData = function() {
+
+                };
+
+                $scope.getRightGridData = function() {
+
+                };
+
+
             }
         };
 

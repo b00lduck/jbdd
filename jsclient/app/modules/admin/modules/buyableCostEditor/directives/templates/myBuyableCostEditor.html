@@ -1,26 +1,7 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Buyable cost editor (tm)</h3>
-    </div>
-    <div class="panel-body">
-
-        <div class="row">
-            <div class="col-md-5">
-                <div ui-grid="gridOptions" ui-grid-selection style="height: 150px;"></div>
-            </div>
-            <div class="col-md-2">
-                <button ng-click="addCost()">&lt;</button>
-                <button ng-click="removeCost()">&gt;</button>
-            </div>
-            <div class="col-md-5">
-                <label for="goodToAdd">available costs (I18n me!)</label>
-                <select class="form-control" id="goodToAdd" ng-model="selectedGood"
-                        ng-options="opt as opt.name[currentLanguage()] for opt in getAddableCostGoods()">
-                </select>
-            </div>
-        </div>
-
-    </div>
-
-</div>
-
+<my-double-grid
+        leftGridConfig="leftGridConfig"
+        rightGridConfig="rightGridConfig"
+        leftGridData="leftGridData"
+        rightGridData="rightGridData"
+>
+</my-double-grid>
