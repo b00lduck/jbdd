@@ -9,6 +9,8 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
             $scope.doubleGridConfig = {
 
+	            panelTitle: 'admin.doubleGrid.buyableCostEditor.header',
+
                 leftGridConfig: {
                     columnDefs: [
                         {name: 'buyableId', width: 55},

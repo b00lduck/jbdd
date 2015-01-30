@@ -5,8 +5,13 @@
       "save": "speichern",
       "cancel": "abbrechen"
     },
-    "myUserPlayerAssignGrids": {
-      "header": "Zugewiesene Spieler bearbeiten"
+    "doubleGrid": {
+      "userPlayerAssignGrids": {
+        "header": "Zugewiesene Spieler bearbeiten"
+      },
+      "buyableCostEditor": {
+        "header": "Kosten bearbeiten"
+      }
     },
     "editField": {
       "id": "ID",
@@ -19,7 +24,8 @@
     "title": {
       "userEditor": "Benutzerdetails bearbeiten",
       "goodEditor": "Güterdetails bearbeiten",
-      "playerEditor": "Spielerdetails bearbeiten"
+      "playerEditor": "Spielerdetails bearbeiten",
+      "buildingEditor": "Gebäudedetails bearbeiten"
     }
   },
   "dataGrid": {

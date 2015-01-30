@@ -5,8 +5,13 @@
       "save": "save",
       "cancel": "cancel"
     },
-    "myUserPlayerAssignGrids": {
-      "header": "Edit assigned players"
+    "doubleGrid": {
+      "userPlayerAssignGrids": {
+        "header": "Edit assigned players"
+      },
+      "buyableCostEditor": {
+        "header": "Edit costs"
+      }
     },
     "editField": {
       "id": "ID",
@@ -19,7 +24,8 @@
     "title": {
       "userEditor": "Edit user details",
       "goodEditor": "Edit good details",
-      "playerEditor": "Edit player details"
+      "playerEditor": "Edit player details",
+      "buildingEditor": "Edit building details"
     }
   },
 

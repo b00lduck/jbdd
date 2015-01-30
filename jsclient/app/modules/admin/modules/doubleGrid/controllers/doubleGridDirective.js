@@ -3,8 +3,8 @@
 
 define(['angularAMD'], function (angularAMD) {
 
-    angularAMD.controller('DoubleGridDirectiveController', ['$scope', '$q',
-        function ($scope, $q) {
+    angularAMD.controller('DoubleGridDirectiveController', ['$scope', '$q', '$rootScope', '$translate',
+        function ($scope, $q, $rootScope, $translate) {
 
             var leftGridApi,
                 rightGridApi,
@@ -122,6 +122,12 @@ define(['angularAMD'], function (angularAMD) {
                 $scope.rightGridOptions = rightGridConfig;
 
                 refresh();
+
+	            $rootScope.$on('$translateChangeSuccess', function (event, value) {
+					$scope.panelTitle = $translate.instant($scope.config.panelTitle);
+	            });
+	            $scope.panelTitle = $translate.instant($scope.config.panelTitle);
+
             };
 
             $scope.moveSelectionLeft = function () {

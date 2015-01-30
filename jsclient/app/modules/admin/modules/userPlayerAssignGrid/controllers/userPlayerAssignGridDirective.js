@@ -8,6 +8,8 @@ define(['angularAMD'], function (angularAMD) {
 
 	        $scope.doubleGridConfig = {
 
+		        panelTitle: 'admin.doubleGrid.userPlayerAssignGrids.header',
+
 		        leftGridConfig: {
 			        columnDefs: [
 				        {name: 'id', width: 55},
