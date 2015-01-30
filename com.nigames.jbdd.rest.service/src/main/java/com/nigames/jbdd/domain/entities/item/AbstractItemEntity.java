@@ -1,5 +1,6 @@
 package com.nigames.jbdd.domain.entities.item;
 
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacetImpl;
@@ -18,19 +19,29 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "item")
-public abstract class AbstractItemEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet, HasNameAndDescEntityFacet {
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class AbstractItemEntity extends IdentifyableEntityFacetImpl
+		implements CanBeEnabledEntityFacet, HasNameAndDescEntityFacet {
 
     /**
      * The HasNameAndDesc facet of the item.
      */
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL)
-    private final HasNameAndDescEntityFacetImpl nameAndDescFacet = new HasNameAndDescEntityFacetImpl();
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    private HasNameAndDescEntityFacetImpl nameAndDescFacet;
 
     /**
      * enabled flag
      */
     private boolean enabled;
+
+	/**
+	 * Setup and link facet instances
+	 * @param instance instance to be initialized with facets
+	 */
+	protected static void initInstance(final AbstractItemEntity instance) {
+		instance.nameAndDescFacet = new HasNameAndDescEntityFacetImpl(instance);
+	}
 
     @Override
     public I18n getName() {

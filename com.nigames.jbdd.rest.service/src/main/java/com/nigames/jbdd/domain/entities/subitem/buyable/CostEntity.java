@@ -32,7 +32,7 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
-     */
+     *
     @MapsId("buyableId")
     @JoinColumn(name = "buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
     @ManyToOne(fetch = FetchType.LAZY)
@@ -40,15 +40,15 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
-     */
+     *
     @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("goodId")
     @JoinColumn(name = "good_id", referencedColumnName = "id", updatable = false, insertable = false)
     private GoodEntity good;
 
     /**
-     * The JPA version field.
-     */
+     * he JPA version field.
+     *
     @Version
     private Integer version;
 
@@ -68,30 +68,30 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * @return Get the Buyable item
-     */
+     *
     public AbstractItemEntity getBuyable() {
         return buyable;
     }
 
     /**
      * @param buyable The Buyable item to set
-     */
+     *
     public void setBuyable(final AbstractItemEntity buyable) {
         this.buyable = buyable;
     }
 
     /**
      * @return Get the Good item
-     */
+     *
     public GoodEntity getGood() {
         return good;
     }
 
     /**
      * @param good The Good item to set
-     */
+     *
     public void setGood(final GoodEntity good) {
         this.good = good;
     }
-
+	*/
 }

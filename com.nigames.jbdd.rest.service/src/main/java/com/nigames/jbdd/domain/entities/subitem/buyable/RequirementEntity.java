@@ -26,7 +26,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The buyable.
-     */
+     *
     @ManyToOne
     @MapsId("buyableId")
     @JoinColumn(name = "buyable_id", referencedColumnName = "id")
@@ -34,7 +34,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The required buyable.
-     */
+     *
     @ManyToOne
     @MapsId("requiredBuyableId")
     @JoinColumn(name = "required_buyable_id", referencedColumnName = "id")
@@ -42,7 +42,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The JPA version field.
-     */
+     *
     @Version
     private Integer version;
 
@@ -62,30 +62,31 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * @return Get {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
-     */
+     *
     public BuyableEntityFacetImpl getBuyable() {
         return buyable;
     }
 
     /**
      * @param buyable The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
-     */
+     *
     public void setBuyable(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
 
     /**
      * @return Get the required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
-     */
+     *
     public BuyableEntityFacetImpl getRequiredBuyable() {
         return requiredBuyable;
     }
 
     /**
      * @param requiredBuyable The required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
-     */
+     *
     public void setRequiredBuyable(final BuyableEntityFacetImpl requiredBuyable) {
         this.requiredBuyable = requiredBuyable;
     }
+                              */
 
 }

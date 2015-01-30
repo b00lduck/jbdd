@@ -16,15 +16,19 @@ public interface BuyableEntityFacet {
 
     void setBuildtime(final int buildtime);
 
+	/*
+
     List<CostEntity> getCostList();
 
     List<RequirementEntity> getRequirementList();
 
     List<RequirementEntity> getReferencedRequirements();
 
+    */
+
     boolean isMulti();
 
-    void setMulti(final boolean multi);
+    void setMulti(boolean multi);
 
     /**
      * Check if a specific Good is in the costList.
@@ -32,6 +36,6 @@ public interface BuyableEntityFacet {
      * @param good The Good to be looked for
      * @return true, if the Buyable has the specified good as Cost
      */
-    boolean hasCost(final GoodEntity good);
+    boolean hasCost(GoodEntity good);
 
 }

@@ -1,6 +1,8 @@
 package com.nigames.jbdd.domain.entities.item;
 
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -10,7 +12,8 @@ import javax.persistence.Table;
  */
 @SuppressWarnings("EmptyClass")
 @Entity
-@Table(name = "storagetype")
+@Table(name = "ITEM_STORAGETYPE")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class StoragetypeEntity extends AbstractItemEntity {
 
     //@Override

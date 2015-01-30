@@ -5,10 +5,14 @@ package com.nigames.jbdd.domain.entities.facet;
  *
  * Created by zerlettd on 19.12.2014.
  */
-public interface HasWeightEntityFacet {
+public interface IsStorableEntityFacet {
 
     int getWeight();
 
-    void setWeight(final int weight);
+    void setWeight(int weight);
+
+	int getDensity();
+
+	void setDensity(int density);
 
 }

@@ -13,10 +13,10 @@ public interface HasNameAndDescEntityFacet {
 
     I18n getName();
 
-    void setName(final I18nShortEntity name);
+    void setName(I18nShortEntity name);
 
     I18n getDescription();
 
-    void setDescription(final I18nLongEntity description);
+    void setDescription(I18nLongEntity description);
 
 }

@@ -19,7 +19,7 @@ public class TechnologyConversionService extends
 
     @Override
     public TechnologyEntity getNewEntityInstance() {
-        return new TechnologyEntity();
+        return TechnologyEntity.newInstance();
     }
 
     @Override

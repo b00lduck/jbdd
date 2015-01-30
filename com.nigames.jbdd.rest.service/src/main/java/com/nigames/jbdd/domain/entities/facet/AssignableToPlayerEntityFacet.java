@@ -6,6 +6,6 @@ public interface AssignableToPlayerEntityFacet {
 
     PlayerEntity getPlayer();
 
-    void setPlayer(final PlayerEntity player);
+    void setPlayer(PlayerEntity player);
 
 }

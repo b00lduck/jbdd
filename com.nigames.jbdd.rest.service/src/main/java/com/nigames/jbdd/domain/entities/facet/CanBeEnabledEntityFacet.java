@@ -4,6 +4,6 @@ public interface CanBeEnabledEntityFacet {
 
     boolean isEnabled();
 
-    void setEnabled(final boolean enabled);
+    void setEnabled(boolean enabled);
 
 }

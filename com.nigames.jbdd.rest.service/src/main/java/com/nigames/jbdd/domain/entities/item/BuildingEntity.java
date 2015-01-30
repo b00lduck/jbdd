@@ -18,21 +18,34 @@ import java.util.List;
  * @author Daniel
  */
 @Entity
-@Table(name = "building")
+@Table(name = "ITEM_BUILDING")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries(
         @NamedQuery(name = BuildingEntity.NQ_FIND_ALL_ENABLED_BUILDINGS,
                 query = "SELECT b FROM BuildingEntity b WHERE b.enabled=1")
 )
-public class BuildingEntity extends AbstractItemEntity implements BuyableEntityFacet {
+public final class BuildingEntity extends AbstractItemEntity implements BuyableEntityFacet {
 
     @SuppressWarnings("HardCodedStringLiteral")
-    public static final String NQ_FIND_ALL_ENABLED_BUILDINGS = "findAllEnabledBuildings";
+    public static final String NQ_FIND_ALL_ENABLED_BUILDINGS = "BuildingEntity.1";
+
+	private BuildingEntity() {}
+
+	/**
+	 * Create instance and setup/link facet instances.
+	 */
+	public static BuildingEntity newInstance() {
+		BuildingEntity buildingEntity = new BuildingEntity();
+		buildingEntity.buyableFacet = new BuyableEntityFacetImpl(buildingEntity);
+		initInstance(buildingEntity);
+		return buildingEntity;
+	}
 
     /**
-     * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet} facet of this Building.
+     * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet} of this Building.
      */
-    @OneToOne(cascade = CascadeType.ALL)
-    private final BuyableEntityFacetImpl buyableFacet = new BuyableEntityFacetImpl();
+    @OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    private BuyableEntityFacetImpl buyableFacet;
 
     /**
      * The goods produced and consumed by this building as a list of {@link ProductionEntity}.
@@ -67,6 +80,7 @@ public class BuildingEntity extends AbstractItemEntity implements BuyableEntityF
         buyableFacet.setBuildtime(buildtime);
     }
 
+	/*
     @Override
     public List<CostEntity> getCostList() {
         return buyableFacet.getCostList();
@@ -81,6 +95,7 @@ public class BuildingEntity extends AbstractItemEntity implements BuyableEntityF
     public List<RequirementEntity> getReferencedRequirements() {
         return buyableFacet.getReferencedRequirements();
     }
+    */
 
     @Override
     public boolean isMulti() {

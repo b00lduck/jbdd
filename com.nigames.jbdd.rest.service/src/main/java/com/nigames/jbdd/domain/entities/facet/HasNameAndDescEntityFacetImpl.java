@@ -3,6 +3,7 @@ package com.nigames.jbdd.domain.entities.facet;
 import com.nigames.jbdd.domain.entities.i18n.I18n;
 import com.nigames.jbdd.domain.entities.i18n.I18nLongEntity;
 import com.nigames.jbdd.domain.entities.i18n.I18nShortEntity;
+import com.nigames.jbdd.domain.entities.item.AbstractItemEntity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,15 +15,19 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "nameAndDescFacet")
+@Table(name = "FACET_NAME_AND_DESC")
 public final class HasNameAndDescEntityFacetImpl implements HasNameAndDescEntityFacet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @Version
     private int version;
+
+	@JoinColumn(name = "id")
+	@MapsId
+	@OneToOne
+	private AbstractItemEntity item;
 
     /**
      * The name of the item.
@@ -37,6 +42,13 @@ public final class HasNameAndDescEntityFacetImpl implements HasNameAndDescEntity
     @NotNull
     @OneToOne(cascade = CascadeType.ALL)
     private I18nLongEntity description = new I18nLongEntity();
+
+	private HasNameAndDescEntityFacetImpl() {}
+
+	public HasNameAndDescEntityFacetImpl(final AbstractItemEntity item) {
+		this();
+		this.item = item;
+	}
 
     @Override
     public I18n getName() {

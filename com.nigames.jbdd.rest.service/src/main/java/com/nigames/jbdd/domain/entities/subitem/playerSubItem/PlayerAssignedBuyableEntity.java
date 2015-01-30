@@ -18,11 +18,11 @@ public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
 
     /**
      * The owned {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
-     */
+     *
     @NotNull
     @ManyToOne
     private BuyableEntityFacetImpl buyable;
-
+	*/
     /**
      * The remaining build time.
      */
@@ -35,6 +35,7 @@ public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
         // nothing to do here.
     }
 
+	/*
     public BuyableEntityFacetImpl getBuyable() {
         return buyable;
     }
@@ -42,6 +43,7 @@ public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
     public void setBuyable(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
+    */
 
     public Integer getRemainbuildtime() {
         return remainbuildtime;

@@ -1,7 +1,8 @@
 package com.nigames.jbdd.domain.entities.item;
 
-import com.nigames.jbdd.domain.entities.facet.HasWeightEntityFacet;
-import com.nigames.jbdd.domain.entities.facet.HasWeightEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.IsStorableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.IsStorableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.ProductionEntity;
 
@@ -15,13 +16,14 @@ import java.util.List;
  * @author Daniel
  */
 @Entity
-@Table(name = "good")
+@Table(name = "ITEM_GOOD")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries({
 		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID, query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id"),
 		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID_DESC, query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id DESC"),
 		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_COUNT, query = "SELECT COUNT(id) FROM GoodEntity g " + GoodEntity.QUERY_ADDABLE_COST_WHERE),
 })
-public class GoodEntity extends AbstractItemEntity implements HasWeightEntityFacet {
+public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFacet {
 
 	public static final String QUERY_ADDABLE_COST_WHERE = " WHERE g.enabled=1 ";
 	public static final String QUERY_ADDABLE_COST = "SELECT g FROM GoodEntity g " + QUERY_ADDABLE_COST_WHERE;
@@ -44,18 +46,20 @@ public class GoodEntity extends AbstractItemEntity implements HasWeightEntityFac
     @JoinColumn(name = "good_id", updatable = false, insertable = false)
     private final List<ProductionEntity> referencedProductions = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private final HasWeightEntityFacetImpl hasWeight = new HasWeightEntityFacetImpl();
+	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+    private IsStorableEntityFacetImpl isStorable;
 
-    @Override
-    public int getWeight() {
-        return hasWeight.getWeight();
-    }
+	private GoodEntity() {}
 
-    @Override
-    public void setWeight(final int weight) {
-        hasWeight.setWeight(weight);
-    }
+	/**
+	 * Create instance and setup/link facet instances.
+	 */
+	public static GoodEntity newInstance() {
+		GoodEntity goodEntity = new GoodEntity();
+		goodEntity.isStorable = new IsStorableEntityFacetImpl(goodEntity);
+		initInstance(goodEntity);
+		return goodEntity;
+	}
 
     public List<CostEntity> getReferencedCosts() {
         return referencedCosts;
@@ -65,6 +69,26 @@ public class GoodEntity extends AbstractItemEntity implements HasWeightEntityFac
         return referencedProductions;
     }
 
-    // TODO: hashCode, equals and toString
+	@Override
+	public int getWeight() {
+		return isStorable.getWeight();
+	}
+
+	@Override
+	public void setWeight(final int weight) {
+		isStorable.setWeight(weight);
+	}
+
+	@Override
+	public int getDensity() {
+		return isStorable.getDensity();
+	}
+
+	@Override
+	public void setDensity(final int density) {
+		isStorable.setDensity(density);
+	}
+
+	// TODO: hashCode, equals and toString
 
 }
