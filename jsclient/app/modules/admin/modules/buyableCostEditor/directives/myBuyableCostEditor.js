@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'doubleGrid', '../controllers/buyableCostEditor'], function (angularAMD) {
+define(['angularAMD', 'adminDoubleGrid', '../controllers/buyableCostEditor'], function (angularAMD) {
 
     angularAMD.directive('myBuyableCostEditor', ['DataService', '$q', function (DataService, $q) {
 

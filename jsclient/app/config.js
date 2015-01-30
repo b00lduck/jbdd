@@ -45,7 +45,7 @@ requirejs.config({
             location: 'modules/admin/modules/userPlayerAssignGrid'
         },
         {
-            name: 'doubleGrid',
+            name: 'adminDoubleGrid',
             location: 'modules/admin/modules/doubleGrid'
         },
         {
