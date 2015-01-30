@@ -46,14 +46,14 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 		// In this case the ID has to be set (composite key which is not auto generated)
 		entity.setId(new CostEntityPK(dto.getBuyableId(), dto.getGoodId()));
 
-		//AbstractItemEntity itemEntity = entityManager.find(AbstractItemEntity.class, dto.getBuyableId());
-		/*
+		AbstractItemEntity itemEntity = entityManager.find(AbstractItemEntity.class, dto.getBuyableId());
+
 		if (itemEntity instanceof BuyableEntityFacet) {
 			entity.setBuyable(itemEntity);
 		} else {
 			throw new IllegalArgumentException("given DTO is not a buyable");
 		}
-		*/
+
 
 		//GoodEntity goodEntity = entityManager.find(GoodEntity.class, dto.getGoodId());
 		//entity.setGood(goodEntity);
