@@ -11,7 +11,7 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 	@Override
 	public void updateDtoFromEntity(final IsDto dto, final Object entity) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
 		checkTypes(dto, entity);
 
@@ -22,7 +22,7 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 	@Override
 	public void updateEntityFromDto(final Object entity, final IsDto dto) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
 		checkTypes(dto, entity);
 
@@ -30,7 +30,7 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 
 	private void checkTypes(final IsDto dto, final Object entity) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
 		if (!(entity instanceof IdentifyableEntityFacet)) {
 			throw new IllegalArgumentException("entity must be of type IdentifyableEntityFacet");
