@@ -42,7 +42,7 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     /**
      * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("goodId")
     @JoinColumn(name = "good_id", referencedColumnName = "id", updatable = false, insertable = false)
     private GoodEntity good;

@@ -36,9 +36,7 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
     @Transactional
     protected DtoType update(final long id, final DtoType dto) {
         final EntityType entity = getEntityManager().find(getEntityClass(), id);
-
         getConversionService().updateEntity(dto, entity);
-
         return getConversionService().convertToDto(entity);
     }
 
@@ -62,7 +60,6 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
 		final TypedQuery<Long> query = queryStrategy.constructCountQuery(queryParams);
 		return query.getSingleResult();
 	}
-
 
     @Transactional
     protected List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams) {

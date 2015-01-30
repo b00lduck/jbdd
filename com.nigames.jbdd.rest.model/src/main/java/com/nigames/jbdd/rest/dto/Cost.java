@@ -12,6 +12,8 @@ public class Cost implements IsDto {
 
 	private long goodId;
 
+	private Good good;
+
 	private long buyableId;
 
 	private long amount;
@@ -38,6 +40,14 @@ public class Cost implements IsDto {
 
 	public void setAmount(final long amount) {
 		this.amount = amount;
+	}
+
+	public Good getGood() {
+		return good;
+	}
+
+	public void setGood(Good good) {
+		this.good = good;
 	}
 
 }

@@ -7,16 +7,27 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
         function ($scope, DataService, $q) {
 
+
+            function editCost(goodId, amount) {
+                DataService.updateCost($scope.resourceName, $scope.getBuyableId(), goodId, amount).then(
+                    function (payload) {
+                    },
+                    function () {
+                        window.alert('ERROR');
+                        // TODO: proper error handling
+                    });
+            }
+
             $scope.doubleGridConfig = {
 
 	            panelTitle: 'admin.doubleGrid.buyableCostEditor.header',
 
                 leftGridConfig: {
                     columnDefs: [
-                        {name: 'buyableId', width: 55},
-                        {name: 'goodId', width: 55},
-                        {name: 'amount'}
-                    ],
+                        {name: 'buyableId', width: 55, enableCellEdit: false},
+                        {name: 'goodId', width: 55, enableCellEdit: false},
+                        {name: 'good.name', width: 55, enableCellEdit: false},
+                        {name: 'amount', validator: 'nonzero_int'}],
                     enableRowSelection: true,
                     enableRowHeaderSelection: false,
                     multiSelect: true,
@@ -54,7 +65,15 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
                 moveItemToRight: function (obj) {
                     return DataService.removeCostFromBuyable($scope.resourceName, $scope.getBuyableId(), obj.goodId);
-                }
+                },
+
+                onRegisterLeftApi: function (gridApi) {
+                    gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
+                        editCost(rowEntity.goodId, rowEntity.amount);
+                    });
+                },
+
+                onRegisterRightApi: function (gridApi) {}
 
             };
 

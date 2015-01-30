@@ -100,6 +100,27 @@ define(['angularAMD'], function (angularAMD) {
                 });
             }
 
+            var cellTemplateNonZeroInt = '<div><form name="inputForm"><input type="number" required="true" min="1" pattern="^[0-9]+$" ng-class="\'colt\' + col.uid" ui-grid-editor ng-model="MODEL_COL_FIELD"></form></div>';
+
+            function parseGridConfig(config) {
+                var columnDefs = config.columnDefs;
+                var arrayLength = columnDefs.length;
+                var i;
+                for (i = 0; i < arrayLength; i++) {
+
+                    if (typeof columnDefs[i].validator !== 'undefined') {
+                        switch (columnDefs[i].validator) {
+                            case 'nonzero_int':
+                                columnDefs[i].editableCellTemplate = cellTemplateNonZeroInt;
+                                break;
+                            default:
+                                throw ('unkown validator ' + columnDefs[i].validator);
+                        }
+                    }
+                }
+                return config;
+            }
+
             this.init = function () {
 
                 leftGridConfig = $scope.config.leftGridConfig;
@@ -111,15 +132,17 @@ define(['angularAMD'], function (angularAMD) {
 
                 leftGridConfig.onRegisterApi = function (gridApi) {
                     leftGridApi = gridApi;
+                    $scope.config.onRegisterLeftApi(gridApi);
                 };
 
                 rightGridConfig.onRegisterApi = function (gridApi) {
                     rightGridApi = gridApi;
+                    $scope.config.onRegisterRightApi(gridApi);
                 };
 
-                $scope.leftGridOptions = leftGridConfig;
+                $scope.leftGridOptions = parseGridConfig(leftGridConfig);
 
-                $scope.rightGridOptions = rightGridConfig;
+                $scope.rightGridOptions = parseGridConfig(rightGridConfig);
 
                 refresh();
 
@@ -129,6 +152,8 @@ define(['angularAMD'], function (angularAMD) {
 	            $scope.panelTitle = $translate.instant($scope.config.panelTitle);
 
             };
+
+            this.init();
 
             $scope.moveSelectionLeft = function () {
                 var rows = rightGridApi.selection.getSelectedRows();

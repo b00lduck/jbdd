@@ -1,11 +1,11 @@
 package com.nigames.jbdd.service.conversion.dto;
 
-import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntityPK;
 import com.nigames.jbdd.rest.dto.Cost;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -16,6 +16,9 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 
 	@PersistenceContext
 	private EntityManager entityManager;
+
+	@Autowired
+	private GoodConversionService goodConversionService;
 
 	@Override
 	public CostEntity getNewEntityInstance() {
@@ -35,6 +38,7 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 	@Override
 	protected void updateDtoFromEntity(final Cost dto, final CostEntity entity) {
 		dto.setBuyableId(entity.getId().getBuyableId());
+		dto.setGood(goodConversionService.convertToDto(entity.getGood()));
 		dto.setGoodId(entity.getId().getGoodId());
 		dto.setAmount(entity.getAmount());
 	}

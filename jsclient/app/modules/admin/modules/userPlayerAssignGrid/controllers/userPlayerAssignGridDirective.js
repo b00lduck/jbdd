@@ -12,8 +12,8 @@ define(['angularAMD'], function (angularAMD) {
 
 		        leftGridConfig: {
 			        columnDefs: [
-				        {name: 'id', width: 55},
-				        {name: 'nickname'}
+                        {name: 'id', width: 55, enableCellEdit: false},
+                        {name: 'nickname', enableCellEdit: false}
 			        ],
 			        enableRowSelection: true,
 			        enableRowHeaderSelection: false,
@@ -47,12 +47,16 @@ define(['angularAMD'], function (angularAMD) {
 		        },
 
 		        moveItemToLeft: function (obj) {
-			        return DataService.assignPlayerToUser($scope.getUserId(), obj.id)
+                    return DataService.assignPlayerToUser($scope.getUserId(), obj.id);
 		        },
 
 		        moveItemToRight: function (obj) {
 			        return DataService.removePlayerFromUser($scope.getUserId(), obj.id);
-		        }
+                },
+
+                onRegisterLeftApi: function (gridApi) {},
+
+                onRegisterRightApi: function (gridApi) {}
 
 	        };
 
