@@ -18,7 +18,7 @@ public class BuildingConversionService extends AbstractConversionService<Buildin
 
     @Override
     public BuildingEntity getNewEntityInstance() {
-        return new BuildingEntity();
+        return BuildingEntity.newInstance();
     }
 
     @Override

@@ -1,15 +1,16 @@
 package com.nigames.jbdd.service.service;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
+import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 
 import java.util.List;
 
 /**
  * Abstract service class interface.
  *
- * @param <DtoType>    Type of the DTO, must implement {@link com.nigames.jbdd.rest.dto.aspects.IsDto}
+ * @param <DtoType>    Type of the DTO, must implement {@link com.nigames.jbdd.rest.dto.facet.IsDto}
  * @param <EntityType> Type of the Entity
  * @author Daniel
  *         <p>
@@ -23,9 +24,14 @@ public interface AbstractDtoServiceInterface<DtoType extends IsDto, EntityType> 
 
     void delete(final long id);
 
-    Long getCount();
+    long getCount();
+
+	long getCount(final QueryStrategy<EntityType> queryStrategy, final Object... queryParams);
 
     List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams);
+
+	List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams,
+	                      final QueryStrategy<EntityType> queryStrategy, final Object... queryParams);
 
     DtoType findById(final long entityId);
 

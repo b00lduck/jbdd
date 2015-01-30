@@ -8,7 +8,8 @@ import javax.persistence.*;
  * @author Daniel
  */
 @Entity
-@Table(name = "job")
+@Table(name = "ITEM_JOB")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries(@NamedQuery(name = "findAllEnabledJobs", query = "SELECT j FROM JobEntity j WHERE j.enabled=1"))
 public class JobEntity extends AbstractItemEntity {
 

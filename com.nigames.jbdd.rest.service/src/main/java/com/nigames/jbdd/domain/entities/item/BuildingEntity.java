@@ -1,10 +1,8 @@
 package com.nigames.jbdd.domain.entities.item;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
-import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.buyable.ProductionEntity;
-import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -18,101 +16,115 @@ import java.util.List;
  * @author Daniel
  */
 @Entity
-@Table(name = "building")
+@Table(name = "ITEM_BUILDING")
+@Inheritance(strategy = InheritanceType.JOINED)
 @NamedQueries(
-        @NamedQuery(name = BuildingEntity.NQ_FIND_ALL_ENABLED_BUILDINGS,
-                query = "SELECT b FROM BuildingEntity b WHERE b.enabled=1")
+		@NamedQuery(name = BuildingEntity.NQ_FIND_ALL_ENABLED_BUILDINGS,
+				query = "SELECT b FROM BuildingEntity b WHERE b.enabled=1")
 )
-public class BuildingEntity extends AbstractItemEntity implements BuyableEntityAspect {
+public final class BuildingEntity extends AbstractItemEntity implements BuyableEntityFacet {
 
-    @SuppressWarnings("HardCodedStringLiteral")
-    public static final String NQ_FIND_ALL_ENABLED_BUILDINGS = "findAllEnabledBuildings";
+	@SuppressWarnings("HardCodedStringLiteral")
+	public static final String NQ_FIND_ALL_ENABLED_BUILDINGS = "BuildingEntity.1";
 
-    /**
-     * The {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspect} aspect of this Building.
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private final BuyableEntityAspectImpl isBuyable = new BuyableEntityAspectImpl();
+	/**
+	 * Create instance and setup/link facet instances.
+	 */
+	public static BuildingEntity newInstance() {
+		final BuildingEntity buildingEntity = new BuildingEntity();
+		buildingEntity.buyableFacet = new BuyableEntityFacetImpl(buildingEntity);
+		initInstance(buildingEntity);
+		return buildingEntity;
+	}
 
-    /**
-     * The goods produced and consumed by this building as a list of {@link ProductionEntity}.
-     */
-    @OneToMany(mappedBy = "id.buildingId", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.SELECT)
-    private List<ProductionEntity> productionList = new ArrayList<>();
+	/**
+	 * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet} of this Building.
+	 */
+	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
+	private BuyableEntityFacetImpl buyableFacet;
 
-    /**
-     * The {@link JobEntity} offered by this Building.
-     */
-    @OneToOne(optional = true)
-    private JobEntity job;
+	/**
+	 * The goods produced and consumed by this building as a list of {@link ProductionEntity}.
+	 */
+	@OneToMany(mappedBy = "id.buildingId", fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SELECT)
+	private List<ProductionEntity> productionList = new ArrayList<>();
 
-    @Override
-    public int getScore() {
-        return isBuyable.getScore();
-    }
+	/**
+	 * The {@link JobEntity} offered by this Building.
+	 */
+	@OneToOne(optional = true)
+	private JobEntity job;
 
-    @Override
-    public void setScore(final int score) {
-        isBuyable.setScore(score);
-    }
+	@Override
+	public int getScore() {
+		return buyableFacet.getScore();
+	}
 
-    @Override
-    public int getBuildtime() {
-        return isBuyable.getBuildtime();
-    }
+	@Override
+	public void setScore(final int score) {
+		buyableFacet.setScore(score);
+	}
 
-    @Override
-    public void setBuildtime(final int buildtime) {
-        isBuyable.setBuildtime(buildtime);
-    }
+	@Override
+	public int getBuildtime() {
+		return buyableFacet.getBuildtime();
+	}
 
-    @Override
-    public List<CostEntity> getCostList() {
-        return isBuyable.getCostList();
-    }
+	@Override
+	public void setBuildtime(final int buildtime) {
+		buyableFacet.setBuildtime(buildtime);
+	}
 
-    @Override
-    public List<RequirementEntity> getRequirementList() {
-        return isBuyable.getRequirementList();
-    }
+	/*
+	@Override
+	public List<CostEntity> getCostList() {
+		return buyableFacet.getCostList();
+	}
 
-    @Override
-    public List<RequirementEntity> getReferencedRequirements() {
-        return isBuyable.getReferencedRequirements();
-    }
+	@Override
+	public List<RequirementEntity> getRequirementList() {
+		return buyableFacet.getRequirementList();
+	}
 
-    @Override
-    public boolean isMulti() {
-        return isBuyable.isMulti();
-    }
+	@Override
+	public List<RequirementEntity> getReferencedRequirements() {
+		return buyableFacet.getReferencedRequirements();
+	}
+	*/
 
-    @Override
-    public void setMulti(final boolean multi) {
-        isBuyable.setMulti(multi);
-    }
+	@Override
+	public boolean isMulti() {
+		return buyableFacet.isMulti();
+	}
 
-    @Override
-    public boolean hasCost(final GoodEntity good) {
-        return isBuyable.hasCost(good);
-    }
+	@SuppressWarnings("BooleanParameter")
+	@Override
+	public void setMulti(final boolean multi) {
+		buyableFacet.setMulti(multi);
+	}
 
-    public List<ProductionEntity> getProductionList() {
-        return productionList;
-    }
+	@Override
+	public boolean hasCost(final GoodEntity good) {
+		return buyableFacet.hasCost(good);
+	}
 
-    public void setProductionList(final List<ProductionEntity> productionList) {
-        this.productionList = productionList;
-    }
+	public List<ProductionEntity> getProductionList() {
+		return productionList;
+	}
 
-    public JobEntity getJob() {
-        return job;
-    }
+	public void setProductionList(final List<ProductionEntity> productionList) {
+		this.productionList = productionList;
+	}
 
-    public void setJob(final JobEntity job) {
-        this.job = job;
-    }
+	public JobEntity getJob() {
+		return job;
+	}
 
-    // TODO: hashCode, equals and toString
+	public void setJob(final JobEntity job) {
+		this.job = job;
+	}
+
+	// TODO: hashCode, equals and toString
 
 }

@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto;
 
-import com.nigames.jbdd.rest.dto.aspects.*;
+import com.nigames.jbdd.rest.dto.facet.*;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

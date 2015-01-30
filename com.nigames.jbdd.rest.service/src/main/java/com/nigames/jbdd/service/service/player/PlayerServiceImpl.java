@@ -5,7 +5,12 @@ import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.PlayerConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
-import com.nigames.jbdd.service.service.querystrategy.*;
+import com.nigames.jbdd.service.service.querystrategy.PlayerChooseQueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.PlayerQueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.service.service.querystrategy.UserPlayerQueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +75,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    protected List<Player> findAll(final LimitParams limitParams, final SortParams sortParams, final QueryStrategy<PlayerEntity> queryStrategy,
+    public List<Player> findAll(final LimitParams limitParams, final SortParams sortParams, final QueryStrategy<PlayerEntity> queryStrategy,
                                    final Object... queryParams) {
         return super.findAll(limitParams, sortParams, queryStrategy, queryParams);
     }
@@ -83,7 +88,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 
@@ -147,7 +152,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public final Long getCountByUserId(final long userId) {
+    public final long getCountByUserId(final long userId) {
         final TypedQuery<Long> query =
                 getEntityManager().createNamedQuery("PlayerEntity.countByUserId", Long.class);
         query.setParameter("userid", userId);
@@ -162,7 +167,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
 
     @Override
     @Transactional
-    public final Long getCountUnused() {
+    public final long getCountUnused() {
         final TypedQuery<Long> query =
                 getEntityManager().createNamedQuery("PlayerEntity.countUnused", Long.class);
         return query.getSingleResult();
@@ -193,8 +198,8 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
     //
     // for (final PlayerBuildingEntity b : playerEntity
     // .getPlayerBuildingList()) {
-    // if (!b.getBuyable().isMulti()) {
-    // ret.remove(b.getBuyable());
+    // if (!b.getBuyableFacet().isMulti()) {
+    // ret.remove(b.getBuyableFacet());
     // }
     // }
     //
@@ -239,7 +244,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
     //
     // for (final PlayerTechnologyEntity b : attachedPlayer
     // .getPlayerTechnologyList()) {
-    // ret.remove(b.getBuyable());
+    // ret.remove(b.getBuyableFacet());
     // }
     //
     // return technologyConversionService.convertToDto(ret);

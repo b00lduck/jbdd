@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.service;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

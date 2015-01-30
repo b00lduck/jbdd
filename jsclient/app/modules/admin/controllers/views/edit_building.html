@@ -2,7 +2,7 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">{{ 'admin.title.goodEditor' | translate }}</h3>
+        <h3 class="panel-title">{{ 'admin.title.buildingEditor' | translate }}</h3>
     </div>
     <div class="panel-body">
 
@@ -14,7 +14,8 @@
 
         <my-edit-buttons></my-edit-buttons>
 
-        <my-buyable-cost-editor></my-buyable-cost-editor>
-
     </div>
+
 </div>
+
+<my-buyable-cost-editor ng-if="id !== 'new'" resourceName="building" buyableId="id"></my-buyable-cost-editor>

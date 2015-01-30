@@ -1,6 +1,6 @@
 package com.nigames.jbdd.domain.entities.subitem.buyable;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
@@ -26,23 +26,23 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
     /**
      * The buyable.
-     */
+     *
     @ManyToOne
     @MapsId("buyableId")
     @JoinColumn(name = "buyable_id", referencedColumnName = "id")
-    private BuyableEntityAspectImpl buyable;
+    private BuyableEntityFacetImpl buyable;
 
     /**
      * The required buyable.
-     */
+     *
     @ManyToOne
     @MapsId("requiredBuyableId")
     @JoinColumn(name = "required_buyable_id", referencedColumnName = "id")
-    private BuyableEntityAspectImpl requiredBuyable;
+    private BuyableEntityFacetImpl requiredBuyable;
 
     /**
      * The JPA version field.
-     */
+     *
     @Version
     private Integer version;
 
@@ -61,31 +61,32 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @return Get {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}
-     */
-    public BuyableEntityAspectImpl getBuyable() {
+     * @return Get {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
+     *
+    public BuyableEntityFacetImpl getBuyableFacet() {
         return buyable;
     }
 
     /**
-     * @param buyable The {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl} to set
-     */
-    public void setBuyable(final BuyableEntityAspectImpl buyable) {
+     * @param buyable The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
+     *
+    public void setBuyableFacet(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
 
     /**
-     * @return Get the required {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}
-     */
-    public BuyableEntityAspectImpl getRequiredBuyable() {
+     * @return Get the required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
+     *
+    public BuyableEntityFacetImpl getRequiredBuyable() {
         return requiredBuyable;
     }
 
     /**
-     * @param requiredBuyable The required {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl} to set
-     */
-    public void setRequiredBuyable(final BuyableEntityAspectImpl requiredBuyable) {
+     * @param requiredBuyable The required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
+     *
+    public void setRequiredBuyable(final BuyableEntityFacetImpl requiredBuyable) {
         this.requiredBuyable = requiredBuyable;
     }
+                              */
 
 }

@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.rest.helper;
 
-import com.nigames.jbdd.rest.dto.aspects.HasNameAndDesc;
+import com.nigames.jbdd.rest.dto.facet.HasNameAndDesc;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,11 +1,11 @@
 package com.nigames.jbdd.service.conversion.impl.modules;
 
-import com.nigames.jbdd.domain.entities.aspect.CanBeEnabledEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspectImpl;
-import com.nigames.jbdd.rest.dto.aspects.CanBeEnabled;
-import com.nigames.jbdd.rest.dto.aspects.Identifiable;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
+import com.nigames.jbdd.rest.dto.facet.CanBeEnabled;
+import com.nigames.jbdd.rest.dto.facet.Identifiable;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import org.junit.Assert;
 
 import java.lang.reflect.Field;
@@ -21,7 +21,7 @@ public class EnabledIdConversionServiceTestModule implements ConversionServiceTe
 
         // Set private field ID of the entity via reflection
         try {
-            final Class clazz = IdentifyableEntityAspectImpl.class;
+            final Class clazz = IdentifyableEntityFacetImpl.class;
             final Field field = clazz.getDeclaredField("id");
             field.setAccessible(true);
             field.set(entity, TEST_ID);
@@ -29,7 +29,7 @@ public class EnabledIdConversionServiceTestModule implements ConversionServiceTe
             Assert.fail();
         }
 
-        ((CanBeEnabledEntityAspect) entity).setEnabled(TEST_ENABLED);
+        ((CanBeEnabledEntityFacet) entity).setEnabled(TEST_ENABLED);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class EnabledIdConversionServiceTestModule implements ConversionServiceTe
     @SuppressWarnings("unchecked")
     @Override
     public void checkEntity(final Object entity) {
-        Assert.assertEquals(TEST_ENABLED, ((CanBeEnabledEntityAspect) entity).isEnabled());
-        Assert.assertEquals(0L, ((IdentifyableEntityAspect) entity).getId());
+        Assert.assertEquals(TEST_ENABLED, ((CanBeEnabledEntityFacet) entity).isEnabled());
+        Assert.assertEquals(0L, ((IdentifyableEntityFacet) entity).getId());
     }
 
 }

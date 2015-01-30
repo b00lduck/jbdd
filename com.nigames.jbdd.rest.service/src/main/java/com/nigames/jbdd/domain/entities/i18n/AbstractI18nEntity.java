@@ -1,6 +1,6 @@
 package com.nigames.jbdd.domain.entities.i18n;
 
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
 
 import javax.annotation.Nullable;
 import javax.persistence.*;
@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Abstract mapped superclass for the I18n interface.
  */
 @MappedSuperclass
-public abstract class AbstractI18nEntity implements IdentifyableEntityAspect, I18n {
+public abstract class AbstractI18nEntity implements IdentifyableEntityFacet, I18n {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,22 +1,26 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', '../controllers/buyableCostEditor'], function (angularAMD) {
+define(['angularAMD', 'adminDoubleGrid', '../controllers/buyableCostEditor'], function (angularAMD) {
 
-    angularAMD.directive('myBuyableCostEditor', function () {
+    angularAMD.directive('myBuyableCostEditor', ['DataService', '$q', function (DataService, $q) {
 
         return {
             restrict: 'E',
             templateUrl: './modules/admin/modules/buyableCostEditor/directives/templates/myBuyableCostEditor.html',
             controller: 'BuyableCostEditorController',
             scope: {
-                getUserId: '&userid'
+                getBuyableId: '&buyableid',
+                resourceName: '@resourcename'
             },
-            link: function (scope, element, attrs, controller) {
+            link: function ($scope, $element, $attrs) {
+
+                $scope.resourceName = $attrs.resourcename;
 
             }
+
         };
 
-    });
+    }]);
 
 });

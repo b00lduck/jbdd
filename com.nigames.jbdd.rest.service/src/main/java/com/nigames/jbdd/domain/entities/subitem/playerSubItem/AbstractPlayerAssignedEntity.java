@@ -4,18 +4,18 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
-import com.nigames.jbdd.domain.entities.aspect.AssignableToPlayerEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.AssignableToPlayerEntityAspectImpl;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.AssignableToPlayerEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.AssignableToPlayerEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 
 import javax.persistence.Embedded;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-abstract class AbstractPlayerAssignedEntity extends IdentifyableEntityAspectImpl implements AssignableToPlayerEntityAspect {
+abstract class AbstractPlayerAssignedEntity extends IdentifyableEntityFacetImpl implements AssignableToPlayerEntityFacet {
 
     @Embedded
-    private AssignableToPlayerEntityAspectImpl player;
+    private AssignableToPlayerEntityFacetImpl player;
 
     @Override
     public final PlayerEntity getPlayer() {

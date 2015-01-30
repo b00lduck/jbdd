@@ -18,7 +18,7 @@ public class GoodConversionService extends AbstractConversionService<GoodEntity,
 
     @Override
     public GoodEntity getNewEntityInstance() {
-        return new GoodEntity();
+        return GoodEntity.newInstance();
     }
 
     @Override
