@@ -15,21 +15,25 @@ public class AddableCostQueryStrategy extends AbstractQueryStrategy<GoodEntity> 
 		return GoodEntity.class;
 	}
 
-	@SuppressWarnings({"RefusedBequest", "StringConcatenation"})
+	@SuppressWarnings({"RefusedBequest"})
 	@Override
 	public TypedQuery<GoodEntity> constructSortedQuery(final SortParams sortParams, final Object... queryParams) {
 		final SortParams fixedSortParams = SortParams.createFixed(sortParams, Arrays.asList("id"));
 		final String queryName = getSortedQueryName(fixedSortParams);
 		final TypedQuery<GoodEntity> ret = createNamedQuery(queryName);
+		ret.setParameter("buyableId", queryParams[0]);
 		return ret;
 	}
 
+	@SuppressWarnings("RefusedBequest")
 	@Override
 	public TypedQuery<Long> constructCountQuery(final Object... queryParams) {
-		return entityManager.createNamedQuery(GoodEntity.NQ_ADDABLE_COST_COUNT, Long.class);
+		final TypedQuery<Long> ret = entityManager.createNamedQuery(GoodEntity.NQ_ADDABLE_COST_COUNT, Long.class);
+		ret.setParameter("buyableId", queryParams[0]);
+		return ret;
 	}
 
-	private final String getSortedQueryName(final SortParams sortParams) {
+	private String getSortedQueryName(final SortParams sortParams) {
 
 		switch (sortParams.getSort()) {
 
@@ -40,9 +44,11 @@ public class AddableCostQueryStrategy extends AbstractQueryStrategy<GoodEntity> 
 					return GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID;
 				}
 
+			default:
+
+				return GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID;
 		}
 
-		return GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID;
 	}
 
 }

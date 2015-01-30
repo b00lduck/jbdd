@@ -25,13 +25,11 @@ public class TechnologyEntity extends AbstractItemEntity implements BuyableEntit
 	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
 	private BuyableEntityFacetImpl buyableFacet;
 
-	private TechnologyEntity() {}
-
 	/**
 	 * Create instance and setup/link facet instances.
 	 */
 	public static TechnologyEntity newInstance() {
-		TechnologyEntity technologyEntity = new TechnologyEntity();
+		final TechnologyEntity technologyEntity = new TechnologyEntity();
 		technologyEntity.buyableFacet = new BuyableEntityFacetImpl(technologyEntity);
 		initInstance(technologyEntity);
 		return technologyEntity;
@@ -62,13 +60,14 @@ public class TechnologyEntity extends AbstractItemEntity implements BuyableEntit
 		return buyableFacet.isMulti();
 	}
 
+	@SuppressWarnings("BooleanParameter")
 	@Override
 	public void setMulti(final boolean multi) {
 		buyableFacet.setMulti(multi);
 	}
 
 	@Override
-	public boolean hasCost(GoodEntity good) {
+	public boolean hasCost(final GoodEntity good) {
 		return buyableFacet.hasCost(good);
 	}
 }
