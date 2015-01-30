@@ -15,7 +15,7 @@ public class AddableCostQueryStrategy extends AbstractQueryStrategy<GoodEntity> 
 		return GoodEntity.class;
 	}
 
-	@SuppressWarnings({"RefusedBequest"})
+	@SuppressWarnings("RefusedBequest")
 	@Override
 	public TypedQuery<GoodEntity> constructSortedQuery(final SortParams sortParams, final Object... queryParams) {
 		final SortParams fixedSortParams = SortParams.createFixed(sortParams, Arrays.asList("id"));
