@@ -49,7 +49,7 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
     private IsStorableEntityFacetImpl isStorable;
 
-	private GoodEntity() {}
+	public GoodEntity() {}
 
 	/**
 	 * Create instance and setup/link facet instances.
