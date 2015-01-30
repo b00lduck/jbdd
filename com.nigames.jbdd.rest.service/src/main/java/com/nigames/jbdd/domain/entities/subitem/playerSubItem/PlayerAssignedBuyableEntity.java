@@ -36,11 +36,11 @@ public class PlayerAssignedBuyableEntity extends AbstractPlayerAssignedEntity {
     }
 
 	/*
-    public BuyableEntityFacetImpl getBuyable() {
+    public BuyableEntityFacetImpl getBuyableFacet() {
         return buyable;
     }
 
-    public void setBuyable(final BuyableEntityFacetImpl buyable) {
+    public void setBuyableFacet(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
     */

@@ -63,14 +63,14 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
     /**
      * @return Get {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
      *
-    public BuyableEntityFacetImpl getBuyable() {
+    public BuyableEntityFacetImpl getBuyableFacet() {
         return buyable;
     }
 
     /**
      * @param buyable The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
      *
-    public void setBuyable(final BuyableEntityFacetImpl buyable) {
+    public void setBuyableFacet(final BuyableEntityFacetImpl buyable) {
         this.buyable = buyable;
     }
 

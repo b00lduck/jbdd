@@ -135,7 +135,7 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	public final void addRequirement(final Requirement requirement) {
 		// attachRequirementBuyable(requirement);
 		// requirementSubService.create(requirement);
-		// requirement.getBuyable().getRequirementList().add(requirement);
+		// requirement.getBuyableFacet().getRequirementList().add(requirement);
 		LOG.error("NOT IMPLEMENTED"); //NON-NLS
 		// TODO: implement
 	}
@@ -143,7 +143,7 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	public final void deleteRequirement(final Requirement requirement) {
 		// attachRequirementBuyable(requirement);
 		// requirementSubService.remove(requirement);
-		// requirement.getBuyable().getRequirementList().remove(requirement);
+		// requirement.getBuyableFacet().getRequirementList().remove(requirement);
 		LOG.error("NOT IMPLEMENTED"); //NON-NLS
 		// TODO: implement
 	}

@@ -198,8 +198,8 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
     //
     // for (final PlayerBuildingEntity b : playerEntity
     // .getPlayerBuildingList()) {
-    // if (!b.getBuyable().isMulti()) {
-    // ret.remove(b.getBuyable());
+    // if (!b.getBuyableFacet().isMulti()) {
+    // ret.remove(b.getBuyableFacet());
     // }
     // }
     //
@@ -244,7 +244,7 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
     //
     // for (final PlayerTechnologyEntity b : attachedPlayer
     // .getPlayerTechnologyList()) {
-    // ret.remove(b.getBuyable());
+    // ret.remove(b.getBuyableFacet());
     // }
     //
     // return technologyConversionService.convertToDto(ret);
