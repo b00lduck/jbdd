@@ -32,3 +32,4 @@ target/
 node_modules
 jsclient/app/bower_components
 coverage
+/jsclient/app-optimized
