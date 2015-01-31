@@ -6,13 +6,14 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
-
     grunt.initConfig({
+
         bowerRequirejs: {
             target: {
                 rjsConfig: 'app/config.js'
             }
         },
+
         connect: {
             options: {
                 port: 9000,
@@ -48,8 +49,45 @@ module.exports = function (grunt) {
                         return middlewares;
                     }
                 }
+            },
+            developOptimized: {
+                options: {
+                    port: 9001,
+                    open: {
+                        target: 'http://localhost:9001/'
+                    },
+                    base: ['.tmp', 'app-optimized'],
+                    middleware: function (connect, options) //noinspection JSDeclarationsAtScopeStart
+                    {
+                        var cacheClear, middlewares, directory;
+
+                        if (!Array.isArray(options.base)) {
+                            options.base = [options.base];
+                        }
+                        cacheClear = function (req, res, next) {
+                            res.setHeader('Expires', 'Thu, 01 Jan 1970 00:00:00 GMT');
+                            res.setHeader('Pragma', 'no-cache');
+                            res.setHeader('Cache-Control', 'no-store');
+                            next();
+                        };
+                        middlewares = [cacheClear];
+                        directory = (options.directory || options.base[options.base.length - 1]);
+                        // Serve static files.
+                        options.base.forEach(function (base) {
+                            var items = connect.static(base);
+                            middlewares.push(items);
+                        });
+                        // Make directory browse-able.
+                        var items2 = connect.directory(directory);
+                        middlewares.push(items2);
+
+                        return middlewares;
+                    }
+                }
             }
+
         },
+
         less: {
             all: {
                 options: {
@@ -60,6 +98,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         watch: {
             options: { livereload: true },
             less: {
@@ -70,6 +109,7 @@ module.exports = function (grunt) {
                 files: ['app/**', '!/app/bower_components/**']
             }
         },
+
         karma: {
             unit: {
                 configFile: 'karma.unit.conf.js',
@@ -107,6 +147,37 @@ module.exports = function (grunt) {
                     args: {} // Target-specific arguments
                 }
             }
+        },
+
+        requirejs: {
+
+            compile: {
+                options: {
+                    mainConfigFile: 'app/config.js',
+                    baseUrl: './app',
+                    dir: 'app-optimized',
+                    modules: [
+                        {
+                            name: 'app'
+                        }],
+                    logLevel: 0,
+                    done: function (done, output) {
+                        var duplicates = require('rjs-build-analysis').duplicates(output);
+
+                        if (Object.keys(duplicates).length > 0) {
+                            grunt.log.subhead('Duplicates found in requirejs build:');
+                            for (var key in duplicates) {
+                                grunt.log.error(duplicates[key] + ": " + key);
+                            }
+                            return done(new Error('r.js built duplicate modules, please check the excludes option.'));
+                        } else {
+                            grunt.log.success("No duplicates found!");
+                        }
+
+                        done();
+                    }
+                }
+            }
         }
 
     });
@@ -129,6 +200,11 @@ module.exports = function (grunt) {
     grunt.registerTask('serve', [
         'less', 'bowerRequirejs', 'connect:develop', 'watch'
     ]);
+
+    grunt.registerTask('serve-optimized', [
+        'connect:developOptimized', 'watch'
+    ]);
+
     grunt.registerTask('serve-minimal', [
         'connect:develop', 'watch'
     ]);
@@ -139,5 +215,6 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-istanbul');
 
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
 
 };
