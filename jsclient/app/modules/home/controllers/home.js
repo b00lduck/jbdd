@@ -3,10 +3,10 @@
 
 define(['angularAMD', 'MyNavbarDirective'], function (angularAMD) {
 
-    angularAMD.controller('HomeController', function ($scope, $rootScope) {
+    angularAMD.controller('HomeController', ['$scope', function ($scope) {
 
         $scope.hello = 'hello controller module';
 
-    });
+    }]);
 
 });

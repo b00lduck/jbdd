@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD', 'angular-translate'], function (angularAMD) {
 
     angularAMD.directive('myLanguageSwitcher', ['$translate', function ($translate) {
 

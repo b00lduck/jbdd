@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'MyNavbarDirective', 'AuthenticationService'], function (angularAMD) {
+define(['angularAMD', 'MyNavbarDirective', 'AuthenticationService', 'angular-translate'], function (angularAMD) {
 
     angularAMD.controller('LoginController', ['$scope', '$rootScope', '$location', 'AuthenticationService',
         function ($scope, $rootScope, $location, AuthenticationService) {

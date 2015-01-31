@@ -10,7 +10,7 @@ define(['angularAMD',
 
     var app = angular.module('jbddApp', ['ngRoute', 'pascalprecht.translate']);
 
-    app.config(function ($routeProvider) {
+    app.config(['$routeProvider', function ($routeProvider) {
 
         $routeProvider
 
@@ -35,10 +35,10 @@ define(['angularAMD',
             }))
 
             .otherwise({redirectTo: '/'});
-    });
+    }]);
 
 
-    app.config(function ($translateProvider) {
+    app.config(['$translateProvider', function ($translateProvider) {
 
             $translateProvider.useStaticFilesLoader({
                 prefix: 'i18n/',
@@ -47,7 +47,7 @@ define(['angularAMD',
 
         $translateProvider.preferredLanguage('en-GB');
 
-        });
+    }]);
 
     return angularAMD.bootstrap(app);
 

@@ -77,6 +77,9 @@ requirejs.config({
         ],
         bootstrap: [
             'jquery'
+        ],
+        'angular-translate-loader-static-files': [
+            'angular-translate'
         ]
     },
     deps: [

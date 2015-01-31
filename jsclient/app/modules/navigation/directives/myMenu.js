@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'AuthenticationService'], function (angularAMD) {
+define(['angularAMD', 'AuthenticationService', 'angular-translate'], function (angularAMD) {
 
     angularAMD.directive('myMenu', ['AuthenticationService', function (AuthenticationService) {
 
