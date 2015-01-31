@@ -1,6 +1,7 @@
 package com.nigames.jbdd.service.service.querystrategy;
 
 import com.nigames.jbdd.domain.entities.auth.UserEntity;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.TypedQuery;

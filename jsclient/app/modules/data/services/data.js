@@ -98,6 +98,41 @@ define(['angularAMD'], function (angularAMD) {
                 return queryRestServiceDelete(url);
             };
 
+            service.getAddableCostGoods = function (resourceName, buyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/cost/addable';
+                return queryRestServiceGet(url);
+            };
+
+            service.addCostToBuyable = function (resourceName, buyableId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/cost';
+                var data = {
+                    buyableId: parseInt(buyableId),
+                    goodId: parseInt(goodId),
+                    amount: 1
+                };
+                return queryRestServicePost(url, data);
+            };
+
+            service.removeCostFromBuyable = function (resourceName, buyableId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/cost/' + goodId;
+                return queryRestServiceDelete(url);
+            };
+
+            service.getBuyableCosts = function (resourceName, buyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/cost';
+                return queryRestServiceGet(url);
+            };
+
+            service.updateCost = function (resourceName, buyableId, goodId, amount) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/cost';
+                var data = {
+                    buyableId: parseInt(buyableId),
+                    goodId: parseInt(goodId),
+                    amount: parseInt(amount)
+                };
+                return queryRestServicePut(url, data);
+            };
+
             return service;
 
         }

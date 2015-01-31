@@ -1,8 +1,8 @@
 package com.nigames.jbdd.service.conversion.dto.module;
 
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
-import com.nigames.jbdd.rest.dto.aspects.Identifiable;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
+import com.nigames.jbdd.rest.dto.facet.Identifiable;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,18 +11,18 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 	@Override
 	public void updateDtoFromEntity(final IsDto dto, final Object entity) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
 		checkTypes(dto, entity);
 
-		((Identifiable) dto).setId(((IdentifyableEntityAspect) entity).getId());
+		((Identifiable) dto).setId(((IdentifyableEntityFacet) entity).getId());
 
 	}
 
 	@Override
 	public void updateEntityFromDto(final Object entity, final IsDto dto) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
 		checkTypes(dto, entity);
 
@@ -30,10 +30,10 @@ public class IdConversionServiceModule implements ConversionServiceModuleInterfa
 
 	private void checkTypes(final IsDto dto, final Object entity) {
 
-		// TODO: stronger types in method signature
+		// TODO: stronger types in method signature, check types compile time rather than runtime!
 
-		if (!(entity instanceof IdentifyableEntityAspect)) {
-			throw new IllegalArgumentException("entity must be of type IdentifyableEntityAspect");
+		if (!(entity instanceof IdentifyableEntityFacet)) {
+			throw new IllegalArgumentException("entity must be of type IdentifyableEntityFacet");
 		}
 
 		if (!(dto instanceof Identifiable)) {

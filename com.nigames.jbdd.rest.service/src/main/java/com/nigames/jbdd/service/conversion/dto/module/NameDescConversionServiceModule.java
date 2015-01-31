@@ -1,10 +1,10 @@
 package com.nigames.jbdd.service.conversion.dto.module;
 
-import com.nigames.jbdd.domain.entities.aspect.HasNameAndDescEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacet;
 import com.nigames.jbdd.domain.entities.i18n.I18nLongEntity;
 import com.nigames.jbdd.domain.entities.i18n.I18nShortEntity;
-import com.nigames.jbdd.rest.dto.aspects.HasNameAndDesc;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.HasNameAndDesc;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.i18n.AbstractI18nConversionService;
 import com.nigames.jbdd.service.conversion.i18n.I18nLongConversionService;
 import com.nigames.jbdd.service.conversion.i18n.I18nShortConversionService;
@@ -29,12 +29,12 @@ public class NameDescConversionServiceModule implements ConversionServiceModuleI
 
         checkTypes(entity, dto);
 
-        final HasNameAndDescEntityAspect nameAndDesc = (HasNameAndDescEntityAspect) entity;
+        final HasNameAndDescEntityFacet nameAndDesc = (HasNameAndDescEntityFacet) entity;
         final Map<String, String> nameDto = AbstractI18nConversionService.convertToDto(nameAndDesc.getName());
         ((HasNameAndDesc) dto).setName(nameDto);
 
         final Map<String, String> descDto = AbstractI18nConversionService
-                .convertToDto(((HasNameAndDescEntityAspect) entity).getDescription());
+                .convertToDto(((HasNameAndDescEntityFacet) entity).getDescription());
         ((HasNameAndDesc) dto).setDescription(descDto);
     }
 
@@ -46,7 +46,7 @@ public class NameDescConversionServiceModule implements ConversionServiceModuleI
         checkTypes(entity, dto);
 
         final HasNameAndDesc castedDto = (HasNameAndDesc) dto;
-        final HasNameAndDescEntityAspect castedEntity = (HasNameAndDescEntityAspect) entity;
+        final HasNameAndDescEntityFacet castedEntity = (HasNameAndDescEntityFacet) entity;
 
         if (!(castedEntity.getName() instanceof I18nShortEntity)) {
             throw new IllegalArgumentException("name must be of type I18nShortEntity");
@@ -66,7 +66,7 @@ public class NameDescConversionServiceModule implements ConversionServiceModuleI
 
         // TODO: stronger types in method signature
 
-        if (!(entity instanceof HasNameAndDescEntityAspect)) {
+        if (!(entity instanceof HasNameAndDescEntityFacet)) {
             throw new IllegalArgumentException("entity must be of type HasNameAndDescEntityAspect");
         }
 

@@ -15,7 +15,9 @@
     "angular-ui-bootstrap-bower": "latest",
     "uitest.js": "latest",
     "angularAMD": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "requirejs": "latest",
+    "requirejs-plugins": "latest"
   },
   "resolutions": {
     "angular": "1.3.10"

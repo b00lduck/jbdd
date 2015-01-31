@@ -1,7 +1,7 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
-import com.nigames.jbdd.domain.entities.aspect.AssignableToPlayerEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.AssignableToPlayerEntityFacet;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 
 import javax.persistence.*;
@@ -16,7 +16,7 @@ import javax.persistence.*;
 @NamedQueries({
         @NamedQuery(name = "findAllPlayerAssignedResources", query = "FROM PlayerAssignedResourceEntity"),
         @NamedQuery(name = "findPlayerAssignedResourcesByPlayer", query = "FROM PlayerAssignedResourceEntity WHERE player=:player")})
-public class PlayerAssignedResourceEntity implements AssignableToPlayerEntityAspect {
+public class PlayerAssignedResourceEntity implements AssignableToPlayerEntityFacet {
 
     @EmbeddedId
     private PlayerAssignedResourceEntityPK id = new PlayerAssignedResourceEntityPK();

@@ -1,0 +1,26 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ panelTitle }}</h3>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-5">
+                <div ui-grid-selection ui-grid-edit external-scopes="langHelper" ui-grid="leftGridOptions"></div>
+            </div>
+            <div class="col-md-2">
+                <button ng-click="moveSelectionLeft()">&lt;</button>
+                <br/>
+                <button ng-click="moveSelectionRight()">&gt;</button>
+                <br/>
+                <button ng-click="moveAllLeft()">&lt;&lt;</button>
+                <br/>
+                <button ng-click="moveAllRight()">&gt;&gt;</button>
+                <br/>
+            </div>
+            <div class="col-md-5">
+                <div ui-grid-selection external-scopes="langHelper" ui-grid="rightGridOptions"></div>
+            </div>
+        </div>
+    </div>
+</div>

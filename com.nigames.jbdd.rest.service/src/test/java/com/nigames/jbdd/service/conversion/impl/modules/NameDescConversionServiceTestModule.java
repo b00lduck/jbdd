@@ -1,10 +1,10 @@
 package com.nigames.jbdd.service.conversion.impl.modules;
 
-import com.nigames.jbdd.domain.entities.aspect.HasNameAndDescEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacet;
 import com.nigames.jbdd.domain.entities.i18n.I18nLongEntity;
 import com.nigames.jbdd.domain.entities.i18n.I18nShortEntity;
-import com.nigames.jbdd.rest.dto.aspects.HasNameAndDesc;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.HasNameAndDesc;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.AbstractI18nConversionServiceTest;
 import org.springframework.util.Assert;
 
@@ -16,7 +16,7 @@ public class NameDescConversionServiceTestModule implements ConversionServiceTes
     @Override
     public void fillEntity(final Object entity) {
 
-        final HasNameAndDescEntityAspect castedEntity = getCastedEntity(entity);
+        final HasNameAndDescEntityFacet castedEntity = getCastedEntity(entity);
 
         final I18nShortEntity name = new I18nShortEntity();
         AbstractI18nConversionServiceTest.fillI18nEntity(name, TEST_NAME);
@@ -43,15 +43,15 @@ public class NameDescConversionServiceTestModule implements ConversionServiceTes
 
     @Override
     public void checkEntity(final Object entity) {
-        final HasNameAndDescEntityAspect castedEntity = getCastedEntity(entity);
+        final HasNameAndDescEntityFacet castedEntity = getCastedEntity(entity);
         AbstractI18nConversionServiceTest.checkI18nEntity(castedEntity.getName(), TEST_NAME);
         AbstractI18nConversionServiceTest.checkI18nEntity(castedEntity.getDescription(), TEST_DESC);
     }
 
-    private HasNameAndDescEntityAspect getCastedEntity(Object entity) {
+    private HasNameAndDescEntityFacet getCastedEntity(Object entity) {
         Assert.notNull(entity, "entity must not be null");
-        Assert.isInstanceOf(HasNameAndDescEntityAspect.class, entity, "entity must be of type HasNameAndDescEntityAspect");
-        return (HasNameAndDescEntityAspect) entity;
+        Assert.isInstanceOf(HasNameAndDescEntityFacet.class, entity, "entity must be of type HasNameAndDescEntityAspect");
+        return (HasNameAndDescEntityFacet) entity;
     }
 
     private HasNameAndDesc getCastedDto(IsDto dto) {

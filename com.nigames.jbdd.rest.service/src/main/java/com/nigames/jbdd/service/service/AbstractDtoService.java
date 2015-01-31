@@ -1,11 +1,11 @@
 package com.nigames.jbdd.service.service;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,9 +36,7 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
     @Transactional
     protected DtoType update(final long id, final DtoType dto) {
         final EntityType entity = getEntityManager().find(getEntityClass(), id);
-
         getConversionService().updateEntity(dto, entity);
-
         return getConversionService().convertToDto(entity);
     }
 
@@ -49,13 +47,19 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
     }
 
     @Transactional
-    protected Long getCount() {
+    public long getCount() {
         final CriteriaBuilder criteriaBuilder = getEntityManager().getCriteriaBuilder();
         final CriteriaQuery<Long> criteriaQuery = criteriaBuilder.createQuery(Long.class);
         criteriaQuery.select(criteriaBuilder.count(criteriaQuery.from(getEntityClass())));
         final TypedQuery<Long> query = getEntityManager().createQuery(criteriaQuery);
         return query.getSingleResult();
     }
+
+	@Transactional
+	public long getCount(final QueryStrategy<EntityType> queryStrategy, final Object... queryParams) {
+		final TypedQuery<Long> query = queryStrategy.constructCountQuery(queryParams);
+		return query.getSingleResult();
+	}
 
     @Transactional
     protected List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams) {

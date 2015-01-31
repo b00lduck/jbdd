@@ -2,6 +2,7 @@
 'use strict';
 
 define(['angularAMD',
+    'MyNavbarDirective',
     'adminUserPlayerAssignGrid',
     'adminFormElements',
     'adminBuyableCostEditor',

@@ -1,13 +1,13 @@
 package com.nigames.jbdd.service.service.item;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspect;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
-import com.nigames.jbdd.rest.dto.aspects.Buyable;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.Buyable;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
 import com.nigames.jbdd.service.conversion.dto.GoodConversionService;
 import com.nigames.jbdd.service.conversion.dto.TechnologyConversionService;
@@ -27,12 +27,12 @@ import java.util.stream.Collectors;
  * AbstractBuyableService implementation.
  *
  * @param <DtoType>    Type of the DTO, must implement {@link Buyable}
- * @param <EntityType> Type of the Entity, must extend {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}
+ * @param <EntityType> Type of the Entity, must extend {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
  * @author Daniel
  */
 @SuppressWarnings("AbstractClassNeverImplemented")
 @Service
-abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityType extends BuyableEntityAspect> extends AbstractDtoService<DtoType, EntityType> {
+abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityType extends BuyableEntityFacet> extends AbstractDtoService<DtoType, EntityType> {
 
 	private static final Logger LOG = LoggerFactory.getLogger(AbstractBuyableService.class);
 
@@ -55,8 +55,8 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	@Transactional
 	public final List<Good> findAllAddableCostGoods(final Long buyableId) {
 
-		final BuyableEntityAspectImpl buyableEntity =
-				getEntityManager().find(BuyableEntityAspectImpl.class, buyableId);
+		final BuyableEntityFacetImpl buyableEntity =
+				getEntityManager().find(BuyableEntityFacetImpl.class, buyableId);
 
 		final String query = "SELECT o FROM Good o WHERE enabled=1";
 
@@ -84,9 +84,9 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	 * @return list of all possible requirement buyables
 	 */
 	@Transactional
-	public final Collection<IdentifyableEntityAspect> findAllAddableRequirementBuyables(final Long buyableId) {
+	public final Collection<IdentifyableEntityFacet> findAllAddableRequirementBuyables(final Long buyableId) {
 
-		final Collection<IdentifyableEntityAspect> ret = new ArrayList<>();
+		final Collection<IdentifyableEntityFacet> ret = new ArrayList<>();
 		//final Collection<Buyable> allRequirementList = new ArrayList<>();
 
 		//final List<TechnologyEntity> allTechnologies =
@@ -135,7 +135,7 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	public final void addRequirement(final Requirement requirement) {
 		// attachRequirementBuyable(requirement);
 		// requirementSubService.create(requirement);
-		// requirement.getBuyable().getRequirementList().add(requirement);
+		// requirement.getBuyableFacet().getRequirementList().add(requirement);
 		LOG.error("NOT IMPLEMENTED"); //NON-NLS
 		// TODO: implement
 	}
@@ -143,7 +143,7 @@ abstract class AbstractBuyableService<DtoType extends Buyable & IsDto, EntityTyp
 	public final void deleteRequirement(final Requirement requirement) {
 		// attachRequirementBuyable(requirement);
 		// requirementSubService.remove(requirement);
-		// requirement.getBuyable().getRequirementList().remove(requirement);
+		// requirement.getBuyableFacet().getRequirementList().remove(requirement);
 		LOG.error("NOT IMPLEMENTED"); //NON-NLS
 		// TODO: implement
 	}

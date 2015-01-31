@@ -1,8 +1,8 @@
 package com.nigames.jbdd.domain.entities.auth;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
-import com.nigames.jbdd.domain.entities.aspect.CanBeEnabledEntityAspect;
-import com.nigames.jbdd.domain.entities.aspect.identifyable.IdentifyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -44,7 +44,7 @@ import static com.nigames.jbdd.rest.dto.UserRole.*;
                 name = UserEntity.NQ_SORTED_BY_NUM_PLAYERS_DESC,
                 query = UserEntity.NUM_PLAYERS_SORT_QUERY + " DESC")})
 
-public class UserEntity extends IdentifyableEntityAspectImpl implements CanBeEnabledEntityAspect {
+public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
     public static final String NQ_BY_USERNAME = "UserEntity.findUserByUsername";
     public static final String NQ_BY_EMAIL = "UserEntity.findUserByEmail";

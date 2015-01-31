@@ -1,6 +1,7 @@
 package com.nigames.jbdd.domain.entities.subitem.buyable;
 
-import com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -15,9 +16,14 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cost")
-@NamedQueries(@NamedQuery(name = "findCostsByBuyable",
-        query = "FROM CostEntity WHERE buyable=:buyable"))
+@NamedQueries({
+        @NamedQuery(name = CostEntity.NQ_BY_BUYABLE_ID, query = "SELECT c FROM CostEntity c WHERE c.id.buyableId=:buyableId"),
+        @NamedQuery(name = CostEntity.NQ_COUNT_BY_BUYABLE_ID, query = "SELECT COUNT(id.buyableId) FROM CostEntity WHERE id.buyableId=:buyableId")
+})
 public class CostEntity extends AbstractBuyableSubItemEntity {
+
+    public static final String NQ_BY_BUYABLE_ID = "CostEntity.findByBuyableId";
+    public static final String NQ_COUNT_BY_BUYABLE_ID = "CostEntity.countByBuyableId";
 
     /**
      * The embedded primary key.
@@ -26,26 +32,20 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     private CostEntityPK id = new CostEntityPK();
 
     /**
-     * The {@link com.nigames.jbdd.domain.entities.aspect.BuyableEntityAspectImpl}.
+     * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
      */
     @MapsId("buyableId")
-    @JoinColumn(name = "buyable_id", referencedColumnName = "id")
+    @JoinColumn(name = "buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
     @ManyToOne(fetch = FetchType.LAZY)
-    private BuyableEntityAspectImpl buyable;
+    private BuyableEntityFacetImpl buyableFacet;
 
     /**
      * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("goodId")
-    @JoinColumn(name = "good_id", referencedColumnName = "id")
+    @JoinColumn(name = "good_id", referencedColumnName = "id", updatable = false, insertable = false)
     private GoodEntity good;
-
-    /**
-     * The JPA version field.
-     */
-    @Version
-    private Integer version;
 
     /**
      * @return Get {@link CostEntity#id}
@@ -64,15 +64,15 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     /**
      * @return Get the Buyable item
      */
-    public BuyableEntityAspectImpl getBuyable() {
-        return buyable;
+    public BuyableEntityFacet getBuyableFacet() {
+        return buyableFacet;
     }
 
     /**
-     * @param buyable The Buyable item to set
+     * @param buyableFacet The Buyable item to set
      */
-    public void setBuyable(final BuyableEntityAspectImpl buyable) {
-        this.buyable = buyable;
+    public void setBuyableFacet(final BuyableEntityFacetImpl buyableFacet) {
+        this.buyableFacet = buyableFacet;
     }
 
     /**

@@ -1,0 +1,86 @@
+{
+  "admin": {
+    "button": {
+      "create": "create",
+      "save": "save",
+      "cancel": "cancel"
+    },
+    "doubleGrid": {
+      "userPlayerAssignGrids": {
+        "header": "Edit assigned players"
+      },
+      "buyableCostEditor": {
+        "header": "Edit costs"
+      }
+    },
+    "editField": {
+      "id": "ID",
+      "enabled": "Enabled",
+      "username": "Username",
+      "name": "Name",
+      "description": "Description"
+    },
+    "newid": "new ID, will be generated on save",
+    "title": {
+      "userEditor": "Edit user details",
+      "goodEditor": "Edit good details",
+      "playerEditor": "Edit player details",
+      "buildingEditor": "Edit building details"
+    }
+  },
+
+  "dataGrid": {
+    "columnHeader": {
+      "fixed": {
+        "id": "ID",
+        "enabled": "enabled",
+        "deletable": "deletable"
+      },
+      "i18n": {
+        "name": "Name"
+      },
+      "user": {
+        "username": "Username",
+        "email": "eMail",
+        "numPlayers": "Number of player objects"
+      },
+      "player": {
+        "nickname": "Nickname"
+      },
+      "good": {
+      }
+    }
+  },
+
+  "authentication": {
+    "username": "Username",
+    "password": "Password",
+    "logout": "Logout",
+    "notLoggedIn": "not logged in",
+    "roles": "Assigned roles"
+  },
+
+  "navigation": {
+    "admin": {
+      "admin": "Administration",
+      "players": "Players",
+      "users": "User accounts",
+      "goods": "Goods",
+      "building": "Buildings"
+    },
+    "title": "JBdD"
+  },
+  "errors": {
+    "login": {
+      "message": {
+        "failed": "Login failed!"
+      },
+      "details": {
+        "unauthorized": "Username and/or password mismatch.",
+        "unknown": "An unknown error occured.",
+        "couldNotConnect": "Could not connect to server."
+      }
+    }
+  }
+
+}

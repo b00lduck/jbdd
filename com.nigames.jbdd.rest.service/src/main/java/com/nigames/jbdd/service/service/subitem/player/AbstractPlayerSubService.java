@@ -4,7 +4,7 @@
 package com.nigames.jbdd.service.service.subitem.player;
 
 import com.nigames.jbdd.rest.dto.Player;
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.service.subitem.AbstractSubService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

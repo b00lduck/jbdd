@@ -15,7 +15,7 @@ define(['angularAMD'], function (angularAMD) {
 
                 scope.changeLanguage = function (lang) {
 
-                    if (('en_GB' === lang) || ('de_DE' === lang)) {
+                    if (('en-GB' === lang) || ('de-DE' === lang)) {
                         $translate.use(lang);
                     }
 

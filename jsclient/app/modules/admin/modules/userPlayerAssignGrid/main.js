@@ -2,6 +2,6 @@
 'use strict';
 
 define(['./controllers/userPlayerAssignGridDirective',
-    './directives/myUserPlayerAssignGrid'], function () {
+        './directives/myUserPlayerAssignGrid'], function () {
 
 });

@@ -56,4 +56,5 @@ public class AuthenticationRequest implements AuthenticationRequestInterface {
         LOG.info("logout");
         SecurityContextHolder.clearContext();
     }
+
 }

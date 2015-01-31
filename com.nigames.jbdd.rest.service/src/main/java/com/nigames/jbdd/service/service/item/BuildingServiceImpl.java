@@ -2,13 +2,13 @@ package com.nigames.jbdd.service.service.item;
 
 import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.rest.dto.Building;
-import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
+import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.BuildingQueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.SortParams;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,10 +25,10 @@ import java.util.List;
 public class BuildingServiceImpl extends AbstractDtoService<Building, BuildingEntity> implements BuildingService {
 
     @Autowired
-    private transient BuildingConversionService buildingConversionService;
+    private BuildingConversionService buildingConversionService;
 
     @Autowired
-    private transient BuildingQueryStrategy buildingQueryStrategy;
+    private BuildingQueryStrategy buildingQueryStrategy;
 
     @Override
     @Transactional
@@ -69,7 +69,7 @@ public class BuildingServiceImpl extends AbstractDtoService<Building, BuildingEn
 
     @Override
     @Transactional
-    public Long getCount() {
+    public long getCount() {
         return super.getCount();
     }
 

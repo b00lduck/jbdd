@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.conversion.dto;
 
-import com.nigames.jbdd.rest.dto.aspects.IsDto;
+import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.module.ConversionServiceModuleInterface;
 import org.springframework.beans.factory.InitializingBean;
 
