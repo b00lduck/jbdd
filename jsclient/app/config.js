@@ -51,6 +51,10 @@ requirejs.config({
         {
             name: 'adminListDataGrid',
             location: 'modules/admin/modules/listDataGrid'
+        },
+        {
+            name: 'adminConstants',
+            location: 'modules/admin/modules/constants'
         }
     ],
     shim: {

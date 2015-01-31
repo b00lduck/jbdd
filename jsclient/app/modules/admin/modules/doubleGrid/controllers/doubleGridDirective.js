@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD'], function (angularAMD) {
+define(['angularAMD', 'adminConstants'], function (angularAMD, adminConstants) {
 
     angularAMD.controller('DoubleGridDirectiveController', ['$scope', '$q', '$rootScope', '$translate',
         function ($scope, $q, $rootScope, $translate) {
@@ -100,10 +100,6 @@ define(['angularAMD'], function (angularAMD) {
                 });
             }
 
-            var cellTemplateNonZeroInt = '<div><form name="inputForm"><input type="number" required="true" min="1" pattern="^[0-9]+$" ng-class="\'colt\' + col.uid" ui-grid-editor ng-model="MODEL_COL_FIELD"></form></div>';
-
-            var cellTemplateI18nField = '<div class="ui-grid-cell-contents">{{getExternalScopes().getFieldByLanguage(COL_FIELD)}}</div>';
-
             function parseGridConfig(config) {
                 var columnDefs = config.columnDefs;
                 var arrayLength = columnDefs.length;
@@ -111,7 +107,7 @@ define(['angularAMD'], function (angularAMD) {
                 for (i = 0; i < arrayLength; i++) {
 
                     if (columnDefs[i].i18nField === true) {
-                        columnDefs[i].cellTemplate = cellTemplateI18nField;
+                        columnDefs[i].cellTemplate = adminConstants.templates.cellTemplateI18nField;
                     }
 
                     if (columnDefs[i].enableCellEdit !== true) {
@@ -121,7 +117,7 @@ define(['angularAMD'], function (angularAMD) {
                     if (typeof columnDefs[i].validator !== 'undefined') {
                         switch (columnDefs[i].validator) {
                             case 'nonzero_int':
-                                columnDefs[i].editableCellTemplate = cellTemplateNonZeroInt;
+                                columnDefs[i].editableCellTemplate = adminConstants.templates.editCellTemplateNonZeroInt;
                                 break;
                             default:
                                 throw ('unkown validator ' + columnDefs[i].validator);

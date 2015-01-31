@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'DataService', 'angular-translate'], function (angularAMD) {
+define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], function (angularAMD, adminConstants) {
 
     angularAMD.controller('AdminListDataGridDirectiveController',
         ['$scope', '$rootScope', '$translate', 'DataService', '$location', '$modal',
@@ -9,10 +9,6 @@ define(['angularAMD', 'DataService', 'angular-translate'], function (angularAMD)
 
                 var resourceName,
                     configuration;
-
-                var enabledCellTemplate = '<div class="ui-grid-cell-contents ng-binding ng-scope"><span class="glyphicon glyphicon-{{ COL_FIELD == true ? \'ok-circle\' : \'ban-circle\'}}" aria-hidden="true"></span></div>';
-                var deletableCellTemplate = '<div class="ui-grid-cell-contents ng-binding ng-scope"><button ng-if="COL_FIELD" class="ng-binding" ng-click="getExternalScopes().deleteItem(row.entity)">delete</button></div>';
-                var enabledRowTemplate = '<div ng-dblClick="getExternalScopes().editItem(row.entity)" ng-class="{\'red\':row.entity.enabled == false, \'green\':row.entity.enabled == true }"><div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }" ui-grid-cell></div></div>';
 
                 var getFixedColumnsLeft = function () {
                     return [{
@@ -27,13 +23,13 @@ define(['angularAMD', 'DataService', 'angular-translate'], function (angularAMD)
                         name: 'enabled',
                         displayName: $translate.instant('dataGrid.columnHeader.fixed.enabled'),
                         width: 85,
-                        cellTemplate: enabledCellTemplate
+                        cellTemplate: adminConstants.templates.enabledCellTemplate
                     },
                         {
                             name: 'deletable',
                             displayName: $translate.instant('dataGrid.columnHeader.fixed.deletable'),
                             width: 85,
-                            cellTemplate: deletableCellTemplate
+                            cellTemplate: adminConstants.templates.deletableCellTemplate
                         }];
                 };
 
@@ -71,7 +67,7 @@ define(['angularAMD', 'DataService', 'angular-translate'], function (angularAMD)
                         useExternalPaging: true,
                         useExternalSorting: true,
                         columnDefs: getColumnDefs(configuration),
-                        rowTemplate: enabledRowTemplate,
+                        rowTemplate: adminConstants.templates.enabledRowTemplate,
                         onRegisterApi: function (gridApi) {
 
                             $scope.gridApi = gridApi;
