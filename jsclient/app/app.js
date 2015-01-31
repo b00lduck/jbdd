@@ -45,7 +45,7 @@ define(['angularAMD',
                 suffix: '.json'
             });
 
-            $translateProvider.preferredLanguage('en_GB');
+        $translateProvider.preferredLanguage('en-GB');
 
         });
 

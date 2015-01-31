@@ -3,9 +3,9 @@
 
 define(['angularAMD', 'DataService'], function (angularAMD) {
 
-    angularAMD.controller('BuyableCostEditorController', ['$scope', 'DataService', '$q',
+    angularAMD.controller('BuyableCostEditorController', ['$scope', 'DataService', '$q', '$translate',
 
-        function ($scope, DataService, $q) {
+        function ($scope, DataService, $q, $translate) {
 
 
             function editCost(goodId, amount) {
@@ -24,10 +24,10 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
                 leftGridConfig: {
                     columnDefs: [
-                        {name: 'buyableId', width: 55, enableCellEdit: false},
-                        {name: 'goodId', width: 55, enableCellEdit: false},
-                        {name: 'good.name', width: 55, enableCellEdit: false},
-                        {name: 'amount', validator: 'nonzero_int'}],
+                        {name: 'buyableId', visible: false},
+                        {name: 'goodId', width: 55},
+                        {name: 'good.name', i18nField: true},
+                        {name: 'amount', enableCellEdit: true, validator: 'nonzero_int'}],
                     enableRowSelection: true,
                     enableRowHeaderSelection: false,
                     multiSelect: true,
@@ -39,8 +39,8 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
                 rightGridConfig: {
                     columnDefs: [
-                        {name: 'id'},
-                        {name: 'name'}
+                        {name: 'id', width: 55},
+                        {name: 'name', i18nField: true}
                     ],
                     enableRowSelection: true,
                     enableRowHeaderSelection: false,

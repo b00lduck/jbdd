@@ -102,11 +102,21 @@ define(['angularAMD'], function (angularAMD) {
 
             var cellTemplateNonZeroInt = '<div><form name="inputForm"><input type="number" required="true" min="1" pattern="^[0-9]+$" ng-class="\'colt\' + col.uid" ui-grid-editor ng-model="MODEL_COL_FIELD"></form></div>';
 
+            var cellTemplateI18nField = '<div class="ui-grid-cell-contents">{{getExternalScopes().getFieldByLanguage(COL_FIELD)}}</div>';
+
             function parseGridConfig(config) {
                 var columnDefs = config.columnDefs;
                 var arrayLength = columnDefs.length;
                 var i;
                 for (i = 0; i < arrayLength; i++) {
+
+                    if (columnDefs[i].i18nField === true) {
+                        columnDefs[i].cellTemplate = cellTemplateI18nField;
+                    }
+
+                    if (columnDefs[i].enableCellEdit !== true) {
+                        columnDefs[i].enableCellEdit = false;
+                    }
 
                     if (typeof columnDefs[i].validator !== 'undefined') {
                         switch (columnDefs[i].validator) {
@@ -173,6 +183,12 @@ define(['angularAMD'], function (angularAMD) {
             $scope.moveAllRight = function () {
                 var rows = leftGridConfig.data;
                 moveArrayRight(rows);
+            };
+
+            $scope.langHelper = {
+                getFieldByLanguage: function (obj) {
+                    return obj[$translate.use()];
+                }
             };
 
         }

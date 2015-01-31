@@ -5,6 +5,7 @@ define([
 
     './directives/myAdminListDataGrid',
     './controllers/deleteModal',
+    './controllers/adminListDataGridDirective',
 
 ], function () {
 
