@@ -48,6 +48,10 @@ requirejs.config({
             location: 'modules/admin/modules/buyableCostEditor'
         },
         {
+            name: 'adminBuyableRequirementsEditor',
+            location: 'modules/admin/modules/buyableRequirementsEditor'
+        },
+        {
             name: 'adminFormElements',
             location: 'modules/admin/modules/formElements'
         },

@@ -53,8 +53,8 @@ public class RequirementServiceImpl extends AbstractDtoService<Requirement, Requ
 
 	@Override
 	@Transactional
-	public void delete(final long buyableId, final long goodId) {
-		final RequirementEntityPK id = new RequirementEntityPK(buyableId, goodId);
+	public void delete(final long buyableId, final long requiredBuyableId) {
+		final RequirementEntityPK id = new RequirementEntityPK(buyableId, requiredBuyableId);
 		final RequirementEntity entity = getEntityManager().getReference(getEntityClass(), id);
 		getEntityManager().remove(entity);
 	}

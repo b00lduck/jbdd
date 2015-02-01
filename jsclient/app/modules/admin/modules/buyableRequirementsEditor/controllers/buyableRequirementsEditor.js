@@ -8,8 +8,8 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
         function ($scope, DataService, $q, $translate) {
 
 
-            function editRequirement(buyableId, amount) {
-                DataService.updateCost($scope.resourceName, $scope.getBuyableId(), buyableId, amount).then(
+            function editRequirement(requiredBuyableId, amount) {
+                DataService.updateRequirement($scope.resourceName, $scope.getBuyableId(), requiredBuyableId, amount).then(
                     function (payload) {
                     },
                     function () {
@@ -25,8 +25,8 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                 leftGridConfig: {
                     columnDefs: [
                         {name: 'buyableId', visible: false},
-                        {name: 'goodId', width: 55},
-                        {name: 'good.name', i18nField: true},
+                        {name: 'requiredBuyableId', width: 55},
+                        {name: 'requiredBuyable.name', i18nField: true},
                         {name: 'amount', enableCellEdit: true, validator: 'nonzero_int'}],
                     enableRowSelection: true,
                     enableRowHeaderSelection: false,
@@ -64,7 +64,8 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                 },
 
                 moveItemToRight: function (obj) {
-                    return DataService.removeRequirementFromBuyable($scope.resourceName, $scope.getBuyableId(), obj.buyableId);
+                    return DataService.removeRequirementFromBuyable($scope.resourceName, $scope.getBuyableId(),
+                        obj.requiredBuyableId);
                 },
 
                 onRegisterLeftApi: function (gridApi) {

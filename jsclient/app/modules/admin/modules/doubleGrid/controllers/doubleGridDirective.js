@@ -144,6 +144,11 @@ define(['angularAMD', 'adminConstants'], function (angularAMD, adminConstants) {
                 rightGridConfig.onRegisterApi = function (gridApi) {
                     rightGridApi = gridApi;
                     $scope.config.onRegisterRightApi(gridApi);
+
+//                    gridApi.core.on.renderingComplete( function(grid) {
+//                        grid.handleWindowResize();
+//                    } );
+
                 };
 
                 $scope.leftGridOptions = parseGridConfig(leftGridConfig);

@@ -133,6 +133,42 @@ define(['angularAMD'], function (angularAMD) {
                 return queryRestServicePut(url, data);
             };
 
+            service.getBuyableRequirements = function (resourceName, buyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/requirement';
+                return queryRestServiceGet(url);
+            };
+
+            service.getAddableRequirementBuyables = function (resourceName, buyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/requirement/addable';
+                return queryRestServiceGet(url);
+            };
+
+            service.addRequirementToBuyable = function (resourceName, buyableId, requiredBuyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/requirement';
+                var data = {
+                    buyableId: parseInt(buyableId),
+                    requiredBuyableId: parseInt(requiredBuyableId),
+                    amount: 1
+                };
+                return queryRestServicePost(url, data);
+            };
+
+            service.removeRequirementFromBuyable = function (resourceName, buyableId, requiredBuyableId) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/requirement/' + requiredBuyableId;
+                return queryRestServiceDelete(url);
+            };
+
+            service.updateRequirement = function (resourceName, buyableId, requiredBuyableId, amount) {
+                var url = getSpecificResourceUrl(resourceName, buyableId) + '/requirement';
+                var data = {
+                    buyableId: parseInt(buyableId),
+                    requiredBuyableId: parseInt(requiredBuyableId),
+                    amount: parseInt(amount)
+                };
+                return queryRestServicePut(url, data);
+            };
+
+
             return service;
 
         }

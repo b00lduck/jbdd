@@ -1,21 +1,38 @@
 <my-navbar></my-navbar>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">{{ 'admin.title.buildingEditor' | translate }}</h3>
-    </div>
-    <div class="panel-body">
+<tabset>
 
+    <tab>
+        <tab-heading>
+            {{ 'admin.title.buildingEditor' | translate }}
+        </tab-heading>
         <my-form-field-id></my-form-field-id>
-
         <my-form-field-enabled></my-form-field-enabled>
-
         <my-form-field-name-and-desc></my-form-field-name-and-desc>
-
         <my-edit-buttons></my-edit-buttons>
+    </tab>
 
-    </div>
+    <tab>
+        <tab-heading>
+            {{ 'admin.title.costEditor' | translate }}
+        </tab-heading>
+        <my-buyable-cost-editor ng-if="id !== 'new'" resourceName="building" buyableId="id">
+        </my-buyable-cost-editor>
+    </tab>
 
-</div>
+    <tab>
+        <tab-heading>
+            {{ 'admin.title.requirementEditor' | translate }}
+        </tab-heading>
+        <my-buyable-requirements-editor ng-if="id !== 'new'" resourceName="building" buyableId="id">
+        </my-buyable-requirements-editor>
+    </tab>
 
-<my-buyable-cost-editor ng-if="id !== 'new'" resourceName="building" buyableId="id"></my-buyable-cost-editor>
+</tabset>
+
+
+
+
+
+
+

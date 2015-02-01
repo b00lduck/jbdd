@@ -6,6 +6,7 @@ define(['angularAMD',
     'adminUserPlayerAssignGrid',
     'adminFormElements',
     'adminBuyableCostEditor',
+    'adminBuyableRequirementsEditor',
     'DataService',
 
 ], function (angularAMD) {

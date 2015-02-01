@@ -132,7 +132,8 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 
 	@DELETE
 	@Path("/{itemId}/requirement/{requiredBuyableId}")
-	public void deleteRequirement(@PathParam("itemId") final long itemId, @PathParam("requiredBuyableId") final long requiredBuyableId) {
+	public void deleteRequirement(@PathParam("itemId") final long itemId,
+	                              @PathParam("requiredBuyableId") final long requiredBuyableId) {
 		buyableRequestFacet.deleteRequirement(itemId, requiredBuyableId);
 	}
 

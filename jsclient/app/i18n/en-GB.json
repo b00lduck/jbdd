@@ -8,9 +8,6 @@
     "doubleGrid": {
       "userPlayerAssignGrids": {
         "header": "Edit assigned players"
-      },
-      "buyableCostEditor": {
-        "header": "Edit costs"
       }
     },
     "editField": {
@@ -25,7 +22,9 @@
       "userEditor": "Edit user details",
       "goodEditor": "Edit good details",
       "playerEditor": "Edit player details",
-      "buildingEditor": "Edit building details"
+      "buildingEditor": "Edit building details",
+      "costEditor": "Edit costs",
+      "requirementEditor": "Edit requirements"
     }
   },
 

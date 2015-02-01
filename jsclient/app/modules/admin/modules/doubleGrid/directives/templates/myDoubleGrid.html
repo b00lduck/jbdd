@@ -6,7 +6,8 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-md-5">
-                <div ui-grid-selection ui-grid-edit external-scopes="langHelper" ui-grid="leftGridOptions"></div>
+                <div class="doubleGrid" ui-grid-auto-resize ui-grid-selection ui-grid-edit external-scopes="langHelper"
+                     ui-grid="leftGridOptions"></div>
             </div>
             <div class="col-md-2">
                 <button ng-click="moveSelectionLeft()">&lt;</button>
@@ -19,7 +20,8 @@
                 <br/>
             </div>
             <div class="col-md-5">
-                <div ui-grid-selection external-scopes="langHelper" ui-grid="rightGridOptions"></div>
+                <div class="doubleGrid" ui-grid-auto-resize ui-grid-selection external-scopes="langHelper"
+                     ui-grid="rightGridOptions"></div>
             </div>
         </div>
     </div>

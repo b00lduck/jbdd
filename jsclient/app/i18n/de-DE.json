@@ -8,9 +8,6 @@
     "doubleGrid": {
       "userPlayerAssignGrids": {
         "header": "Zugewiesene Spieler bearbeiten"
-      },
-      "buyableCostEditor": {
-        "header": "Kosten bearbeiten"
       }
     },
     "editField": {
@@ -25,7 +22,9 @@
       "userEditor": "Benutzerdetails bearbeiten",
       "goodEditor": "Güterdetails bearbeiten",
       "playerEditor": "Spielerdetails bearbeiten",
-      "buildingEditor": "Gebäudedetails bearbeiten"
+      "buildingEditor": "Gebäudedetails bearbeiten",
+      "costEditor": "Kosten bearbeiten",
+      "requirementEditor": "Voraussetzungen bearbeiten"
     }
   },
   "dataGrid": {
