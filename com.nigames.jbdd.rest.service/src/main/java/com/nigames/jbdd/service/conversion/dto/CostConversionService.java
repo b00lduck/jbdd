@@ -26,7 +26,7 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 	}
 
 	@Override
-	public Cost getNewDtoInstance() {
+	public Cost getNewDtoInstance(Class<?> entityClass) {
 		return new Cost();
 	}
 

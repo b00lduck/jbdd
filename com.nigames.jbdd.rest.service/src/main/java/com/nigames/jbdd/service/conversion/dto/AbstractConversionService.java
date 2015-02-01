@@ -34,8 +34,8 @@ public abstract class AbstractConversionService<EntityType, DtoType extends IsDt
 
     @Override
     public DtoType convertToDto(final EntityType entity) {
-        final DtoType dto = getNewDtoInstance();
-        for (final ConversionServiceModuleInterface module : moduleList) {
+	    final DtoType dto = getNewDtoInstance(entity.getClass());
+	    for (final ConversionServiceModuleInterface module : moduleList) {
             module.updateDtoFromEntity(dto, entity);
         }
         updateDtoFromEntity(dto, entity);
@@ -67,6 +67,6 @@ public abstract class AbstractConversionService<EntityType, DtoType extends IsDt
 
     public abstract EntityType getNewEntityInstance();
 
-    public abstract DtoType getNewDtoInstance();
+	public abstract DtoType getNewDtoInstance(Class<?> entityClass);
 
 }

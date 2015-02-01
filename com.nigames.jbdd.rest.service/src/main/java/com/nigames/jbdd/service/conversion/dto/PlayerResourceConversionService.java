@@ -24,7 +24,7 @@ public class PlayerResourceConversionService extends
     }
 
     @Override
-    public PlayerResource getNewDtoInstance() {
+    public PlayerResource getNewDtoInstance(Class<?> entityClass) {
         return new PlayerResource();
     }
 

@@ -14,7 +14,7 @@ public class PlayerBuildingConversionService extends
     }
 
     @Override
-    public PlayerBuilding getNewDtoInstance() {
+    public PlayerBuilding getNewDtoInstance(Class<?> entityClass) {
         return new PlayerBuilding();
     }
 

@@ -29,7 +29,7 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
     }
 
     @Override
-    public User getNewDtoInstance() {
+    public User getNewDtoInstance(Class<?> entityClass) {
         return new User();
     }
 

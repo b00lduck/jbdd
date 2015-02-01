@@ -18,7 +18,7 @@ public class PlayerConversionService extends AbstractConversionService<PlayerEnt
     }
 
     @Override
-    public Player getNewDtoInstance() {
+    public Player getNewDtoInstance(Class<?> entityClass) {
         return new Player();
     }
 

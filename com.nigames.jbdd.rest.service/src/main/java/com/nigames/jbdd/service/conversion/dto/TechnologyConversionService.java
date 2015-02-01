@@ -23,7 +23,7 @@ public class TechnologyConversionService extends
     }
 
     @Override
-    public Technology getNewDtoInstance() {
+    public Technology getNewDtoInstance(Class<?> entityClass) {
         return new Technology();
     }
 

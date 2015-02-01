@@ -22,7 +22,7 @@ public class JobConversionService extends AbstractConversionService<JobEntity, J
     }
 
     @Override
-    public Job getNewDtoInstance() {
+    public Job getNewDtoInstance(Class<?> entityClass) {
         return new Job();
     }
 

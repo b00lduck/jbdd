@@ -23,7 +23,7 @@ public class UserRoleConversionService extends AbstractConversionService<UserRol
     }
 
     @Override
-    public UserRole getNewDtoInstance() {
+    public UserRole getNewDtoInstance(Class<?> entityClass) {
         return new UserRole();
     }
 

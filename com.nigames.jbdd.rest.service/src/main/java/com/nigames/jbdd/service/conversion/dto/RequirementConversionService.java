@@ -26,7 +26,7 @@ public class RequirementConversionService extends AbstractConversionService<Requ
 	}
 
 	@Override
-	public Requirement getNewDtoInstance() {
+	public Requirement getNewDtoInstance(Class<?> entityClass) {
 		return new Requirement();
 	}
 
@@ -40,7 +40,7 @@ public class RequirementConversionService extends AbstractConversionService<Requ
 		dto.setBuyableId(entity.getId().getBuyableId());
 		final AbstractItemEntity requiredBuyableEntity = entity.getRequiredBuyableFacet().getItem();
 		dto.setRequiredBuyable(buyableConversionService.convertToDto(requiredBuyableEntity));
-		dto.setRequiredBuyableId(requiredBuyableEntity.getItem().getId());
+		dto.setRequiredBuyableId(requiredBuyableEntity.getId());
 		dto.setAmount(entity.getAmount());
 	}
 

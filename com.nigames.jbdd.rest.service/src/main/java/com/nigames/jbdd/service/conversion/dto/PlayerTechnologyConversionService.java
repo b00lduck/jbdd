@@ -24,7 +24,7 @@ public class PlayerTechnologyConversionService extends
     }
 
     @Override
-    public PlayerTechnology getNewDtoInstance() {
+    public PlayerTechnology getNewDtoInstance(Class<?> entityClass) {
         return new PlayerTechnology();
     }
 

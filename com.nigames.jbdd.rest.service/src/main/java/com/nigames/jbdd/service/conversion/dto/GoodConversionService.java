@@ -22,7 +22,7 @@ public class GoodConversionService extends AbstractConversionService<GoodEntity,
     }
 
     @Override
-    public Good getNewDtoInstance() {
+    public Good getNewDtoInstance(Class<?> entityClass) {
         return new Good();
     }
 

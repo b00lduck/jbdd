@@ -24,7 +24,7 @@ public class PlayerPeopleConversionService extends
     }
 
     @Override
-    public PlayerPeople getNewDtoInstance() {
+    public PlayerPeople getNewDtoInstance(Class<?> entityClass) {
         return new PlayerPeople();
     }
 

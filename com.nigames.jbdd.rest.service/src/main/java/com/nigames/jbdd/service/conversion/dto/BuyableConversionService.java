@@ -19,9 +19,13 @@ public class BuyableConversionService extends AbstractConversionService<Abstract
 	}
 
 	@Override
-	public Buyable getNewDtoInstance() {
-		return null;
+	public Buyable getNewDtoInstance(final Class entityClass) {
+		if (entityClass.equals(BuildingEntity.class)) {
+			return new Building();
+		}
+		throw new IllegalArgumentException("unknown entityClass " + entityClass.getSimpleName());
 	}
+
 
 	@Override
 	protected void addModules() {
@@ -31,7 +35,6 @@ public class BuyableConversionService extends AbstractConversionService<Abstract
 	protected void updateDtoFromEntity(Buyable dto, final AbstractItemEntity entity) {
 
 		if (entity instanceof BuildingEntity) {
-			dto = new Building();
 			buildingConversionService.updateDtoFromEntity((Building) dto, (BuildingEntity) entity);
 		} else {
 			throw new IllegalArgumentException("invalid DTO or EntityType was provided. DTO:" +

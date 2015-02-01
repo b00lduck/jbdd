@@ -22,7 +22,7 @@ public class BuildingConversionService extends AbstractConversionService<Buildin
     }
 
     @Override
-    public Building getNewDtoInstance() {
+    public Building getNewDtoInstance(Class<?> entityClass) {
         return new Building();
     }
 
