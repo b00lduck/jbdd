@@ -66,6 +66,11 @@ public class RequirementServiceImpl extends AbstractDtoService<Requirement, Requ
 	}
 
 	@Override
+	public List<Requirement> findByBuyableId(final long buyableId) {
+		return findByBuyableId(buyableId, LimitParams.createDefault(), SortParams.createDefault());
+	}
+
+	@Override
 	public List<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
 
 		final TypedQuery<RequirementEntity> query =

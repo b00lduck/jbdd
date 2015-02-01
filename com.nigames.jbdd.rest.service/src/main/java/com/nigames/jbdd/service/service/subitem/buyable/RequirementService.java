@@ -33,6 +33,9 @@ public interface RequirementService {
 	long getCount();
 
 	@PreAuthorize("hasRole('" + ROLE_ADMIN_REQUIREMENT + "')")
+	List<Requirement> findByBuyableId(final long buyableId);
+
+	@PreAuthorize("hasRole('" + ROLE_ADMIN_REQUIREMENT + "')")
 	List<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams);
 
 	@PreAuthorize("hasRole('" + ROLE_ADMIN_REQUIREMENT + "')")
