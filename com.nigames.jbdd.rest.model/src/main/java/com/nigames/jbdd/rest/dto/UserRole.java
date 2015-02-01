@@ -21,6 +21,7 @@ public final class UserRole implements IsDto, Identifiable {
 	public static final String ROLE_PLAYER = "ROLE_PLAYER";
 	public static final String ROLE_ADMIN_BUILDING = "ROLE_ADMIN_BUILDING";
 	public static final String ROLE_ADMIN_COST = "ROLE_ADMIN_COST";
+	public static final String ROLE_ADMIN_REQUIREMENT = "ROLE_ADMIN_REQUIREMENT";
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 

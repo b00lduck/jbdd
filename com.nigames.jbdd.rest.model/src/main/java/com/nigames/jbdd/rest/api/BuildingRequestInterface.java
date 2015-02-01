@@ -39,11 +39,11 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 
 	@GET
 	@Path("/{itemId}/cost/addable")
-	DtoList<Good> getAddableCosts(@PathParam("itemId") final long itemId,
-							      @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-							      @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-							      @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-							      @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
+	DtoList<Good> getAddableCostGoods(@PathParam("itemId") final long itemId,
+	                                  @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                                  @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                                  @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                                  @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@POST
 	@Path("/{itemId}/cost")

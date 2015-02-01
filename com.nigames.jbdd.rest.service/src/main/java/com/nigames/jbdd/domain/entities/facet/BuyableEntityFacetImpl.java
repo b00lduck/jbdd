@@ -4,12 +4,8 @@ import com.nigames.jbdd.domain.entities.item.AbstractItemEntity;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntity;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Abstract Database Entity for all {@link BuyableEntityFacetImpl} objects (
@@ -108,7 +104,12 @@ public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
         this.buildtime = buildtime;
     }
 
-    /*
+	@Override
+	public AbstractItemEntity getItem() {
+		return item;
+	}
+
+	/*
 
     @Override
     public List<CostEntity> getCostList() {

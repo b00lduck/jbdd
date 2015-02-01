@@ -1,6 +1,9 @@
 package com.nigames.jbdd.service.service.item.facet;
 
+import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.rest.dto.Good;
+import com.nigames.jbdd.rest.dto.facet.Buyable;
+import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
 import com.nigames.jbdd.service.service.querystrategy.AddableCostQueryStrategy;
 import com.nigames.jbdd.types.LimitParams;
@@ -22,6 +25,9 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	private GoodService goodService;
 
 	@Autowired
+	private BuildingService buildingService;
+
+	@Autowired
 	private AddableCostQueryStrategy addableCostQueryStrategy;
 
 	@Override
@@ -35,4 +41,18 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 		return goodService.getCount(addableCostQueryStrategy, buyableId);
 	}
 
+	@Override
+	public List<Buyable> getAddableRequirementBuyables(long buyableId, LimitParams limitParams, SortParams sortParams) {
+
+		List<Building> buildingList = buildingService.findAll(limitParams, sortParams);
+		@SuppressWarnings("unchecked")
+		List<Buyable> buyableList = (List) buildingList;
+
+		return buyableList;
+	}
+
+	@Override
+	public long getAddableRequirementBuyablesCount(long buyableId) {
+		return buildingService.getCount();
+	}
 }

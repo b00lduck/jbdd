@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public interface Buyable {
+public interface Buyable extends IsDto {
 
 	int getBuildtime();
 

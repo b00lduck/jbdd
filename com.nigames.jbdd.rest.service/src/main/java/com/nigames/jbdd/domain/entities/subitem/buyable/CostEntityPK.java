@@ -12,22 +12,22 @@ import java.io.Serializable;
 @Embeddable
 public class CostEntityPK implements Serializable {
 
-    /**
-     * The serialVersionUID.
-     */
-    private static final long serialVersionUID = 1;
+	/**
+	 * The serialVersionUID.
+	 */
+	private static final long serialVersionUID = 1;
 
-    /**
-     * The id of the {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
-     */
-    @Column(name = "buyable_id")
-    private long buyableId;
+	/**
+	 * The id of the {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
+	 */
+	@Column(name = "buyable_id")
+	private long buyableId;
 
-    /**
-     * The id of the {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
-     */
-    @Column(name = "good_id")
-    private long goodId;
+	/**
+	 * The id of the {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
+	 */
+	@Column(name = "good_id")
+	private long goodId;
 
 	public CostEntityPK() {
 	}
@@ -39,17 +39,17 @@ public class CostEntityPK implements Serializable {
 
 	/**
 	 * @return Get {@link CostEntityPK#buyableId}
-     */
+	 */
 	public long getBuyableId() {
 		return buyableId;
-    }
+	}
 
-    /**
-     * @return Get {@link CostEntityPK#goodId}
-     */
-    public long getGoodId() {
-        return goodId;
-    }
+	/**
+	 * @return Get {@link CostEntityPK#goodId}
+	 */
+	public long getGoodId() {
+		return goodId;
+	}
 
 	@Override
 	public int hashCode() {
@@ -60,24 +60,24 @@ public class CostEntityPK implements Serializable {
 
 	@SuppressWarnings("VariableNotUsedInsideIf")
 	@Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (null == obj) {
-            return false;
-        }
-        if (!(obj instanceof CostEntityPK)) {
-            return false;
-        }
-        final CostEntityPK other = (CostEntityPK) obj;
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (null == obj) {
+			return false;
+		}
+		if (!(obj instanceof CostEntityPK)) {
+			return false;
+		}
+		final CostEntityPK other = (CostEntityPK) obj;
 		if (buyableId != other.buyableId) {
 			return false;
-        }
+		}
 		if (goodId != other.goodId) {
 			return false;
-        }
-        return true;
-    }
+		}
+		return true;
+	}
 
 }

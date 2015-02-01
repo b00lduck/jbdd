@@ -1,6 +1,5 @@
 package com.nigames.jbdd.domain.entities.item;
 
-import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacetImpl;
@@ -72,6 +71,11 @@ public abstract class AbstractItemEntity extends IdentifyableEntityFacetImpl
     public void setEnabled(final boolean enabled) {
         this.enabled = enabled;
     }
+
+	public AbstractItemEntity getItem() {
+		throw new IllegalArgumentException("do not call getItem on concrete item entity. This makes sense on the" +
+				" BuyableFacet only.");
+	}
 
     // TODO: equals and hashcode
 }

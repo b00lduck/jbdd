@@ -1,5 +1,6 @@
 package com.nigames.jbdd.domain.entities.subitem.buyable;
 
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
@@ -14,79 +15,81 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "requirement")
-@NamedQueries(@NamedQuery(name = "findRequirementsByBuyable",
-        query = "FROM RequirementEntity WHERE buyable=:buyable"))
+@NamedQueries({
+		@NamedQuery(name = RequirementEntity.NQ_BY_BUYABLE_ID, query = "SELECT r FROM RequirementEntity r WHERE r.id.buyableId=:buyableId"),
+		@NamedQuery(name = RequirementEntity.NQ_COUNT_BY_BUYABLE_ID, query = "SELECT COUNT(id.buyableId) FROM RequirementEntity WHERE id.buyableId=:buyableId")
+})
 public class RequirementEntity extends AbstractBuyableSubItemEntity {
 
-    /**
-     * The embedded primary key.
-     */
-    @EmbeddedId
-    private RequirementEntityPK id = new RequirementEntityPK();
+	public static final String NQ_COUNT_BY_BUYABLE_ID = "RequirementEntity.0";
+	public static final String NQ_BY_BUYABLE_ID = "RequirementEntity.1";
 
-    /**
-     * The buyable.
-     *
-    @ManyToOne
-    @MapsId("buyableId")
-    @JoinColumn(name = "buyable_id", referencedColumnName = "id")
-    private BuyableEntityFacetImpl buyable;
+	/**
+	 * The embedded primary key.
+	 */
+	@EmbeddedId
+	private RequirementEntityPK id = new RequirementEntityPK();
 
-    /**
-     * The required buyable.
-     *
-    @ManyToOne
-    @MapsId("requiredBuyableId")
-    @JoinColumn(name = "required_buyable_id", referencedColumnName = "id")
-    private BuyableEntityFacetImpl requiredBuyable;
+	/**
+	 * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
+	 */
+	@MapsId("buyableId")
+	@JoinColumn(name = "buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private BuyableEntityFacetImpl buyableFacet;
 
-    /**
-     * The JPA version field.
-     *
-    @Version
-    private Integer version;
+	/**
+	 * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@MapsId("requiredBuyableId")
+	@JoinColumn(name = "required_buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
+	private BuyableEntityFacetImpl requiredBuyableFacet;
 
-    /**
-     * @return Get {@link RequirementEntity#id}
-     */
-    public RequirementEntityPK getId() {
-        return id;
-    }
+	/**
+	 * @return Get {@link CostEntity#id}
+	 */
+	public RequirementEntityPK getId() {
+		return id;
+	}
 
-    /**
-     * @param id The {@link RequirementEntity#id} to set
-     */
-    public void setId(final RequirementEntityPK id) {
-        this.id = id;
-    }
+	/**
+	 * @param id The {@link RequirementEntityPK} to set
+	 */
+	public void setId(final RequirementEntityPK id) {
+		this.id = id;
+	}
 
-    /**
-     * @return Get {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
-     *
-    public BuyableEntityFacetImpl getBuyableFacet() {
-        return buyable;
-    }
+	/**
+	 * @return the Buyable item
+	 */
+	public BuyableEntityFacet getBuyableFacet() {
+		return buyableFacet;
+	}
 
-    /**
-     * @param buyable The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
-     *
-    public void setBuyableFacet(final BuyableEntityFacetImpl buyable) {
-        this.buyable = buyable;
-    }
+	/**
+	 * @param buyableFacet The Buyable item to set
+	 */
+	public void setBuyableFacet(final BuyableEntityFacetImpl buyableFacet) {
+		this.buyableFacet = buyableFacet;
+	}
 
-    /**
-     * @return Get the required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}
-     *
-    public BuyableEntityFacetImpl getRequiredBuyable() {
-        return requiredBuyable;
-    }
+	/**
+	 * Get the required buyable item.
+	 *
+	 * @return the required buyable item.
+	 */
+	public BuyableEntityFacet getRequiredBuyableFacet() {
+		return requiredBuyableFacet;
+	}
 
-    /**
-     * @param requiredBuyable The required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl} to set
-     *
-    public void setRequiredBuyable(final BuyableEntityFacetImpl requiredBuyable) {
-        this.requiredBuyable = requiredBuyable;
-    }
-                              */
+	/**
+	 * Set the required buyable item.
+	 *
+	 * @param requiredBuyableFacet The required buyable item to set
+	 */
+	public void setRequiredBuyableFacet(final BuyableEntityFacetImpl requiredBuyableFacet) {
+		this.requiredBuyableFacet = requiredBuyableFacet;
+	}
 
 }

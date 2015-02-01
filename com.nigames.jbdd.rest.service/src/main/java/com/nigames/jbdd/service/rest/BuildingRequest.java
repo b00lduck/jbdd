@@ -1,10 +1,8 @@
 package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.BuildingRequestInterface;
-import com.nigames.jbdd.rest.dto.Building;
-import com.nigames.jbdd.rest.dto.Cost;
-import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.Good;
+import com.nigames.jbdd.rest.dto.*;
+import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.service.rest.facet.BuyableRequestFacet;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
@@ -77,12 +75,12 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
     @Override
     @GET
     @Path("/{itemId}/cost/addable")
-    public DtoList<Good> getAddableCosts(@PathParam("itemId") final long itemId,
-                                         @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-                                         @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-                                         @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-                                         @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
-        return buyableRequestFacet.getAddableCosts(itemId, first, size, sort, desc);
+    public DtoList<Good> getAddableCostGoods(@PathParam("itemId") final long itemId,
+                                             @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+                                             @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+                                             @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+                                             @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
+	    return buyableRequestFacet.getAddableCostGoods(itemId, first, size, sort, desc);
     }
 
     @Override
@@ -105,5 +103,43 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
     public Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto) {
         return buyableRequestFacet.updateCost(itemId, dto);
     }
+
+	@GET
+	@Path("/{itemId}/requirement")
+	public DtoList<Requirement> getRequirements(@PathParam("itemId") final long itemId,
+	                                            @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                                            @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                                            @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                                            @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
+		return buyableRequestFacet.getRequirements(itemId, first, size, sort, desc);
+	}
+
+	@GET
+	@Path("/{itemId}/requirement/addable")
+	public DtoList<Buyable> getAddableRequirementBuyables(@PathParam("itemId") final long itemId,
+	                                                      @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                                                      @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                                                      @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                                                      @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
+		return buyableRequestFacet.getAddableRequirementBuyables(itemId, first, size, sort, desc);
+	}
+
+	@POST
+	@Path("/{itemId}/requirement")
+	public Requirement createRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {
+		return buyableRequestFacet.createRequirement(itemId, dto);
+	}
+
+	@DELETE
+	@Path("/{itemId}/requirement/{requiredBuyableId}")
+	public void deleteRequirement(@PathParam("itemId") final long itemId, @PathParam("requiredBuyableId") final long requiredBuyableId) {
+		buyableRequestFacet.deleteRequirement(itemId, requiredBuyableId);
+	}
+
+	@PUT
+	@Path("/{itemId}/requirement/")
+	public Requirement updateRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {
+		return buyableRequestFacet.updateRequirement(itemId, dto);
+	}
 
 }

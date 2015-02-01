@@ -1,6 +1,7 @@
 package com.nigames.jbdd.service.service.item.facet;
 
 import com.nigames.jbdd.rest.dto.Good;
+import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 
@@ -17,5 +18,8 @@ public interface BuyableFacetService {
 
 	long getAddableCostGoodsCount(long buyableId);
 
+	List<Buyable> getAddableRequirementBuyables(long buyableId, LimitParams limitParams, SortParams sortParams);
+
+	long getAddableRequirementBuyablesCount(long buyableId);
 
 }

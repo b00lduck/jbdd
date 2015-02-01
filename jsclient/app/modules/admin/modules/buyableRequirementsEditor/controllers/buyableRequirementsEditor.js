@@ -3,13 +3,13 @@
 
 define(['angularAMD', 'DataService'], function (angularAMD) {
 
-    angularAMD.controller('BuyableCostEditorController', ['$scope', 'DataService', '$q', '$translate',
+    angularAMD.controller('BuyableRequirementsEditorController', ['$scope', 'DataService', '$q', '$translate',
 
         function ($scope, DataService, $q, $translate) {
 
 
-            function editCost(goodId, amount) {
-                DataService.updateCost($scope.resourceName, $scope.getBuyableId(), goodId, amount).then(
+            function editRequirement(buyableId, amount) {
+                DataService.updateCost($scope.resourceName, $scope.getBuyableId(), buyableId, amount).then(
                     function (payload) {
                     },
                     function () {
@@ -20,7 +20,7 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
             $scope.doubleGridConfig = {
 
-                panelTitle: 'admin.doubleGrid.buyableCostEditor.header',
+                panelTitle: 'admin.doubleGrid.buyableRequirementsEditor.header',
 
                 leftGridConfig: {
                     columnDefs: [
@@ -52,24 +52,24 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                 },
 
                 getLeftGridData: function () {
-                    return DataService.getBuyableCosts($scope.resourceName, $scope.getBuyableId());
+                    return DataService.getBuyableRequirements($scope.resourceName, $scope.getBuyableId());
                 },
 
                 getRightGridData: function () {
-                    return DataService.getAddableCostGoods($scope.resourceName, $scope.getBuyableId());
+                    return DataService.getAddableRequirementBuyables($scope.resourceName, $scope.getBuyableId());
                 },
 
                 moveItemToLeft: function (obj) {
-                    return DataService.addCostToBuyable($scope.resourceName, $scope.getBuyableId(), obj.id);
+                    return DataService.addRequirementToBuyable($scope.resourceName, $scope.getBuyableId(), obj.id);
                 },
 
                 moveItemToRight: function (obj) {
-                    return DataService.removeCostFromBuyable($scope.resourceName, $scope.getBuyableId(), obj.goodId);
+                    return DataService.removeRequirementFromBuyable($scope.resourceName, $scope.getBuyableId(), obj.buyableId);
                 },
 
                 onRegisterLeftApi: function (gridApi) {
                     gridApi.edit.on.afterCellEdit($scope, function (rowEntity, colDef, newValue, oldValue) {
-                        editCost(rowEntity.goodId, rowEntity.amount);
+                        editRequirement(rowEntity.buyableId, rowEntity.amount);
                     });
                 },
 

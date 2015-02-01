@@ -49,7 +49,8 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 
 		// On the contrary to the other converters, in this particulary case the ID has to be set.
 		// (composite key which is not auto generated)
-		entity.setId(new CostEntityPK(dto.getBuyableId(), dto.getGoodId()));
+		final CostEntityPK costEntityPK = new CostEntityPK(dto.getBuyableId(), dto.getGoodId());
+		entity.setId(costEntityPK);
 
 		final BuyableEntityFacetImpl buyableFacet = entityManager.find(BuyableEntityFacetImpl.class,
 				dto.getBuyableId());

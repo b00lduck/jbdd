@@ -22,8 +22,8 @@ import javax.persistence.*;
 })
 public class CostEntity extends AbstractBuyableSubItemEntity {
 
-    public static final String NQ_BY_BUYABLE_ID = "CostEntity.findByBuyableId";
-    public static final String NQ_COUNT_BY_BUYABLE_ID = "CostEntity.countByBuyableId";
+	public static final String NQ_COUNT_BY_BUYABLE_ID = "CostEntity.0";
+	public static final String NQ_BY_BUYABLE_ID = "CostEntity.1";
 
     /**
      * The embedded primary key.
