@@ -38,6 +38,14 @@ public interface ConversionServiceInterface<EntityType, DtoType extends IsDto> {
      */
     void updateEntity(final DtoType dto, final EntityType entity);
 
+	/**
+	 * Updates the given DTO with data from the given entity.
+	 *
+	 * @param entity Source entity
+	 * @param dto    Target dto
+	 */
+	void updateDto(final EntityType entity, final DtoType dto);
+
     /**
      * Converts the given list of entities into an list of DTOs.
      *

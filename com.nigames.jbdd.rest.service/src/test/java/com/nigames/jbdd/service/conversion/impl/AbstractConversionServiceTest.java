@@ -16,59 +16,59 @@ import java.util.List;
  */
 public abstract class AbstractConversionServiceTest<DtoType extends IsDto, EntityType> {
 
-    protected static final String TEST_SMALLIMAGE_PATH = "TestSmallImagePath";
+	protected static final String TEST_SMALLIMAGE_PATH = "TestSmallImagePath";
 
-    private final List<ConversionServiceTestModuleInterface> moduleList = new ArrayList<ConversionServiceTestModuleInterface>();
+	private final List<ConversionServiceTestModuleInterface> moduleList = new ArrayList<ConversionServiceTestModuleInterface>();
 
-    public AbstractConversionServiceTest() {
-        addModules();
-    }
+	public AbstractConversionServiceTest() {
+		addModules();
+	}
 
-    protected abstract AbstractConversionService<EntityType, DtoType> getConversionService();
+	protected abstract AbstractConversionService<EntityType, DtoType> getConversionService();
 
-    protected abstract void fillEntity(final EntityType entity);
+	protected abstract void fillEntity(final EntityType entity);
 
-    protected abstract void checkDto(final DtoType dto);
+	protected abstract void checkDto(final DtoType dto);
 
-    protected abstract void fillDto(final DtoType dto);
+	protected abstract void fillDto(final DtoType dto);
 
-    protected abstract void checkEntity(final EntityType entity);
+	protected abstract void checkEntity(final EntityType entity);
 
-    void addModule(final ConversionServiceTestModuleInterface module) {
-        moduleList.add(module);
-    }
+	void addModule(final ConversionServiceTestModuleInterface module) {
+		moduleList.add(module);
+	}
 
-    protected abstract void addModules();
+	protected abstract void addModules();
 
-    @Test
-    public void entityToDtoConversionTest() {
-        EntityType entity = getConversionService().getNewEntityInstance();
+	@Test
+	public void entityToDtoConversionTest() {
+		EntityType entity = getConversionService().getNewEntityInstance();
 
-        for (ConversionServiceTestModuleInterface module : moduleList) {
-            module.fillEntity(entity);
-        }
+		for (ConversionServiceTestModuleInterface module : moduleList) {
+			module.fillEntity(entity);
+		}
 
-        fillEntity(entity);
-        DtoType dto = getConversionService().convertToDto(entity);
+		fillEntity(entity);
+		DtoType dto = getConversionService().convertToDto(entity);
 
-        for (ConversionServiceTestModuleInterface module : moduleList) {
-            module.checkDto(dto);
-        }
-        checkDto(dto);
-    }
+		for (ConversionServiceTestModuleInterface module : moduleList) {
+			module.checkDto(dto);
+		}
+		checkDto(dto);
+	}
 
-    @Test
-    @Ignore
-    public void dtoToEntityConversionTest() {
-	    DtoType dto = getConversionService().getNewDtoInstance(null);
-	    for (ConversionServiceTestModuleInterface module : moduleList) {
-            module.fillDto(dto);
-        }
-        fillDto(dto);
-        EntityType entity = getConversionService().convertToEntity(dto);
-        for (ConversionServiceTestModuleInterface module : moduleList) {
-            module.checkEntity(entity);
-        }
-        checkEntity(entity);
-    }
+	@Test
+	@Ignore
+	public void dtoToEntityConversionTest() {
+		DtoType dto = getConversionService().getNewDtoInstance(null);
+		for (ConversionServiceTestModuleInterface module : moduleList) {
+			module.fillDto(dto);
+		}
+		fillDto(dto);
+		EntityType entity = getConversionService().convertToEntity(dto);
+		for (ConversionServiceTestModuleInterface module : moduleList) {
+			module.checkEntity(entity);
+		}
+		checkEntity(entity);
+	}
 }
