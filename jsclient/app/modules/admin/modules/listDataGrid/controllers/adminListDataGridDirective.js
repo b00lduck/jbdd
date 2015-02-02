@@ -4,8 +4,8 @@
 define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], function (angularAMD, adminConstants) {
 
     angularAMD.controller('AdminListDataGridDirectiveController',
-        ['$scope', '$rootScope', '$translate', 'DataService', '$location', '$modal',
-            function ($scope, $rootScope, $translate, DataService, $location, $modal) {
+        ['$scope', '$rootScope', '$translate', 'DataService', '$location', '$modal', 'uiGridConstants',
+            function ($scope, $rootScope, $translate, DataService, $location, $modal, uiGridConstants) {
 
                 var resourceName,
                     configuration;

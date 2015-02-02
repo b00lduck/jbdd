@@ -38,6 +38,18 @@ define(['angularAMD',
                     columnDefs: [
                         {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
                     ]
+                },
+
+                'technology': {
+                    columnDefs: [
+                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                    ]
+                },
+
+                'job': {
+                    columnDefs: [
+                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                    ]
                 }
 
             };
