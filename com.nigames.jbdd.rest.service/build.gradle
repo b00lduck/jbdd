@@ -81,7 +81,9 @@ dependencies {
 			[group: 'org.aspectj', 					name: 'aspectjrt',     					version: aspectjVersion],
 
 			[group: 'org.jboss.resteasy',      		name: 'resteasy-spring', 				version: restEasyVersion],
-			[group: 'org.jboss.resteasy',      		name: 'resteasy-jackson-provider', 		version: restEasyVersion]
+            [group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: restEasyVersion],
+
+
 	)
 
 	testCompile(

@@ -5,7 +5,6 @@ import com.nigames.jbdd.rest.dto.*;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.service.rest.facet.BuyableRequestFacet;
 import com.nigames.jbdd.service.service.item.BuildingService;
-import com.nigames.jbdd.service.service.item.GoodService;
 import com.nigames.jbdd.statics.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,9 +17,6 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 
 	@Autowired
 	private BuildingService buildingService;
-
-	@Autowired
-	private GoodService goodService;
 
 	@Autowired
 	private BuyableRequestFacet buyableRequestFacet;

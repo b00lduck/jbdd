@@ -94,8 +94,7 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable (name = "user_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
-			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"})
-			)
+			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"}))
 	@Enumerated(EnumType.ORDINAL)
 	private List<UserRoleEnum> userRoleList = new ArrayList<>();
 
