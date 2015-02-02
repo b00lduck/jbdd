@@ -29,6 +29,7 @@ DROP TABLE IF EXISTS `jbdd_devel`.`weight_facet`;
 DROP TABLE IF EXISTS `jbdd_devel`.`buyable_facet`;
 DROP TABLE IF EXISTS `jbdd_devel`.`item_building`;
 DROP TABLE IF EXISTS `jbdd_devel`.`item_good`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_job`;
 DROP TABLE IF EXISTS `jbdd_devel`.`item_technology`;
 DROP TABLE IF EXISTS `jbdd_devel`.`item_storagetype`;
 DROP TABLE IF EXISTS `jbdd_devel`.`facet_buyable`;

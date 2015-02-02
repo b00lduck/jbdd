@@ -93,10 +93,10 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	 */
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable (name = "user_roles",
-			joinColumns = @JoinColumn(name="userId"),
-			uniqueConstraints = @UniqueConstraint(columnNames = {"userId", "userRoleList"})
+			joinColumns = @JoinColumn(name = "user_id"),
+			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"})
 			)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private List<UserRoleEnum> userRoleList = new ArrayList<>();
 
 	/**
@@ -133,16 +133,8 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 		return userRoleList;
 	}
 
-	public final void setUserRoleList(final List<UserRoleEnum> userRoleList) {
-		this.userRoleList = userRoleList;
-	}
-
 	public final List<PlayerEntity> getPlayerList() {
 		return playerList;
-	}
-
-	public final void setPlayerList(final List<PlayerEntity> playerList) {
-		this.playerList = playerList;
 	}
 
 	@Override
