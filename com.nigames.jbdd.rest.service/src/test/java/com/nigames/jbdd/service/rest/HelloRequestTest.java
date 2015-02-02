@@ -14,7 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @SpringApplicationConfiguration(classes = TestApplicationConfig.class)
 @WebAppConfiguration
 @IntegrationTest("server.port:8888")
-@Ignore
 public class HelloRequestTest {
 
     @Test

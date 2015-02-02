@@ -56,6 +56,7 @@ configure(allprojects) { project ->
 	ext.javaxPersistenceVersion = '2.1.0'
 	ext.javaxValidationVersion = '1.1.0.Final'
 	ext.javaxServletVersion = '3.1.0'
+    ext.javaxJstlVersion = '1.2'
 
 	ext.hibernateVersion = '4.3.7.Final'
 

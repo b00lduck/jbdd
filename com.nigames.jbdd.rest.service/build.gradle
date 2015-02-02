@@ -69,6 +69,8 @@ dependencies {
 
 			[group: 'javax.servlet',  				name: 'javax.servlet-api', 				version: javaxServletVersion],
 
+            [group: 'javax.servlet',                name: 'jstl',                           version: javaxJstlVersion],
+
 			[group: 'org.hibernate',  				name: 'hibernate-entitymanager', 		version: hibernateVersion],
 			[group: 'org.hibernate',  				name: 'hibernate-validator', 			version: hibernateVersion],
 			[group: 'org.hibernate',  				name: 'hibernate-core', 				version: hibernateVersion],
