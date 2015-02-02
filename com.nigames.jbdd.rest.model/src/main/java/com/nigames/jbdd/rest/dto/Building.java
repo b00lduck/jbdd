@@ -1,7 +1,11 @@
 package com.nigames.jbdd.rest.dto;
 
 import com.nigames.jbdd.rest.dto.facet.*;
+import com.nigames.jbdd.statics.Constants;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,14 +13,23 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-
 public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
+
+
+
+
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
 	private final Buyable buyable = new BuyableImpl();
 	private final Deletable deletable = new DeletableImpl();
+
+	public Building () {
+
+		final String xxx = "XXX";
+
+	}
 
 	@Override
 	public boolean isEnabled() {

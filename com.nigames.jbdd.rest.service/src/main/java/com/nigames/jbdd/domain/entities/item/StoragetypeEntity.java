@@ -1,5 +1,7 @@
 package com.nigames.jbdd.domain.entities.item;
 
+import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
+
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,11 +18,20 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class StoragetypeEntity extends AbstractItemEntity {
 
+	/**
+	 * Create instance and setup/link facet instances.
+	 */
+	public static StoragetypeEntity newInstance() {
+		final StoragetypeEntity entity = new StoragetypeEntity();
+		initInstance(entity);
+		return entity;
+	}
+
     //@Override
     //public Long getNumReferences() {
     //	return 0L;
     //}
 
-    // TODO: implements getNumReferences
+    // TODO: implement getNumReferences
 
 }

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class BuildingConversionService extends AbstractConversionService<BuildingEntity, Building> {
 
     @Autowired
-    private transient NameDescConversionServiceModule nameDescConversionServiceModule;
+    private NameDescConversionServiceModule nameDescConversionServiceModule;
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public BuildingEntity getNewEntityInstance() {
@@ -22,7 +22,7 @@ public class BuildingConversionService extends AbstractConversionService<Buildin
     }
 
     @Override
-    public Building getNewDtoInstance(Class<?> entityClass) {
+    public Building getNewDtoInstance(final Class<?> entityClass) {
         return new Building();
     }
 

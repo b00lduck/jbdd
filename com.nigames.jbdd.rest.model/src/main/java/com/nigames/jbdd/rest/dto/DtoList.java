@@ -10,9 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
-@XmlSeeAlso({User.class, UserRole.class, Player.class, Good.class, Job.class, Storagetype.class})
+@XmlSeeAlso({
+		Building.class,
+		Cost.class,
+		Good.class,
+		Job.class,
+		Player.class,
+		PlayerBuilding.class,
+		PlayerPeople.class,
+		PlayerResource.class,
+		PlayerTechnology.class,
+		Requirement.class,
+		Storagetype.class,
+		Technology.class,
+		User.class,
+		UserRole.class
+})
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class DtoList<T> {
+
+	public DtoList() {
+	}
 
 	public DtoList(final List<T> data, final long total, final LimitParams limitParams) {
 		setData(data);

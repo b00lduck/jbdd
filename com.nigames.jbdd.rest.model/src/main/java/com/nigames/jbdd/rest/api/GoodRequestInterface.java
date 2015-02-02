@@ -1,6 +1,9 @@
 package com.nigames.jbdd.rest.api;
 
+import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
+import com.nigames.jbdd.statics.Constants;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;

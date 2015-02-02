@@ -18,7 +18,7 @@ public class JobConversionService extends AbstractConversionService<JobEntity, J
 
     @Override
     public JobEntity getNewEntityInstance() {
-        return new JobEntity();
+        return JobEntity.newInstance();
     }
 
     @Override

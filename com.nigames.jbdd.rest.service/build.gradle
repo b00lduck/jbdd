@@ -17,8 +17,8 @@ compileAspect {
 
 dependencies {
 	aspectpath(
-			[group: 'org.springframework',          name: 'spring-facet',          		version: springVersion],
-			[group: 'org.springframework.security', name: 'spring-security-facet', 		version: springSecurityVersion],
+			[group: 'org.springframework',          name: 'spring-aspects',          		version: springVersion],
+			[group: 'org.springframework.security', name: 'spring-security-aspects', 		version: springSecurityVersion],
 	)
 	compile(
 			[project(":${group}.rest.model")],
@@ -34,7 +34,7 @@ dependencies {
 			[group: 'org.springframework', 			name: 'spring-beans',       			version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-context', 				version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-aop',     				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-facet', 				version: springVersion],
+			[group: 'org.springframework', 			name: 'spring-aspects', 				    version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-web',     				version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-webmvc',  				version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-tx',      				version: springVersion],
@@ -52,7 +52,7 @@ dependencies {
 			[group: 'org.springframework.security', name: 'spring-security-taglibs',    	version: springSecurityVersion],
 			[group: 'org.springframework.security', name: 'spring-security-web',    		version: springSecurityVersion],
 			[group: 'org.springframework.security', name: 'spring-security-config', 		version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-facet', 		version: springSecurityVersion],
+			[group: 'org.springframework.security', name: 'spring-security-aspects', 		version: springSecurityVersion],
 
 			[group: 'org.springframework.plugin', 	name: 'spring-plugin-core',     		version: springPluginVersion],
 

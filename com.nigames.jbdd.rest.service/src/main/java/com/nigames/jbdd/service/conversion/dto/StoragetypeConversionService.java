@@ -12,14 +12,14 @@ public class StoragetypeConversionService extends
         AbstractConversionService<StoragetypeEntity, Storagetype> {
 
     @Autowired
-    private transient NameDescConversionServiceModule nameDescConversionServiceModule;
+    private NameDescConversionServiceModule nameDescConversionServiceModule;
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public StoragetypeEntity getNewEntityInstance() {
-        return new StoragetypeEntity();
+        return StoragetypeEntity.newInstance();
     }
 
     @Override

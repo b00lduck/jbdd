@@ -20,6 +20,15 @@ public class JobEntity extends AbstractItemEntity {
     @JoinColumn(updatable = false, insertable = false)
     private BuildingEntity referencedBuilding;
 
+	/**
+	 * Create instance and setup/link facet instances.
+	 */
+	public static JobEntity newInstance() {
+		final JobEntity entity = new JobEntity();
+		initInstance(entity);
+		return entity;
+	}
+
     BuildingEntity getReferencedBuilding() {
         return referencedBuilding;
     }
