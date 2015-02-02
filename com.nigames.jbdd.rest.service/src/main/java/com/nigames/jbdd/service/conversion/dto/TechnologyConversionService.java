@@ -12,10 +12,10 @@ public class TechnologyConversionService extends
         AbstractConversionService<TechnologyEntity, Technology> {
 
     @Autowired
-    private transient NameDescConversionServiceModule nameDescConversionServiceModule;
+    private NameDescConversionServiceModule nameDescConversionServiceModule;
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public TechnologyEntity getNewEntityInstance() {
@@ -23,7 +23,7 @@ public class TechnologyConversionService extends
     }
 
     @Override
-    public Technology getNewDtoInstance(Class<?> entityClass) {
+    public Technology getNewDtoInstance(final Class<?> entityClass) {
         return new Technology();
     }
 

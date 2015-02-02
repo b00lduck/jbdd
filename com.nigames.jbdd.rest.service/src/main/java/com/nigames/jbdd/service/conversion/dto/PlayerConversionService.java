@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class PlayerConversionService extends AbstractConversionService<PlayerEntity, Player> {
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public PlayerEntity getNewEntityInstance() {
@@ -18,7 +18,7 @@ public class PlayerConversionService extends AbstractConversionService<PlayerEnt
     }
 
     @Override
-    public Player getNewDtoInstance(Class<?> entityClass) {
+    public Player getNewDtoInstance(final Class<?> entityClass) {
         return new Player();
     }
 

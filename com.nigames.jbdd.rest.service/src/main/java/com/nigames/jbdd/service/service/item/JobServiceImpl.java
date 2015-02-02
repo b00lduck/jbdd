@@ -6,8 +6,8 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.JobConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.JobQueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,10 +25,10 @@ import java.util.List;
 public class JobServiceImpl extends AbstractDtoService<Job, JobEntity> implements JobService {
 
     @Autowired
-    private transient JobConversionService jobConversionService;
+    private JobConversionService jobConversionService;
 
     @Autowired
-    private transient JobQueryStrategy jobQueryStrategy;
+    private JobQueryStrategy jobQueryStrategy;
 
     @Override
     @Transactional

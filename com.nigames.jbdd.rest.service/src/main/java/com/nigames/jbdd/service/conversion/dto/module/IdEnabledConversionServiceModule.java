@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 public class IdEnabledConversionServiceModule implements ConversionServiceModuleInterface {
 
     @Autowired
-    private transient IdConversionServiceModule idConversionServiceModule;
+    private IdConversionServiceModule idConversionServiceModule;
 
     @Autowired
-    private transient EnabledConversionServiceModule enabledConversionServiceModule;
+    private EnabledConversionServiceModule enabledConversionServiceModule;
 
     @Override
     public void updateDtoFromEntity(final IsDto dto, final Object entity) {

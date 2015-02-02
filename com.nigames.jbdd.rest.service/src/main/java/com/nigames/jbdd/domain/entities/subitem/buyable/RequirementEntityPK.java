@@ -32,7 +32,7 @@ public class RequirementEntityPK implements Serializable {
 	public RequirementEntityPK() {
 	}
 
-	public RequirementEntityPK(long buyableId, long requiredBuyableId) {
+	public RequirementEntityPK(final long buyableId, final long requiredBuyableId) {
 		this.buyableId = buyableId;
 		this.requiredBuyableId = requiredBuyableId;
 	}
@@ -55,10 +55,10 @@ public class RequirementEntityPK implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (null == buyableId ? 0 : buyableId.hashCode());
-        result =
-                prime * result + (null == requiredBuyableId ? 0 : requiredBuyableId.hashCode());
-        return result;
+	    result = (prime * result) + ((null == buyableId) ? 0 : buyableId.hashCode());
+	    result =
+			    (prime * result) + ((null == requiredBuyableId) ? 0 : requiredBuyableId.hashCode());
+	    return result;
     }
 
     @SuppressWarnings("VariableNotUsedInsideIf")

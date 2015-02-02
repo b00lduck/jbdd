@@ -56,9 +56,10 @@ public final class UserPlayerQueryStrategy extends AbstractQueryStrategy<PlayerE
 					return PlayerEntity.NQ_BY_USER_SORTED_BY_NICKNAME;
 				}
 
-		}
+			default:
+				return PlayerEntity.NQ_BY_USER_SORTED_BY_ID;
 
-		return PlayerEntity.NQ_BY_USER_SORTED_BY_ID;
+		}
 
 	}
 

@@ -11,7 +11,7 @@ public class PlayerTechnologyConversionService extends
         AbstractConversionService<PlayerAssignedTechnologyEntity, PlayerTechnology> {
 
     @Autowired
-    private transient IdConversionServiceModule idConversionServiceModule;
+    private IdConversionServiceModule idConversionServiceModule;
 
     @Override
     protected void addModules() {
@@ -24,7 +24,7 @@ public class PlayerTechnologyConversionService extends
     }
 
     @Override
-    public PlayerTechnology getNewDtoInstance(Class<?> entityClass) {
+    public PlayerTechnology getNewDtoInstance(final Class<?> entityClass) {
         return new PlayerTechnology();
     }
 

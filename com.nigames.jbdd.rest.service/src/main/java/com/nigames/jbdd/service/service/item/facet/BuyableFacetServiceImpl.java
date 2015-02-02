@@ -82,11 +82,11 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	@Override
 	public List<Buyable> getAddableRequirementBuyables(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
 
-		List<Building> buildingList = buildingService.findAll(LimitParams.createDefault(), SortParams.createDefault());
-		@SuppressWarnings("unchecked")
+		final List<Building> buildingList = buildingService.findAll(LimitParams.createDefault(), SortParams.createDefault());
+		@SuppressWarnings("unchecked") final
 		List<Buyable> buyableList = (List) buildingList;
 
-		List<Buyable> ret = new ArrayList<>();
+		final List<Buyable> ret = new ArrayList<>();
 
 		for (final Buyable b : buyableList) {
 
@@ -113,7 +113,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	}
 
 	@Override
-	public long getAddableRequirementBuyablesCount(long buyableId) {
+	public long getAddableRequirementBuyablesCount(final long buyableId) {
 		return buildingService.getCount();
 	}
 }

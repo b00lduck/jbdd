@@ -55,7 +55,7 @@ public class ProductionEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param id The {@link ProductionEntity#id} to set
+     * @param id The {@link ProductionEntity#id} to setLang
      */
     public void setId(final ProductionEntityPK id) {
         this.id = id;
@@ -69,7 +69,7 @@ public class ProductionEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param building The {@link BuildingEntity} to set
+     * @param building The {@link BuildingEntity} to setLang
      */
     public void setBuilding(final BuildingEntity building) {
         this.building = building;
@@ -83,7 +83,7 @@ public class ProductionEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param good The {@link com.nigames.jbdd.domain.entities.item.GoodEntity} to set
+     * @param good The {@link com.nigames.jbdd.domain.entities.item.GoodEntity} to setLang
      */
     public void setGood(final GoodEntity good) {
         this.good = good;

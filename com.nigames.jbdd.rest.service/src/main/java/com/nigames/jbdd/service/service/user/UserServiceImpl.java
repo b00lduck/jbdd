@@ -11,10 +11,10 @@ import com.nigames.jbdd.service.rest.exceptionprovider.InsufficientPermissionsEx
 import com.nigames.jbdd.service.rest.exceptionprovider.UsernameAlreadyInUseException;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.RandomPasswordGenerator;
-import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.types.SortParams;
 import com.nigames.jbdd.service.service.querystrategy.UserQueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,16 +42,16 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
-    private transient PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private transient UserConversionService userConversionService;
+    private UserConversionService userConversionService;
 
     @Autowired
-    private transient UserQueryStrategy userSortStrategy;
+    private UserQueryStrategy userSortStrategy;
 
     @Autowired
-    private transient RandomPasswordGenerator randomPasswordGenerator;
+    private RandomPasswordGenerator randomPasswordGenerator;
 
     private static void sendPasswordViaEmail(final User user) {
         LOG.warn("Email sending not implemented.");
@@ -242,7 +242,8 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         return userConversionService.convertToDtoWithPassword(entity);
     }
 
-    @Transactional
+	@Override
+	@Transactional
     public boolean isUsernameExisting(final String username) {
         final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_USERNAME);
         query.setParameter("username", username);
@@ -294,8 +295,8 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
     private void setUserPassword(final User user, final boolean sendPassword) {
         if (sendPassword) {
-            LOG.info("user {} will get its new password via email", user.getUsername());
-            sendPasswordViaEmail(user);
+	        LOG.info("user {} will getLang its new password via email", user.getUsername());
+	        sendPasswordViaEmail(user);
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -329,8 +330,8 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
             }
         }
 
-        // get original DTO
-        final User originalUser = findById(id);
+	    // getLang original DTO
+	    final User originalUser = findById(id);
 
         if (!originalUser.getUsername().equals(user.getUsername())) {
             // Username has changed

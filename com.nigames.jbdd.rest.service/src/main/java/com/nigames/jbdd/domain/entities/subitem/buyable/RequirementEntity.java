@@ -54,7 +54,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 	}
 
 	/**
-	 * @param id The {@link RequirementEntityPK} to set
+	 * @param id The {@link RequirementEntityPK} to setLang
 	 */
 	public void setId(final RequirementEntityPK id) {
 		this.id = id;
@@ -68,7 +68,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 	}
 
 	/**
-	 * @param buyableFacet The Buyable item to set
+	 * @param buyableFacet The Buyable item to setLang
 	 */
 	public void setBuyableFacet(final BuyableEntityFacetImpl buyableFacet) {
 		this.buyableFacet = buyableFacet;
@@ -86,7 +86,7 @@ public class RequirementEntity extends AbstractBuyableSubItemEntity {
 	/**
 	 * Set the required buyable item.
 	 *
-	 * @param requiredBuyableFacet The required buyable item to set
+	 * @param requiredBuyableFacet The required buyable item to setLang
 	 */
 	public void setRequiredBuyableFacet(final BuyableEntityFacetImpl requiredBuyableFacet) {
 		this.requiredBuyableFacet = requiredBuyableFacet;

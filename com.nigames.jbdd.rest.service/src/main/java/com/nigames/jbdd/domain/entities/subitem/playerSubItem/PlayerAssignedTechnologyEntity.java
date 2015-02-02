@@ -33,7 +33,7 @@ public class PlayerAssignedTechnologyEntity extends PlayerAssignedBuyableEntity 
     }
 
     /**
-     * @param stage The {@link PlayerAssignedBuildingEntity#stage} to set
+     * @param stage The {@link PlayerAssignedBuildingEntity#stage} to setLang
      */
     public void setStage(final Integer stage) {
         this.stage = stage;

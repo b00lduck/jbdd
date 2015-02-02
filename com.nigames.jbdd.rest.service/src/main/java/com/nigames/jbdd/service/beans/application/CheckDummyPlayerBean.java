@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * foreign key constraint of the playerSubItem object. This bean is configured in
  * {@link com.nigames.jbdd.service.config.dev.CreateDefaultUsersConfig} where
  * dummyPlayerUsername, dummyPlayerPassword and numberOfDummyPlayers are
- * set.
+ * setLang.
  */
 @SuppressWarnings("CallToNumericToString")
 public class CheckDummyPlayerBean extends AbstractCheckUserBean {
@@ -29,7 +29,7 @@ public class CheckDummyPlayerBean extends AbstractCheckUserBean {
      * The number of dummy {@link PlayerEntity} to be created.
      */
     @SuppressWarnings("FieldHasSetterButNoGetter")
-    private transient Integer numberOfDummyPlayers;
+    private Integer numberOfDummyPlayers;
 
     public void doChecks() {
         for (Integer i = 1; i <= numberOfDummyPlayers; i++) {

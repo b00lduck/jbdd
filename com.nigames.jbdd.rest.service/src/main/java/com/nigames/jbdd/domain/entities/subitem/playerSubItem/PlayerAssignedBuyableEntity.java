@@ -1,9 +1,9 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
-import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 /**
  * Abstract Database entity for Players Buyables. This represents the buyables a a game character

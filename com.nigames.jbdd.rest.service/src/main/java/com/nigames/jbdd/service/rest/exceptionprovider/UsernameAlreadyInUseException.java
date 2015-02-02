@@ -11,7 +11,7 @@ public class UsernameAlreadyInUseException extends RuntimeException {
 
 	private final String username;
 
-	public UsernameAlreadyInUseException(String username) {
+	public UsernameAlreadyInUseException(final String username) {
 		this.username = username;
 	}
 

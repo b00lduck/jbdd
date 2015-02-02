@@ -6,13 +6,11 @@ import com.nigames.jbdd.service.conversion.dto.module.IdEnabledConversionService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class UserConversionService extends AbstractConversionService<UserEntity, User> {
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     protected void addModules() {
@@ -25,13 +23,13 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
     }
 
     @Override
-    public User getNewDtoInstance(Class<?> entityClass) {
+    public User getNewDtoInstance(final Class<?> entityClass) {
         return new User();
     }
 
     public User convertToDtoWithPassword(final UserEntity entity) {
-        User ret = convertToDto(entity);
-        ret.setPassword(entity.getPassword());
+	    final User ret = convertToDto(entity);
+	    ret.setPassword(entity.getPassword());
         return ret;
     }
 
@@ -41,14 +39,15 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
         entity.setEmail(dto.getEmail());
         entity.setEnabled(dto.isEnabled());
 
-        // only set the password if it is provided
-        if (null != dto.getPassword()) {
+	    // only setLang the password if it is provided
+	    if (null != dto.getPassword()) {
             entity.setPassword(dto.getPassword());
         }
 
     }
 
-    protected void updateDtoFromEntity(final User dto, final UserEntity entity) {
+	@Override
+	protected void updateDtoFromEntity(final User dto, final UserEntity entity) {
         dto.setUsername(entity.getUsername());
         dto.setEmail(entity.getEmail());
 
@@ -57,7 +56,7 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
         dto.setRoles(entity.getUserRoleList());
         dto.setNumPlayers(entity.getPlayerList().size());
 
-        dto.setDeletable(!dto.getUsername().equals("admin") && 0 == dto.getNumPlayers());
-    }
+		dto.setDeletable(!"admin".equals(dto.getUsername()) && (0 == dto.getNumPlayers()));
+	}
 
 }

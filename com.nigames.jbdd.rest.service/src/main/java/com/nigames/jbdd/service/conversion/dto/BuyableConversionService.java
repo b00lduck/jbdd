@@ -45,7 +45,7 @@ public class BuyableConversionService extends AbstractConversionService<Abstract
 
 	@Override
 	public void updateEntityFromDto(final Buyable dto, final AbstractItemEntity entity) {
-		if (entity instanceof BuildingEntity && dto instanceof Building) {
+		if ((entity instanceof BuildingEntity) && (dto instanceof Building)) {
 			buildingConversionService.updateEntityFromDto((Building) dto, (BuildingEntity) entity);
 		} else {
 			throw new IllegalArgumentException("invalid DTO or EntityType was provided. DTO:" +

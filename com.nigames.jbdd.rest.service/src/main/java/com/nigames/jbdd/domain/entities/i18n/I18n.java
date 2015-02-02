@@ -17,8 +17,8 @@ public interface I18n {
 
     int getMaxLength();
 
-    String get(String lang);
+	String getLang(String lang);
 
-    void set(String lang, String value);
+	void setLang(String lang, String value);
 
 }

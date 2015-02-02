@@ -10,7 +10,7 @@ import com.nigames.jbdd.domain.entities.auth.UserEntity;
  * it is only there to satisfy the foreign key constraint of the playerSubItem object.
  * This bean is configured in
  * {@link com.nigames.jbdd.service.config.dev.CreateDefaultUsersConfig} where
- * defaultPlayerUsername and defaultPlayerPassword are set.
+ * defaultPlayerUsername and defaultPlayerPassword are setLang.
  */
 public class CheckDefaultPlayerBean extends AbstractCheckUserBean {
 

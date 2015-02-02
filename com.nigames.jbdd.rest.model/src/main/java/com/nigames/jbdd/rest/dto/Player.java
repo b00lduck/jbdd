@@ -42,7 +42,7 @@ public class Player implements IsDto, Identifiable, CanBeEnabled, Deletable {
 	}
 
 	@Override
-	public void setDeletable(boolean deletable) {
+	public void setDeletable(final boolean deletable) {
 		this.deletable.setDeletable(deletable);
 	}
 

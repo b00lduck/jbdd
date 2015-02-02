@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 public class ApplicationConfigJPA {
 
     @Autowired
-    private transient LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
+    private LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
 
     @Bean
     public EntityManager entityManager() {

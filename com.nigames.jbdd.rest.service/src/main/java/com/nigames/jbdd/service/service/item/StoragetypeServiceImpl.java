@@ -5,10 +5,10 @@ import com.nigames.jbdd.rest.dto.Storagetype;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.StoragetypeConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
-import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.types.SortParams;
 import com.nigames.jbdd.service.service.querystrategy.StoragetypeQueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,10 +26,10 @@ public class StoragetypeServiceImpl extends AbstractDtoService<Storagetype, Stor
         implements StoragetypeService {
 
     @Autowired
-    private transient StoragetypeConversionService storagetypeConversionService;
+    private StoragetypeConversionService storagetypeConversionService;
 
     @Autowired
-    private transient StoragetypeQueryStrategy storagetypeQueryStrategy;
+    private StoragetypeQueryStrategy storagetypeQueryStrategy;
 
     @Override
     @Transactional

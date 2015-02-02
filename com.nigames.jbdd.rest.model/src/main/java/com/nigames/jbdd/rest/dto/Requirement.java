@@ -23,7 +23,7 @@ public class Requirement implements IsDto {
 		return requiredBuyableId;
 	}
 
-	public void setRequiredBuyableId(long requiredBuyableId) {
+	public void setRequiredBuyableId(final long requiredBuyableId) {
 		this.requiredBuyableId = requiredBuyableId;
 	}
 
@@ -31,7 +31,7 @@ public class Requirement implements IsDto {
 		return requiredBuyable;
 	}
 
-	public void setRequiredBuyable(Buyable requiredBuyable) {
+	public void setRequiredBuyable(final Buyable requiredBuyable) {
 		this.requiredBuyable = requiredBuyable;
 	}
 
@@ -39,7 +39,7 @@ public class Requirement implements IsDto {
 		return buyableId;
 	}
 
-	public void setBuyableId(long buyableId) {
+	public void setBuyableId(final long buyableId) {
 		this.buyableId = buyableId;
 	}
 
@@ -47,7 +47,7 @@ public class Requirement implements IsDto {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(final long amount) {
 		this.amount = amount;
 	}
 

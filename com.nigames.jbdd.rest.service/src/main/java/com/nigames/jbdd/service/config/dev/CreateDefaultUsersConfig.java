@@ -13,42 +13,42 @@ public class CreateDefaultUsersConfig {
 
     // admin
     @Value("#{ environment['config.auth.defaultAdminUsername'] }")
-    private transient String defaultAdminUsername;
+    private String defaultAdminUsername;
 
     @Value("#{ environment['config.auth.defaultAdminPassword'] }")
-    private transient String defaultAdminPassword;
+    private String defaultAdminPassword;
 
     @Value("#{ environment['config.auth.defaultAdminEmail'] }")
-    private transient String defaultAdminEmail;
+    private String defaultAdminEmail;
 
     // default
     @Value("#{ environment['config.auth.defaultPlayerUsername'] }")
-    private transient String defaultPlayerUsername;
+    private String defaultPlayerUsername;
 
     @Value("#{ environment['config.auth.defaultPlayerPassword'] }")
-    private transient String defaultPlayerPassword;
+    private String defaultPlayerPassword;
 
     @Value("#{ environment['config.auth.defaultPlayerNickname'] }")
-    private transient String defaultPlayerNickname;
+    private String defaultPlayerNickname;
 
     @Value("#{ environment['config.auth.defaultPlayerEmail'] }")
-    private transient String defaultPlayerEmail;
+    private String defaultPlayerEmail;
 
     // dummies
     @Value("#{ environment['config.auth.dummyPlayerUsername'] }")
-    private transient String dummyPlayerUsername;
+    private String dummyPlayerUsername;
 
     @Value("#{ environment['config.auth.dummyPlayerPassword'] }")
-    private transient String dummyPlayerPassword;
+    private String dummyPlayerPassword;
 
     @Value("#{ environment['config.auth.dummyPlayerNickname'] }")
-    private transient String dummyPlayerNickname;
+    private String dummyPlayerNickname;
 
     @Value("#{ environment['config.auth.dummyPlayerEmail'] }")
-    private transient String dummyPlayerEmail;
+    private String dummyPlayerEmail;
 
     @Value("#{ environment['config.auth.numberOfDummyPlayers'] }")
-    private transient Integer numberOfDummyPlayers;
+    private Integer numberOfDummyPlayers;
 
     /**
      * Configures the CheckAdminUserBean.

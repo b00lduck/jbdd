@@ -46,7 +46,7 @@ public class Cost implements IsDto {
 		return good;
 	}
 
-	public void setGood(Good good) {
+	public void setGood(final Good good) {
 		this.good = good;
 	}
 

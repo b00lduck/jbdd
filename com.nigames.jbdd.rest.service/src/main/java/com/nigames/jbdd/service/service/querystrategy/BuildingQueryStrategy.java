@@ -1,7 +1,6 @@
 package com.nigames.jbdd.service.service.querystrategy;
 
 import com.nigames.jbdd.domain.entities.item.BuildingEntity;
-import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import org.springframework.stereotype.Component;
 
 @Component

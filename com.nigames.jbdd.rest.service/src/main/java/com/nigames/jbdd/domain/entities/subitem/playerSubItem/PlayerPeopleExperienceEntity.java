@@ -55,7 +55,7 @@ public class PlayerPeopleExperienceEntity {
     }
 
     /**
-     * @param playerPeople The {@link PlayerPeopleExperienceEntity#playerPeople} to set
+     * @param playerPeople The {@link PlayerPeopleExperienceEntity#playerPeople} to setLang
      */
     public void setPlayerPeople(final PlayerAssignedPeopleEntity playerPeople) {
         this.playerPeople = playerPeople;
@@ -69,7 +69,7 @@ public class PlayerPeopleExperienceEntity {
     }
 
     /**
-     * @param job The {@link PlayerPeopleExperienceEntity#job} to set
+     * @param job The {@link PlayerPeopleExperienceEntity#job} to setLang
      */
     public void setJob(final JobEntity job) {
         this.job = job;
@@ -83,7 +83,7 @@ public class PlayerPeopleExperienceEntity {
     }
 
     /**
-     * @param id The {@link PlayerPeopleExperienceEntity#id} to set
+     * @param id The {@link PlayerPeopleExperienceEntity#id} to setLang
      */
     public void setId(final PlayerPeopleExperienceEntityPK id) {
         this.id = id;
@@ -97,7 +97,7 @@ public class PlayerPeopleExperienceEntity {
     }
 
     /**
-     * @param experience The {@link PlayerPeopleExperienceEntity#experience} to set
+     * @param experience The {@link PlayerPeopleExperienceEntity#experience} to setLang
      */
     public void setExperience(final Integer experience) {
         this.experience = experience;

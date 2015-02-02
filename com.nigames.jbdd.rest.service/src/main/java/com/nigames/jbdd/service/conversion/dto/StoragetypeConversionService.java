@@ -23,7 +23,7 @@ public class StoragetypeConversionService extends
     }
 
     @Override
-    public Storagetype getNewDtoInstance(Class<?> entityClass) {
+    public Storagetype getNewDtoInstance(final Class<?> entityClass) {
         return new Storagetype();
     }
 

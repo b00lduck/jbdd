@@ -21,19 +21,19 @@ class CreateDefaultUsersBean implements ApplicationListener<ContextRefreshedEven
      * The CheckAdminUserBean.
      */
     @Autowired
-    private transient CheckAdminUserBean checkAdminUserBean;
+    private CheckAdminUserBean checkAdminUserBean;
 
     /**
      * The CheckDefaultUserBean.
      */
     @Autowired
-    private transient CheckDefaultPlayerBean checkDefaultPlayerBean;
+    private CheckDefaultPlayerBean checkDefaultPlayerBean;
 
     /**
      * The CheckDummyPlayerBean.
      */
     @Autowired
-    private transient CheckDummyPlayerBean checkDummyPlayerBean;
+    private CheckDummyPlayerBean checkDummyPlayerBean;
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent event) {

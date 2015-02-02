@@ -18,7 +18,7 @@ public abstract class AbstractJPABackedService<EntityType, DtoType extends IsDto
      * The entity manager.
      */
     @PersistenceContext
-    private transient EntityManager entityManager;
+    private EntityManager entityManager;
 
     protected abstract Class<EntityType> getEntityClass();
 

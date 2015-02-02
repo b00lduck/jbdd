@@ -26,7 +26,7 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 	}
 
 	@Override
-	public Cost getNewDtoInstance(Class<?> entityClass) {
+	public Cost getNewDtoInstance(final Class<?> entityClass) {
 		return new Cost();
 	}
 
@@ -47,7 +47,7 @@ public class CostConversionService extends AbstractConversionService<CostEntity,
 	public void updateEntityFromDto(final Cost dto, final CostEntity entity) {
 		entity.setAmount(dto.getAmount());
 
-		// On the contrary to the other converters, in this particulary case the ID has to be set.
+		// On the contrary to the other converters, in this particulary case the ID has to be setLang.
 		// (composite key which is not auto generated)
 		final CostEntityPK costEntityPK = new CostEntityPK(dto.getBuyableId(), dto.getGoodId());
 		entity.setId(costEntityPK);

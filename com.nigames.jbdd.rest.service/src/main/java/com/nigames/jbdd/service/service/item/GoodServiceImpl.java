@@ -6,8 +6,8 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.GoodConversionService;
 import com.nigames.jbdd.service.service.AbstractDtoService;
 import com.nigames.jbdd.service.service.querystrategy.GoodQueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
+import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,10 +25,10 @@ import java.util.List;
 public class GoodServiceImpl extends AbstractDtoService<Good, GoodEntity> implements GoodService {
 
     @Autowired
-    private transient GoodConversionService goodConversionService;
+    private GoodConversionService goodConversionService;
 
     @Autowired
-    private transient GoodQueryStrategy goodQueryStrategy;
+    private GoodQueryStrategy goodQueryStrategy;
 
     @Override
     @Transactional

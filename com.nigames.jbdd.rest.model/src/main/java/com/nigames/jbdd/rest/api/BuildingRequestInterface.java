@@ -29,6 +29,7 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 	@Path("/")
 	Building create(final Building dto);
 
+	@Override
 	@GET
 	@Path("/{itemId}/cost")
 	DtoList<Cost> getCosts(@PathParam("itemId") final long itemId,
@@ -37,6 +38,7 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 						   @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
 						   @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
+	@Override
 	@GET
 	@Path("/{itemId}/cost/addable")
 	DtoList<Good> getAddableCostGoods(@PathParam("itemId") final long itemId,
@@ -45,14 +47,17 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 	                                  @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
 	                                  @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
+	@Override
 	@POST
 	@Path("/{itemId}/cost")
 	Cost createCost(@PathParam("itemId") final long itemId, final Cost dto);
 
+	@Override
 	@DELETE
 	@Path("/{itemId}/cost/{goodId}")
 	void deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
 
+	@Override
 	@PUT
 	@Path("/{itemId}/cost")
 	Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto);

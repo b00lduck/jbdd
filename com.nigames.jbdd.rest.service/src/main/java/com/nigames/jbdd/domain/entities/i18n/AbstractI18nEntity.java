@@ -31,7 +31,7 @@ public abstract class AbstractI18nEntity implements IdentifyableEntityFacet, I18
      */
     @Override
     @Nullable
-    public String get(final String lang) {
+    public String getLang(final String lang) {
         switch (lang) {
             case "de-DE":
                 return getDe();
@@ -46,10 +46,10 @@ public abstract class AbstractI18nEntity implements IdentifyableEntityFacet, I18
      * Set by language tag.
      *
      * @param lang  Language tag i.e. "de-DE"
-     * @param value String to set
+     * @param value String to setLang
      */
     @Override
-    public void set(final String lang, final String value) {
+    public void setLang(final String lang, final String value) {
         if ("de-DE".equals(lang)) {
             setDe(value);
         } else if ("en-GB".equals(lang)) {

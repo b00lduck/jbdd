@@ -47,9 +47,9 @@ public class ProductionEntityPK implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (null == buildingId ? 0 : buildingId.hashCode());
-        result = prime * result + (null == goodId ? 0 : goodId.hashCode());
-        return result;
+	    result = (prime * result) + ((null == buildingId) ? 0 : buildingId.hashCode());
+	    result = (prime * result) + ((null == goodId) ? 0 : goodId.hashCode());
+	    return result;
     }
 
     @SuppressWarnings("VariableNotUsedInsideIf")

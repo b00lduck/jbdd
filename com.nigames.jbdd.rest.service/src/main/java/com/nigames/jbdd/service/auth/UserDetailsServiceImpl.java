@@ -16,7 +16,7 @@ import java.util.Collection;
 class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private transient UserService userService;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(final String username) {

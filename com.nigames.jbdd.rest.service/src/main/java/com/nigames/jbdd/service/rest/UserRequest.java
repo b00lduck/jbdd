@@ -2,14 +2,13 @@ package com.nigames.jbdd.service.rest;
 
 import com.nigames.jbdd.rest.api.UserRequestInterface;
 import com.nigames.jbdd.rest.dto.DtoList;
-import com.nigames.jbdd.rest.dto.Meta;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.rest.dto.User;
 import com.nigames.jbdd.service.service.player.PlayerService;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
 import com.nigames.jbdd.service.service.user.UserService;
 import com.nigames.jbdd.statics.Constants;
+import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +20,10 @@ import java.util.List;
 public class UserRequest extends AbstractRequest<User> implements UserRequestInterface {
 
     @Autowired
-    private transient UserService userService;
+    private UserService userService;
 
     @Autowired
-    private transient PlayerService playerService;
+    private PlayerService playerService;
 
     @SuppressWarnings("SuspiciousGetterSetter")
     @Override

@@ -12,7 +12,7 @@ public abstract class AbstractI18nConversionService<EntityType extends I18n> {
         final ConcurrentHashMap<String, String> dto = new ConcurrentHashMap<>();
 
         for (final String lang : Languages.getLanguageTagList()) {
-            dto.put(lang, entity.get(lang));
+	        dto.put(lang, entity.getLang(lang));
         }
 
         return dto;
@@ -27,11 +27,11 @@ public abstract class AbstractI18nConversionService<EntityType extends I18n> {
 
     public void updateEntityFromDto(final Map<String, String> dto, final EntityType entity) {
         for (final String lang : Languages.getLanguageTagList()) {
-            if (dto == null) {
-                entity.set(lang, "");
-            } else {
-                entity.set(lang, deNull(dto.get(lang)));
-            }
+	        if (null == dto) {
+		        entity.setLang(lang, "");
+	        } else {
+		        entity.setLang(lang, deNull(dto.get(lang)));
+	        }
 
         }
     }

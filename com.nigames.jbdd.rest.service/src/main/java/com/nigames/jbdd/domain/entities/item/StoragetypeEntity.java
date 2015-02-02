@@ -1,7 +1,5 @@
 package com.nigames.jbdd.domain.entities.item;
 
-import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
-
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;

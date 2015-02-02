@@ -26,7 +26,7 @@ public class RequirementConversionService extends AbstractConversionService<Requ
 	}
 
 	@Override
-	public Requirement getNewDtoInstance(Class<?> entityClass) {
+	public Requirement getNewDtoInstance(final Class<?> entityClass) {
 		return new Requirement();
 	}
 
@@ -48,7 +48,7 @@ public class RequirementConversionService extends AbstractConversionService<Requ
 	public void updateEntityFromDto(final Requirement dto, final RequirementEntity entity) {
 		entity.setAmount(dto.getAmount());
 
-		// On the contrary to the other converters, in this particulary case the ID has to be set.
+		// On the contrary to the other converters, in this particulary case the ID has to be setLang.
 		// (composite key which is not auto generated)
 		final RequirementEntityPK requirementEntityPK = new RequirementEntityPK(dto.getBuyableId(),
 				dto.getRequiredBuyableId());

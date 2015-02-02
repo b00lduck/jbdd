@@ -3,14 +3,9 @@ package com.nigames.jbdd.service.service.item;
 import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
-import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import java.util.List;
-
-import static com.nigames.jbdd.service.service.SecurityElConstants.*;
+import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_ADMIN_BUILDING;
 
 /**
  * BuildingService interface.

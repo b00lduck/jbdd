@@ -66,7 +66,7 @@ public class CostServiceImpl extends AbstractDtoService<Cost, CostEntity> implem
 	}
 
 	@Override
-	public List<Cost> findByBuyableId(long buyableId, LimitParams limitParams, SortParams sortParams) {
+	public List<Cost> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
 
 		final TypedQuery<CostEntity> query =
 				getEntityManager().createNamedQuery(CostEntity.NQ_BY_BUYABLE_ID, CostEntity.class);
@@ -79,7 +79,7 @@ public class CostServiceImpl extends AbstractDtoService<Cost, CostEntity> implem
 	}
 
 	@Override
-	public long getCountByBuyableId(long buyableId) {
+	public long getCountByBuyableId(final long buyableId) {
 		final TypedQuery<Long> query =
 				getEntityManager().createNamedQuery(CostEntity.NQ_COUNT_BY_BUYABLE_ID, Long.class);
 		query.setParameter("buyableId", buyableId);

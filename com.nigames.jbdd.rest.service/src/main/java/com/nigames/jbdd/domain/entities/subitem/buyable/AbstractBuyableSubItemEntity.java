@@ -23,7 +23,7 @@ public class AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param amount The {@link AbstractBuyableSubItemEntity#amount} to set
+     * @param amount The {@link AbstractBuyableSubItemEntity#amount} to setLang
      */
     public void setAmount(final Long amount) {
         this.amount = amount;

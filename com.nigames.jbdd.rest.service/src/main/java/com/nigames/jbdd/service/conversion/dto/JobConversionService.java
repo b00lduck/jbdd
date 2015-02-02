@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class JobConversionService extends AbstractConversionService<JobEntity, Job> {
 
     @Autowired
-    private transient NameDescConversionServiceModule nameDescConversionServiceModule;
+    private NameDescConversionServiceModule nameDescConversionServiceModule;
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public JobEntity getNewEntityInstance() {
@@ -22,7 +22,7 @@ public class JobConversionService extends AbstractConversionService<JobEntity, J
     }
 
     @Override
-    public Job getNewDtoInstance(Class<?> entityClass) {
+    public Job getNewDtoInstance(final Class<?> entityClass) {
         return new Job();
     }
 

@@ -11,7 +11,6 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 import static com.nigames.jbdd.service.service.SecurityElConstants.*;
-import static com.nigames.jbdd.service.service.SecurityElConstants.FORBID_ALL;
 
 /**
  * PlayerService interface.

@@ -55,7 +55,7 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param id The {@link CostEntity#id} to set
+     * @param id The {@link CostEntity#id} to setLang
      */
     public void setId(final CostEntityPK id) {
         this.id = id;
@@ -69,7 +69,7 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param buyableFacet The Buyable item to set
+     * @param buyableFacet The Buyable item to setLang
      */
     public void setBuyableFacet(final BuyableEntityFacetImpl buyableFacet) {
         this.buyableFacet = buyableFacet;
@@ -83,7 +83,7 @@ public class CostEntity extends AbstractBuyableSubItemEntity {
     }
 
     /**
-     * @param good The Good item to set
+     * @param good The Good item to setLang
      */
     public void setGood(final GoodEntity good) {
         this.good = good;

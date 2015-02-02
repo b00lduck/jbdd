@@ -13,13 +13,13 @@ class UserDetailsImpl implements UserDetails {
 
     private static final long serialVersionUID = 5702593436010041766L;
 
-    private final transient String username;
+	private final String username;
 
-    private final transient String password;
+	private final String password;
 
-    private final transient Boolean enabled;
+	private final Boolean enabled;
 
-    private final transient List<Authority> authorities;
+	private final List<Authority> authorities;
 
     UserDetailsImpl(final User user) {
         username = user.getUsername();

@@ -17,14 +17,15 @@ import javax.ws.rs.*;
 public class BuildingRequest extends AbstractRequest<Building> implements BuildingRequestInterface {
 
 	@Autowired
-	private transient BuildingService buildingService;
+	private BuildingService buildingService;
 
 	@Autowired
-	private transient GoodService goodService;
+	private GoodService goodService;
 
 	@Autowired
-	private transient BuyableRequestFacet buyableRequestFacet;
+	private BuyableRequestFacet buyableRequestFacet;
 
+	@SuppressWarnings("SuspiciousGetterSetter")
 	@Override
 	protected BuildingService getService() {
 		return buildingService;
@@ -104,6 +105,7 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 		return buyableRequestFacet.updateCost(itemId, dto);
 	}
 
+	@Override
 	@GET
 	@Path("/{itemId}/requirement")
 	public DtoList<Requirement> getRequirements(@PathParam("itemId") final long itemId,
@@ -114,6 +116,7 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 		return buyableRequestFacet.getRequirements(itemId, first, size, sort, desc);
 	}
 
+	@Override
 	@GET
 	@Path("/{itemId}/requirement/addable")
 	public DtoList<Buyable> getAddableRequirementBuyables(@PathParam("itemId") final long itemId,
@@ -124,12 +127,14 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 		return buyableRequestFacet.getAddableRequirementBuyables(itemId, first, size, sort, desc);
 	}
 
+	@Override
 	@POST
 	@Path("/{itemId}/requirement")
 	public Requirement createRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {
 		return buyableRequestFacet.createRequirement(itemId, dto);
 	}
 
+	@Override
 	@DELETE
 	@Path("/{itemId}/requirement/{requiredBuyableId}")
 	public void deleteRequirement(@PathParam("itemId") final long itemId,
@@ -137,6 +142,7 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 		buyableRequestFacet.deleteRequirement(itemId, requiredBuyableId);
 	}
 
+	@Override
 	@PUT
 	@Path("/{itemId}/requirement/")
 	public Requirement updateRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {

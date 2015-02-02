@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.TransactionManagementConfigure
 public class ApplicationConfigJTA implements TransactionManagementConfigurer {
 
     @Autowired
-    private transient LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
+    private LocalContainerEntityManagerFactoryBean entityManagerFactoryBean;
 
     @Bean
     @Override

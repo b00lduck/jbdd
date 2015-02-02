@@ -11,7 +11,7 @@ public class PlayerResourceConversionService extends
         AbstractConversionService<PlayerAssignedResourceEntity, PlayerResource> {
 
     @Autowired
-    private transient IdConversionServiceModule idConversionServiceModule;
+    private IdConversionServiceModule idConversionServiceModule;
 
     @Override
     protected void addModules() {
@@ -24,7 +24,7 @@ public class PlayerResourceConversionService extends
     }
 
     @Override
-    public PlayerResource getNewDtoInstance(Class<?> entityClass) {
+    public PlayerResource getNewDtoInstance(final Class<?> entityClass) {
         return new PlayerResource();
     }
 

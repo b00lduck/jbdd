@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 public class GoodConversionService extends AbstractConversionService<GoodEntity, Good> {
 
     @Autowired
-    private transient NameDescConversionServiceModule nameDescConversionServiceModule;
+    private NameDescConversionServiceModule nameDescConversionServiceModule;
 
     @Autowired
-    private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
+    private IdEnabledConversionServiceModule idEnabledConversionServiceModule;
 
     @Override
     public GoodEntity getNewEntityInstance() {
@@ -22,7 +22,7 @@ public class GoodConversionService extends AbstractConversionService<GoodEntity,
     }
 
     @Override
-    public Good getNewDtoInstance(Class<?> entityClass) {
+    public Good getNewDtoInstance(final Class<?> entityClass) {
         return new Good();
     }
 

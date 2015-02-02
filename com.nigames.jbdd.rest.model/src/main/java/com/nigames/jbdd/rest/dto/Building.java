@@ -1,11 +1,7 @@
 package com.nigames.jbdd.rest.dto;
 
 import com.nigames.jbdd.rest.dto.facet.*;
-import com.nigames.jbdd.statics.Constants;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -13,16 +9,13 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
+public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
 	private final Buyable buyable = new BuyableImpl();
 	private final Deletable deletable = new DeletableImpl();
-
-	public Building () {
-	}
 
 	@Override
 	public boolean isEnabled() {
@@ -80,32 +73,41 @@ public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabl
 	}
 
 	@Override
-	public void setDeletable(boolean deletable) {
+	public void setDeletable(final boolean deletable) {
 		this.deletable.setDeletable(deletable);
 	}
 
 	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if ((null == o) || (getClass() != o.getClass())) {
+			return false;
+		}
 
-		Building building = (Building) o;
+		final Building building = (Building) o;
 
-		if (!buyable.equals(building.buyable)) return false;
-		if (!canBeEnabled.equals(building.canBeEnabled)) return false;
-		if (!deletable.equals(building.deletable)) return false;
-		if (!hasNameAndDesc.equals(building.hasNameAndDesc)) return false;
+		if (!buyable.equals(building.buyable)) {
+			return false;
+		}
+		if (!canBeEnabled.equals(building.canBeEnabled)) {
+			return false;
+		}
+		if (!deletable.equals(building.deletable)) {
+			return false;
+		}
+		return hasNameAndDesc.equals(building.hasNameAndDesc);
 
-		return true;
 	}
 
 	@Override
 	public int hashCode() {
 		int result = hasNameAndDesc.hashCode();
-		result = 31 * result + canBeEnabled.hashCode();
-		result = 31 * result + buyable.hashCode();
-		result = 31 * result + deletable.hashCode();
+		result = (31 * result) + canBeEnabled.hashCode();
+		result = (31 * result) + buyable.hashCode();
+		result = (31 * result) + deletable.hashCode();
 		return result;
 	}
 

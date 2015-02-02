@@ -84,7 +84,7 @@ public class RequirementServiceImpl extends AbstractDtoService<Requirement, Requ
 	}
 
 	@Override
-	public long getCountByBuyableId(long buyableId) {
+	public long getCountByBuyableId(final long buyableId) {
 		final TypedQuery<Long> query =
 				getEntityManager().createNamedQuery(RequirementEntity.NQ_COUNT_BY_BUYABLE_ID, Long.class);
 		query.setParameter("buyableId", buyableId);

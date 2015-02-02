@@ -33,33 +33,33 @@ public abstract class AbstractCheckUserBean {
 	 */
 	@SuppressWarnings("ProtectedField")
 	@Autowired
-	protected transient UserService userService;
+	protected UserService userService;
 
 	/**
 	 * The playerSubItem service.
 	 */
 	@Autowired
-	private transient PlayerService playerService;
+	private PlayerService playerService;
 
 	/**
 	 * The username used for checking and possible creation of the {@link User) object.
 	 */
-	private transient String username;
+	private String username;
 
 	/**
 	 * The password used for checking and possible creation of the {@link User) object.
 	 */
-	private transient String password;
+	private String password;
 
 	/**
 	 * The email used for checking and possible creation of the {@link UserEntity} object.
 	 */
-	private transient String email;
+	private String email;
 
 	/**
 	 * The nickname used for checking and possible creation of the {@link PlayerEntity} object.
 	 */
-	private transient String nickname;
+	private String nickname;
 
 	@Transactional
 	void checkUserInactive() {
@@ -171,7 +171,7 @@ public abstract class AbstractCheckUserBean {
 			newPlayer.setNickname(nickname);
 			newPlayer.setEnabled(enabled);
 
-			Player createdPlayer = playerService.create(newPlayer);
+			final Player createdPlayer = playerService.create(newPlayer);
 			userService.addPlayer(user.getId(), createdPlayer.getId());
 		}
 	}

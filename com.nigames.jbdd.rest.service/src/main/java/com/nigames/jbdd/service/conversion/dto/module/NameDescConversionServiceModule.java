@@ -17,10 +17,10 @@ import java.util.Map;
 public class NameDescConversionServiceModule implements ConversionServiceModuleInterface {
 
     @Autowired
-    private transient I18nShortConversionService i18nShortConversionService;
+    private I18nShortConversionService i18nShortConversionService;
 
     @Autowired
-    private transient I18nLongConversionService i18nLongConversionService;
+    private I18nLongConversionService i18nLongConversionService;
 
     @Override
     public void updateDtoFromEntity(final IsDto dto, final Object entity) {

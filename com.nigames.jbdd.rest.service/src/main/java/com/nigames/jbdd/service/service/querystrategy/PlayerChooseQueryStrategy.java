@@ -23,9 +23,7 @@ public class PlayerChooseQueryStrategy extends AbstractQueryStrategy<PlayerEntit
 
         final String queryName = getSortedQueryName(fixedSortParams);
 
-        final TypedQuery<PlayerEntity> ret = createNamedQuery(queryName);
-
-        return ret;
+	    return createNamedQuery(queryName);
 
     }
 
@@ -55,9 +53,10 @@ public class PlayerChooseQueryStrategy extends AbstractQueryStrategy<PlayerEntit
                     return PlayerEntity.NQ_UNUSED_SORTED_BY_NICKNAME;
                 }
 
-        }
+	        default:
+		        return PlayerEntity.NQ_UNUSED_SORTED_BY_ID;
 
-        return PlayerEntity.NQ_UNUSED_SORTED_BY_ID;
+        }
 
     }
 

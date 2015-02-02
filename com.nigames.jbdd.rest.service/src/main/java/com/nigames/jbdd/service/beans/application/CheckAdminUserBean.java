@@ -11,7 +11,7 @@ import com.nigames.jbdd.domain.entities.auth.UserEntity;
  * {@link com.nigames.jbdd.domain.entities.auth.UserRoleEntity} ROLE_PLAYER is added
  * for the new {@link UserEntity}. This bean is configured in
  * {@link com.nigames.jbdd.service.config.dev.CreateDefaultUsersConfig} where
- * defaultAdminUsername and defaultAdminPassword are set.
+ * defaultAdminUsername and defaultAdminPassword are setLang.
  */
 public class CheckAdminUserBean extends AbstractCheckUserBean {
 

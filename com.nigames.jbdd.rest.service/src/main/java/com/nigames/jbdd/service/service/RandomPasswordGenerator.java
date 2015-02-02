@@ -16,7 +16,7 @@ public class RandomPasswordGenerator {
     private static final int LENGTH_IN_BITS = 32;
     private static final int RADIX = 36;
 
-    private final transient SecureRandom random = new SecureRandom();
+	private final SecureRandom random = new SecureRandom();
 
     /**
      * Create weak new password.

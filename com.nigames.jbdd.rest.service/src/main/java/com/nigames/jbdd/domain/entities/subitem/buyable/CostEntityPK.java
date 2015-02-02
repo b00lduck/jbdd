@@ -32,7 +32,7 @@ public class CostEntityPK implements Serializable {
 	public CostEntityPK() {
 	}
 
-	public CostEntityPK(long buyableId, long goodId) {
+	public CostEntityPK(final long buyableId, final long goodId) {
 		this.buyableId = buyableId;
 		this.goodId = goodId;
 	}
@@ -54,7 +54,7 @@ public class CostEntityPK implements Serializable {
 	@Override
 	public int hashCode() {
 		int result = (int) (buyableId ^ (buyableId >>> 32));
-		result = 31 * result + (int) (goodId ^ (goodId >>> 32));
+		result = (31 * result) + (int) (goodId ^ (goodId >>> 32));
 		return result;
 	}
 
@@ -74,10 +74,7 @@ public class CostEntityPK implements Serializable {
 		if (buyableId != other.buyableId) {
 			return false;
 		}
-		if (goodId != other.goodId) {
-			return false;
-		}
-		return true;
+		return goodId == other.goodId;
 	}
 
 }

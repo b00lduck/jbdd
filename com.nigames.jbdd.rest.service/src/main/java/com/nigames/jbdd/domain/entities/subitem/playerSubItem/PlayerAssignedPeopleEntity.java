@@ -39,7 +39,7 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
     }
 
     /**
-     * @param playerBuilding The {@link PlayerAssignedPeopleEntity#playerBuilding} to set
+     * @param playerBuilding The {@link PlayerAssignedPeopleEntity#playerBuilding} to setLang
      */
     public void setPlayerBuilding(final PlayerAssignedBuildingEntity playerBuilding) {
         this.playerBuilding = playerBuilding;
@@ -53,7 +53,7 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
     }
 
     /**
-     * @param workmode The {@link PlayerAssignedPeopleEntity#workmode} to set
+     * @param workmode The {@link PlayerAssignedPeopleEntity#workmode} to setLang
      */
     public void setWorkmode(final PlayerAssignedPeopleEntity.Workmode workmode) {
         this.workmode = workmode;
@@ -67,7 +67,7 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
     }
 
     /**
-     * @param name The {@link PlayerAssignedPeopleEntity#name} to set
+     * @param name The {@link PlayerAssignedPeopleEntity#name} to setLang
      */
     public void setName(final String name) {
         this.name = name;

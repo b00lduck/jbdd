@@ -73,7 +73,7 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 	}
 
 	@Override
-	public void setDeletable(boolean deletable) {
+	public void setDeletable(final boolean deletable) {
 		this.deletable.setDeletable(deletable);
 	}
 

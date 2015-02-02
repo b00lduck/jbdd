@@ -24,14 +24,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends GlobalMethodSecurityConfiguration {
 
     @Value("#{ environment['jbdd.security.bcryptStrength'] }")
-    private transient Integer bcryptStrength;
+    private Integer bcryptStrength;
 
     @Autowired
-    private transient PasswordEncoder myPasswordEncoder;
+    private PasswordEncoder myPasswordEncoder;
 
     @Autowired
     @Qualifier("userDetailsServiceImpl")
-    private transient UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     /**
      * Register the {@link UserDetailsService} as auth source. This is called by spring

@@ -38,16 +38,16 @@ public class PlayerServiceImpl extends AbstractDtoService<Player, PlayerEntity> 
             .getLogger(PlayerServiceImpl.class);
 
     @Autowired
-    private transient PlayerConversionService playerConversionService;
+    private PlayerConversionService playerConversionService;
 
     @Autowired
-    private transient PlayerQueryStrategy playerSortStrategy;
+    private PlayerQueryStrategy playerSortStrategy;
 
     @Autowired
-    private transient UserPlayerQueryStrategy userPlayerQueryStrategy;
+    private UserPlayerQueryStrategy userPlayerQueryStrategy;
 
     @Autowired
-    private transient PlayerChooseQueryStrategy unusedPlayerQueryStrategy;
+    private PlayerChooseQueryStrategy unusedPlayerQueryStrategy;
 
     @Override
     @Transactional
