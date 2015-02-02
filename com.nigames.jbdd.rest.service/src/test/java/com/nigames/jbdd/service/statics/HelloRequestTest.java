@@ -1,8 +1,7 @@
-package com.nigames.jbdd.service.rest;
+package com.nigames.jbdd.service.statics;
 
 import com.jayway.restassured.RestAssured;
 import com.nigames.jbdd.service.config.TestApplicationConfig;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
@@ -18,7 +17,7 @@ public class HelloRequestTest {
 
     @Test
     public void canGet() {
-        RestAssured.when().get("http://localhost:8888/jbdd-restservice/hello")
+        RestAssured.when().get("http://localhost:8888/app/index.html")
                 .then().statusCode(200);
     }
 

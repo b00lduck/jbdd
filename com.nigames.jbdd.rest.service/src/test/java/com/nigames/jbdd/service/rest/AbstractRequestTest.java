@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public abstract class AbstractRequestTest {
 
-    protected static String BASE_URL = "http://localhost:8888/jbdd-restservice";
+    protected static String BASE_URL = "http://localhost:8888";
 
     protected abstract String getResourcePath();
 

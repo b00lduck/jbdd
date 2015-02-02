@@ -15,10 +15,6 @@ import java.util.Map;
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
 
-
-
-
-
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
@@ -26,9 +22,6 @@ public class Building implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabl
 	private final Deletable deletable = new DeletableImpl();
 
 	public Building () {
-
-		final String xxx = "XXX";
-
 	}
 
 	@Override
