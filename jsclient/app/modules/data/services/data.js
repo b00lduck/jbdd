@@ -7,7 +7,7 @@ define(['angularAMD'], function (angularAMD) {
     angularAMD.service('DataService', ['$http', '$q',
         function ($http, $q) {
 
-            var restServiceBaseUrl = 'http://localhost:8080/jbdd-restservice/';
+            var restServiceBaseUrl = 'http://localhost:8080/';
 
             var service = {};
 

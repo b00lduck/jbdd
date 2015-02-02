@@ -46,7 +46,7 @@ define(['angularAMD', 'Base64Service', 'ContainsService', 'angular-cookies'], fu
 
                 return $q(function (resolve, reject) {
 
-                    $http.get('http://localhost:8080/jbdd-restservice/authentication')
+                    $http.get('http://localhost:8080/authentication')
                         .success(function (data, status, headers, config) {
 
                             globalAuthInfo.currentUser.username = data.username;
@@ -94,7 +94,7 @@ define(['angularAMD', 'Base64Service', 'ContainsService', 'angular-cookies'], fu
             };
 
             service.logout = function () {
-                $http.delete('http://localhost:8080/jbdd-restservice/authentication')
+                $http.delete('http://localhost:8080/authentication')
                     .success(function (response) {
                         delete $http.defaults.headers.common.Authorization;
                     }).finally(function () {

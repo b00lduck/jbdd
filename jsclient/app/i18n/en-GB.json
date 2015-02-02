@@ -65,7 +65,9 @@
       "players": "Players",
       "users": "User accounts",
       "goods": "Goods",
-      "building": "Buildings"
+      "buildings": "Buildings",
+      "technologies": "Technologies",
+      "jobs": "Jobs"
     },
     "title": "JBdD"
   },

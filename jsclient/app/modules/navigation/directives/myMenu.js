@@ -19,6 +19,7 @@ define(['angularAMD', 'AuthenticationService', 'angular-translate'], function (a
 	                    'ROLE_ADMIN_USER',
 	                    'ROLE_ADMIN_BUILDING',
 	                    'ROLE_ADMIN_TECHNOLOGY',
+	                    'ROLE_ADMIN_GOOD',
 	                    'ROLE_ADMIN_JOB'
 	                ]);
                 };
@@ -29,6 +30,10 @@ define(['angularAMD', 'AuthenticationService', 'angular-translate'], function (a
 
 	            scope.showAdminTechnologyMenu = function() {
 		            return AuthenticationService.hasRole('ROLE_ADMIN_TECHNOLOGY');
+	            };
+
+	            scope.showAdminGoodMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_GOOD');
 	            };
 
 	            scope.showAdminJobMenu = function() {

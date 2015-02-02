@@ -8,11 +8,12 @@ define(['angularAMD',
     'adminBuyableCostEditor',
     'adminBuyableRequirementsEditor',
     'DataService',
+	'AuthenticationService',
 
 ], function (angularAMD) {
 
-    angularAMD.controller('AdminEditController', ['$scope', '$routeParams', '$location', 'DataService', '$translate', '$rootScope',
-        function ($scope, $routeParams, $location, DataService, $translate, $rootScope) {
+    angularAMD.controller('AdminEditController', ['$scope', '$routeParams', '$location', 'DataService', '$translate', '$rootScope', 'AuthenticationService',
+        function ($scope, $routeParams, $location, DataService, $translate, $rootScope, AuthenticationService) {
 
             var resourceName = $routeParams.resource;
             var listUrl = '/admin/' + resourceName;
@@ -67,9 +68,18 @@ define(['angularAMD',
                 }
             };
 
-	        $scope.showCostTab = function() {
-		        AuthenticationService.hasRole('ROLE_BUYABLE_COST_ADMIN');
+	        $scope.showDetailsTab = function() {
+		        return true;
 	        }
+
+	        $scope.showCostTab = function() {
+		        return AuthenticationService.hasRole('ROLE_ADMIN_BUYABLE_COST');
+	        };
+
+	        $scope.showRequirementTab = function() {
+		        return AuthenticationService.hasRole('ROLE_ADMIN_BUYABLE_REQUIREMENT');
+	        };
+
         }
     ]);
 });

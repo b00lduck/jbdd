@@ -62,7 +62,9 @@
       "players": "Spieler",
       "users": "Benutzerkonten",
       "goods": "Güter",
-      "building": "Gebäude"
+      "buildings": "Gebäude",
+      "technologies": "Technologien",
+      "jobs": "Berufe"
     },
     "title": "JBdD"
   },
