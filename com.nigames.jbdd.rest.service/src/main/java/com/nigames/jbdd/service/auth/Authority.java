@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.auth;
 
-import com.nigames.jbdd.rest.dto.UserRole;
+import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import org.springframework.security.core.GrantedAuthority;
 
 @SuppressWarnings("ClassNamePrefixedWithPackageName")
@@ -14,8 +14,8 @@ class Authority implements GrantedAuthority {
         authority = role;
     }
 
-    Authority(final UserRole userRole) {
-        authority = userRole.getRoleName();
+    Authority(final UserRoleEnum userRole) {
+        authority = userRole.toString();
     }
 
     @Override

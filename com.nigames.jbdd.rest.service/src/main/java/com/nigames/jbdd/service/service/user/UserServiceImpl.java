@@ -2,9 +2,8 @@ package com.nigames.jbdd.service.service.user;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 import com.nigames.jbdd.domain.entities.auth.UserEntity;
-import com.nigames.jbdd.domain.entities.auth.UserRoleEntity;
 import com.nigames.jbdd.rest.dto.User;
-import com.nigames.jbdd.rest.dto.UserRole;
+import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.UserConversionService;
 import com.nigames.jbdd.service.rest.exceptionprovider.EmailAlreadyInUseException;
@@ -28,8 +27,6 @@ import javax.annotation.Nullable;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.util.List;
-
-import static com.nigames.jbdd.rest.dto.UserRole.ROLE_PLAYER;
 
 /**
  * UserService implementation.
@@ -94,7 +91,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
     @Override
     @Transactional
-    public void addRole(final long userId, final String role) {
+    public void addRole(final long userId, final UserRoleEnum role) {
         final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
         addRole(userEntity, role);
     }
@@ -124,14 +121,10 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     // }
 
     @Transactional
-    private void addRole(final UserEntity userEntity, final String role) {
-        final UserRoleEntity playerRole = UserRoleEntity.createFromRoleAndUser(role, userEntity);
-
-        if (!userEntity.getUserRoleList().contains(playerRole)) {
+    private void addRole(final UserEntity userEntity, final UserRoleEnum role) {
+        if (!userEntity.getUserRoleList().contains(role)) {
             LOG.info("Adding role {} to user {}", role, userEntity.getUsername());
-            final UserRoleEntity userRole = UserRoleEntity.createFromRoleAndUser(role, userEntity);
-            getEntityManager().persist(userRole);
-            userEntity.getUserRoleList().add(userRole);
+            userEntity.getUserRoleList().add(role);
         }
     }
 
@@ -221,17 +214,14 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     public void addPlayer(final long userId, final long playerId) {
         final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
 
-        final UserRoleEntity playerRole = UserRoleEntity.createFromRoleAndUser(ROLE_PLAYER, userEntity);
-
-        if (userEntity.getUserRoleList().contains(playerRole)) {
+        if (userEntity.getUserRoleList().contains(UserRoleEnum.ROLE_PLAYER)) {
             final PlayerEntity playerEntity = getEntityManager().find(PlayerEntity.class, playerId);
-
             userEntity.getPlayerList().add(playerEntity);
             playerEntity.setUser(userEntity);
         } else {
-            LOG.error("User {} lacks ROLE_PLAYER role, not creating player", userEntity.getUsername());
+            LOG.error("User {} lacks {} role, not creating player", userEntity.getUsername(), UserRoleEnum.ROLE_PLAYER);
             //noinspection StringConcatenation
-            throw new InsufficientPermissionsException("Add player to user failed: User is lacking " + ROLE_PLAYER);
+            throw new InsufficientPermissionsException("Add player to user failed: User is lacking role " + UserRoleEnum.ROLE_PLAYER);
         }
     }
 
@@ -294,8 +284,8 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         final User ret = super.create(user);
 
         if (null != user.getRoles()) {
-            for (final UserRole role : user.getRoles()) {
-                addRole(ret.getId(), role.getRoleName());
+            for (final UserRoleEnum role : user.getRoles()) {
+                addRole(ret.getId(), role);
             }
         }
 
@@ -334,8 +324,8 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         removeAllRoles(id);
 
         if (null != user.getRoles()) {
-            for (final UserRole role : user.getRoles()) {
-                addRole(id, role.getRoleName());
+            for (final UserRoleEnum role : user.getRoles()) {
+                addRole(id, role);
             }
         }
 
@@ -394,10 +384,6 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
     @Transactional
     private void removeAllRoles(final UserEntity userEntity) {
-        for (final UserRoleEntity role : userEntity.getUserRoleList()) {
-            LOG.info("Removing role {} from user {}", role.getRole(), userEntity.getUsername());
-            getEntityManager().remove(role);
-        }
         userEntity.getUserRoleList().clear();
     }
 

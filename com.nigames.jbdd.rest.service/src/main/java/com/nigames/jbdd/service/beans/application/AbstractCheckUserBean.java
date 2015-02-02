@@ -4,6 +4,7 @@ import com.nigames.jbdd.domain.entities.PlayerEntity;
 import com.nigames.jbdd.domain.entities.auth.UserEntity;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.rest.dto.User;
+import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import com.nigames.jbdd.service.service.player.PlayerService;
 import com.nigames.jbdd.service.service.user.UserService;
 import org.slf4j.Logger;
@@ -12,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
-import static com.nigames.jbdd.rest.dto.UserRole.*;
 
 /**
  * Abstract base bean that checks for existence of specific users in the database. User for admin
@@ -183,19 +182,16 @@ public abstract class AbstractCheckUserBean {
 		LOG.info("Setting roles of the user \"{}\"", getUsername()); // NON-NLS
 		final User user = userService.findByUsername(getUsername());
 		userService.removeAllRoles(user.getId());
-		userService.addRole(user.getId(), ROLE_ADMIN_USER);
-		userService.addRole(user.getId(), ROLE_ADMIN_PLAYER);
-		userService.addRole(user.getId(), ROLE_ADMIN_BUILDING);
-		userService.addRole(user.getId(), ROLE_ADMIN_COST);
-		userService.addRole(user.getId(), ROLE_ADMIN_REQUIREMENT);
-		userService.addRole(user.getId(), ROLE_PLAYER);
+		for(final UserRoleEnum ur : UserRoleEnum.values()) {
+			userService.addRole(user.getId(), ur);
+		}
 	}
 
 	@Transactional
 	void checkPlayerRoles() {
-		LOG.info("Setting roles of the user \"{}\" to {}", getUsername(), ROLE_PLAYER); // NON-NLS
+		LOG.info("Setting roles of the user \"{}\" to {}", getUsername(), UserRoleEnum.ROLE_PLAYER); // NON-NLS
 		final User user = userService.findByUsername(getUsername());
-		userService.addRole(user.getId(), ROLE_PLAYER);
+		userService.addRole(user.getId(), UserRoleEnum.ROLE_PLAYER);
 	}
 
 	String getUsername() {

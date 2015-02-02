@@ -22,34 +22,34 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @WebAppConfiguration
 public class JobConversionServiceTest extends AbstractConversionServiceTest<Job, JobEntity> {
 
-    @Autowired
-    private transient JobConversionService jobConversionService;
+	@Autowired
+	private transient JobConversionService jobConversionService;
 
-    @Override
-    protected JobConversionService getConversionService() {
-        return jobConversionService;
-    }
+	@Override
+	protected JobConversionService getConversionService() {
+		return jobConversionService;
+	}
 
-    @Override
-    protected void addModules() {
-        addModule(new NameDescConversionServiceTestModule());
-        addModule(new EnabledIdConversionServiceTestModule());
-    }
+	@Override
+	protected void addModules() {
+		addModule(new NameDescConversionServiceTestModule());
+		addModule(new EnabledIdConversionServiceTestModule());
+	}
 
-    @Override
-    protected void fillEntity(final JobEntity entity) {
-    }
+	@Override
+	protected void fillEntity(final JobEntity entity) {
+	}
 
-    @Override
-    protected void checkDto(final Job dto) {
-    }
+	@Override
+	protected void checkDto(final Job dto) {
+	}
 
-    @Override
-    protected void fillDto(final Job dto) {
-    }
+	@Override
+	protected void fillDto(final Job dto) {
+	}
 
-    @Override
-    protected void checkEntity(final JobEntity entity) {
-    }
+	@Override
+	protected void checkEntity(final JobEntity entity) {
+	}
 
 }

@@ -13,21 +13,35 @@ define(['angularAMD', 'AuthenticationService', 'angular-translate'], function (a
 
             link: function (scope, element, attrs) {
 
-                scope.userIsAnyAdmin = function() {
-                    return AuthenticationService.userIsAnyAdmin();
+                scope.showAdminMenu = function() {
+                    return AuthenticationService.hasAnyRole([
+	                    'ROLE_ADMIN_PLAYER',
+	                    'ROLE_ADMIN_USER',
+	                    'ROLE_ADMIN_BUILDING',
+	                    'ROLE_ADMIN_TECHNOLOGY',
+	                    'ROLE_ADMIN_JOB'
+	                ]);
                 };
 
-                scope.userIsUserAdmin = function () {
-                    return AuthenticationService.userIsUserAdmin();
-                };
+	            scope.showAdminBuildingMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_BUILDING');
+	            };
 
-                scope.userIsPlayerAdmin = function () {
-                    return AuthenticationService.userIsPlayerAdmin();
-                };
+	            scope.showAdminTechnologyMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_TECHNOLOGY');
+	            };
 
-                scope.userIsBuildingAdmin = function () {
-                    return AuthenticationService.userIsBuildingAdmin();
-                };
+	            scope.showAdminJobMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_JOB');
+	            };
+
+	            scope.showAdminPlayerMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_PLAYER');
+	            };
+
+	            scope.showAdminUserMenu = function() {
+		            return AuthenticationService.hasRole('ROLE_ADMIN_USER');
+	            };
 
             }
 

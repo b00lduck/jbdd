@@ -119,11 +119,6 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
      */
     private Boolean enabled;
 
-    @SuppressWarnings("SameReturnValue")
-    public static String getType() {
-        return "Player";
-    }
-
     public String getNickname() {
         return nickname;
     }

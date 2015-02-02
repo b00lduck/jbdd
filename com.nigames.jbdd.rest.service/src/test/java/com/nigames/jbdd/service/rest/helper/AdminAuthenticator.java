@@ -25,7 +25,7 @@ public class AdminAuthenticator implements ClientRequestFilter {
         this.password = password;
     }
 
-    public void filter(ClientRequestContext requestContext) throws IOException {
+    public void filter(final ClientRequestContext requestContext) throws IOException {
         MultivaluedMap<String, Object> headers = requestContext.getHeaders();
         final String basicAuthentication = getBasicAuthentication();
         headers.add("Authorization", basicAuthentication);

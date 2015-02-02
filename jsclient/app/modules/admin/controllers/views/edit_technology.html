@@ -2,9 +2,9 @@
 
 <tabset>
 
-    <tab ng-if="showDetailsTab()">
+    <tab>
         <tab-heading>
-            {{ 'admin.title.buildingEditor' | translate }}
+            {{ 'admin.title.technologyEditor' | translate }}
         </tab-heading>
         <my-form-field-id></my-form-field-id>
         <my-form-field-enabled></my-form-field-enabled>
@@ -12,7 +12,7 @@
         <my-edit-buttons></my-edit-buttons>
     </tab>
 
-    <tab ng-if="showCostTab()">
+    <tab>
         <tab-heading>
             {{ 'admin.title.costEditor' | translate }}
         </tab-heading>
@@ -20,7 +20,7 @@
         </my-buyable-cost-editor>
     </tab>
 
-    <tab ng-if="showRequirementTab()">
+    <tab>
         <tab-heading>
             {{ 'admin.title.requirementEditor' | translate }}
         </tab-heading>

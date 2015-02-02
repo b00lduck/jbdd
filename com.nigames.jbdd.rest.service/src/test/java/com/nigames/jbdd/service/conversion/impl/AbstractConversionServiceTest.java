@@ -58,15 +58,14 @@ public abstract class AbstractConversionServiceTest<DtoType extends IsDto, Entit
 	}
 
 	@Test
-	@Ignore
 	public void dtoToEntityConversionTest() {
-		DtoType dto = getConversionService().getNewDtoInstance(null);
-		for (ConversionServiceTestModuleInterface module : moduleList) {
+		final DtoType dto = getConversionService().getNewDtoInstance(null);
+		for (final ConversionServiceTestModuleInterface module : moduleList) {
 			module.fillDto(dto);
 		}
 		fillDto(dto);
-		EntityType entity = getConversionService().convertToEntity(dto);
-		for (ConversionServiceTestModuleInterface module : moduleList) {
+		final EntityType entity = getConversionService().convertToEntity(dto);
+		for (final ConversionServiceTestModuleInterface module : moduleList) {
 			module.checkEntity(entity);
 		}
 		checkEntity(entity);

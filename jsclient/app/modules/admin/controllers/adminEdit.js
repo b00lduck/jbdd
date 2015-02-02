@@ -66,6 +66,10 @@ define(['angularAMD',
                     );
                 }
             };
+
+	        $scope.showCostTab = function() {
+		        AuthenticationService.hasRole('ROLE_BUYABLE_COST_ADMIN');
+	        }
         }
     ]);
 });

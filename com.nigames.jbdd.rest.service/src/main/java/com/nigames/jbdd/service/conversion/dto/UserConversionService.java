@@ -2,7 +2,6 @@ package com.nigames.jbdd.service.conversion.dto;
 
 import com.nigames.jbdd.domain.entities.auth.UserEntity;
 import com.nigames.jbdd.rest.dto.User;
-import com.nigames.jbdd.rest.dto.UserRole;
 import com.nigames.jbdd.service.conversion.dto.module.IdEnabledConversionServiceModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,9 +10,6 @@ import java.util.List;
 
 @Service
 public class UserConversionService extends AbstractConversionService<UserEntity, User> {
-
-    @Autowired
-    private transient UserRoleConversionService userRoleConversionService;
 
     @Autowired
     private transient IdEnabledConversionServiceModule idEnabledConversionServiceModule;
@@ -55,9 +51,10 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
     protected void updateDtoFromEntity(final User dto, final UserEntity entity) {
         dto.setUsername(entity.getUsername());
         dto.setEmail(entity.getEmail());
+
         //dto.setPassword(entity.getPassword());
-        final List<UserRole> roles = userRoleConversionService.convertToDto(entity.getUserRoleList());
-        dto.setRoles(roles);
+
+        dto.setRoles(entity.getUserRoleList());
         dto.setNumPlayers(entity.getPlayerList().size());
 
         dto.setDeletable(!dto.getUsername().equals("admin") && 0 == dto.getNumPlayers());

@@ -2,11 +2,10 @@ package com.nigames.jbdd.service.beans.application;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 import com.nigames.jbdd.rest.dto.User;
+import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
-
-import static com.nigames.jbdd.rest.dto.UserRole.ROLE_PLAYER;
 
 /**
  * {@link CheckDummyPlayerBean} implementation
@@ -66,7 +65,7 @@ public class CheckDummyPlayerBean extends AbstractCheckUserBean {
         LOG.info("Checking roles of the dummy playerSubItem user \"{}\"", playerUsername);
         final User user = userService.findByUsername(playerUsername);
         userService.removeAllRoles(user.getId());
-        userService.addRole(user.getId(), ROLE_PLAYER);
+        userService.addRole(user.getId(), UserRoleEnum.ROLE_PLAYER);
     }
 
 }

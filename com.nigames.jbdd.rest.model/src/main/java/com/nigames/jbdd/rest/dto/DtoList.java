@@ -24,7 +24,7 @@ import java.util.List;
 		Storagetype.class,
 		Technology.class,
 		User.class,
-		UserRole.class
+		UserRoleEnum.class
 })
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class DtoList<T> {

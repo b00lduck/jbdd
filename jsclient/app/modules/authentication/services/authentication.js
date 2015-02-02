@@ -136,22 +136,20 @@ define(['angularAMD', 'Base64Service', 'ContainsService', 'angular-cookies'], fu
 
             };
 
-            service.userIsUserAdmin = function () {
-                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_USER');
-            };
+	        service.hasRole = function(role) {
+		        return ContainsService.contains(globalAuthInfo.currentUser.roles, role);
+	        };
 
-            service.userIsPlayerAdmin = function () {
-                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_PLAYER');
-            };
-
-            service.userIsBuildingAdmin = function () {
-                return ContainsService.contains(globalAuthInfo.currentUser.roles, 'ROLE_ADMIN_BUILDING');
-            };
-
-            service.userIsAnyAdmin = function () {
-                return (service.userIsPlayerAdmin() || service.userIsUserAdmin() || service.userIsBuildingAdmin());
-            };
-
+	        service.hasAnyRole = function(rolesArray) {
+		        var arrayLength = rolesArray.length,
+			        i;
+		        for (i = 0; i < arrayLength; i++) {
+			        if (ContainsService.contains(globalAuthInfo.currentUser.roles, rolesArray[i])) {
+				        return true;
+			        }
+		        }
+		        return false;
+	        };
 
             // Check Auth info on startup
             if ('undefined' === typeof ($cookieStore.get('globalAuthInfo'))) {

@@ -19,7 +19,7 @@ public final class User implements IsDto, Identifiable, CanBeEnabled, Deletable 
 	private String username;
 	private String password;
 	private String email;
-	private List<UserRole> roles;
+	private List<UserRoleEnum> roles;
 	private Integer numPlayers;
 
 	public String getUsername() {
@@ -46,11 +46,11 @@ public final class User implements IsDto, Identifiable, CanBeEnabled, Deletable 
 		this.email = email;
 	}
 
-	public Collection<UserRole> getRoles() {
+	public Collection<UserRoleEnum> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(final List<UserRole> roles) {
+	public void setRoles(final List<UserRoleEnum> roles) {
 		this.roles = roles;
 	}
 

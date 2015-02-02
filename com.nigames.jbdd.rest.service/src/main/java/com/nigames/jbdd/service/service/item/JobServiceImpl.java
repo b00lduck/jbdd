@@ -24,9 +24,6 @@ import java.util.List;
 @Service
 public class JobServiceImpl extends AbstractDtoService<Job, JobEntity> implements JobService {
 
-    // private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory
-    // .getLogger(JobServiceImpl.class);
-
     @Autowired
     private transient JobConversionService jobConversionService;
 
