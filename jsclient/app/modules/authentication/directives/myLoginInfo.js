@@ -1,7 +1,7 @@
 /*jslint node: true */
 'use strict';
 
-define(['angularAMD', 'angular-route', 'AuthenticationService'], function (angularAMD) {
+define(['angularAMD', 'angular-route', 'AuthenticationService', 'angular-ui-bootstrap-bower'], function (angularAMD) {
 
     angularAMD.directive('myLoginInfo', ['$route', '$location', 'AuthenticationService',
         function ($route, $location, AuthenticationService) {
@@ -28,6 +28,23 @@ define(['angularAMD', 'angular-route', 'AuthenticationService'], function (angul
 
                     scope.getRoles = function () {
                         return AuthenticationService.getRoles();
+                    };
+
+
+                    scope.items = [
+                        'The first choice!',
+                        'And another choice for you.',
+                        'but wait! A third!'
+                    ];
+
+                    scope.status = {
+                        isopen: false
+                    };
+
+                    scope.toggleDropdown = function ($event) {
+                        $event.preventDefault();
+                        $event.stopPropagation();
+                        scope.status.isopen = !scope.status.isopen;
                     };
 
                 }
