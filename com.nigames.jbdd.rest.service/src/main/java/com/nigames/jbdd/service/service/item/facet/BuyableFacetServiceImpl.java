@@ -6,11 +6,7 @@ import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
 import com.nigames.jbdd.service.service.item.BuildingService;
-import com.nigames.jbdd.service.service.item.GoodService;
-import com.nigames.jbdd.service.service.querystrategy.AddableCostQueryStrategy;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,26 +24,59 @@ import java.util.Set;
 public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 	@Autowired
-	private GoodService goodService;
-
-	@Autowired
 	private BuildingService buildingService;
 
 	@Autowired
 	private RequirementService requirementService;
 
-	@Autowired
-	private AddableCostQueryStrategy addableCostGoodQueryStrategy;
 
 	@Override
-	public List<Good> getAddableCostGoods(final long buyableId, final LimitParams limitParams,
-	                                      final SortParams sortParams) {
-		return goodService.findAll(limitParams, sortParams, addableCostGoodQueryStrategy, buyableId);
+	public long getAddableRequirementBuyablesCount(final long buyableId) {
+		return 0;
 	}
 
 	@Override
 	public long getAddableCostGoodsCount(final long buyableId) {
-		return goodService.getCount(addableCostGoodQueryStrategy, buyableId);
+		return 0;
+	}
+
+	@Override
+	public List<Good> getAddableCostGoods(final long buyableId) {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public List<Buyable> getAddableRequirementBuyables(final long buyableId) {
+
+
+		final List<Building> buildingList = buildingService.findAll();
+		@SuppressWarnings("unchecked") final
+		List<Buyable> buyableList = (List) buildingList;
+
+		final List<Buyable> ret = new ArrayList<>();
+
+		for (final Buyable b : buyableList) {
+
+			// Cannot add self
+			if (((Identifiable) b).getId() == buyableId) {
+				continue;
+			}
+
+			// Cannot add already added requirements
+			if (getRequirementsForBuyable(buyableId).contains(((Identifiable) b).getId())) {
+				continue;
+			}
+
+			// Cannot create cyclic requirements
+			if (getRequirementsForBuyableRecursive(((Identifiable) b).getId()).contains(buyableId)) {
+				continue;
+			}
+
+			ret.add(b);
+
+		}
+
+		return ret;
 	}
 
 	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {
@@ -79,41 +108,5 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 		return ret;
 	}
 
-	@Override
-	public List<Buyable> getAddableRequirementBuyables(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
 
-		final List<Building> buildingList = buildingService.findAll(LimitParams.createDefault(), SortParams.createDefault());
-		@SuppressWarnings("unchecked") final
-		List<Buyable> buyableList = (List) buildingList;
-
-		final List<Buyable> ret = new ArrayList<>();
-
-		for (final Buyable b : buyableList) {
-
-			// Cannot add self
-			if (((Identifiable) b).getId() == buyableId) {
-				continue;
-			}
-
-			// Cannot add already added requirements
-			if (getRequirementsForBuyable(buyableId).contains(((Identifiable) b).getId())) {
-				continue;
-			}
-
-			// Cannot create cyclic requirements
-			if (getRequirementsForBuyableRecursive(((Identifiable) b).getId()).contains(buyableId)) {
-				continue;
-			}
-
-			ret.add(b);
-
-		}
-
-		return ret;
-	}
-
-	@Override
-	public long getAddableRequirementBuyablesCount(final long buyableId) {
-		return buildingService.getCount();
-	}
 }

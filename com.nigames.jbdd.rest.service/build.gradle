@@ -41,6 +41,8 @@ dependencies {
 			[group: 'org.springframework', 			name: 'spring-orm',     				version: springVersion],
 			[group: 'org.springframework', 			name: 'spring-oxm',     				version: springVersion],
 
+            [group: 'org.springframework.data', name: 'spring-data-jpa', version: springDataJpaVersion],
+
 			[group: 'org.springframework.boot', 	name: 'spring-boot',                  	version: springBootVersion],
 			[group: 'org.springframework.boot', 	name: 'spring-boot-autoconfigure',    	version: springBootVersion],
 			[group: 'org.springframework.boot',		name: 'spring-boot-starter-web',    	version: springBootVersion],
@@ -55,9 +57,6 @@ dependencies {
 			[group: 'org.springframework.security', name: 'spring-security-aspects', 		version: springSecurityVersion],
 
 			[group: 'org.springframework.plugin', 	name: 'spring-plugin-core',     		version: springPluginVersion],
-
-			[group: 'org.springframework.data', 	name: 'spring-data-commons',         	version: springDataVersion],
-			[group: 'org.springframework.data', 	name: 'spring-data-jpa',         		version: springDataJPAVersion],
 
 			[group: 'commons-dbcp', 				name: 'commons-dbcp', 					version: commonsDbcpVersion],
 

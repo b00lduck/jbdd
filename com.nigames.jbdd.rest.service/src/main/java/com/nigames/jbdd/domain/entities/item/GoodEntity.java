@@ -18,31 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "ITEM_GOOD")
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQueries({
-		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID,
-					query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id"),
-		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_SORTED_BY_ID_DESC,
-					query = GoodEntity.QUERY_ADDABLE_COST + " ORDER BY g.id DESC"),
-		@NamedQuery(name = GoodEntity.NQ_ADDABLE_COST_COUNT,
-					query = GoodEntity.QUERY_ADDABLE_COST_COUNT)
-})
 public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFacet {
-
-	public static final String NQ_ADDABLE_COST_COUNT = "GoodEntity.0";
-	public static final String NQ_ADDABLE_COST_SORTED_BY_ID = "GoodEntity.1";
-	public static final String NQ_ADDABLE_COST_SORTED_BY_ID_DESC = "GoodEntity.2";
-
-	private static final String SUBQUERY_COSTS_OF_BUYABLE =
-			"SELECT c.id.goodId FROM CostEntity c WHERE c.id.buyableId=:buyableId";
-
-	private static final String QUERY_ADDABLE_COST_WHERE =
-			"WHERE g.id NOT IN (" + SUBQUERY_COSTS_OF_BUYABLE + ") AND g.enabled=1";
-
-	public static final String QUERY_ADDABLE_COST =
-			"SELECT g FROM GoodEntity g " + QUERY_ADDABLE_COST_WHERE;
-
-	public static final String QUERY_ADDABLE_COST_COUNT =
-			"SELECT COUNT(g.id) FROM GoodEntity g " + QUERY_ADDABLE_COST_WHERE;
 
 	/**
 	 * This is a passive backlink. Gets all {@link CostEntity} objects who use this Good.

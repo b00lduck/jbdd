@@ -22,8 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SuppressWarnings("CallToNumericToString")
 public class CheckDummyPlayerBean extends AbstractCheckUserBean {
 
-    private static final Logger LOG = LoggerFactory
-            .getLogger(CheckDummyPlayerBean.class);
+	private static final Logger LOG = LoggerFactory.getLogger(CheckDummyPlayerBean.class);
 
     /**
      * The number of dummy {@link PlayerEntity} to be created.

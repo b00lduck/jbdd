@@ -1,6 +1,5 @@
 package com.nigames.jbdd.service.service.item;
 
-import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,11 +14,11 @@ import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_SYST
  * @see GoodServiceImpl
  */
 @PreAuthorize(HAS_ROLE_ADMIN_GOOD)
-public interface GoodService extends AbstractDtoServiceInterface<Good, GoodEntity> {
+public interface GoodService extends AbstractDtoServiceInterface<Good> {
 
 	@Override
 	@PreAuthorize(HAS_ROLE_SYSTEM_OR_ADMIN_GOOD)
-	Good findById(final long entityId);
+	Good findById(final Long entityId);
 
 	@Override
 	@PreAuthorize(HAS_ROLE_SYSTEM_OR_ADMIN_GOOD)

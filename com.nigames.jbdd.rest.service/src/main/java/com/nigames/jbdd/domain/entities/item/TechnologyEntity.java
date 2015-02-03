@@ -13,11 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ITEM_TECHNOLOGY")
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedQueries(@NamedQuery(name = TechnologyEntity.NQ_FIND_ALL_ENABLED_TECHNOLOGIES,
-        query = "SELECT t FROM TechnologyEntity t WHERE t.enabled=1"))
 public class TechnologyEntity extends AbstractItemEntity implements BuyableEntityFacet {
-
-    public static final String NQ_FIND_ALL_ENABLED_TECHNOLOGIES = "findAllEnabledTechnologies";
 
 	/**
 	 * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet} of this technology.

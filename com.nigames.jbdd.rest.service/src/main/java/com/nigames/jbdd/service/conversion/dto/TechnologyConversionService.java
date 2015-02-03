@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TechnologyConversionService extends
-        AbstractConversionService<TechnologyEntity, Technology> {
+public class TechnologyConversionService extends AbstractConversionService<TechnologyEntity, Technology> {
 
     @Autowired
     private NameDescConversionServiceModule nameDescConversionServiceModule;

@@ -27,7 +27,7 @@ public class Meta {
 	public static Meta create(final Long total, final LimitParams limitParams) {
 
         Long fixedSize = limitParams.getSize();
-        Long fixedFirst = limitParams.getFirst();
+	    Long fixedFirst = limitParams.getFirst();
 
         final Meta ret = new Meta();
 
@@ -47,8 +47,8 @@ public class Meta {
             if (numResults < fixedSize) {
                 fixedSize = numResults;
             }
-            if (0L > fixedSize) {
-                fixedSize = 0L;
+	        if (0 > fixedSize) {
+		        fixedSize = 0L;
             }
             ret.setSize(fixedSize);
         }

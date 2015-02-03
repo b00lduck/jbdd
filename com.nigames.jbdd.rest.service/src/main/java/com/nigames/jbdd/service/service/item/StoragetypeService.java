@@ -1,10 +1,10 @@
 package com.nigames.jbdd.service.service.item;
 
-import com.nigames.jbdd.domain.entities.item.StoragetypeEntity;
 import com.nigames.jbdd.rest.dto.Storagetype;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
 import org.springframework.security.access.prepost.PreAuthorize;
-import static com.nigames.jbdd.service.service.SecurityElConstants.*;
+
+import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_ADMIN_STORAGETYPE;
 /**
  * StoragetypeService interface.
  *
@@ -12,6 +12,6 @@ import static com.nigames.jbdd.service.service.SecurityElConstants.*;
  * @see StoragetypeServiceImpl
  */
 @PreAuthorize(HAS_ROLE_ADMIN_STORAGETYPE)
-public interface StoragetypeService extends AbstractDtoServiceInterface<Storagetype, StoragetypeEntity> {
+public interface StoragetypeService extends AbstractDtoServiceInterface<Storagetype> {
 
 }
