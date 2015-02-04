@@ -1,17 +1,19 @@
 package com.nigames.jbdd.service.service;
 
+import com.google.common.collect.Lists;
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.statics.Languages;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -27,12 +29,32 @@ import java.util.List;
 public abstract class AbstractRepositoryBackedService<EntityType, KeyType extends Serializable,
 		DtoType extends IsDto> {
 
-	protected static Pageable createPageable(final LimitParams limitParams, final SortParams sortParams) {
+
+	@Nonnull
+	protected static Pageable createPageable(@Nonnull final LimitParams limitParams, @Nullable final Sort sort) {
 
 		final long page = limitParams.getFirst() / limitParams.getSize();
 		final long size = limitParams.getSize();
 
-		if (sortParams != null) {
+		if (null != sort) {
+			return new PageRequest((int) page, (int) size, sort);
+		} else {
+			return new PageRequest((int) page, (int) size);
+		}
+
+	}
+
+	@Nonnull
+	protected static Pageable createPageable(@Nonnull final LimitParams limitParams,
+	                                         @Nonnull final SortParams sortParams) {
+
+		return createPageable(limitParams, createSort(sortParams));
+	}
+
+	@Nullable
+	private static Sort createSort(final SortParams sortParams) {
+
+		if (null != sortParams) {
 
 			final Sort.Direction direction;
 
@@ -42,25 +64,20 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 				direction = Sort.Direction.ASC;
 			}
 
-			if (sortParams.getSort() != null) {
+			if (null != sortParams.getSort()) {
 				String sortParam = sortParams.getSort();
 
 				if (sortParam.startsWith("name.")) {
 					sortParam = "nameAndDescFacet.name." + Languages.tagToDbTag(sortParam.substring(5));
 				}
 
-				if (sortParam != null) {
+				if (null != sortParam) {
 					final List<String> sortColumns = Arrays.asList(sortParam);
-					final Sort sort = new Sort(direction, sortColumns);
-					return new PageRequest((int) page, (int) size, sort);
+					return new Sort(direction, sortColumns);
 				}
-
 			}
-
 		}
-
-		return new PageRequest((int) page, (int) size);
-
+		return null;
 	}
 
 	protected abstract PagingAndSortingRepository<EntityType, KeyType> getRepository();
@@ -98,8 +115,10 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 
 	@Transactional
 	public List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams) {
-		final Page p = getPage(limitParams, sortParams);
-		return getConversionService().convertToDto(p.getContent());
+
+		final List<EntityType> list = getList(limitParams, sortParams);
+		return getConversionService().convertToDto(list);
+
 	}
 
 	@Transactional
@@ -108,9 +127,21 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 		return getConversionService().convertToDto(entity);
 	}
 
-	private Page<EntityType> getPage(final LimitParams limitParams, final SortParams sortParams) {
-		final Pageable pageable = createPageable(limitParams, sortParams);
-		return getRepository().findAll(pageable);
+	private List<EntityType> getList(final LimitParams limitParams, final SortParams sortParams) {
+
+		final Sort sort = createSort(sortParams);
+
+		if (0 == limitParams.getSize()) {
+			if (null == sort) {
+				return Lists.newArrayList(getRepository().findAll());
+			}
+			return Lists.newArrayList(getRepository().findAll(sort));
+		} else {
+			final Pageable pageable = createPageable(limitParams, sort);
+			return getRepository().findAll(pageable).getContent();
+		}
+
 	}
+
 
 }
