@@ -66,6 +66,8 @@ configure(allprojects) { project ->
 
     ext.flywayVersion = '3.1'
 
+    ext.guavaVersion = '18.0'
+
     repositories {
 		mavenCentral()
 	}

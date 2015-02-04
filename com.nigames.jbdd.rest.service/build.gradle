@@ -82,6 +82,8 @@ dependencies {
 			[group: 'org.jboss.resteasy',      		name: 'resteasy-spring', 				version: restEasyVersion],
             [group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: restEasyVersion],
 
+            [group: 'com.google.guava', name: 'guava', version: guavaVersion],
+
 
 	)
 
