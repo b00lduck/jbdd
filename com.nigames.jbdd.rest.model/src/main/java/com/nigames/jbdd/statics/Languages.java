@@ -35,5 +35,10 @@ public final class Languages {
 		return LANGUAGE_DB_TAG_LIST;
 	}
 
+	public static String tagToDbTag(final String tag) {
+		if (tag.equals("de-DE")) return "de";
+		if (tag.equals("en-GB")) return "en";
+		return null;
+	}
 
 }

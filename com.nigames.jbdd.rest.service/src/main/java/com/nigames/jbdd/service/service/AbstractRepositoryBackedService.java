@@ -2,6 +2,7 @@ package com.nigames.jbdd.service.service;
 
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
+import com.nigames.jbdd.statics.Languages;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.data.domain.Page;
@@ -42,9 +43,18 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 			}
 
 			if (sortParams.getSort() != null) {
-				final List<String> sortColumns = Arrays.asList(sortParams.getSort());
-				final Sort sort = new Sort(direction, sortColumns);
-				return new PageRequest((int) page, (int) size, sort);
+				String sortParam = sortParams.getSort();
+
+				if (sortParam.startsWith("name.")) {
+					sortParam = "nameAndDescFacet.name." + Languages.tagToDbTag(sortParam.substring(5));
+				}
+
+				if (sortParam != null) {
+					final List<String> sortColumns = Arrays.asList(sortParam);
+					final Sort sort = new Sort(direction, sortColumns);
+					return new PageRequest((int) page, (int) size, sort);
+				}
+
 			}
 
 		}
