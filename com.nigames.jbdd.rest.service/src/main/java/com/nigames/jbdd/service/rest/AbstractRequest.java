@@ -31,7 +31,8 @@ public abstract class AbstractRequest<DtoType extends IsDto> implements
 
         final LimitParams limitParams = LimitParams.create(first, size);
         final SortParams sortParams = SortParams.create(sort, desc);
-        final long total = getService().getCount();
+
+	    final long total = getService().getCount();
         final List<DtoType> data = getService().findAll(limitParams, sortParams);
 
         return new DtoList<>(data, total, limitParams);

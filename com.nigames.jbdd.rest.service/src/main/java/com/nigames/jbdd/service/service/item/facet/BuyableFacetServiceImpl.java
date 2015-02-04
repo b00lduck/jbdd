@@ -1,11 +1,14 @@
 package com.nigames.jbdd.service.service.item.facet;
 
 import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
 import com.nigames.jbdd.service.service.item.BuildingService;
+import com.nigames.jbdd.service.service.item.GoodService;
+import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This file is part of JBdD by nigames.de
@@ -27,7 +31,14 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	private BuildingService buildingService;
 
 	@Autowired
+	private GoodService goodService;
+
+	@Autowired
 	private RequirementService requirementService;
+
+	@Autowired
+	private CostService costService;
+
 
 
 	@Override
@@ -42,18 +53,37 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 	@Override
 	public List<Good> getAddableCostGoods(final long buyableId) {
-		return new ArrayList<>();
+
+		final List<Good> goodList = goodService.findAllEnabled();
+
+		final List<Good> ret = new ArrayList<>();
+
+		final Set<Long> costGoodList = getCostsForBuyable(buyableId);
+
+		for (final Good g : goodList) {
+
+			// Cannot add already added costs
+			if (costGoodList.contains(g.getId())) {
+				continue;
+			}
+
+			ret.add(g);
+
+		}
+
+		return ret;
 	}
 
 	@Override
 	public List<Buyable> getAddableRequirementBuyables(final long buyableId) {
 
-
-		final List<Building> buildingList = buildingService.findAll();
-		@SuppressWarnings("unchecked") final
-		List<Buyable> buyableList = (List) buildingList;
+		final List<Building> buildingList = buildingService.findAllEnabled();
+		@SuppressWarnings("unchecked")
+		final List<Buyable> buyableList = (List) buildingList;
 
 		final List<Buyable> ret = new ArrayList<>();
+
+		// TODO: pull getRequirementsForBuyable out!
 
 		for (final Buyable b : buyableList) {
 
@@ -101,9 +131,18 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
 
-		for (final Requirement r : reqList) {
-			ret.add(r.getRequiredBuyableId());
-		}
+		ret.addAll(reqList.stream().map(Requirement::getRequiredBuyableId).collect(Collectors.toList()));
+
+		return ret;
+	}
+
+	private Set<Long> getCostsForBuyable(final long buyableId) {
+
+		final Set<Long> ret = new HashSet<>();
+
+		final List<Cost> reqList = costService.findByBuyableId(buyableId);
+
+		ret.addAll(reqList.stream().map(Cost::getGoodId).collect(Collectors.toList()));
 
 		return ret;
 	}

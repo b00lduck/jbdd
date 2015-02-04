@@ -23,8 +23,6 @@ public interface AbstractDtoServiceInterface<DtoType extends IsDto> {
 
 	long getCount();
 
-	List<DtoType> findAll();
-
     List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams);
 
 	DtoType findById(final Long entityId);

@@ -7,7 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
-import static com.nigames.jbdd.service.service.SecurityElConstants.*;
+import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_ADMIN_BUYABLE_COST;
 
 /**
  * This file is part of JBdD by nigames.de
@@ -26,6 +26,8 @@ public interface CostService {
 	List<Cost> findAll(final LimitParams limitParams, final SortParams sortParams);
 
 	long getCount();
+
+	List<Cost> findByBuyableId(final long buyableId);
 
 	List<Cost> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams);
 

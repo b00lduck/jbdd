@@ -7,6 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  * This file is part of JBdD by nigames.de
  * <p>
@@ -17,5 +19,7 @@ public interface CostRepository extends PagingAndSortingRepository<CostEntity, C
 	long countByIdBuyableId(@Param("buyableId") Long buyableId);
 
 	Page<CostEntity> findByIdBuyableId(@Param("buyableId") Long buyableId, Pageable pageable);
+
+	List<CostEntity> findByIdBuyableId(@Param("buyableId") Long buyableId);
 
 }

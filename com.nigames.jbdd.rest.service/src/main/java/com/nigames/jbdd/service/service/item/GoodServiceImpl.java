@@ -9,6 +9,8 @@ import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * GoodService implementation.
  *
@@ -20,19 +22,24 @@ public class GoodServiceImpl extends AbstractRepositoryBackedService<GoodEntity,
 		implements GoodService {
 
 	@Autowired
-	private GoodConversionService buildingConversionService;
+	private GoodConversionService goodConversionService;
 
 	@Autowired
-	private GoodRepository buildingRepository;
+	private GoodRepository goodRepository;
 
 	@Override
 	protected GoodRepository getRepository() {
-		return buildingRepository;
+		return goodRepository;
 	}
 
 	@Override
 	protected ConversionServiceInterface<GoodEntity, Good> getConversionService() {
-		return buildingConversionService;
+		return goodConversionService;
 	}
 
+	@Override
+	public List<Good> findAllEnabled() {
+		final List<GoodEntity> entityList = goodRepository.findByEnabled(true);
+		return goodConversionService.convertToDto(entityList);
+	}
 }

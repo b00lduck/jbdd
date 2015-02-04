@@ -9,6 +9,8 @@ import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * BuildingService implementation.
  *
@@ -33,6 +35,12 @@ public class BuildingServiceImpl extends AbstractRepositoryBackedService<Buildin
 	@Override
 	protected ConversionServiceInterface<BuildingEntity, Building> getConversionService() {
 		return buildingConversionService;
+	}
+
+	@Override
+	public List<Building> findAllEnabled() {
+		final List<BuildingEntity> entityList = buildingRepository.findByEnabled(true);
+		return buildingConversionService.convertToDto(entityList);
 	}
 
 }

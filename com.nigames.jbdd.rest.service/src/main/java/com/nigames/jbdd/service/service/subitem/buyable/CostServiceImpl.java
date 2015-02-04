@@ -67,6 +67,12 @@ public class CostServiceImpl extends AbstractRepositoryBackedService<CostEntity,
 	}
 
 	@Override
+	public List<Cost> findByBuyableId(final long buyableId) {
+		final List<CostEntity> costEntityList = costRepository.findByIdBuyableId(buyableId);
+		return costConversionService.convertToDto(costEntityList);
+	}
+
+	@Override
 	public long getCountByBuyableId(final long buyableId) {
 		return costRepository.countByIdBuyableId(buyableId);
 	}
