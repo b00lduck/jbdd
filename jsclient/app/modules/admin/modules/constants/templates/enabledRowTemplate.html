@@ -1,5 +1,5 @@
 <div ng-dblClick="getExternalScopes().editItem(row.entity)"
-     ng-class="{'red':row.entity.enabled == false, 'green':row.entity.enabled == true }">
+     ng-class="{'red':row.entity.enabled !== true, 'green':row.entity.enabled === true }">
     <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name"
          class="ui-grid-cell"
          ng-class="{ 'ui-grid-row-header-cell': col.isRowHeader }"
