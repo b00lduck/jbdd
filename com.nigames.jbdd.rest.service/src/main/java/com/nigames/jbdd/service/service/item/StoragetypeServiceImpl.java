@@ -4,16 +4,10 @@ import com.nigames.jbdd.domain.entities.item.StoragetypeEntity;
 import com.nigames.jbdd.rest.dto.Storagetype;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.StoragetypeConversionService;
-import com.nigames.jbdd.service.service.AbstractDtoService;
-import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.StoragetypeQueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
+import com.nigames.jbdd.service.repository.StoragetypeRepository;
+import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 /**
  * StoragetypeService implementation.
@@ -22,72 +16,23 @@ import java.util.List;
  * @see StoragetypeServiceImpl
  */
 @Service
-public class StoragetypeServiceImpl extends AbstractDtoService<Storagetype, StoragetypeEntity>
-        implements StoragetypeService {
+public class StoragetypeServiceImpl extends AbstractRepositoryBackedService<StoragetypeEntity, Long, Storagetype>
+		implements StoragetypeService {
 
-    @Autowired
-    private StoragetypeConversionService storagetypeConversionService;
+	@Autowired
+	private StoragetypeConversionService buildingConversionService;
 
-    @Autowired
-    private StoragetypeQueryStrategy storagetypeQueryStrategy;
+	@Autowired
+	private StoragetypeRepository buildingRepository;
 
-    @Override
-    @Transactional
-    public Storagetype create(final Storagetype dto) {
-        return super.create(dto);
-    }
+	@Override
+	protected StoragetypeRepository getRepository() {
+		return buildingRepository;
+	}
 
-    @Override
-    @Transactional
-    public Storagetype update(final long id, final Storagetype dto) {
-        return super.update(id, dto);
-    }
-
-    @Override
-    @Transactional
-    public void delete(final long id) {
-        super.delete(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Storagetype> findAll(final LimitParams limitParams, final SortParams sortParams) {
-        return super.findAll(limitParams, sortParams);
-    }
-
-    @Override
-    @Transactional
-    public List<Storagetype> findAll(final LimitParams limitParams, final SortParams sortParams,
-                                     final QueryStrategy<StoragetypeEntity> queryStrategy,
-                                     final Object... queryParams) {
-        return super.findAll(limitParams, sortParams, queryStrategy, queryParams);
-    }
-
-    @Override
-    @Transactional
-    public Storagetype findById(final long entityId) {
-        return super.findById(entityId);
-    }
-
-    @Override
-    @Transactional
-    public long getCount() {
-        return super.getCount();
-    }
-
-    @Override
-    protected Class<StoragetypeEntity> getEntityClass() {
-        return StoragetypeEntity.class;
-    }
-
-    @Override
-    protected ConversionServiceInterface<StoragetypeEntity, Storagetype> getConversionService() {
-        return storagetypeConversionService;
-    }
-
-    @Override
-    protected QueryStrategy<StoragetypeEntity> getDefaultQueryStrategy() {
-        return storagetypeQueryStrategy;
-    }
+	@Override
+	protected ConversionServiceInterface<StoragetypeEntity, Storagetype> getConversionService() {
+		return buildingConversionService;
+	}
 
 }

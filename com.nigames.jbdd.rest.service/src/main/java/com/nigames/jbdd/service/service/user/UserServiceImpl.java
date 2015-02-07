@@ -6,15 +6,13 @@ import com.nigames.jbdd.rest.dto.User;
 import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.UserConversionService;
+import com.nigames.jbdd.service.repository.PlayerRepository;
+import com.nigames.jbdd.service.repository.UserRepository;
 import com.nigames.jbdd.service.rest.exceptionprovider.EmailAlreadyInUseException;
 import com.nigames.jbdd.service.rest.exceptionprovider.InsufficientPermissionsException;
 import com.nigames.jbdd.service.rest.exceptionprovider.UsernameAlreadyInUseException;
-import com.nigames.jbdd.service.service.AbstractDtoService;
+import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import com.nigames.jbdd.service.service.RandomPasswordGenerator;
-import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.UserQueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +23,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
 import javax.persistence.NoResultException;
-import javax.persistence.Query;
-import java.util.List;
 
 /**
  * UserService implementation.
@@ -34,91 +30,48 @@ import java.util.List;
  * @author Daniel
  * @see UserServiceImpl
  */
-@SuppressWarnings("ClassWithTooManyMethods")
 @Service
-public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> implements
-        UserService {
+public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity, Long, User>
+		implements UserService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserConversionService userConversionService;
 
-    @Autowired
-    private UserConversionService userConversionService;
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    private UserQueryStrategy userSortStrategy;
+	@Autowired
+	private PlayerRepository playerRepository;
 
-    @Autowired
-    private RandomPasswordGenerator randomPasswordGenerator;
+	@Autowired
+	private RandomPasswordGenerator randomPasswordGenerator;
 
-    private static void sendPasswordViaEmail(final User user) {
-        LOG.warn("Email sending not implemented.");
-        LOG.info("Email: {} {} {}", user.getUsername(), user.getEmail(), user.getPassword());
-    }
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    @Override
-    @Transactional
-    public void delete(final long id) {
-        super.delete(id);
-    }
+	private static void sendPasswordViaEmail(final User user) {
+		LOG.warn("Email sending not implemented.");
+		LOG.info("Email: {} {} {}", user.getUsername(), user.getEmail(), user.getPassword());
+	}
 
-    @Override
-    @Transactional
-    public List<User> findAll(final LimitParams limitParams, final SortParams sortParams) {
-        return super.findAll(limitParams, sortParams);
-    }
+	@Override
+	protected UserRepository getRepository() {
+		return userRepository;
+	}
 
-    @Override
-    @Transactional
-    public List<User> findAll(final LimitParams limitParams, final SortParams sortParams,
-                              final QueryStrategy<UserEntity> queryStrategy, final Object... queryParams) {
-        return super.findAll(limitParams, sortParams, queryStrategy, queryParams);
-    }
-
-    @Override
-    @Transactional
-    public User findById(final long entityId) {
-        return super.findById(entityId);
-    }
-
-    @Override
-    @Transactional
-    public long getCount() {
-        return super.getCount();
-    }
+	@Override
+	protected ConversionServiceInterface<UserEntity, User> getConversionService() {
+		return userConversionService;
+	}
 
     @Override
     @Transactional
     public void addRole(final long userId, final UserRoleEnum role) {
-        final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
-        addRole(userEntity, role);
+	    final UserEntity userEntity = userRepository.findOne(userId);
+	    addRole(userEntity, role);
     }
-
-    // @Override
-    // @Transactional
-    // public final void removeRole(final long userId, final String role) {
-    // UserEntity userEntity = getEntityManager().find(UserEntity.class,
-    // userId);
-    //
-    // UserRoleEntity playerRole = new UserRoleEntity(role, userEntity);
-    //
-    // if (userEntity.getUserRoleList().contains(playerRole)) {
-    // LOG.info("Removing role " + role + " from user "
-    // + userEntity.getUsername());
-    // TypedQuery<UserRoleEntity> query = getEntityManager()
-    // .createNamedQuery("findUserRoleByRoleAndUser",
-    // UserRoleEntity.class);
-    // query.setParameter("user", userEntity);
-    // query.setParameter("user_role", role);
-    // List<UserRoleEntity> res = query.getResultList();
-    // for (UserRoleEntity r : res) {
-    // userEntity.getUserRoleList().remove(r);
-    // getEntityManager().remove(r);
-    // }
-    // }
-    // }
 
     @Transactional
     private void addRole(final UserEntity userEntity, final UserRoleEnum role) {
@@ -131,14 +84,14 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     @Override
     @Transactional
     public void removeAllRoles(final long userId) {
-        final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
-        removeAllRoles(userEntity);
+	    final UserEntity userEntity = userRepository.findOne(userId);
+	    removeAllRoles(userEntity);
     }
 
     @Override
     @Transactional
     public void removePlayer(final long userId, final long playerId) {
-        final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
+	    final UserEntity userEntity = userRepository.findOne(userId);
 
         for (final PlayerEntity playerEntity : userEntity.getPlayerList()) {
             if (playerEntity.getId() == playerId) {
@@ -150,73 +103,14 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
         }
     }
 
-    // @Transactional
-    // private final void setPassword(final long userId, final String password) {
-    // UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
-    // LOG.info("Changing password for user " + userEntity.getUsername());
-    // userEntity.setPassword(passwordEncoder.encode(password));
-    // }
-
-    // /**
-    // * Get a list of all enabled {@link UserEntity} that have a specific role.
-    // *
-    // * @param role
-    // * the role i.e. {@link UserRole}.ROLE_ADMIN_SUPER
-    // * @return list of {@link UserEntity}
-    // */
-    // @Override
-    // @Transactional
-    // public final List<User> findAllEnabledUsersByRole(final String role) {
-    // TypedQuery<UserEntity> query = getEntityManager().createNamedQuery(
-    // "findEnabledUsersWithPlayerRole", UserEntity.class);
-    // query.setParameter("role", role);
-    // List<UserEntity> list = query.getResultList();
-    //
-    // return userConversionService.convertToDto(list);
-    // }
-
-    // /**
-    // * Get a list of all {@link UserEntity} that have a specific role.
-    // *
-    // * @param role
-    // * the role i.e. {@link UserRole}.ROLE_ADMIN_SUPER
-    // * @return list of {@link UserEntity}
-    // */
-    // @Override
-    // @Transactional
-    // public final List<User> findAllUsersByRole(final String role) {
-    // TypedQuery<UserEntity> q = getEntityManager().createNamedQuery(
-    // "findUsersWithPlayerRole", UserEntity.class);
-    // q.setParameter("role", role);
-    // return userConversionService.convertToDto(q.getResultList());
-    // }
-
-    // @Override
-    // @Transactional
-    // public final List<User> findAllEnabledPlayerUsers() {
-    // return findAllEnabledUsersByRole(UserRole.ROLE_PLAYER);
-    // }
-    //
-    // @Override
-    // @Transactional
-    // public final List<User> findAllPlayerUsers() {
-    // return findAllUsersByRole(UserRole.ROLE_PLAYER);
-    // }
-    //
-    // @Override
-    // @Transactional
-    // public final List<User> findAllEnabledAdminUserUsers() {
-    // return findAllEnabledUsersByRole(UserRole.ROLE_ADMIN_USER);
-    // }
-
     @Override
     @Transactional
     public void addPlayer(final long userId, final long playerId) {
-        final UserEntity userEntity = getEntityManager().find(UserEntity.class, userId);
+	    final UserEntity userEntity = userRepository.findOne(userId);
 
         if (userEntity.getUserRoleList().contains(UserRoleEnum.ROLE_PLAYER)) {
-            final PlayerEntity playerEntity = getEntityManager().find(PlayerEntity.class, playerId);
-            userEntity.getPlayerList().add(playerEntity);
+	        final PlayerEntity playerEntity = playerRepository.findOne(playerId);
+	        userEntity.getPlayerList().add(playerEntity);
             playerEntity.setUser(userEntity);
         } else {
             LOG.error("User {} lacks {} role, not creating player", userEntity.getUsername(), UserRoleEnum.ROLE_PLAYER);
@@ -229,44 +123,26 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
     @Override
     @Transactional
     public User findByUsername(final String username) {
-        final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_USERNAME);
-        query.setParameter("username", username);
-
-        final UserEntity entity;
         try {
-            entity = (UserEntity) query.getSingleResult();
+	        final UserEntity entity = userRepository.findByUsername(username);
+	        return userConversionService.convertToDtoWithPassword(entity);
         } catch (NoResultException | EmptyResultDataAccessException ignored) {
-            LOG.info("empty result fetched: {} with username={}", UserEntity.NQ_BY_USERNAME, username);
-            return null;
+	        LOG.info("findByUsername empty result fetched: username={}", username);
+	        return null;
         }
-        return userConversionService.convertToDtoWithPassword(entity);
     }
 
 	@Override
 	@Transactional
     public boolean isUsernameExisting(final String username) {
-        final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_USERNAME);
-        query.setParameter("username", username);
-
-        try {
-            query.getSingleResult();
-        } catch (NoResultException | EmptyResultDataAccessException ignored) {
-            return false;
-        }
-        return true;
-    }
+		UserEntity entity = userRepository.findByUsername(username);
+		return (entity != null);
+	}
 
     @Transactional
     public boolean isEmailExisting(final String email) {
-        final Query query = getEntityManager().createNamedQuery(UserEntity.NQ_BY_EMAIL);
-        query.setParameter("email", email);
-
-        try {
-            query.getSingleResult();
-        } catch (NoResultException | EmptyResultDataAccessException ignored) {
-            return false;
-        }
-        return true;
+	    UserEntity entity = userRepository.findByEmail(email);
+	    return (entity != null);
     }
 
     @Override
@@ -282,7 +158,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
         setUserPassword(user, sendPassword);
 
-        final User ret = super.create(user);
+	    final User ret = create(user);
 
         if (null != user.getRoles()) {
             for (final UserRoleEnum role : user.getRoles()) {
@@ -304,7 +180,7 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
     @Override
     @Transactional
-    public User update(final long id, final User user, final boolean sendPassword) {
+    public User update(final Long id, final User user, final boolean sendPassword) {
 
         // TODO: validation for password etc
 
@@ -349,38 +225,11 @@ public final class UserServiceImpl extends AbstractDtoService<User, UserEntity> 
 
         }
 
-        return super.update(id, user);
+	    return update(id, user);
     }
 
     private String createRandomPassword() {
         return randomPasswordGenerator.getRandomPassword();
-    }
-
-    @SuppressWarnings("RefusedBequest")
-    @Override
-    public User update(final long id, final User dto) {
-        return update(id, dto, false);
-    }
-
-    @SuppressWarnings("RefusedBequest")
-    @Override
-    public User create(final User dto) {
-        return create(dto, false);
-    }
-
-    @Override
-    protected Class<UserEntity> getEntityClass() {
-        return UserEntity.class;
-    }
-
-    @Override
-    protected ConversionServiceInterface<UserEntity, User> getConversionService() {
-        return userConversionService;
-    }
-
-    @Override
-    protected QueryStrategy<UserEntity> getDefaultQueryStrategy() {
-        return userSortStrategy;
     }
 
     @Transactional

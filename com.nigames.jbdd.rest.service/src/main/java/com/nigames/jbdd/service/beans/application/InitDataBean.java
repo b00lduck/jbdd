@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
  * @author Daniel
  */
 @Service
-class CreateDefaultUsersBean implements ApplicationListener<ContextRefreshedEvent> {
+class InitDataBean implements ApplicationListener<ContextRefreshedEvent> {
 
     /**
      * The CheckAdminUserBean.
@@ -35,18 +35,26 @@ class CreateDefaultUsersBean implements ApplicationListener<ContextRefreshedEven
     @Autowired
     private CheckDummyPlayerBean checkDummyPlayerBean;
 
+	/**
+	 * The CheckInitialTestData.
+	 */
+	@Autowired
+	private CheckInitialTestData checkInitialTestData;
+
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent event) {
 
         final SystemUserDetails sysAcc = new SystemUserDetails();
-        final Authentication token =
-                new PreAuthenticatedAuthenticationToken(sysAcc, sysAcc.getPassword(),
+
+	    Authentication token =
+			    new PreAuthenticatedAuthenticationToken(sysAcc, sysAcc.getPassword(),
                         sysAcc.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
 
-        checkAdminUserBean.doChecks();
-        checkDefaultPlayerBean.doChecks();
-        checkDummyPlayerBean.doChecks();
+	    //checkAdminUserBean.doChecks();
+	    //checkDefaultPlayerBean.doChecks();
+	    //checkDummyPlayerBean.doChecks();
+	    //checkInitialTestData.doChecks();
     }
 
 }

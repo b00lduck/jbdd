@@ -1,16 +1,15 @@
 package com.nigames.jbdd.service.service.item.facet;
 
 import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
-import com.nigames.jbdd.service.service.querystrategy.AddableCostQueryStrategy;
+import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This file is part of JBdD by nigames.de
@@ -28,65 +28,62 @@ import java.util.Set;
 public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 	@Autowired
-	private GoodService goodService;
+	private BuildingService buildingService;
 
 	@Autowired
-	private BuildingService buildingService;
+	private GoodService goodService;
 
 	@Autowired
 	private RequirementService requirementService;
 
 	@Autowired
-	private AddableCostQueryStrategy addableCostGoodQueryStrategy;
+	private CostService costService;
+
+
 
 	@Override
-	public List<Good> getAddableCostGoods(final long buyableId, final LimitParams limitParams,
-	                                      final SortParams sortParams) {
-		return goodService.findAll(limitParams, sortParams, addableCostGoodQueryStrategy, buyableId);
+	public long getAddableRequirementBuyablesCount(final long buyableId) {
+		return 0;
 	}
 
 	@Override
 	public long getAddableCostGoodsCount(final long buyableId) {
-		return goodService.getCount(addableCostGoodQueryStrategy, buyableId);
+		return 0;
 	}
 
-	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {
+	@Override
+	public List<Good> getAddableCostGoods(final long buyableId) {
 
-		// TODO: prevent endless loop in case of cyclic requirements in DB
+		final List<Good> goodList = goodService.findAllEnabled();
 
-		final Set<Long> ret = new HashSet<>();
+		final List<Good> ret = new ArrayList<>();
 
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
+		final Set<Long> costGoodList = getCostsForBuyable(buyableId);
 
-		for (final Requirement r : reqList) {
-			ret.add(r.getRequiredBuyableId());
-			ret.addAll(getRequirementsForBuyableRecursive(r.getRequiredBuyableId()));
-		}
+		for (final Good g : goodList) {
 
-		return ret;
-	}
+			// Cannot add already added costs
+			if (costGoodList.contains(g.getId())) {
+				continue;
+			}
 
-	private Set<Long> getRequirementsForBuyable(final long buyableId) {
+			ret.add(g);
 
-		final Set<Long> ret = new HashSet<>();
-
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
-
-		for (final Requirement r : reqList) {
-			ret.add(r.getRequiredBuyableId());
 		}
 
 		return ret;
 	}
 
 	@Override
-	public List<Buyable> getAddableRequirementBuyables(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
+	public List<Buyable> getAddableRequirementBuyables(final long buyableId) {
 
-		final List<Building> buildingList = buildingService.findAll(LimitParams.createDefault(), SortParams.createDefault());
-		@SuppressWarnings("unchecked") final
-		List<Buyable> buyableList = (List) buildingList;
+		final List<Building> buildingList = buildingService.findAllEnabled();
+		@SuppressWarnings("unchecked")
+		final List<Buyable> buyableList = (List) buildingList;
 
 		final List<Buyable> ret = new ArrayList<>();
+
+		// TODO: pull getRequirementsForBuyable out!
 
 		for (final Buyable b : buyableList) {
 
@@ -112,8 +109,43 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 		return ret;
 	}
 
-	@Override
-	public long getAddableRequirementBuyablesCount(final long buyableId) {
-		return buildingService.getCount();
+	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {
+
+		// TODO: prevent endless loop in case of cyclic requirements in DB
+
+		final Set<Long> ret = new HashSet<>();
+
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
+
+		for (final Requirement r : reqList) {
+			ret.add(r.getRequiredBuyableId());
+			ret.addAll(getRequirementsForBuyableRecursive(r.getRequiredBuyableId()));
+		}
+
+		return ret;
 	}
+
+	private Set<Long> getRequirementsForBuyable(final long buyableId) {
+
+		final Set<Long> ret = new HashSet<>();
+
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
+
+		ret.addAll(reqList.stream().map(Requirement::getRequiredBuyableId).collect(Collectors.toList()));
+
+		return ret;
+	}
+
+	private Set<Long> getCostsForBuyable(final long buyableId) {
+
+		final Set<Long> ret = new HashSet<>();
+
+		final List<Cost> reqList = costService.findByBuyableId(buyableId);
+
+		ret.addAll(reqList.stream().map(Cost::getGoodId).collect(Collectors.toList()));
+
+		return ret;
+	}
+
+
 }

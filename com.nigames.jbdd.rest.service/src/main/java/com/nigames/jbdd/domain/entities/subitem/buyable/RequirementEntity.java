@@ -2,8 +2,6 @@ package com.nigames.jbdd.domain.entities.subitem.buyable;
 
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.*;
 
@@ -15,14 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "requirement")
-@NamedQueries({
-		@NamedQuery(name = RequirementEntity.NQ_BY_BUYABLE_ID, query = "SELECT r FROM RequirementEntity r WHERE r.id.buyableId=:buyableId"),
-		@NamedQuery(name = RequirementEntity.NQ_COUNT_BY_BUYABLE_ID, query = "SELECT COUNT(id.buyableId) FROM RequirementEntity WHERE id.buyableId=:buyableId")
-})
 public class RequirementEntity extends AbstractBuyableSubItemEntity {
-
-	public static final String NQ_COUNT_BY_BUYABLE_ID = "RequirementEntity.0";
-	public static final String NQ_BY_BUYABLE_ID = "RequirementEntity.1";
 
 	/**
 	 * The embedded primary key.

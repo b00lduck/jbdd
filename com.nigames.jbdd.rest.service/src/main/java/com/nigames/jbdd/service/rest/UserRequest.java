@@ -61,8 +61,8 @@ public class UserRequest extends AbstractRequest<User> implements UserRequestInt
                                          @QueryParam(Constants.QUERY_PARAM_SORT) final String sort, @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
 
         final List<Player> data = playerService.findByUserId(id, LimitParams.create(first, size), SortParams.create(sort, desc));
-        final Long total = playerService.getCountByUserId(id);
-        final LimitParams limitParams = LimitParams.create(first, size);
+	    final long total = playerService.getCountByUserId(id);
+	    final LimitParams limitParams = LimitParams.create(first, size);
         return new DtoList<>(data, total, limitParams);
     }
 

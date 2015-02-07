@@ -34,15 +34,11 @@ public final class SortParams {
     }
 
     public static SortParams create(final String sort, final Boolean desc) {
-
         return new SortParams(sort, desc);
-
     }
 
     public static SortParams createDefault() {
-
         return new SortParams(null, false);
-
     }
 
     public String getSort() {
@@ -50,7 +46,9 @@ public final class SortParams {
     }
 
     public Boolean isDesc() {
-        return desc;
+	    if (desc == null) return false;
+	    return desc;
     }
+
 
 }

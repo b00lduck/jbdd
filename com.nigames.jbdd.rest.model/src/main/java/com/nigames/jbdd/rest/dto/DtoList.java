@@ -29,17 +29,16 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class DtoList<T> {
 
+	private List<T> data = new ArrayList<>();
+	private Meta meta = new Meta();
+
 	public DtoList() {
 	}
 
-	public DtoList(final List<T> data, final long total, final LimitParams limitParams) {
+	public DtoList(final List<T> data, final Long total, final LimitParams limitParams) {
 		setData(data);
 		setMeta(Meta.create(total, limitParams));
 	}
-
-	private List<T> data = new ArrayList<>();
-
-	private Meta meta = new Meta();
 
 	public List<T> getData() {
 		return data;

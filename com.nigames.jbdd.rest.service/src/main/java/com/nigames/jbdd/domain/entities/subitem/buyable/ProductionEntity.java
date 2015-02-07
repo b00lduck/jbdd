@@ -2,8 +2,6 @@ package com.nigames.jbdd.domain.entities.subitem.buyable;
 
 import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.*;
 
@@ -15,8 +13,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "production")
-@NamedQueries(@NamedQuery(name = "findProductionsByBuilding",
-        query = "FROM ProductionEntity WHERE building=:building"))
 public class ProductionEntity extends AbstractBuyableSubItemEntity {
 
     /**

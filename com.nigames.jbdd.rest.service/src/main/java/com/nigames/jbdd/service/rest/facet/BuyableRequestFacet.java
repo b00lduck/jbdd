@@ -37,7 +37,7 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
         final SortParams sortParams = SortParams.create(sort, desc);
 
         final List<Cost> data = costService.findByBuyableId(itemId, limitParams, sortParams);
-        final long total = costService.getCount();
+		final Long total = costService.getCount();
 
         return new DtoList<>(data, total, limitParams);
     }
@@ -48,10 +48,10 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 	                                         final String sort, final Boolean desc) {
 
         final LimitParams limitParams = LimitParams.create(first, size);
-        final SortParams sortParams = SortParams.create(sort, desc);
+		//final SortParams sortParams = SortParams.create(sort, desc);
 
 	    final long total = buyableFacetService.getAddableCostGoodsCount(itemId);
-	    final List<Good> data = buyableFacetService.getAddableCostGoods(itemId, limitParams, sortParams);
+		final List<Good> data = buyableFacetService.getAddableCostGoods(itemId);
 
         return new DtoList<>(data, total, limitParams);
     }
@@ -93,10 +93,10 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 	                                                      final String sort, final Boolean desc) {
 
 		final LimitParams limitParams = LimitParams.create(first, size);
-		final SortParams sortParams = SortParams.create(sort, desc);
+		// final SortParams sortParams = SortParams.create(sort, desc);
 
 		final long total = buyableFacetService.getAddableRequirementBuyablesCount(itemId);
-		final List<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId, limitParams, sortParams);
+		final List<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId);
 
 		return new DtoList<>(data, total, limitParams);
 	}

@@ -1,15 +1,16 @@
 package com.nigames.jbdd.rest.dto.facet;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class HasNameAndDescImpl implements HasNameAndDesc {
 
-    private Map<String, String> name;
+	private Map<String, String> name = new HashMap<>();
 
-    private Map<String, String> description;
+	private Map<String, String> description = new HashMap<>();
 
-    @Override
-    public Map<String, String> getName() {
+	@Override
+	public Map<String, String> getName() {
         return name;
     }
 

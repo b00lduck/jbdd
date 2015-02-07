@@ -27,13 +27,15 @@ public interface PlayerRequestInterface {
 	@GET
 	@Path("/unused")
 	DtoList<Player> getAllUnused(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                             @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size, @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                             @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                             @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
 	                             @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@GET
 	@Path("/")
 	DtoList<Player> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                       @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size, @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                       @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                       @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
 	                       @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@DELETE

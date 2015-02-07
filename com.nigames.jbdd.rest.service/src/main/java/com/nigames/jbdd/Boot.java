@@ -11,7 +11,8 @@ import org.springframework.context.annotation.Import;
 @EnableAutoConfiguration
 @Import(ApplicationConfig.class)
 public class Boot {
-    public static void main(final String[] args) {
+
+	public static void main(final String[] args) {
         SpringApplication.run(Boot.class, args);
     }
 }

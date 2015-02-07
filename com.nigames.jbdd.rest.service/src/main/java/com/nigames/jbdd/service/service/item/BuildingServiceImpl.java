@@ -4,14 +4,10 @@ import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
-import com.nigames.jbdd.service.service.AbstractDtoService;
-import com.nigames.jbdd.service.service.querystrategy.BuildingQueryStrategy;
-import com.nigames.jbdd.service.service.querystrategy.QueryStrategy;
-import com.nigames.jbdd.types.LimitParams;
-import com.nigames.jbdd.types.SortParams;
+import com.nigames.jbdd.service.repository.BuildingRepository;
+import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,70 +18,29 @@ import java.util.List;
  * @see com.nigames.jbdd.service.service.item.BuildingServiceImpl
  */
 @Service
-public class BuildingServiceImpl extends AbstractDtoService<Building, BuildingEntity> implements BuildingService {
+public class BuildingServiceImpl extends AbstractRepositoryBackedService<BuildingEntity, Long, Building>
+		implements BuildingService {
 
     @Autowired
     private BuildingConversionService buildingConversionService;
 
-    @Autowired
-    private BuildingQueryStrategy buildingQueryStrategy;
+	@Autowired
+	private BuildingRepository buildingRepository;
 
-    @Override
-    @Transactional
-    public Building create(final Building dto) {
-        return super.create(dto);
-    }
+	@Override
+	protected BuildingRepository getRepository() {
+		return buildingRepository;
+	}
 
-    @Override
-    @Transactional
-    public Building update(final long id, final Building dto) {
-        return super.update(id, dto);
-    }
+	@Override
+	protected ConversionServiceInterface<BuildingEntity, Building> getConversionService() {
+		return buildingConversionService;
+	}
 
-    @Override
-    @Transactional
-    public void delete(final long id) {
-        super.delete(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Building> findAll(final LimitParams limitParams, final SortParams sortParams) {
-        return super.findAll(limitParams, sortParams);
-    }
-
-    @Override
-    @Transactional
-    public List<Building> findAll(final LimitParams limitParams, final SortParams sortParams,
-                              final QueryStrategy<BuildingEntity> queryStrategy, final Object... queryParams) {
-        return super.findAll(limitParams, sortParams, queryStrategy, queryParams);
-    }
-
-    @Override
-    @Transactional
-    public Building findById(final long entityId) {
-        return super.findById(entityId);
-    }
-
-    @Override
-    @Transactional
-    public long getCount() {
-        return super.getCount();
-    }
-
-    @Override
-    protected Class<BuildingEntity> getEntityClass() {
-        return BuildingEntity.class;
-    }
-
-    @Override
-    protected ConversionServiceInterface<BuildingEntity, Building> getConversionService() {
-        return buildingConversionService;
-    }
-
-    @Override
-    protected QueryStrategy<BuildingEntity> getDefaultQueryStrategy() {
-        return buildingQueryStrategy;
-    }
+	@Override
+	public List<Building> findAllEnabled() {
+		final List<BuildingEntity> entityList = buildingRepository.findByEnabled(true);
+		return buildingConversionService.convertToDto(entityList);
+	}
 
 }

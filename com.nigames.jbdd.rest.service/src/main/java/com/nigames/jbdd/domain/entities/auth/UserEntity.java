@@ -16,30 +16,10 @@ import java.util.List;
  *
  * @author Daniel
  */
-@SuppressWarnings("StringConcatenationMissingWhitespace")
 @Entity
 @Table(name = "users")
-@NamedQueries({
-		@NamedQuery(name = UserEntity.NQ_BY_USERNAME,
-				query = "SELECT u FROM UserEntity u WHERE u.username=:username"),
-		@NamedQuery(name = UserEntity.NQ_BY_EMAIL,
-				query = "SELECT u FROM UserEntity u WHERE u.email=:email"),
-		@NamedQuery(
-				name = UserEntity.NQ_SORTED_BY_NUM_PLAYERS,
-				query = UserEntity.NUM_PLAYERS_SORT_QUERY),
-		@NamedQuery(
-				name = UserEntity.NQ_SORTED_BY_NUM_PLAYERS_DESC,
-				query = UserEntity.NUM_PLAYERS_SORT_QUERY + " DESC")})
-
 public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
-	public static final String NQ_SORTED_BY_NUM_PLAYERS = "UserEntity.1";
-	public static final String NQ_SORTED_BY_NUM_PLAYERS_DESC = "UserEntity.2";
-	public static final String NQ_BY_USERNAME = "UserEntity.3";
-	public static final String NQ_BY_EMAIL = "UserEntity.4";
-
-	static final String NUM_PLAYERS_SORT_QUERY =
-			"SELECT u FROM UserEntity u LEFT JOIN u.playerList p GROUP BY u.id ORDER BY COUNT(p.id)";
 	/**
 	 * Max length of the username.
 	 */
@@ -94,8 +74,7 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable (name = "user_roles",
 			joinColumns = @JoinColumn(name = "user_id"),
-			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"})
-			)
+			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"}))
 	@Enumerated(EnumType.ORDINAL)
 	private List<UserRoleEnum> userRoleList = new ArrayList<>();
 

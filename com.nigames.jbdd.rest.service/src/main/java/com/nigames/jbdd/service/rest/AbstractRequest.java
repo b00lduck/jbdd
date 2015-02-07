@@ -4,9 +4,9 @@ import com.nigames.jbdd.rest.api.GenericRequestInterface;
 import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
+import com.nigames.jbdd.statics.Constants;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
-import com.nigames.jbdd.statics.Constants;
 
 import javax.ws.rs.*;
 import java.util.List;
@@ -31,13 +31,14 @@ public abstract class AbstractRequest<DtoType extends IsDto> implements
 
         final LimitParams limitParams = LimitParams.create(first, size);
         final SortParams sortParams = SortParams.create(sort, desc);
-        final long total = getService().getCount();
+
+	    final long total = getService().getCount();
         final List<DtoType> data = getService().findAll(limitParams, sortParams);
 
         return new DtoList<>(data, total, limitParams);
 
     }
 
-    protected abstract AbstractDtoServiceInterface<DtoType, ?> getService();
+	protected abstract AbstractDtoServiceInterface<DtoType> getService();
 
 }
