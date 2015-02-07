@@ -6,10 +6,13 @@ import com.nigames.jbdd.rest.dto.Cost;
 import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.statics.Constants;
+import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+@Api("/buliding")
 @SuppressWarnings("AbstractMethodOverridesAbstractMethod")
 @Path("/building")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -19,6 +22,7 @@ public interface BuildingRequestInterface extends GenericRequestInterface<Buildi
 	@Override
 	@GET
 	@Path("/{itemId}")
+	@ApiOperation(value = "hallo", httpMethod = "GET")
 	Building getById(@PathParam("itemId") final long itemId);
 
 	@PUT

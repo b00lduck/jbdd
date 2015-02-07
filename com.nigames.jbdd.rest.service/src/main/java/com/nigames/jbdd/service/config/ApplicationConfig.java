@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SuppressWarnings("DuplicateStringLiteralInspection")
@@ -17,7 +18,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
         WebConfig.class,
         WebSecurityConfig.class,
         CreateDefaultUsersConfig.class,
-        MessageSourceConfig.class})
+		MessageSourceConfig.class
+})
+@EnableJpaRepositories("com.nigames.jbdd.service.repository")
 public class ApplicationConfig {
 
     @Bean
@@ -27,6 +30,5 @@ public class ApplicationConfig {
         messageSource.setFallbackToSystemLocale(false);
         return messageSource;
     }
-
 
 }
