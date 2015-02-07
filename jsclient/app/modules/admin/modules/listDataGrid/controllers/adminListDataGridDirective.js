@@ -4,8 +4,8 @@
 define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], function (angularAMD, adminConstants) {
 
     angularAMD.controller('AdminListDataGridDirectiveController',
-        ['$scope', '$rootScope', '$translate', 'DataService', '$location', '$modal', 'uiGridConstants',
-            function ($scope, $rootScope, $translate, DataService, $location, $modal, uiGridConstants) {
+        ['$scope', '$rootScope', '$translate', 'DataService', '$location', '$modal', 'uiGridConstants', 'i18nService',
+            function ($scope, $rootScope, $translate, DataService, $location, $modal, uiGridConstants, i18nService) {
 
                 var resourceName,
                     configuration;
@@ -35,19 +35,26 @@ define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], fun
 
                 var getColumnDefs = function (configuration) {
 
-                    var configuredColumnDefs = configuration.columnDefs,
-                        resourceName = configuration.resourceName,
-                        arrayLength = configuredColumnDefs.length,
+                    var resourceName = configuration.resourceName,
+                        arrayLength = configuration.columnDefs.length,
                         i18nKey,
-                        i;
+                        i,
+                        reconfiguredColumnDefs = [];
+
 
                     for (i = 0; i < arrayLength; i++) {
-                        i18nKey = 'dataGrid.columnHeader.' + resourceName + '.' + configuredColumnDefs[i].name;
-                        configuredColumnDefs[i].displayName = $translate.instant(i18nKey);
+                        reconfiguredColumnDefs[i] = {};
+                        i18nKey = 'dataGrid.columnHeader.' + resourceName + '.' + configuration.columnDefs[i].name;
+                        reconfiguredColumnDefs[i].displayName = $translate.instant(i18nKey);
+                        reconfiguredColumnDefs[i].name = configuration.columnDefs[i].name;
+                        if (true === configuration.columnDefs[i].i18nField) {
+                            reconfiguredColumnDefs[i].cellTemplate = adminConstants.templates.cellTemplateI18nField;
+                            reconfiguredColumnDefs[i].i18nField = true;
+                        }
                     }
 
                     //noinspection NestedFunctionCallJS
-                    return getFixedColumnsLeft().concat(configuredColumnDefs).concat(getFixedColumnsRight());
+                    return getFixedColumnsLeft().concat(reconfiguredColumnDefs).concat(getFixedColumnsRight());
                 };
 
                 var pagingOptions = {
@@ -55,6 +62,7 @@ define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], fun
                     pageSize: 25,
                     sortColumn: null,
                     sortDesc: false
+
                 };
 
                 var createGridOptions = function () {
@@ -87,7 +95,7 @@ define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], fun
                                             break;
                                     }
 
-                                    pagingOptions.sortColumn = sortColumns[0].name;
+                                    pagingOptions.sortColumn = sortColumns[0];
 
                                 }
                                 getPage();
@@ -159,13 +167,13 @@ define(['angularAMD', 'adminConstants', 'DataService', 'angular-translate'], fun
 
                 };
 
-
                 $rootScope.$on('$translateChangeSuccess', function (event, value) {
                     var langSimple = value.language.substr(0, 2);
                     i18nService.setCurrentLang(langSimple);
                     refreshGridOptions();
-                });
 
+                    getPage();
+                });
 
                 this.init = function () {
 

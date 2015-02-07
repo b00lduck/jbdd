@@ -4,8 +4,8 @@
 
 define(['angularAMD'], function (angularAMD) {
 
-    angularAMD.service('DataService', ['$http', '$q',
-        function ($http, $q) {
+    angularAMD.service('DataService', ['$http', '$q', '$translate',
+        function ($http, $q, $translate) {
 
             var restServiceBaseUrl = 'http://localhost:8080/';
 
@@ -36,13 +36,21 @@ define(['angularAMD'], function (angularAMD) {
             };
 
             var getPagedResourceListUrl = function (resourceName, pagingOptions) {
+
                 var first = (pagingOptions.pageNumber - 1) * pagingOptions.pageSize;
 
                 var url = getResourceBaseUrl(resourceName) + '?first=' + first + '&size=' + pagingOptions.pageSize;
 
                 if (null !== pagingOptions.sortColumn) {
-                    url += '&sort=' + pagingOptions.sortColumn;
+
+                    url += '&sort=' + pagingOptions.sortColumn.name;
+
+                    if (pagingOptions.sortColumn.colDef.i18nField === true) {
+                        url += '.' + $translate.use();
+                    }
+
                     url += '&desc=' + pagingOptions.sortDesc;
+
                 }
 
                 return url;

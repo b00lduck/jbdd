@@ -29,26 +29,26 @@ define(['angularAMD',
 
                 'good': {
                     columnDefs: [
-                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'},
+                        {name: 'name', displayNameI18n: 'i18n.name', i18nField: true},
                         {name: 'weight', displayNameI18n: 'good.weight'}
                     ]
                 },
 
                 'building': {
                     columnDefs: [
-                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                        {name: 'name', displayNameI18n: 'i18n.name', i18nField: true}
                     ]
                 },
 
                 'technology': {
                     columnDefs: [
-                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                        {name: 'name', displayNameI18n: 'i18n.name', i18nField: true}
                     ]
                 },
 
                 'job': {
                     columnDefs: [
-                        {name: 'name.de-DE', displayNameI18n: 'i18n.name'}
+                        {name: 'name', displayNameI18n: 'i18n.name', i18nField: true}
                     ]
                 }
 
