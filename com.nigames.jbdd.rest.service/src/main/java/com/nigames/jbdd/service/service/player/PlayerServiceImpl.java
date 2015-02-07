@@ -84,6 +84,7 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
 	    final List<PlayerEntity> playerEntity = playerRepository.findUnused(pageable).getContent();
 	    return playerConversionService.convertToDto(playerEntity);
 	    */
+	    // TODO: implement
 	    return new ArrayList<>();
     }
 
@@ -91,6 +92,7 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
     @Transactional
     public final long getCountUnused() {
 	    return 0;
+	    // TODO: implement
 	    //return playerRepository.findUnused().getTotalElements();
     }
 

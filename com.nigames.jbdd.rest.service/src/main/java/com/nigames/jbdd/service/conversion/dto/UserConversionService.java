@@ -39,7 +39,7 @@ public class UserConversionService extends AbstractConversionService<UserEntity,
         entity.setEmail(dto.getEmail());
         entity.setEnabled(dto.isEnabled());
 
-	    // only setLang the password if it is provided
+	    // only set the password if it is provided
 	    if (null != dto.getPassword()) {
             entity.setPassword(dto.getPassword());
         }

@@ -20,16 +20,25 @@ public final class SecurityElConstants {
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_PLAYER";
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_PLAYER =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_PLAYER + ")";
+
 	public static final String HAS_ROLE_ADMIN_PLAYER =
 			"hasRole(" + ROLE_ADMIN_PLAYER + ")";
+
 	private static final String ROLE_ADMIN_TECHNOLOGY =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_TECHNOLOGY";
+
+	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_TECHNOLOGY =
+			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_TECHNOLOGY + ")";
+
 	public static final String HAS_ROLE_ADMIN_TECHNOLOGY =
 			"hasRole(" + ROLE_ADMIN_TECHNOLOGY + ")";
+
 	private static final String ROLE_ADMIN_BUILDING =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_BUILDING";
+
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_BUILDING =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_BUILDING + ")";
+
 	public static final String HAS_ROLE_ADMIN_BUILDING =
 			"hasRole(" + ROLE_ADMIN_BUILDING + ")";
 	private static final String ROLE_ADMIN_GOOD =

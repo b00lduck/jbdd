@@ -9,11 +9,13 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Technology implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled {
+public class Technology implements Identifiable, HasNameAndDesc, CanBeEnabled, Deletable, Buyable {
 
     private final Identifiable isIdentifiable = new IdentifiableImpl();
     private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
     private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
+	private final Buyable buyable = new BuyableImpl();
+	private final Deletable deletable = new DeletableImpl();
 
     @Override
     public boolean isEnabled() {
@@ -55,4 +57,23 @@ public class Technology implements IsDto, Identifiable, HasNameAndDesc, CanBeEna
         isIdentifiable.setId(id);
     }
 
+	@Override
+	public int getBuildtime() {
+		return buyable.getBuildtime();
+	}
+
+	@Override
+	public void setBuildtime(final int buildtime) {
+		buyable.setBuildtime(buildtime);
+	}
+
+	@Override
+	public boolean isDeletable() {
+		return deletable.isDeletable();
+	}
+
+	@Override
+	public void setDeletable(final boolean deletable) {
+		this.deletable.setDeletable(deletable);
+	}
 }

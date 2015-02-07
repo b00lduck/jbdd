@@ -34,7 +34,7 @@ public class TechnologyConversionService extends AbstractConversionService<Techn
 
     @Override
     protected void updateDtoFromEntity(final Technology dto, final TechnologyEntity entity) {
-        // Nothing to do here (yet).
+	    dto.setDeletable(true);
     }
 
     @Override

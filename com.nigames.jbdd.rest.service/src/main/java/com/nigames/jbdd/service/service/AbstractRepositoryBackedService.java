@@ -3,6 +3,7 @@ package com.nigames.jbdd.service.service;
 import com.google.common.collect.Lists;
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
+import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
 import com.nigames.jbdd.service.service.sortParamTransformator.SortParamTransformator;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
@@ -128,6 +129,9 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 	@Transactional
 	public DtoType findById(final KeyType id) {
 		final EntityType entity = getRepository().findOne(id);
+		if (entity == null) {
+			throw new ContentNotFoundException();
+		}
 		return getConversionService().convertToDto(entity);
 	}
 

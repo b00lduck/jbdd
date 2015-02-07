@@ -8,6 +8,7 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.UserConversionService;
 import com.nigames.jbdd.service.repository.PlayerRepository;
 import com.nigames.jbdd.service.repository.UserRepository;
+import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
 import com.nigames.jbdd.service.rest.exceptionprovider.EmailAlreadyInUseException;
 import com.nigames.jbdd.service.rest.exceptionprovider.InsufficientPermissionsException;
 import com.nigames.jbdd.service.rest.exceptionprovider.UsernameAlreadyInUseException;
@@ -16,13 +17,11 @@ import com.nigames.jbdd.service.service.RandomPasswordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
-import javax.persistence.NoResultException;
 
 /**
  * UserService implementation.
@@ -123,13 +122,14 @@ public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity,
     @Override
     @Transactional
     public User findByUsername(final String username) {
-        try {
-	        final UserEntity entity = userRepository.findByUsername(username);
-	        return userConversionService.convertToDtoWithPassword(entity);
-        } catch (NoResultException | EmptyResultDataAccessException ignored) {
-	        LOG.info("findByUsername empty result fetched: username={}", username);
-	        return null;
-        }
+
+	    final UserEntity entity = userRepository.findByUsername(username);
+
+	    if (entity == null) {
+		    throw new ContentNotFoundException();
+	    }
+
+	    return userConversionService.convertToDtoWithPassword(entity);
     }
 
 	@Override
@@ -158,7 +158,7 @@ public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity,
 
         setUserPassword(user, sendPassword);
 
-	    final User ret = create(user);
+	    final User ret = super.create(user);
 
         if (null != user.getRoles()) {
             for (final UserRoleEnum role : user.getRoles()) {
@@ -168,6 +168,13 @@ public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity,
 
         return ret;
     }
+
+	@Override
+	@Transactional
+	public User create(final User user) {
+		throw new IllegalArgumentException("please call create(User user, boolean sendPassword)");
+	}
+
 
     private void setUserPassword(final User user, final boolean sendPassword) {
         if (sendPassword) {

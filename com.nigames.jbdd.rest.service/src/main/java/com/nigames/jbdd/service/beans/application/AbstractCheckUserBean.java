@@ -132,15 +132,16 @@ public abstract class AbstractCheckUserBean {
 	void checkUserExists(final String username, final String password,
 	                     final String email, final Boolean enabled) {
 		LOG.info("Checking if user \"{}\" exists", username); // NON-NLS
-		final User user = userService.findByUsername(username);
-		if (null == user) {
+
+		if (!userService.isUsernameExisting(username)) {
 			final User newUser = new User();
 			newUser.setUsername(username);
 			newUser.setEnabled(enabled);
 			newUser.setPassword(password);
 			newUser.setEmail(email);
-			userService.create(newUser);
+			userService.create(newUser, false);
 		}
+
 	}
 
 	@Transactional

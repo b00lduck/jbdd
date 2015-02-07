@@ -51,10 +51,10 @@ class InitDataBean implements ApplicationListener<ContextRefreshedEvent> {
                         sysAcc.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(token);
 
-	    //checkAdminUserBean.doChecks();
-	    //checkDefaultPlayerBean.doChecks();
-	    //checkDummyPlayerBean.doChecks();
-	    //checkInitialTestData.doChecks();
+	    checkAdminUserBean.doChecks();
+	    checkDefaultPlayerBean.doChecks();
+	    checkDummyPlayerBean.doChecks();
+	    checkInitialTestData.doChecks();
     }
 
 }
