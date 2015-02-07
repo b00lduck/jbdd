@@ -34,7 +34,7 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 	private final List<ProductionEntity> referencedProductions = new ArrayList<>();
 
 	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
-	private IsStorableEntityFacetImpl isStorable;
+	private IsStorableEntityFacetImpl isStorableFacet;
 
 	/**
 	 * Create instance and setup/link facet instances.
@@ -42,7 +42,7 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 	public static GoodEntity newInstance() {
 		final GoodEntity goodEntity = new GoodEntity();
 		//noinspection AccessingNonPublicFieldOfAnotherObject
-		goodEntity.isStorable = new IsStorableEntityFacetImpl(goodEntity);
+		goodEntity.isStorableFacet = new IsStorableEntityFacetImpl(goodEntity);
 		initInstance(goodEntity);
 		return goodEntity;
 	}
@@ -57,22 +57,22 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 
 	@Override
 	public int getWeight() {
-		return isStorable.getWeight();
+		return isStorableFacet.getWeight();
 	}
 
 	@Override
 	public void setWeight(final int weight) {
-		isStorable.setWeight(weight);
+		isStorableFacet.setWeight(weight);
 	}
 
 	@Override
 	public int getDensity() {
-		return isStorable.getDensity();
+		return isStorableFacet.getDensity();
 	}
 
 	@Override
 	public void setDensity(final int density) {
-		isStorable.setDensity(density);
+		isStorableFacet.setDensity(density);
 	}
 
 	// TODO: hashCode, equals and toString

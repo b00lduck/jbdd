@@ -6,6 +6,8 @@ import com.nigames.jbdd.service.conversion.dto.BuildingConversionService;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.repository.BuildingRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
+import com.nigames.jbdd.service.service.sortParamTransformator.NameSortParamTransformator;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,13 +21,17 @@ import java.util.List;
  */
 @Service
 public class BuildingServiceImpl extends AbstractRepositoryBackedService<BuildingEntity, Long, Building>
-		implements BuildingService {
-
-    @Autowired
-    private BuildingConversionService buildingConversionService;
+		implements BuildingService, InitializingBean {
 
 	@Autowired
+	private BuildingConversionService buildingConversionService;
+	@Autowired
 	private BuildingRepository buildingRepository;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		addSortParamTransformator(new NameSortParamTransformator());
+	}
 
 	@Override
 	protected BuildingRepository getRepository() {

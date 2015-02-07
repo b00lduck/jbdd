@@ -3,7 +3,7 @@ package com.nigames.jbdd.service.service;
 import com.google.common.collect.Lists;
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
-import com.nigames.jbdd.statics.Languages;
+import com.nigames.jbdd.service.service.sortParamTransformator.SortParamTransformator;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +30,7 @@ import java.util.List;
 public abstract class AbstractRepositoryBackedService<EntityType, KeyType extends Serializable,
 		DtoType extends IsDto> {
 
+	private List<SortParamTransformator> sortParamTransformatorList = new ArrayList<>();
 
 	@Nonnull
 	protected static Pageable createPageable(@Nonnull final LimitParams limitParams, @Nullable final Sort sort) {
@@ -45,14 +47,14 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 	}
 
 	@Nonnull
-	protected static Pageable createPageable(@Nonnull final LimitParams limitParams,
+	protected Pageable createPageable(@Nonnull final LimitParams limitParams,
 	                                         @Nonnull final SortParams sortParams) {
 
 		return createPageable(limitParams, createSort(sortParams));
 	}
 
 	@Nullable
-	private static Sort createSort(final SortParams sortParams) {
+	private Sort createSort(final SortParams sortParams) {
 
 		if (null != sortParams) {
 
@@ -67,8 +69,10 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 			if (null != sortParams.getSort()) {
 				String sortParam = sortParams.getSort();
 
-				if (sortParam.startsWith("name.")) {
-					sortParam = "nameAndDescFacet.name." + Languages.tagToDbTag(sortParam.substring(5));
+				for (SortParamTransformator spt : sortParamTransformatorList) {
+					if (spt.isResponsible(sortParam)) {
+						sortParam = spt.transform(sortParam);
+					}
 				}
 
 				if (null != sortParam) {
@@ -143,5 +147,8 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 
 	}
 
+	protected void addSortParamTransformator(final SortParamTransformator sortParamTransformator) {
+		sortParamTransformatorList.add(sortParamTransformator);
+	}
 
 }
