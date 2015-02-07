@@ -6,113 +6,108 @@ apply plugin: 'application'
 mainClassName = "${group}.Boot"
 
 configurations {
-    all*.exclude group: 'org.jboss.resteasy',	module: 'resteasy-jettison-provider'
-	all*.exclude group: 'commons-logging', 		module: 'commons-logging'
+    all*.exclude group: 'org.jboss.resteasy', module: 'resteasy-jettison-provider'
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
 }
 
 compileAspect {
-	xlint = 'warning'
-	maxmem = '1024m'
+    xlint = 'warning'
+    maxmem = '1024m'
 }
 
 dependencies {
-	aspectpath(
-			[group: 'org.springframework',          name: 'spring-aspects',          		version: springVersion],
-			[group: 'org.springframework.security', name: 'spring-security-aspects', 		version: springSecurityVersion],
-	)
-	compile(
-			[project(":${group}.rest.model")],
+    aspectpath(
+            [group: 'org.springframework', name: 'spring-aspects', version: springVersion],
+            [group: 'org.springframework.security', name: 'spring-security-aspects', version: springSecurityVersion],
+    )
+    compile(
+            [project(":${group}.rest.model")],
 
-			[group: 'com.google.code.findbugs', 	name: 'jsr305',             			version: jsr305Version],
+            [group: 'com.google.code.findbugs', name: 'jsr305', version: jsr305Version],
 
-			[group: 'org.slf4j',                	name: 'slf4j-api',          			version: slf4jVersion],
-			[group: 'javax.ws.rs',              	name: 'javax.ws.rs-api',    			version: wsrsVersion],
+            [group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion],
+            [group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: wsrsVersion],
 
-			[group: 'javax.transaction',        	name: 'jta',                			version: jtaVersion],
+            [group: 'javax.transaction', name: 'jta', version: jtaVersion],
 
-			[group: 'org.springframework', 			name: 'spring-core',        			version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-beans',       			version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-context', 				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-aop',     				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-aspects', 				    version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-web',     				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-webmvc',  				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-tx',      				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-orm',     				version: springVersion],
-			[group: 'org.springframework', 			name: 'spring-oxm',     				version: springVersion],
+            [group: 'org.springframework', name: 'spring-core', version: springVersion],
+            [group: 'org.springframework', name: 'spring-beans', version: springVersion],
+            [group: 'org.springframework', name: 'spring-context', version: springVersion],
+            [group: 'org.springframework', name: 'spring-aop', version: springVersion],
+            [group: 'org.springframework', name: 'spring-aspects', version: springVersion],
+            [group: 'org.springframework', name: 'spring-web', version: springVersion],
+            [group: 'org.springframework', name: 'spring-webmvc', version: springVersion],
+            [group: 'org.springframework', name: 'spring-tx', version: springVersion],
+            [group: 'org.springframework', name: 'spring-orm', version: springVersion],
+            [group: 'org.springframework', name: 'spring-oxm', version: springVersion],
 
             [group: 'org.springframework.data', name: 'spring-data-jpa', version: springDataJpaVersion],
 
-			[group: 'org.springframework.boot', 	name: 'spring-boot',                  	version: springBootVersion],
-			[group: 'org.springframework.boot', 	name: 'spring-boot-autoconfigure',    	version: springBootVersion],
-			[group: 'org.springframework.boot',		name: 'spring-boot-starter-web',    	version: springBootVersion],
-			[group: 'org.springframework.boot', 	name: 'spring-boot-dependency-tools',	version: springBootVersion],
-			[group: 'org.springframework.boot', 	name: 'spring-boot-dependencies',    	version: springBootVersion],
+            [group: 'org.springframework.boot', name: 'spring-boot', version: springBootVersion],
+            [group: 'org.springframework.boot', name: 'spring-boot-autoconfigure', version: springBootVersion],
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion],
+            [group: 'org.springframework.boot', name: 'spring-boot-dependency-tools', version: springBootVersion],
+            [group: 'org.springframework.boot', name: 'spring-boot-dependencies', version: springBootVersion],
 
-			[group: 'org.springframework.security', name: 'spring-security-core',   		version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-acl',    		version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-taglibs',    	version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-web',    		version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-config', 		version: springSecurityVersion],
-			[group: 'org.springframework.security', name: 'spring-security-aspects', 		version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-core', version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-acl', version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-taglibs', version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-web', version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-config', version: springSecurityVersion],
+            [group: 'org.springframework.security', name: 'spring-security-aspects', version: springSecurityVersion],
 
-			[group: 'org.springframework.plugin', 	name: 'spring-plugin-core',     		version: springPluginVersion],
+            [group: 'org.springframework.plugin', name: 'spring-plugin-core', version: springPluginVersion],
 
-			[group: 'commons-dbcp', 				name: 'commons-dbcp', 					version: commonsDbcpVersion],
+            [group: 'commons-dbcp', name: 'commons-dbcp', version: commonsDbcpVersion],
 
-			[group: 'org.apache.commons', 			name: 'commons-collections4', 			version: commonsCollections4Version],
+            [group: 'org.apache.commons', name: 'commons-collections4', version: commonsCollections4Version],
 
-			[group: 'org.eclipse.persistence',  	name: 'javax.persistence',            	version: javaxPersistenceVersion],
+            [group: 'org.eclipse.persistence', name: 'javax.persistence', version: javaxPersistenceVersion],
 
-			[group: 'javax.validation',  			name: 'validation-api', 				version: javaxValidationVersion],
+            [group: 'javax.validation', name: 'validation-api', version: javaxValidationVersion],
 
-			[group: 'javax.servlet',  				name: 'javax.servlet-api', 				version: javaxServletVersion],
+            [group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletVersion],
 
-            [group: 'javax.servlet',                name: 'jstl',                           version: javaxJstlVersion],
+            [group: 'javax.servlet', name: 'jstl', version: javaxJstlVersion],
 
-			[group: 'org.hibernate',  				name: 'hibernate-entitymanager', 		version: hibernateVersion],
-			[group: 'org.hibernate',  				name: 'hibernate-validator', 			version: hibernateVersion],
-			[group: 'org.hibernate',  				name: 'hibernate-core', 				version: hibernateVersion],
+            [group: 'org.hibernate', name: 'hibernate-entitymanager', version: hibernateVersion],
+            [group: 'org.hibernate', name: 'hibernate-validator', version: hibernateVersion],
+            [group: 'org.hibernate', name: 'hibernate-core', version: hibernateVersion],
 
-			[group: 'mysql',  						name: 'mysql-connector-java', 			version: mySQLVersion],
+            [group: 'mysql', name: 'mysql-connector-java', version: mySQLVersion],
 
-			[group: 'org.aspectj', 					name: 'aspectjweaver', 					version: aspectjVersion],
-			[group: 'org.aspectj', 					name: 'aspectjrt',     					version: aspectjVersion],
+            [group: 'org.aspectj', name: 'aspectjweaver', version: aspectjVersion],
+            [group: 'org.aspectj', name: 'aspectjrt', version: aspectjVersion],
 
-			[group: 'org.jboss.resteasy',      		name: 'resteasy-spring', 				version: restEasyVersion],
+            [group: 'org.jboss.resteasy', name: 'resteasy-spring', version: restEasyVersion],
             [group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: restEasyVersion],
 
             [group: 'com.google.guava', name: 'guava', version: guavaVersion],
 
-
-	)
-            [group: 'org.jboss.resteasy', name: 'resteasy-jackson-provider', version: restEasyVersion],
-
             [group: 'com.wordnik', name: 'swagger-core', version: '1.3.12'],
-            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: '1.3.12'],
-
+            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: '1.3.12']
 
     )
 
     testCompile(
-			[group: 'junit',         				name: 'junit',             				version: jUnitVersion],
-			[group: 'org.hamcrest',  				name: 'hamcrest-core',     				version: hamcrestVersion],
+            [group: 'junit', name: 'junit', version: jUnitVersion],
+            [group: 'org.hamcrest', name: 'hamcrest-core', version: hamcrestVersion],
 
-			[group: 'com.h2database', 				name: 'h2',         					version: h2Version],
+            [group: 'com.h2database', name: 'h2', version: h2Version],
 
-			[group: 'com.jayway.restassured',  		name: 'rest-assured', 					version: restAssuredVersion],
-			[group: 'org.jboss.resteasy',      		name: 'resteasy-client', 				version: restEasyVersion],
+            [group: 'com.jayway.restassured', name: 'rest-assured', version: restAssuredVersion],
+            [group: 'org.jboss.resteasy', name: 'resteasy-client', version: restEasyVersion],
 
-			[group: 'org.springframework', 			name: 'spring-test',   					version: springVersion],
-	)
+            [group: 'org.springframework', name: 'spring-test', version: springVersion],
+    )
 }
 
 idea {
-	module {
-		jdkName = javaVersion
-		name = "${group}.rest.service"
-		downloadJavadoc = true
-		downloadSources = true
-	}
+    module {
+        jdkName = javaVersion
+        name = "${group}.rest.service"
+        downloadJavadoc = true
+        downloadSources = true
+    }
 }
 
