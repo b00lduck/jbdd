@@ -26,6 +26,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/app/**").addResourceLocations("classpath:/app/");
+		registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/swagger-ui/");
 	}
 
 	@ConfigurationProperties(prefix = "resteasy.deployment")

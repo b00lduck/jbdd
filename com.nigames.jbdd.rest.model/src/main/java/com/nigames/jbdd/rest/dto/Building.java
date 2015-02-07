@@ -1,6 +1,8 @@
 package com.nigames.jbdd.rest.dto;
 
 import com.nigames.jbdd.rest.dto.facet.*;
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -9,7 +11,9 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
+@ApiModel("building")
 public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
+
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
@@ -18,6 +22,7 @@ public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buy
 	private final Deletable deletable = new DeletableImpl();
 
 	@Override
+	@ApiModelProperty(value = "enabled or not")
 	public boolean isEnabled() {
 		return canBeEnabled.isEnabled();
 	}

@@ -1,10 +1,13 @@
 package com.nigames.jbdd.rest.api;
 
 import com.nigames.jbdd.rest.dto.Good;
+import com.wordnik.swagger.annotations.Api;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+
+@Api("/good")
 @SuppressWarnings("AbstractMethodOverridesAbstractMethod")
 @Path("/good")
 @Consumes(MediaType.APPLICATION_JSON)

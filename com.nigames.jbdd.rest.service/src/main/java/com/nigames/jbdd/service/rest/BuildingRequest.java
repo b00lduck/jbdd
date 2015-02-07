@@ -10,10 +10,10 @@ import com.nigames.jbdd.statics.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.ws.rs.*;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 
 @Component
-@Path("/building")
 public class BuildingRequest extends AbstractRequest<Building> implements BuildingRequestInterface {
 
 	@Autowired
@@ -26,14 +26,13 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	private BuyableRequestFacet buyableRequestFacet;
 
 	@SuppressWarnings("SuspiciousGetterSetter")
+
 	@Override
 	protected BuildingService getService() {
 		return buildingService;
 	}
 
 	@Override
-	@GET
-	@Path("/")
 	public DtoList<Building> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 								@QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
 								@QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
@@ -42,29 +41,21 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	}
 
 	@Override
-	@GET
-	@Path("/{id}")
 	public Building getById(@PathParam("id") final long id) {
 		return getService().findById(id);
 	}
 
 	@Override
-	@PUT
-	@Path("/{id}")
 	public Building update(@PathParam("id") final long id, final Building dto) {
 		return getService().update(id, dto);
 	}
 
 	@Override
-	@POST
-	@Path("/")
 	public Building create(final Building dto) {
 		return getService().create(dto);
 	}
 
 	@Override
-	@GET
-	@Path("/{itemId}/cost")
 	public DtoList<Cost> getCosts(@PathParam("itemId") final long itemId,
 								  @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 								  @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
@@ -74,8 +65,6 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	}
 
 	@Override
-	@GET
-	@Path("/{itemId}/cost/addable")
 	public DtoList<Good> getAddableCostGoods(@PathParam("itemId") final long itemId,
 											 @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 											 @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
@@ -85,29 +74,21 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	}
 
 	@Override
-	@POST
-	@Path("/{itemId}/cost")
 	public Cost createCost(@PathParam("itemId") final long itemId, final Cost dto) {
 		return buyableRequestFacet.createCost(itemId, dto);
 	}
 
 	@Override
-	@DELETE
-	@Path("/{itemId}/cost/{goodId}")
 	public void deleteCost(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId) {
 		buyableRequestFacet.deleteCost(itemId, goodId);
 	}
 
 	@Override
-	@PUT
-	@Path("/{itemId}/cost")
 	public Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto) {
 		return buyableRequestFacet.updateCost(itemId, dto);
 	}
 
 	@Override
-	@GET
-	@Path("/{itemId}/requirement")
 	public DtoList<Requirement> getRequirements(@PathParam("itemId") final long itemId,
 												@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 												@QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
@@ -117,8 +98,6 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	}
 
 	@Override
-	@GET
-	@Path("/{itemId}/requirement/addable")
 	public DtoList<Buyable> getAddableRequirementBuyables(@PathParam("itemId") final long itemId,
 														  @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 														  @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
@@ -128,23 +107,17 @@ public class BuildingRequest extends AbstractRequest<Building> implements Buildi
 	}
 
 	@Override
-	@POST
-	@Path("/{itemId}/requirement")
 	public Requirement createRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {
 		return buyableRequestFacet.createRequirement(itemId, dto);
 	}
 
 	@Override
-	@DELETE
-	@Path("/{itemId}/requirement/{requiredBuyableId}")
 	public void deleteRequirement(@PathParam("itemId") final long itemId,
 								  @PathParam("requiredBuyableId") final long requiredBuyableId) {
 		buyableRequestFacet.deleteRequirement(itemId, requiredBuyableId);
 	}
 
 	@Override
-	@PUT
-	@Path("/{itemId}/requirement/")
 	public Requirement updateRequirement(@PathParam("itemId") final long itemId, final Requirement dto) {
 		return buyableRequestFacet.updateRequirement(itemId, dto);
 	}

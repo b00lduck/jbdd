@@ -1,10 +1,12 @@
 package com.nigames.jbdd.rest.api;
 
 import com.nigames.jbdd.rest.dto.Job;
+import com.wordnik.swagger.annotations.Api;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+@Api("/job")
 @SuppressWarnings("AbstractMethodOverridesAbstractMethod")
 @Path("/job")
 @Consumes(MediaType.APPLICATION_XML)

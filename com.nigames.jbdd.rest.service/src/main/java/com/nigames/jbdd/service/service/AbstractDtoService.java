@@ -43,6 +43,9 @@ public abstract class AbstractDtoService<DtoType extends IsDto, EntityType>
 	@Transactional
 	protected void delete(final long id) {
 		final EntityType entity = getEntityManager().find(getEntityClass(), id);
+		if (null == entity) {
+			throw new ContentNotFoundException();
+		}
 		getEntityManager().remove(entity);
 	}
 

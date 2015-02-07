@@ -10,10 +10,12 @@ public interface GenericRequestInterface<DtoType extends IsDto> {
 
 	@GET
 	@Path("/{id}")
+		//@ApiOperation("getById")
 	DtoType getById(@PathParam("id") final long id);
 
 	@GET
 	@Path("/")
+		//@ApiOperation("getAll")
 	DtoList<DtoType> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 	                        @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
 	                        @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
@@ -21,6 +23,7 @@ public interface GenericRequestInterface<DtoType extends IsDto> {
 
 	@DELETE
 	@Path("/{id}")
+		//@ApiOperation("deleteById")
 	void deleteById(@PathParam("id") final long id);
 
 }
