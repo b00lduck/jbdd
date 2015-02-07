@@ -19,33 +19,33 @@ import javax.ws.rs.core.MediaType;
 public interface BuildingRequestInterface extends BuyableRequestInterface {
 
 	@GET
+	@Path("/")
+	@ApiOperation(value = "getAll", position = 1)
+	DtoList<Building> getAll(@ApiParam(value = "index of the first item to display", required = false) @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                         @ApiParam(value = "number of results to fetch", required = false) @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                         @ApiParam(value = "sort column name", required = false) @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                         @ApiParam(value = "sort descending", required = false) @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
+
+	@GET
 	@Path("/{itemId}")
-	@ApiOperation(value = "getById", position = 20)
+	@ApiOperation(value = "getById", position = 2)
 	Building getById(@ApiParam(value = "ID of building to fetch", required = true)
 	                 @PathParam("itemId")
 	                 final long itemId);
 
 	@PUT
 	@Path("/{itemId}")
-	@ApiOperation("update")
+	@ApiOperation(value = "update", position = 3)
 	Building update(@PathParam("itemId") final long itemId, final Building dto);
 
 	@POST
 	@Path("/")
-	@ApiOperation("create")
+	@ApiOperation(value = "create", position = 4)
 	Building create(final Building dto);
-
-	@GET
-	@Path("/")
-	@ApiOperation(value = "getAll", position = 10)
-	DtoList<Building> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                         @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-	                         @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-	                         @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
 
 	@DELETE
 	@Path("/{id}")
-	@ApiOperation("deleteById")
+	@ApiOperation(value = "deleteById", position = 5)
 	@ApiResponses({
 			@ApiResponse(code = 204, message = "The building was successfully deleted."),
 			@ApiResponse(code = 404, message = "Building nonexistant, no deletitions performed.")
