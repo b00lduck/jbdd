@@ -41,12 +41,6 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	@Autowired
 	private CostService costService;
 
-
-	@Override
-	public long getAddableCostGoodsCount(final long buyableId) {
-		return 0;
-	}
-
 	@Override
 	public ResultList<Good> getAddableCostGoods(final long buyableId) {
 

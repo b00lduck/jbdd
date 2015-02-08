@@ -18,9 +18,6 @@ public interface BuyableFacetService {
 	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_COST)
     ResultList<Good> getAddableCostGoods(long buyableId);
 
-	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_COST)
-	long getAddableCostGoodsCount(long buyableId);
-
     @PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT)
     ResultList<Buyable> getAddableRequirementBuyables(final long buyableId);
 
