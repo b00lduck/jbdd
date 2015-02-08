@@ -110,7 +110,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final Set<Long> ret = new HashSet<>();
 
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId).getList();
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
 
 		for (final Requirement r : reqList) {
 			ret.add(r.getRequiredBuyableId());
@@ -124,7 +124,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final Set<Long> ret = new HashSet<>();
 
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId).getList();
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
 
 		ret.addAll(reqList.stream().map(Requirement::getRequiredBuyableId).collect(Collectors.toList()));
 
@@ -138,7 +138,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 		final ResultList<Cost> reqList = costService.findByBuyableId(buyableId);
 
         // TODO think about syntax vs. performance
-		ret.addAll(reqList.getList().stream().map(Cost::getGoodId).collect(Collectors.toList()));
+		ret.addAll(reqList.stream().map(Cost::getGoodId).collect(Collectors.toList()));
 
 		return ret;
 	}
