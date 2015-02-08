@@ -17,6 +17,6 @@ import javax.ws.rs.core.MediaType;
 @Path("/api-docs")
 @Api("/api-docs")
 @Produces(MediaType.APPLICATION_JSON)
-public class ApiListingResourceJSON extends ApiListingResource {
+public class ApiDocsResource extends ApiListingResource {
 
 }

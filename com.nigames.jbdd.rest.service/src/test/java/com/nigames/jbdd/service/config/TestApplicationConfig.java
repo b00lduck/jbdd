@@ -21,7 +21,8 @@ import org.springframework.scheduling.annotation.EnableAsync;
         TestDataConfigH2.class,
         CreateDefaultUsersConfig.class,
         WebConfig.class,
-        SecurityConfig.class,
+		RestEasyConfig.class,
+		SecurityConfig.class,
         WebSecurityConfig.class,
         MessageSourceConfig.class})
 @EnableAutoConfiguration

@@ -16,7 +16,9 @@ import org.springframework.scheduling.annotation.EnableAsync;
         ApplicationConfigJTA.class,
         SecurityConfig.class,
         WebConfig.class,
-        WebSecurityConfig.class,
+		RestEasyConfig.class,
+		SwaggerConfig.class,
+		WebSecurityConfig.class,
         CreateDefaultUsersConfig.class,
 		MessageSourceConfig.class
 })
