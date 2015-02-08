@@ -7,14 +7,14 @@ import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import javax.persistence.*;
 
 /**
- * Database entity of the {@link AbstractBuyableSubItemEntity} Cost. The data is kept in the
+ * Database entity of the {@link AbstractAmountSubItemEntity} Cost. The data is kept in the
  * composite primary key {@link CostEntityPK}.
  *
  * @author Daniel
  */
 @Entity
 @Table(name = "cost")
-public class CostEntity extends AbstractBuyableSubItemEntity {
+public class CostEntity extends AbstractAmountSubItemEntity {
 
     /**
      * The embedded primary key.

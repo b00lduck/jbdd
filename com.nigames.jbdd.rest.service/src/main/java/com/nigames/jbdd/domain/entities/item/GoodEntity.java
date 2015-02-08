@@ -2,8 +2,8 @@ package com.nigames.jbdd.domain.entities.item;
 
 import com.nigames.jbdd.domain.entities.facet.IsStorableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.IsStorableEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.subitem.ProductionEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
-import com.nigames.jbdd.domain.entities.subitem.buyable.ProductionEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,6 +26,7 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "good_id", updatable = false, insertable = false)
 	private final List<CostEntity> referencedCosts = new ArrayList<>();
+
 	/**
 	 * This is a passive backlink. Gets all {@link ProductionEntity} objects who use this Good.
 	 */

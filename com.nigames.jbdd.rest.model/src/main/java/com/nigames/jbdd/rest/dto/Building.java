@@ -14,7 +14,6 @@ import java.util.Map;
 @ApiModel("building")
 public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
 
-
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();

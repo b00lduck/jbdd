@@ -9,12 +9,12 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, HasWeight, Deletable {
+public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, IsStorable, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
-	private final HasWeight hasWeight = new HasWeightImpl();
+	private final IsStorable isStorable = new IsStorableImpl();
 	private final Deletable deletable = new DeletableImpl();
 
 	@Override
@@ -59,12 +59,22 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 
 	@Override
 	public int getWeight() {
-		return hasWeight.getWeight();
+		return isStorable.getWeight();
 	}
 
 	@Override
 	public void setWeight(final int weight) {
-		hasWeight.setWeight(weight);
+		isStorable.setWeight(weight);
+	}
+
+	@Override
+	public int getDensity() {
+		return isStorable.getDensity();
+	}
+
+	@Override
+	public void setDensity(final int density) {
+		isStorable.setDensity(density);
 	}
 
 	@Override
@@ -78,6 +88,7 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 	}
 
 	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
@@ -92,10 +103,13 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 		if (!canBeEnabled.equals(good.canBeEnabled)) {
 			return false;
 		}
+		if (!deletable.equals(good.deletable)) {
+			return false;
+		}
 		if (!hasNameAndDesc.equals(good.hasNameAndDesc)) {
 			return false;
 		}
-		return hasWeight.equals(good.hasWeight);
+		return isStorable.equals(good.isStorable);
 
 	}
 
@@ -103,7 +117,8 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 	public int hashCode() {
 		int result = hasNameAndDesc.hashCode();
 		result = (31 * result) + canBeEnabled.hashCode();
-		result = (31 * result) + hasWeight.hashCode();
+		result = (31 * result) + isStorable.hashCode();
+		result = (31 * result) + deletable.hashCode();
 		return result;
 	}
 }

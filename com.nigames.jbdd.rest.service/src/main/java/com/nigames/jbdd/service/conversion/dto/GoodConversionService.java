@@ -35,12 +35,14 @@ public class GoodConversionService extends AbstractConversionService<GoodEntity,
     @Override
     protected void updateDtoFromEntity(final Good dto, final GoodEntity entity) {
         dto.setWeight(entity.getWeight());
-        dto.setDeletable(true);
+	    dto.setDensity(entity.getDensity());
+	    dto.setDeletable(true);
     }
 
     @Override
     public void updateEntityFromDto(final Good dto, final GoodEntity entity) {
         entity.setWeight(dto.getWeight());
+	    entity.setDensity(dto.getDensity());
     }
 
 }

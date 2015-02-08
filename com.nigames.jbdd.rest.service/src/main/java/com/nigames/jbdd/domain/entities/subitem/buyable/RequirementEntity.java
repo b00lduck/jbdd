@@ -6,14 +6,14 @@ import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
 import javax.persistence.*;
 
 /**
- * Database entity of the {@link AbstractBuyableSubItemEntity} Requirement. The data is kept in the
+ * Database entity of the {@link AbstractAmountSubItemEntity} Requirement. The data is kept in the
  * composite primary key {@link RequirementEntityPK}.
  *
  * @author Daniel
  */
 @Entity
 @Table(name = "requirement")
-public class RequirementEntity extends AbstractBuyableSubItemEntity {
+public class RequirementEntity extends AbstractAmountSubItemEntity {
 
 	/**
 	 * The embedded primary key.

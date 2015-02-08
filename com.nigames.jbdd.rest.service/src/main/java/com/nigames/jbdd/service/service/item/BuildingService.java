@@ -1,7 +1,9 @@
 package com.nigames.jbdd.service.service.item;
 
 import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
+import com.nigames.jbdd.types.ResultList;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
@@ -27,5 +29,8 @@ public interface BuildingService extends AbstractDtoServiceInterface<Building> {
 
 	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT)
 	List<Building> findAllEnabled();
+
+	@PreAuthorize(HAS_ROLE_ADMIN_BUILDING_PRODUCTION)
+	ResultList<Good> getAddableProductionGoods(long buildingId);
 
 }

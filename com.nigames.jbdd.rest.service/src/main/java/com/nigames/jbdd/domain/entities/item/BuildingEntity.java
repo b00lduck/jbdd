@@ -2,7 +2,7 @@ package com.nigames.jbdd.domain.entities.item;
 
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
-import com.nigames.jbdd.domain.entities.subitem.buyable.ProductionEntity;
+import com.nigames.jbdd.domain.entities.subitem.ProductionEntity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -25,12 +25,14 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 	 */
 	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)
 	private BuyableEntityFacetImpl buyableFacet;
+
 	/**
 	 * The goods produced and consumed by this building as a list of {@link ProductionEntity}.
 	 */
 	@OneToMany(mappedBy = "id.buildingId", fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
 	private List<ProductionEntity> productionList = new ArrayList<>();
+
 	/**
 	 * The {@link JobEntity} offered by this Building.
 	 */

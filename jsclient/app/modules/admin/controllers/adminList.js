@@ -30,7 +30,8 @@ define(['angularAMD',
                 'good': {
                     columnDefs: [
                         {name: 'name', displayNameI18n: 'i18n.name', i18nField: true},
-                        {name: 'weight', displayNameI18n: 'good.weight'}
+                        {name: 'weight', displayNameI18n: 'good.weight'},
+                        {name: 'density', displayNameI18n: 'good.density'}
                     ]
                 },
 

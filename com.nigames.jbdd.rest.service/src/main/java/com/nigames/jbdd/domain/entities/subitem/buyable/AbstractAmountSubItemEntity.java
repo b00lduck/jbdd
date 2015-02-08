@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
  * @author Daniel
  */
 @MappedSuperclass
-public class AbstractBuyableSubItemEntity {
+public class AbstractAmountSubItemEntity {
 
     /**
      * Amount of the subitem.
@@ -16,14 +16,14 @@ public class AbstractBuyableSubItemEntity {
     private Long amount;
 
     /**
-     * @return Get {@link AbstractBuyableSubItemEntity#amount}
+     * @return Get {@link AbstractAmountSubItemEntity#amount}
      */
     public Long getAmount() {
         return amount;
     }
 
     /**
-     * @param amount The {@link AbstractBuyableSubItemEntity#amount} to setLang
+     * @param amount The {@link AbstractAmountSubItemEntity#amount} to setLang
      */
     public void setAmount(final Long amount) {
         this.amount = amount;
@@ -35,11 +35,11 @@ public class AbstractBuyableSubItemEntity {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof AbstractBuyableSubItemEntity)) {
-            return false;
+	    if (!(o instanceof AbstractAmountSubItemEntity)) {
+		    return false;
         }
 
-        final AbstractBuyableSubItemEntity that = (AbstractBuyableSubItemEntity) o;
+	    final AbstractAmountSubItemEntity that = (AbstractAmountSubItemEntity) o;
 
         return amount.equals(that.getAmount());
 
