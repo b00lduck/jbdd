@@ -7,6 +7,7 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.RequirementConversionService;
 import com.nigames.jbdd.service.repository.RequirementRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
@@ -60,22 +61,23 @@ public class RequirementServiceImpl extends AbstractRepositoryBackedService<Requ
 	}
 
 	@Override
-	public List<Requirement> findByBuyableId(final long buyableId) {
-		List<RequirementEntity> page = requirementRepository.findByIdBuyableId(buyableId);
-		return requirementConversionService.convertToDto(page);
+	public ResultList<Requirement> findByBuyableId(final long buyableId) {
+
+        final List<RequirementEntity> page = requirementRepository.findByIdBuyableId(buyableId);
+
+        final List<Requirement> requirementList = requirementConversionService.convertToDto(page);
+
+        return ResultList.create(requirementList);
 	}
 
 	@Override
-	public List<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams,
+	public ResultList<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams,
 	                                         final SortParams sortParams) {
-		Page<RequirementEntity> page =
+		final Page<RequirementEntity> page =
 				requirementRepository.findByIdBuyableId(buyableId, createPageable(limitParams, sortParams));
-		return requirementConversionService.convertToDto(page.getContent());
-	}
 
-	@Override
-	public long getCountByBuyableId(final long buyableId) {
-		return requirementRepository.countByIdBuyableId(buyableId);
-	}
+        final List<Requirement> requirementList = requirementConversionService.convertToDto(page.getContent());
 
+        return ResultList.create(requirementList, page.getTotalElements());
+	}
 }

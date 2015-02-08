@@ -6,11 +6,11 @@ import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
-import com.nigames.jbdd.service.service.DataList;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
+import com.nigames.jbdd.types.ResultList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,7 +47,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	}
 
 	@Override
-	public List<Good> getAddableCostGoods(final long buyableId) {
+	public ResultList<Good> getAddableCostGoods(final long buyableId) {
 
 		final List<Good> goodList = goodService.findAllEnabled();
 
@@ -66,11 +66,11 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		}
 
-		return ret;
+        return ResultList.create(ret);
 	}
 
 	@Override
-	public DataList<Buyable> getAddableRequirementBuyables(final long buyableId) {
+	public ResultList<Buyable> getAddableRequirementBuyables(final long buyableId) {
 
 		final List<Building> buildingList = buildingService.findAllEnabled();
 		@SuppressWarnings("unchecked")
@@ -101,7 +101,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		}
 
-		return new DataList<>(ret, ret.size());
+		return ResultList.create(ret);
 	}
 
 	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {
@@ -110,7 +110,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final Set<Long> ret = new HashSet<>();
 
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId).getList();
 
 		for (final Requirement r : reqList) {
 			ret.add(r.getRequiredBuyableId());
@@ -124,7 +124,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final Set<Long> ret = new HashSet<>();
 
-		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
+		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId).getList();
 
 		ret.addAll(reqList.stream().map(Requirement::getRequiredBuyableId).collect(Collectors.toList()));
 
@@ -135,9 +135,10 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final Set<Long> ret = new HashSet<>();
 
-		final List<Cost> reqList = costService.findByBuyableId(buyableId);
+		final ResultList<Cost> reqList = costService.findByBuyableId(buyableId);
 
-		ret.addAll(reqList.stream().map(Cost::getGoodId).collect(Collectors.toList()));
+        // TODO think about syntax vs. performance
+		ret.addAll(reqList.getList().stream().map(Cost::getGoodId).collect(Collectors.toList()));
 
 		return ret;
 	}

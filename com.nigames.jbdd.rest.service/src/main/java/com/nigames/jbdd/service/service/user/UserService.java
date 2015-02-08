@@ -3,12 +3,12 @@ package com.nigames.jbdd.service.service.user;
 import com.nigames.jbdd.rest.dto.User;
 import com.nigames.jbdd.rest.dto.UserRoleEnum;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 import static com.nigames.jbdd.service.service.SecurityElConstants.*;
 
@@ -42,11 +42,7 @@ public interface UserService extends AbstractDtoServiceInterface<User> {
 
     @Override
     @PreAuthorize(HAS_ROLE_ADMIN_USER)
-    long getCount();
-
-    @Override
-    @PreAuthorize(HAS_ROLE_ADMIN_USER)
-    List<User> findAll(final LimitParams limitParams, final SortParams sortParams);
+    ResultList<User> findAll(final LimitParams limitParams, final SortParams sortParams);
 
     @Override
     @PreAuthorize(HAS_ROLE_ADMIN_USER)

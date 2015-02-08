@@ -1,11 +1,10 @@
 package com.nigames.jbdd.service.service.subitem.buyable;
 
 import com.nigames.jbdd.rest.dto.Requirement;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.security.access.prepost.PreAuthorize;
-
-import java.util.List;
 
 import static com.nigames.jbdd.service.service.SecurityElConstants.*;
 /**
@@ -22,14 +21,8 @@ public interface RequirementService {
 
 	void delete(long buyableId, long goodId);
 
-	List<Requirement> findAll(final LimitParams limitParams, final SortParams sortParams);
+    ResultList<Requirement> findByBuyableId(final long buyableId);
 
-	long getCount();
-
-	List<Requirement> findByBuyableId(final long buyableId);
-
-	List<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams);
-
-	long getCountByBuyableId(final long buyableId);
+	ResultList<Requirement> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams);
 
 }

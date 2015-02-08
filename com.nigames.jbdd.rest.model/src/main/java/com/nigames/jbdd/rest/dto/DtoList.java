@@ -1,5 +1,6 @@
 package com.nigames.jbdd.rest.dto;
 
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -35,10 +36,14 @@ public class DtoList<T> {
 	public DtoList() {
 	}
 
-	public DtoList(final List<T> data, final Long total, final LimitParams limitParams) {
-		setData(data);
-		setMeta(Meta.create(total, limitParams));
-	}
+    public DtoList(final ResultList<T> data, final LimitParams limitParams) {
+        this(data.getList(), data.getCount(), limitParams);
+    }
+
+    private DtoList(final List<T> data, final Long total, final LimitParams limitParams) {
+        this.data = data;
+        this.meta = Meta.create(total, limitParams);
+    }
 
 	public List<T> getData() {
 		return data;

@@ -6,16 +6,14 @@ import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
-import com.nigames.jbdd.service.service.DataList;
 import com.nigames.jbdd.service.service.item.facet.BuyableFacetService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class BuyableRequestFacet implements BuyableRequestInterface {
@@ -37,10 +35,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
         final LimitParams limitParams = LimitParams.create(first, size);
         final SortParams sortParams = SortParams.create(sort, desc);
 
-        final List<Cost> data = costService.findByBuyableId(itemId, limitParams, sortParams);
-		final Long total = costService.getCount();
+        final ResultList<Cost> data = costService.findByBuyableId(itemId, limitParams, sortParams);
 
-        return new DtoList<>(data, total, limitParams);
+        return new DtoList<>(data, limitParams);
     }
 
 	@Override
@@ -51,10 +48,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
         final LimitParams limitParams = LimitParams.create(first, size);
 		//final SortParams sortParams = SortParams.create(sort, desc);
 
-	    final long total = buyableFacetService.getAddableCostGoodsCount(itemId);
-		final List<Good> data = buyableFacetService.getAddableCostGoods(itemId);
+    	final ResultList<Good> data = buyableFacetService.getAddableCostGoods(itemId);
 
-        return new DtoList<>(data, total, limitParams);
+        return new DtoList<>(data, limitParams);
     }
 
 	@Override
@@ -82,10 +78,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 		final LimitParams limitParams = LimitParams.create(first, size);
 		final SortParams sortParams = SortParams.create(sort, desc);
 
-		final List<Requirement> data = requirementService.findByBuyableId(buyableId, limitParams, sortParams);
-		final long total = requirementService.getCount();
+		final ResultList<Requirement> data = requirementService.findByBuyableId(buyableId, limitParams, sortParams);
 
-		return new DtoList<>(data, total, limitParams);
+		return new DtoList<>(data, limitParams);
 	}
 
 	@Override
@@ -96,9 +91,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 		final LimitParams limitParams = LimitParams.create(first, size);
 		// final SortParams sortParams = SortParams.create(sort, desc);
 
-		final DataList<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId);
+		final ResultList<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId);
 
-		return new DtoList<>(data.getList(), data.getCount(), limitParams);
+		return new DtoList<>(data, limitParams);
 	}
 
 	@Override

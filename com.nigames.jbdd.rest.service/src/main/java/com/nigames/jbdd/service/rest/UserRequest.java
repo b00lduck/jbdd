@@ -7,13 +7,13 @@ import com.nigames.jbdd.rest.dto.User;
 import com.nigames.jbdd.service.service.player.PlayerService;
 import com.nigames.jbdd.service.service.user.UserService;
 import com.nigames.jbdd.statics.Constants;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
-import java.util.List;
 
 @Component
 @Path("/user")
@@ -60,10 +60,10 @@ public class UserRequest extends AbstractRequest<User> implements UserRequestInt
                                          @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first, @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
                                          @QueryParam(Constants.QUERY_PARAM_SORT) final String sort, @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
 
-        final List<Player> data = playerService.findByUserId(id, LimitParams.create(first, size), SortParams.create(sort, desc));
-	    final long total = playerService.getCountByUserId(id);
+        final ResultList<Player> data = playerService.findByUserId(id, LimitParams.create(first, size), SortParams.create(sort, desc));
 	    final LimitParams limitParams = LimitParams.create(first, size);
-        return new DtoList<>(data, total, limitParams);
+
+        return new DtoList<>(data, limitParams);
     }
 
     @Override

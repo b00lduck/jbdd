@@ -7,6 +7,7 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.CostConversionService;
 import com.nigames.jbdd.service.repository.CostRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
@@ -60,21 +61,22 @@ public class CostServiceImpl extends AbstractRepositoryBackedService<CostEntity,
 	}
 
 	@Override
-	public List<Cost> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
+	public ResultList<Cost> findByBuyableId(final long buyableId, final LimitParams limitParams, final SortParams sortParams) {
 		final Pageable pageable = createPageable(limitParams, sortParams);
+
 		final List<CostEntity> costEntityList = costRepository.findByIdBuyableId(buyableId, pageable).getContent();
-		return costConversionService.convertToDto(costEntityList);
+        final List<Cost> list = costConversionService.convertToDto(costEntityList);
+
+		return ResultList.create(list, costRepository.countByIdBuyableId(buyableId));
 	}
 
 	@Override
-	public List<Cost> findByBuyableId(final long buyableId) {
+	public ResultList<Cost> findByBuyableId(final long buyableId) {
 		final List<CostEntity> costEntityList = costRepository.findByIdBuyableId(buyableId);
-		return costConversionService.convertToDto(costEntityList);
-	}
 
-	@Override
-	public long getCountByBuyableId(final long buyableId) {
-		return costRepository.countByIdBuyableId(buyableId);
+        final List<Cost> list = costConversionService.convertToDto(costEntityList);
+
+        return ResultList.create(list);
 	}
 
 }

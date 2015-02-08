@@ -5,13 +5,13 @@ import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.service.player.PlayerService;
 import com.nigames.jbdd.statics.Constants;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.*;
-import java.util.List;
 
 @Component
 @Path("/player")
@@ -55,11 +55,11 @@ public class PlayerRequest extends AbstractRequest<Player> implements PlayerRequ
                                         @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
                                         @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc) {
 
-        final List<Player> data = playerService.findAllUnused(LimitParams.create(first, size),
+        final ResultList<Player> data = playerService.findAllUnused(LimitParams.create(first, size),
                 SortParams.create(sort, desc));
-        final Long total = playerService.getCountUnused();
         final LimitParams limitParams = LimitParams.create(first, size);
-        return new DtoList<>(data, total, limitParams);
+
+        return new DtoList<>(data, limitParams);
 
     }
 

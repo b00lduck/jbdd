@@ -6,6 +6,7 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.PlayerConversionService;
 import com.nigames.jbdd.service.repository.PlayerRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
@@ -62,37 +63,36 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
 
     @Override
     @Transactional
-    public final List<Player> findByUserId(final long userId) {
-	    final List<PlayerEntity> playerEntity = playerRepository.findByUserId(userId);
-	    return playerConversionService.convertToDto(playerEntity);
-    }
+    public final ResultList<Player> findByUserId(final long userId) {
+	    final List<PlayerEntity> playerEntityList = playerRepository.findByUserId(userId);
+        final List<Player> dtoList = playerConversionService.convertToDto(playerEntityList);
 
-	@Override
-	@Transactional
-	public final long getCountByUserId(final long userId) {
-		return playerRepository.countByUserId(userId);
-	}
+        return ResultList.create(dtoList);
+    }
 
     @Override
     @Transactional
-    public final List<Player> findByUserId(final long userId, final LimitParams limitParams, final SortParams sortParams) {
+    public final ResultList<Player> findByUserId(final long userId, final LimitParams limitParams, final SortParams sortParams) {
 	    final Pageable pageable = createPageable(limitParams, sortParams);
-	    final List<PlayerEntity> playerEntity = playerRepository.findByUserId(userId, pageable).getContent();
-	    return playerConversionService.convertToDto(playerEntity);
+
+        final List<PlayerEntity> playerEntityList = playerRepository.findByUserId(userId, pageable).getContent();
+
+        final List<Player> dtoList = playerConversionService.convertToDto(playerEntityList);
+        final long total = playerRepository.countByUserId(userId);
+
+	    return ResultList.create(dtoList, total);
     }
 
     @Override
     @Transactional
-    public List<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams) {
+    public ResultList<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams) {
 	    final Pageable pageable = createPageable(limitParams, sortParams);
-	    final List<PlayerEntity> playerEntity = playerRepository.findUnused(pageable).getContent();
-	    return playerConversionService.convertToDto(playerEntity);
-    }
 
-    @Override
-    @Transactional
-    public final long getCountUnused() {
-	    return playerRepository.countUnused();
-    }
+        final List<PlayerEntity> playerEntityList = playerRepository.findUnused(pageable).getContent();
 
+        final List<Player> dtoList = playerConversionService.convertToDto(playerEntityList);
+        final long total = playerRepository.countUnused();
+
+        return ResultList.create(dtoList, total);
+    }
 }

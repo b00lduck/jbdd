@@ -1,10 +1,9 @@
 package com.nigames.jbdd.service.service;
 
 import com.nigames.jbdd.rest.dto.facet.IsDto;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
-
-import java.util.List;
 
 /**
  * Abstract service class interface.
@@ -21,9 +20,7 @@ public interface AbstractDtoServiceInterface<DtoType extends IsDto> {
 
 	void delete(final Long id);
 
-	long getCount();
-
-    List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams);
+    ResultList<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams);
 
 	DtoType findById(final Long entityId);
 

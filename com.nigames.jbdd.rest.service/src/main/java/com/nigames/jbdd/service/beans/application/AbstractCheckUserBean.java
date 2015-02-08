@@ -155,7 +155,7 @@ public abstract class AbstractCheckUserBean {
 		LOG.info("Checking if dummy playerSubItem user \"{}\" has playerSubItem with nickname \"{}\"", playerUsername, nickname); // NON-NLS
 		final User user = userService.findByUsername(playerUsername);
 
-		final List<Player> playerList = playerService.findByUserId(user.getId());
+		final List<Player> playerList = playerService.findByUserId(user.getId()).getList();
 
 		Player foundPlayer = null;
 		for (final Player player : playerList) {

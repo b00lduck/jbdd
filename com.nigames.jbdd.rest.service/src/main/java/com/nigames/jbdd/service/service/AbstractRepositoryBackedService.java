@@ -5,6 +5,7 @@ import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
 import com.nigames.jbdd.service.service.sortParamTransformator.SortParamTransformator;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.data.domain.PageRequest;
@@ -109,21 +110,12 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 	}
 
 	@Transactional
-	public long getCount() {
-		return getRepository().count();
-	}
-
-	@Transactional
-	public List<DtoType> findAll() {
-		return findAll(LimitParams.createDefault(), SortParams.createDefault());
-	}
-
-	@Transactional
-	public List<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams) {
+	public ResultList<DtoType> findAll(final LimitParams limitParams, final SortParams sortParams) {
 
 		final List<EntityType> list = getList(limitParams, sortParams);
-		return getConversionService().convertToDto(list);
+        final List<DtoType> dtoList = getConversionService().convertToDto(list);
 
+		return ResultList.create(dtoList);
 	}
 
 	@Transactional

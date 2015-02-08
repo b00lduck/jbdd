@@ -2,12 +2,12 @@ package com.nigames.jbdd.service.service.player;
 
 import com.nigames.jbdd.rest.dto.Player;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 import static com.nigames.jbdd.service.service.SecurityElConstants.*;
 
@@ -30,20 +30,13 @@ public interface PlayerService extends AbstractDtoServiceInterface<Player> {
 	Player update(final Long id, final Player dto);
 
 	@PreAuthorize(HAS_ROLE_SYSTEM)
-	List<Player> findByUserId(final long userId);
+    ResultList<Player> findByUserId(final long userId);
 
-    List<Player> findByUserId(final long userId, final LimitParams limitParams, final SortParams sortParams);
+    ResultList<Player> findByUserId(final long userId, final LimitParams limitParams, final SortParams sortParams);
 
-	long getCountByUserId(final long userId);
-
-    List<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams);
-
-    long getCountUnused();
+    ResultList<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams);
 
     @Nullable
     @PreAuthorize(HAS_ROLE_SYSTEM)
     Player findByNickname(final String nickname);
-
-
-
 }
