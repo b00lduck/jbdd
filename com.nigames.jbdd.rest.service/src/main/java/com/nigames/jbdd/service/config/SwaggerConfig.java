@@ -14,6 +14,9 @@ import org.springframework.context.annotation.FilterType;
 import javax.ws.rs.Path;
 
 /**
+ * Configuration for swagger within RestEasy.
+ * This registers the appropiate swagger providers and a JAX-RS endpoint "/api-docs".
+ *
  * This file is part of JBdD by nigames.de
  * <p>
  * Created by Daniel on 08.02.2015.
@@ -23,22 +26,36 @@ import javax.ws.rs.Path;
 		includeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Path.class))
 public class SwaggerConfig {
 
+	/**
+	 * Configuration bean for swagger.
+	 */
 	@Bean
-	public BeanConfig beanConfig() {
+	public BeanConfig swaggerBeanConfig() {
 
-		ResteasyProviderFactory.getInstance().registerProvider(ApiDeclarationProvider.class);
-		ResteasyProviderFactory.getInstance().registerProvider(JacksonJsonProvider.class);
-		ResteasyProviderFactory.getInstance().registerProvider(ResourceListingProvider.class);
+		registerSwaggerJaxRsProviders();
 
-		BeanConfig beanConfig = new BeanConfig();
-		beanConfig.setVersion("1.0.0");
-		beanConfig.setDescription("RESTful services API for \"Das Buch des Drachen\"");
-		beanConfig.setTitle("JBdD REST API");
-		beanConfig.setBasePath("http://localhost:8080");
-		beanConfig.setResourcePackage("com.nigames.jbdd.rest.api");
-		beanConfig.setScan(true);
-		return beanConfig;
+		final BeanConfig swaggerBeanConfig = new BeanConfig();
+		swaggerBeanConfig.setVersion("1.0.0");
+		swaggerBeanConfig.setDescription("RESTful services API for \"Das Buch des Drachen\"");
+		swaggerBeanConfig.setTitle("JBdD REST API");
+		swaggerBeanConfig.setContact("jbdd@nigames.com");
+		swaggerBeanConfig.setBasePath("http://localhost:8080");
+		swaggerBeanConfig.setResourcePackage("com.nigames.jbdd.rest.api");
+		swaggerBeanConfig.setScan(true);
+		return swaggerBeanConfig;
 	}
+
+	/**
+	 * Register the swagger providers within the RestEasy framework.
+	 */
+	private void registerSwaggerJaxRsProviders() {
+		final ResteasyProviderFactory resteasyProviderFactory = ResteasyProviderFactory.getInstance();
+
+		resteasyProviderFactory.registerProvider(ApiDeclarationProvider.class);
+		resteasyProviderFactory.registerProvider(JacksonJsonProvider.class);
+		resteasyProviderFactory.registerProvider(ResourceListingProvider.class);
+	}
+
 
 }
 
