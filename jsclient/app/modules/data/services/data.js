@@ -177,6 +177,44 @@ define(['angularAMD'], function (angularAMD) {
             };
 
 
+            service.getAddableProductionGoods = function (resourceName, buildingId) {
+                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production/addable';
+                return queryRestServiceGet(url);
+            };
+
+            service.addProductionToBuilding = function (resourceName, buildingId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+                var data = {
+                    buildingId: parseInt(buildingId),
+                    goodId: parseInt(goodId),
+                    amount: 1
+                };
+                return queryRestServicePost(url, data);
+            };
+
+            service.removeProductionFromBuilding = function (resourceName, buildingId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production/' + goodId;
+                return queryRestServiceDelete(url);
+            };
+
+            service.getBuildingProductions = function (resourceName, buildingId) {
+                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+                return queryRestServiceGet(url);
+            };
+
+            service.updateProduction = function (resourceName, buildingId, goodId, amount) {
+                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+                var data = {
+                    buildingId: parseInt(buildingId),
+                    goodId: parseInt(goodId),
+                    amount: parseInt(amount)
+                };
+                return queryRestServicePut(url, data);
+            };
+
+
+
+
             return service;
 
         }

@@ -52,6 +52,10 @@ requirejs.config({
             location: 'modules/admin/modules/buyableRequirementsEditor'
         },
         {
+            name: 'adminBuildingProductionEditor',
+            location: 'modules/admin/modules/buildingProductionEditor'
+        },
+        {
             name: 'adminFormElements',
             location: 'modules/admin/modules/formElements'
         },

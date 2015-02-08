@@ -7,6 +7,7 @@ define(['angularAMD',
     'adminFormElements',
     'adminBuyableCostEditor',
     'adminBuyableRequirementsEditor',
+    'adminBuildingProductionEditor',
     'DataService',
 	'AuthenticationService',
 
@@ -70,7 +71,7 @@ define(['angularAMD',
 
 	        $scope.showDetailsTab = function() {
 		        return true;
-	        }
+            };
 
 	        $scope.showCostTab = function() {
 		        return AuthenticationService.hasRole('ROLE_ADMIN_BUYABLE_COST');
@@ -79,6 +80,11 @@ define(['angularAMD',
 	        $scope.showRequirementTab = function() {
 		        return AuthenticationService.hasRole('ROLE_ADMIN_BUYABLE_REQUIREMENT');
 	        };
+
+            $scope.showProductionTab = function () {
+                return AuthenticationService.hasRole('ROLE_ADMIN_BUILDING_PRODUCTION');
+            };
+
 
         }
     ]);
