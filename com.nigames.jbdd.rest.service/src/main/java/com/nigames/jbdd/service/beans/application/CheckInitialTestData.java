@@ -44,7 +44,6 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 		createTechnology(id++);
 		createTechnology(id++);
 
-
 	}
 
 	private void createBuilding(long id) {
