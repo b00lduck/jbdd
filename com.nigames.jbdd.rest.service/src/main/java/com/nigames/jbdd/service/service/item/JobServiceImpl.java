@@ -20,19 +20,19 @@ public class JobServiceImpl extends AbstractRepositoryBackedService<JobEntity, L
 		implements JobService {
 
 	@Autowired
-	private JobConversionService buildingConversionService;
+	private JobConversionService jobConversionService;
 
 	@Autowired
-	private JobRepository buildingRepository;
+	private JobRepository jobRepository;
 
 	@Override
 	protected JobRepository getRepository() {
-		return buildingRepository;
+		return jobRepository;
 	}
 
 	@Override
 	protected ConversionServiceInterface<JobEntity, Job> getConversionService() {
-		return buildingConversionService;
+		return jobConversionService;
 	}
 
 }

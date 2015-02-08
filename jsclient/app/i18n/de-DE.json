@@ -46,6 +46,18 @@
         "nickname": "Nickname"
       },
       "good": {
+        "name": "Name",
+        "weight": "Gewicht kg/Einheit",
+        "density": "Dichte kg/m³"
+      },
+      "job": {
+        "name": "Name"
+      },
+      "technology": {
+        "name": "Name"
+      },
+      "building": {
+        "name": "Name"
       }
     }
   },

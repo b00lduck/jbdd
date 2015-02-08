@@ -1,13 +1,11 @@
 package com.nigames.jbdd.service.service.item.facet;
 
-import com.nigames.jbdd.rest.dto.Building;
-import com.nigames.jbdd.rest.dto.Cost;
-import com.nigames.jbdd.rest.dto.Good;
-import com.nigames.jbdd.rest.dto.Requirement;
+import com.nigames.jbdd.rest.dto.*;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
+import com.nigames.jbdd.service.service.item.TechnologyService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
 import com.nigames.jbdd.types.ResultList;
@@ -30,6 +28,9 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 	@Autowired
 	private BuildingService buildingService;
+
+	@Autowired
+	private TechnologyService technologyService;
 
 	@Autowired
 	private GoodService goodService;
@@ -67,12 +68,14 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	public ResultList<Buyable> getAddableRequirementBuyables(final long buyableId) {
 
 		final List<Building> buildingList = buildingService.findAllEnabled();
-		@SuppressWarnings("unchecked")
-		final List<Buyable> buyableList = (List) buildingList;
+		final List<Technology> technologyList = technologyService.findAllEnabled();
+
+		final List<Buyable> buyableList = buildingList.stream().collect(Collectors.toList());
+		buyableList.addAll(technologyList.stream().collect(Collectors.toList()));
 
 		final List<Buyable> ret = new ArrayList<>();
 
-		// TODO: pull getRequirementsForBuyable out!
+		final Set<Long> requirementsForBuyable = getRequirementsForBuyable(buyableId);
 
 		for (final Buyable b : buyableList) {
 
@@ -82,7 +85,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 			}
 
 			// Cannot add already added requirements
-			if (getRequirementsForBuyable(buyableId).contains(((Identifiable) b).getId())) {
+			if (requirementsForBuyable.contains(((Identifiable) b).getId())) {
 				continue;
 			}
 
