@@ -178,7 +178,7 @@ public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity,
 
     private void setUserPassword(final User user, final boolean sendPassword) {
         if (sendPassword) {
-	        LOG.info("user {} will getLang its new password via email", user.getUsername());
+	        LOG.info("user {} will get its new password via email", user.getUsername());
 	        sendPasswordViaEmail(user);
         }
 
@@ -213,7 +213,7 @@ public class UserServiceImpl extends AbstractRepositoryBackedService<UserEntity,
             }
         }
 
-	    // getLang original DTO
+	    // get original DTO
 	    final User originalUser = findById(id);
 
         if (!originalUser.getUsername().equals(user.getUsername())) {

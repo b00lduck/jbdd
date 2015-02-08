@@ -11,12 +11,12 @@ import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,8 +51,13 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
     @Override
     @Transactional
     public Player findByNickname(final String nickname) {
-	    final PlayerEntity playerEntity = playerRepository.findByNickname(nickname);
-	    return playerConversionService.convertToDto(playerEntity);
+	    try {
+		    final PlayerEntity playerEntity = playerRepository.findByNickname(nickname);
+		    return playerConversionService.convertToDto(playerEntity);
+	    } catch (final IncorrectResultSizeDataAccessException ignored) {
+		    LOG.error("There ist more that one player with nickname {}");
+		    return null;
+	    }
     }
 
     @Override
@@ -79,21 +84,15 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
     @Override
     @Transactional
     public List<Player> findAllUnused(final LimitParams limitParams, final SortParams sortParams) {
-	    /*
 	    final Pageable pageable = createPageable(limitParams, sortParams);
 	    final List<PlayerEntity> playerEntity = playerRepository.findUnused(pageable).getContent();
 	    return playerConversionService.convertToDto(playerEntity);
-	    */
-	    // TODO: implement
-	    return new ArrayList<>();
     }
 
     @Override
     @Transactional
     public final long getCountUnused() {
-	    return 0;
-	    // TODO: implement
-	    //return playerRepository.findUnused().getTotalElements();
+	    return playerRepository.countUnused();
     }
 
 }

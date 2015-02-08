@@ -11,10 +11,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,16 +53,19 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
      * Nickname of the playerSubItem.
      */
     @NotNull
+    @Column(unique = true, nullable = false)
     private String nickname;
     /**
      * {@link UserEntity} object that owns the playerSubItem.
      */
-    @ManyToOne
+    @ManyToOne(optional = true)
     private UserEntity user;
 
     /**
      * Enabled flag.
      */
+    @NotNull
+    @Column(nullable = false)
     private Boolean enabled;
 
     public String getNickname() {

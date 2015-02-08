@@ -117,7 +117,7 @@ public abstract class AbstractCheckUserBean {
 		LOG.info("Checking if playerSubItem \"{}\" is disabled", nickname); // NON-NLS
 		final Player player = playerService.findByNickname(nickname);
 
-		if (player.isEnabled()) {
+		if ((player != null) && (player.isEnabled())) {
 			player.setEnabled(Boolean.FALSE);
 			playerService.update(player.getId(), player);
 		}

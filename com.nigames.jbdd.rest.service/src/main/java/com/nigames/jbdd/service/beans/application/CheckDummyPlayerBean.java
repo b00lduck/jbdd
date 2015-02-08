@@ -34,7 +34,7 @@ public class CheckDummyPlayerBean extends AbstractCheckUserBean {
         for (Integer i = 1; i <= numberOfDummyPlayers; i++) {
             try {
                 processOneUser(i.toString());
-            } catch (final RuntimeException e) {
+            } catch (final Exception e) {
                 LOG.error("Creating of dummy user {} failed: {}", i, e.getMessage());
             }
         }
