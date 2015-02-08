@@ -37,7 +37,7 @@ public class DtoList<T> {
 	}
 
     public DtoList(final ResultList<T> data, final LimitParams limitParams) {
-        this(data.getList(), data.getCount(), limitParams);
+        this(data, data.getTotalCount(), limitParams);
     }
 
     private DtoList(final List<T> data, final Long total, final LimitParams limitParams) {
