@@ -19,7 +19,13 @@ define(['angularAMD', 'adminConstants'], function (angularAMD, adminConstants) {
                 getLeftGridData().then(
                     function (payload) {
                         leftGridConfig.totalItems = payload.data.meta.totalItems;
-                        leftGridConfig.data = payload.data.data;
+                        if (0 === leftGridConfig.totalItems) {
+                            leftGridConfig.data = [];
+                        } else {
+                            leftGridConfig.data = payload.data.data;
+                        }
+
+
                     },
                     function () {
                         window.alert('ERROR');
@@ -31,7 +37,11 @@ define(['angularAMD', 'adminConstants'], function (angularAMD, adminConstants) {
                 getRightGridData().then(
                     function (payload) {
                         rightGridConfig.totalItems = payload.data.meta.totalItems;
-                        rightGridConfig.data = payload.data.data;
+                        if (0 === rightGridConfig.totalItems) {
+                            rightGridConfig.data = [];
+                        } else {
+                            rightGridConfig.data = payload.data.data;
+                        }
                     },
                     function () {
                         window.alert('ERROR');

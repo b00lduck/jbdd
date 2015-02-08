@@ -58,7 +58,7 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
     /**
      * {@link UserEntity} object that owns the playerSubItem.
      */
-    @ManyToOne(optional = true)
+    @ManyToOne
     private UserEntity user;
 
     /**
