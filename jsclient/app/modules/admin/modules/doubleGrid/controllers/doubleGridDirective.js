@@ -129,6 +129,10 @@ define(['angularAMD', 'adminConstants'], function (angularAMD, adminConstants) {
                             case 'nonzero_int':
                                 columnDefs[i].editableCellTemplate = adminConstants.templates.editCellTemplateNonZeroInt;
                                 break;
+                            case 'nonzero_unsigned_int':
+                                columnDefs[i].editableCellTemplate = adminConstants.templates.editCellTemplateNonZeroUnsignedInt;
+                                break;
+
                             default:
                                 throw ('unkown validator ' + columnDefs[i].validator);
                         }

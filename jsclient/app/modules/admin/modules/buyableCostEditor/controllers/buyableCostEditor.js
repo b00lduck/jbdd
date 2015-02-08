@@ -27,7 +27,7 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                         {name: 'buyableId', visible: false},
                         {name: 'goodId', width: 55},
                         {name: 'good.name', i18nField: true},
-                        {name: 'amount', enableCellEdit: true, validator: 'nonzero_int'}],
+                        {name: 'amount', enableCellEdit: true, validator: 'nonzero_unsigned_int'}],
                     enableRowSelection: true,
                     enableRowHeaderSelection: false,
                     multiSelect: true,

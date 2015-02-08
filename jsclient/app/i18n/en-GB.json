@@ -24,7 +24,8 @@
       "playerEditor": "Edit player details",
       "buildingEditor": "Edit building details",
       "costEditor": "Edit costs",
-      "requirementEditor": "Edit requirements"
+      "requirementEditor": "Edit requirements",
+      "productionEditor": "Edit production"
     }
   },
 

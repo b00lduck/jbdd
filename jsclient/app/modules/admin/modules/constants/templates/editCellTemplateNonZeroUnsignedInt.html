@@ -2,7 +2,8 @@
     <form name="inputForm">
         <input type="number"
                required="true"
-               pattern="^-?[1-9]+[0-9]*$"
+               min="1"
+               pattern="^[0-9]+$"
                ng-class="'colt' + col.uid"
                ui-grid-editor
                ng-model="MODEL_COL_FIELD">

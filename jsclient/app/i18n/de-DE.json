@@ -24,7 +24,8 @@
       "playerEditor": "Spielerdetails bearbeiten",
       "buildingEditor": "Gebäudedetails bearbeiten",
       "costEditor": "Kosten bearbeiten",
-      "requirementEditor": "Voraussetzungen bearbeiten"
+      "requirementEditor": "Voraussetzungen bearbeiten",
+      "productionEditor": "Produktion bearbeiten"
     }
   },
   "dataGrid": {
