@@ -49,6 +49,10 @@ public final class SecurityElConstants {
 			"hasRole(" + ROLE_ADMIN_GOOD + ")";
 	private static final String ROLE_ADMIN_JOB =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_JOB";
+
+	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_JOB =
+			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_JOB + ")";
+
 	public static final String HAS_ROLE_ADMIN_JOB =
 			"hasRole(" + ROLE_ADMIN_JOB + ")";
 	private static final String ROLE_ADMIN_STORAGETYPE =

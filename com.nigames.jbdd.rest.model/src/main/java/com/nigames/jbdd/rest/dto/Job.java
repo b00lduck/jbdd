@@ -9,11 +9,12 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Job implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled {
+public class Job implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();
+	private final Deletable deletable = new DeletableImpl();
 
 	@Override
 	public boolean isEnabled() {
@@ -55,4 +56,15 @@ public class Job implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled {
 		isIdentifiable.setId(id);
 	}
 
+	@Override
+	public boolean isDeletable() {
+		return deletable.isDeletable();
+	}
+
+	@Override
+	public void setDeletable(final boolean deletable) {
+		this.deletable.setDeletable(deletable);
+	}
+
 }
+

@@ -34,7 +34,7 @@ public class JobConversionService extends AbstractConversionService<JobEntity, J
 
     @Override
     protected void updateDtoFromEntity(final Job dto, final JobEntity entity) {
-        // Nothing to do here (yet).
+	    dto.setDeletable(true);
     }
 
     @Override

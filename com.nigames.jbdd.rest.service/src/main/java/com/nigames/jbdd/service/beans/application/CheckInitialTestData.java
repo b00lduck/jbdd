@@ -2,10 +2,12 @@ package com.nigames.jbdd.service.beans.application;
 
 import com.nigames.jbdd.rest.dto.Building;
 import com.nigames.jbdd.rest.dto.Good;
+import com.nigames.jbdd.rest.dto.Job;
 import com.nigames.jbdd.rest.dto.Technology;
 import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
+import com.nigames.jbdd.service.service.item.JobService;
 import com.nigames.jbdd.service.service.item.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 
 	@Autowired
 	private TechnologyService technologyService;
+
+	@Autowired
+	private JobService jobService;
 
 	public void doChecks() {
 
@@ -43,6 +48,12 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 		createTechnology(id++);
 		createTechnology(id++);
 		createTechnology(id++);
+
+		createJob(id++);
+		createJob(id++);
+		createJob(id++);
+		createJob(id++);
+		createJob(id++);
 
 	}
 
@@ -95,6 +106,23 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 			b.getDescription().put("en-GB", "Description Good #" + id);
 
 			goodService.create(b);
+		}
+
+	}
+
+	private void createJob(long id) {
+		try {
+			jobService.findById(id);
+		} catch (ContentNotFoundException e) {
+			final Job b = new Job();
+			b.setEnabled((id % 2) == 0);
+
+			b.getName().put("de-DE", "Beruf #" + id);
+			b.getName().put("en-GB", "Profession #" + id);
+			b.getDescription().put("de-DE", "Beschreibung Beruf #" + id);
+			b.getDescription().put("en-GB", "Description Profession #" + id);
+
+			jobService.create(b);
 		}
 
 	}
