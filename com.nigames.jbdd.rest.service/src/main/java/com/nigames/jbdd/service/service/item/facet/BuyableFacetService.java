@@ -2,6 +2,7 @@ package com.nigames.jbdd.service.service.item.facet;
 
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
+import com.nigames.jbdd.service.service.DataList;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
@@ -22,10 +23,7 @@ public interface BuyableFacetService {
 	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_COST)
 	long getAddableCostGoodsCount(long buyableId);
 
-	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT)
-	List<Buyable> getAddableRequirementBuyables(long buyableId);
-
-	@PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT)
-	long getAddableRequirementBuyablesCount(long buyableId);
+    @PreAuthorize(HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT)
+    DataList<Buyable> getAddableRequirementBuyables(final long buyableId);
 
 }

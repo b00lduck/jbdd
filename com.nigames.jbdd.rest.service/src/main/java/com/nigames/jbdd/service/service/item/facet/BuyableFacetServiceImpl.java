@@ -6,6 +6,7 @@ import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.rest.dto.facet.Identifiable;
+import com.nigames.jbdd.service.service.DataList;
 import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
@@ -40,12 +41,6 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	private CostService costService;
 
 
-
-	@Override
-	public long getAddableRequirementBuyablesCount(final long buyableId) {
-		return 0;
-	}
-
 	@Override
 	public long getAddableCostGoodsCount(final long buyableId) {
 		return 0;
@@ -75,7 +70,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	}
 
 	@Override
-	public List<Buyable> getAddableRequirementBuyables(final long buyableId) {
+	public DataList<Buyable> getAddableRequirementBuyables(final long buyableId) {
 
 		final List<Building> buildingList = buildingService.findAllEnabled();
 		@SuppressWarnings("unchecked")
@@ -106,7 +101,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		}
 
-		return ret;
+		return new DataList<>(ret, ret.size());
 	}
 
 	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {

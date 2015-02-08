@@ -6,6 +6,7 @@ import com.nigames.jbdd.rest.dto.DtoList;
 import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
+import com.nigames.jbdd.service.service.DataList;
 import com.nigames.jbdd.service.service.item.facet.BuyableFacetService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
@@ -95,10 +96,9 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 		final LimitParams limitParams = LimitParams.create(first, size);
 		// final SortParams sortParams = SortParams.create(sort, desc);
 
-		final long total = buyableFacetService.getAddableRequirementBuyablesCount(itemId);
-		final List<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId);
+		final DataList<Buyable> data = buyableFacetService.getAddableRequirementBuyables(itemId);
 
-		return new DtoList<>(data, total, limitParams);
+		return new DtoList<>(data.getList(), data.getCount(), limitParams);
 	}
 
 	@Override
