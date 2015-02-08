@@ -55,10 +55,10 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 			b.setBuildtime((int) id * 100);
 			b.setEnabled((id % 2) == 0);
 
-			b.getName().put("de-DE", "B" + id);
-			b.getName().put("en-GB", "B" + id);
-			b.getDescription().put("de-DE", "Description B" + id);
-			b.getDescription().put("en-GB", "Description B" + id);
+			b.getName().put("de-DE", "Gebäude #" + id);
+			b.getName().put("en-GB", "Building #" + id);
+			b.getDescription().put("de-DE", "Beschreibung Gebäude #" + id);
+			b.getDescription().put("en-GB", "Description Builidng #" + id);
 
 			buildingService.create(b);
 		}
@@ -73,10 +73,10 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 			t.setBuildtime((int) id * 100);
 			t.setEnabled((id % 2) == 0);
 
-			t.getName().put("de-DE", "B" + id);
-			t.getName().put("en-GB", "B" + id);
-			t.getDescription().put("de-DE", "Description T" + id);
-			t.getDescription().put("en-GB", "Description T" + id);
+			t.getName().put("de-DE", "Technologie #" + id);
+			t.getName().put("en-GB", "Technology #" + id);
+			t.getDescription().put("de-DE", "Beschreibung Technologie #" + id);
+			t.getDescription().put("en-GB", "Description Technology #" + id);
 
 			technologyService.create(t);
 		}
@@ -90,10 +90,10 @@ public class CheckInitialTestData extends AbstractCheckUserBean {
 			final Good b = new Good();
 			b.setEnabled((id % 2) == 0);
 
-			b.getName().put("de-DE", "B" + id);
-			b.getName().put("en-GB", "B" + id);
-			b.getDescription().put("de-DE", "Description G" + id);
-			b.getDescription().put("en-GB", "Description G" + id);
+			b.getName().put("de-DE", "Gut #" + id);
+			b.getName().put("en-GB", "Good #" + id);
+			b.getDescription().put("de-DE", "Beschreibung Gut #" + id);
+			b.getDescription().put("en-GB", "Description Good #" + id);
 
 			goodService.create(b);
 		}
