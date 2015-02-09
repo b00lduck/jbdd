@@ -4,7 +4,6 @@ import com.nigames.jbdd.domain.entities.auth.UserEntity;
 import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity;
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuyableEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedResourceEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity;
 import org.hibernate.annotations.Fetch;

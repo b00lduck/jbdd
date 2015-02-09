@@ -11,14 +11,14 @@ import javax.persistence.*;
  * @author Daniel
  */
 @Entity
-@Table(name = "player_people_experience")
-public class PlayerPeopleExperienceEntity {
+@Table(name = "player_assigned_people_experience")
+public class PlayerAssignedPeopleExperienceEntity {
 
     /**
      * The primary key.
      */
     @EmbeddedId
-    private PlayerPeopleExperienceEntityPK id;
+    private PlayerAssignedPeopleExperienceEntityPK id;
 
     /**
      * The JPA version field.
@@ -48,56 +48,56 @@ public class PlayerPeopleExperienceEntity {
     private Integer experience;
 
     /**
-     * @return Get {@link PlayerPeopleExperienceEntity#playerPeople}
+     * @return Get {@link PlayerAssignedPeopleExperienceEntity#playerPeople}
      */
     public PlayerAssignedPeopleEntity getPlayerPeople() {
         return playerPeople;
     }
 
     /**
-     * @param playerPeople The {@link PlayerPeopleExperienceEntity#playerPeople} to setLang
+     * @param playerPeople The {@link PlayerAssignedPeopleExperienceEntity#playerPeople} to setLang
      */
     public void setPlayerPeople(final PlayerAssignedPeopleEntity playerPeople) {
         this.playerPeople = playerPeople;
     }
 
     /**
-     * @return Get {@link PlayerPeopleExperienceEntity#job}
+     * @return Get {@link PlayerAssignedPeopleExperienceEntity#job}
      */
     public JobEntity getJob() {
         return job;
     }
 
     /**
-     * @param job The {@link PlayerPeopleExperienceEntity#job} to setLang
+     * @param job The {@link PlayerAssignedPeopleExperienceEntity#job} to setLang
      */
     public void setJob(final JobEntity job) {
         this.job = job;
     }
 
     /**
-     * @return Get {@link PlayerPeopleExperienceEntity#id}
+     * @return Get {@link PlayerAssignedPeopleExperienceEntity#id}
      */
-    public PlayerPeopleExperienceEntityPK getId() {
+    public PlayerAssignedPeopleExperienceEntityPK getId() {
         return id;
     }
 
     /**
-     * @param id The {@link PlayerPeopleExperienceEntity#id} to setLang
+     * @param id The {@link PlayerAssignedPeopleExperienceEntity#id} to setLang
      */
-    public void setId(final PlayerPeopleExperienceEntityPK id) {
+    public void setId(final PlayerAssignedPeopleExperienceEntityPK id) {
         this.id = id;
     }
 
     /**
-     * @return Get {@link PlayerPeopleExperienceEntity#experience}
+     * @return Get {@link PlayerAssignedPeopleExperienceEntity#experience}
      */
     public Integer getExperience() {
         return experience;
     }
 
     /**
-     * @param experience The {@link PlayerPeopleExperienceEntity#experience} to setLang
+     * @param experience The {@link PlayerAssignedPeopleExperienceEntity#experience} to setLang
      */
     public void setExperience(final Integer experience) {
         this.experience = experience;

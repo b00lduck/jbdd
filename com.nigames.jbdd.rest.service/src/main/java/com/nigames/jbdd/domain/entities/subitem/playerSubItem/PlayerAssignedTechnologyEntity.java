@@ -1,45 +1,79 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import com.nigames.jbdd.domain.entities.PlayerEntity;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedBuyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedBuyableEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
- * Database entity for Players {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity} objects.
- * This represents the technologies a game character owns.
+ * Database entity for Players {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity} objects. This
+ * represents the technologys a game character owns.
  *
  * @author Daniel
  */
-@SuppressWarnings("ClassTooDeepInInheritanceTree")
 @Entity
-@Table(name = "player_technology")
-@NamedQueries({
-        @NamedQuery(name = "findAllPlayerTechnologies", query = "FROM PlayerAssignedTechnologyEntity"),
-        @NamedQuery(name = "findPlayerTechnologiesByPlayer",
-                query = "FROM PlayerAssignedTechnologyEntity WHERE player=:player")})
-public class PlayerAssignedTechnologyEntity extends PlayerAssignedBuyableEntity {
+@Table(name = "player_assigned_technology")
+public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet, PlayerAssignedBuyableEntityFacet {
+
+    @NotNull
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
+    private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
+
+    @NotNull
+    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
+    private PlayerAssignedBuyableEntityFacetImpl playerAssignedBuyableEntityFacet;
 
     /**
-     * Development stage of the {@link com.nigames.jbdd.domain.entities.item.BuildingEntity} instance.
+     * Development stage of the {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity} instance.
      */
-    private Integer stage;
+    private int stage;
 
     /**
-     * @return Get {@link PlayerAssignedBuildingEntity#stage}
+     * Setup and link facet instances
+     * @param instance instance to be initialized with facets
      */
-    public Integer getStage() {
+    protected static void initInstance(final PlayerAssignedTechnologyEntity instance) {
+        instance.playerAssignedEntityFacet = new PlayerAssignedEntityFacetImpl(instance);
+        instance.playerAssignedBuyableEntityFacet = new PlayerAssignedBuyableEntityFacetImpl(instance);
+    }
+
+    /**
+     * @return Get {@link PlayerAssignedTechnologyEntity#stage}
+     */
+    public int getStage() {
         return stage;
     }
 
     /**
-     * @param stage The {@link PlayerAssignedBuildingEntity#stage} to setLang
+     * @param stage The {@link PlayerAssignedTechnologyEntity#stage} to setLang
      */
-    public void setStage(final Integer stage) {
+    public void setStage(final int stage) {
         this.stage = stage;
     }
 
-    // TODO: hashCode, equals and toString
+    @Override
+    public PlayerEntity getPlayer() {
+        return playerAssignedEntityFacet.getPlayer();
+    }
 
+    @Override
+    public void setPlayer(PlayerEntity player) {
+        playerAssignedEntityFacet.setPlayer(player);
+    }
+
+    @Override
+    public long getRemainingBuildtime() {
+        return playerAssignedBuyableEntityFacet.getRemainingBuildtime();
+    }
+
+    @Override
+    public void setRemainingBuildtime(long remainingBuildtime) {
+        playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
+    }
 }
-
