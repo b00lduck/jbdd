@@ -16,7 +16,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "player_assigned_people")
-public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet {
+public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet,
+    PlayerAssignedSubItem<Long> {
 
     /**
      * The {@link PlayerAssignedBuildingEntity} in which the People work.
@@ -97,5 +98,10 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
     @Override
     public void setPlayer(final PlayerEntity player) {
         playerAssignedEntityFacet.setPlayer(player);
+    }
+
+    @Override
+    public void setId(final Long id) {
+
     }
 }

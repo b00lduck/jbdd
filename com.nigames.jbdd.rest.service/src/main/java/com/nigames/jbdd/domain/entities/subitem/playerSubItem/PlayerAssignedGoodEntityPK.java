@@ -5,10 +5,10 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
- * Composite primary key for {@link PlayerAssignedResourceEntity}.
+ * Composite primary key for {@link PlayerAssignedGoodEntity}.
  */
 @Embeddable
-public class PlayerAssignedResourceEntityPK implements Serializable {
+public class PlayerAssignedGoodEntityPK implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

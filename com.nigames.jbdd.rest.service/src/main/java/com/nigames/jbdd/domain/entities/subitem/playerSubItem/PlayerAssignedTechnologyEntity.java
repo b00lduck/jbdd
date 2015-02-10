@@ -19,7 +19,8 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "player_assigned_technology")
-public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet, PlayerAssignedBuyableEntityFacet {
+public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet,
+        PlayerAssignedBuyableEntityFacet, PlayerAssignedSubItem<Long> {
 
     @NotNull
     @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
@@ -75,5 +76,10 @@ public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl 
     @Override
     public void setRemainingBuildtime(long remainingBuildtime) {
         playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
+    }
+
+    @Override
+    public void setId(final Long id) {
+
     }
 }

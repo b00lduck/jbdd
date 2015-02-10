@@ -19,7 +19,7 @@ public abstract class AbstractI18nEntity implements IdentifyableEntityFacet, I18
     private int version;
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

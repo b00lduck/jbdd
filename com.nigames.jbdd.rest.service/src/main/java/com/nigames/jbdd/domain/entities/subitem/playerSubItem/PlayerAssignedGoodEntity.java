@@ -12,14 +12,12 @@ import javax.persistence.*;
  * @author Daniel
  */
 @Entity
-@Table(name = "player_resource")
-@NamedQueries({
-        @NamedQuery(name = "findAllPlayerAssignedResources", query = "FROM PlayerAssignedResourceEntity"),
-        @NamedQuery(name = "findPlayerAssignedResourcesByPlayer", query = "FROM PlayerAssignedResourceEntity WHERE player=:player")})
-public class PlayerAssignedResourceEntity implements AssignableToPlayerEntityFacet {
+@Table(name = "player_assigned_good")
+public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet,
+        PlayerAssignedSubItem<PlayerAssignedGoodEntityPK> {
 
     @EmbeddedId
-    private PlayerAssignedResourceEntityPK id = new PlayerAssignedResourceEntityPK();
+    private PlayerAssignedGoodEntityPK id = new PlayerAssignedGoodEntityPK();
 
     /**
      * The stored {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
@@ -43,11 +41,11 @@ public class PlayerAssignedResourceEntity implements AssignableToPlayerEntityFac
     private Long amount;
 
 
-    public PlayerAssignedResourceEntityPK getId() {
+    public PlayerAssignedGoodEntityPK getId() {
         return id;
     }
 
-    public void setId(final PlayerAssignedResourceEntityPK id) {
+    public void setId(final PlayerAssignedGoodEntityPK id) {
         this.id = id;
     }
 

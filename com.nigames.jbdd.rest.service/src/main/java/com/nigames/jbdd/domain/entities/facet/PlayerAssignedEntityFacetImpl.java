@@ -3,6 +3,7 @@ package com.nigames.jbdd.domain.entities.facet;
 import com.nigames.jbdd.domain.entities.PlayerEntity;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity;
+import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedSubItem;
 
 import javax.persistence.*;
 
@@ -33,7 +34,7 @@ public class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet 
 
     private PlayerAssignedEntityFacetImpl() {}
 
-    public PlayerAssignedEntityFacetImpl(final IdentifyableEntityFacetImpl identifyableEntityFacet) {
+    public PlayerAssignedEntityFacetImpl(final PlayerAssignedSubItem<?> identifyableEntityFacet) {
         this();
         this.identifyableEntityFacet = identifyableEntityFacet;
     }
