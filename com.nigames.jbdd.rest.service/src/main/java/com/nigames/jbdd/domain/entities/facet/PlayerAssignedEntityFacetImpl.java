@@ -1,43 +1,23 @@
 package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
-import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity;
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedSubItem;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * This file is part of JBdD by nigames.de
  *
  * Created by andersg on 09.02.2015.
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "FACET_PLAYER_ASSIGNED")
+@Embeddable
 public class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet {
-
-    @Id
-    private long id;
-
-    @Version
-    private int version;
-
-    @JoinColumn(name = "id")
-    @MapsId
-    @OneToOne
-    private IdentifyableEntityFacetImpl identifyableEntityFacet;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player", referencedColumnName = "id", updatable = false, insertable = false)
     private PlayerEntity player;
-
-    private PlayerAssignedEntityFacetImpl() {}
-
-    public PlayerAssignedEntityFacetImpl(final PlayerAssignedSubItem<?> identifyableEntityFacet) {
-        this();
-        this.identifyableEntityFacet = identifyableEntityFacet;
-    }
 
     @Override
     public PlayerEntity getPlayer() {
@@ -49,23 +29,20 @@ public class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet 
         this.player = player;
     }
 
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof PlayerAssignedEntityFacetImpl)) {
-            return false;
-        }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedEntityFacetImpl)) return false;
 
-        final PlayerAssignedEntityFacetImpl that = (PlayerAssignedEntityFacetImpl) o;
+		PlayerAssignedEntityFacetImpl that = (PlayerAssignedEntityFacetImpl) o;
 
-        return identifyableEntityFacet.equals(that.identifyableEntityFacet);
+		if (!player.equals(that.player)) return false;
 
-    }
+		return true;
+	}
 
-    @Override
-    public int hashCode() {
-        return identifyableEntityFacet.hashCode();
-    }
+	@Override
+	public int hashCode() {
+		return player.hashCode();
+	}
 }

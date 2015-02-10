@@ -13,33 +13,25 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "player_assigned_good")
-public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet,
-        PlayerAssignedSubItem<PlayerAssignedGoodEntityPK> {
+public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet {
 
     @EmbeddedId
     private PlayerAssignedGoodEntityPK id = new PlayerAssignedGoodEntityPK();
 
-    /**
-     * The stored {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
-     */
-    @MapsId("resourceId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resource_id", referencedColumnName = "id")
-    private GoodEntity resource;
+	@MapsId("goodId")
+	@JoinColumn(name = "good", referencedColumnName = "id", updatable = false, insertable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private GoodEntity good;
 
-    /**
-     * The owning {@link PlayerEntity}.
-     */
-    @MapsId("playerId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "player_id", referencedColumnName = "id")
-    private PlayerEntity player;
+	@MapsId("playerId")
+	@JoinColumn(name = "player", referencedColumnName = "id", updatable = false, insertable = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	private PlayerEntity player;
 
     /**
      * The amount.
      */
     private Long amount;
-
 
     public PlayerAssignedGoodEntityPK getId() {
         return id;
@@ -49,27 +41,6 @@ public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet,
         this.id = id;
     }
 
-
-    public GoodEntity getResource() {
-        return resource;
-    }
-
-    public void setResource(final GoodEntity resource) {
-        this.resource = resource;
-    }
-
-
-    @Override
-    public PlayerEntity getPlayer() {
-        return player;
-    }
-
-    @Override
-    public void setPlayer(final PlayerEntity player) {
-        this.player = player;
-    }
-
-
     public Long getAmount() {
         return amount;
     }
@@ -77,5 +48,25 @@ public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet,
     public void setAmount(final Long amount) {
         this.amount = amount;
     }
+
+	public GoodEntity getGood() {
+		return good;
+	}
+
+	public void setGood(GoodEntity good) {
+		this.good = good;
+		id.setGoodId(good.getId());
+	}
+
+	@Override
+	public PlayerEntity getPlayer() {
+		return player;
+	}
+
+	@Override
+	public void setPlayer(PlayerEntity player) {
+		this.player = player;
+		id.setPlayerId(player.getId());
+	}
 
 }

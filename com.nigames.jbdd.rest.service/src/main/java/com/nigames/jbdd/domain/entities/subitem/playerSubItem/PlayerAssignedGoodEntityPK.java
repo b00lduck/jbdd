@@ -15,14 +15,14 @@ public class PlayerAssignedGoodEntityPK implements Serializable {
     /**
      * The id of the {@link com.nigames.jbdd.domain.entities.PlayerEntity}.
      */
-    @Column(name = "player_id")
+    @Column(name = "player")
     private long playerId;
 
     /**
      * The id of the {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
      */
-    @Column(name = "resource_id")
-    private long resourceId;
+    @Column(name = "good")
+    private long goodId;
 
     public long getPlayerId() {
         return playerId;
@@ -32,13 +32,13 @@ public class PlayerAssignedGoodEntityPK implements Serializable {
         this.playerId = playerId;
     }
 
-    public long getResourceId() {
-        return resourceId;
-    }
+	public long getGoodId() {
+		return goodId;
+	}
 
-    public void setResourceId(final long resourceId) {
-        this.resourceId = resourceId;
-    }
+	public void setGoodId(final long goodId) {
+		this.goodId = goodId;
+	}
 
     // TODO: equals, hashCode and toString
 

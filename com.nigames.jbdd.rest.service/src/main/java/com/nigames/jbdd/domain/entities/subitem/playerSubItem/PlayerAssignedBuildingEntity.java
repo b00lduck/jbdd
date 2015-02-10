@@ -5,11 +5,10 @@ import com.nigames.jbdd.domain.entities.facet.PlayerAssignedBuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.PlayerAssignedBuyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacetImpl;
-import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 /**
  * Database entity for Players {@link com.nigames.jbdd.domain.entities.item.BuildingEntity} objects. This
@@ -20,29 +19,22 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "player_assigned_building")
 public class PlayerAssignedBuildingEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet,
-        PlayerAssignedBuyableEntityFacet, PlayerAssignedSubItem<Long> {
+		PlayerAssignedBuyableEntityFacet {
 
-    @NotNull
-    @OneToOne(mappedBy = "identifyableEntityFacet", cascade = CascadeType.ALL)
-    private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
+	@Embedded
+	private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
 
-    @NotNull
-    @OneToOne(mappedBy = "identifyableEntityFacet", cascade = CascadeType.ALL)
-    private PlayerAssignedBuyableEntityFacetImpl playerAssignedBuyableEntityFacet;
+	@Embedded
+	private PlayerAssignedBuyableEntityFacetImpl playerAssignedBuyableEntityFacet;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(referencedColumnName = "id")
+	private BuildingEntity building;
 
     /**
      * Development stage of the {@link com.nigames.jbdd.domain.entities.item.BuildingEntity} instance.
      */
     private int stage;
-
-    /**
-     * Setup and link facet instances
-     * @param instance instance to be initialized with facets
-     */
-    protected static void initInstance(final PlayerAssignedBuildingEntity instance) {
-        instance.playerAssignedEntityFacet = new PlayerAssignedEntityFacetImpl(instance);
-        instance.playerAssignedBuyableEntityFacet = new PlayerAssignedBuyableEntityFacetImpl(instance);
-    }
 
     /**
      * @return Get {@link PlayerAssignedBuildingEntity#stage}
@@ -78,8 +70,4 @@ public class PlayerAssignedBuildingEntity extends IdentifyableEntityFacetImpl im
         playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
     }
 
-    @Override
-    public void setId(final Long id) {
-
-    }
 }

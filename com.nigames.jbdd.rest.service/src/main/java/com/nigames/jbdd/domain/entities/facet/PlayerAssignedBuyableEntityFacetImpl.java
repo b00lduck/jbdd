@@ -1,38 +1,16 @@
 package com.nigames.jbdd.domain.entities.facet;
 
-import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
-
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 
 /**
  * This file is part of JBdD by nigames.de
  *
  * Created by andersg on 09.02.2015.
  */
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "FACET_PLAYER_ASSIGNED_BUYABLE")
+@Embeddable
 public class PlayerAssignedBuyableEntityFacetImpl implements PlayerAssignedBuyableEntityFacet {
 
-    @Id
-    private long id;
-
-    @Version
-    private int version;
-
-    @JoinColumn(name = "id")
-    @MapsId
-    @OneToOne
-    private IdentifyableEntityFacetImpl identifyableEntityFacet;
-
     private long remainingBuildtime;
-
-    private PlayerAssignedBuyableEntityFacetImpl() {}
-
-    public PlayerAssignedBuyableEntityFacetImpl(final IdentifyableEntityFacetImpl identifyableEntityFacet) {
-        this();
-        this.identifyableEntityFacet = identifyableEntityFacet;
-    }
 
     @Override
     public long getRemainingBuildtime() {
@@ -44,29 +22,21 @@ public class PlayerAssignedBuyableEntityFacetImpl implements PlayerAssignedBuyab
         this.remainingBuildtime = remainingBuildtime;
     }
 
-    @Override
-    public boolean equals(final Object other) {
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedBuyableEntityFacetImpl)) return false;
 
-        if (this == other) {
-            return true;
-        }
+		PlayerAssignedBuyableEntityFacetImpl that = (PlayerAssignedBuyableEntityFacetImpl) o;
 
-        if (!(other instanceof PlayerAssignedBuyableEntityFacetImpl)) {
-            return false;
-        }
+		if (remainingBuildtime != that.remainingBuildtime) return false;
 
-        final PlayerAssignedBuyableEntityFacetImpl that = (PlayerAssignedBuyableEntityFacetImpl) other;
+		return true;
+	}
 
-        if (remainingBuildtime != that.remainingBuildtime) {
-            return false;
-        }
-        return identifyableEntityFacet.equals(that.identifyableEntityFacet);
+	@Override
+	public int hashCode() {
+		return (int) (remainingBuildtime ^ (remainingBuildtime >>> 32));
+	}
 
-    }
-
-    @Override
-    public int hashCode() {
-        int result = identifyableEntityFacet.hashCode();
-        return (31 * result) + (int) (remainingBuildtime ^ (remainingBuildtime >>> 32));
-    }
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  * @author Daniel
  */
-@Entity
+//@Entity
 @Table(name = "player_assigned_people_experience")
 public class PlayerAssignedPeopleExperienceEntity {
 

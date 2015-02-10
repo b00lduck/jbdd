@@ -13,7 +13,7 @@ public abstract class IdentifyableEntityFacetImpl implements IdentifyableEntityF
     private int version;
 
     @Override
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

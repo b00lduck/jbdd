@@ -36,5 +36,27 @@ DROP TABLE IF EXISTS `jbdd_devel`.`facet_buyable`;
 DROP TABLE IF EXISTS `jbdd_devel`.`facet_weight`;
 DROP TABLE IF EXISTS `jbdd_devel`.`facet_name_and_desc`;
 DROP TABLE IF EXISTS `jbdd_devel`.`facet_storable`;
+DROP TABLE IF EXISTS `jbdd_devel`.`cost`;
+DROP TABLE IF EXISTS `jbdd_devel`.`facet_buyable`;
+DROP TABLE IF EXISTS `jbdd_devel`.`facet_name_and_desc`;
+DROP TABLE IF EXISTS `jbdd_devel`.`facet_storable`;
+DROP TABLE IF EXISTS `jbdd_devel`.`i18n_long`;
+DROP TABLE IF EXISTS `jbdd_devel`.`i18n_short`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_building`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_good`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_job`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_storagetype`;
+DROP TABLE IF EXISTS `jbdd_devel`.`item_technology`;
+DROP TABLE IF EXISTS `jbdd_devel`.`player`;
+DROP TABLE IF EXISTS `jbdd_devel`.`player_assigned_building`;
+DROP TABLE IF EXISTS `jbdd_devel`.`player_assigned_good`;
+DROP TABLE IF EXISTS `jbdd_devel`.`player_assigned_people`;
+DROP TABLE IF EXISTS `jbdd_devel`.`player_assigned_technology`;
+DROP TABLE IF EXISTS `jbdd_devel`.`production`;
+DROP TABLE IF EXISTS `jbdd_devel`.`requirement`;
+DROP TABLE IF EXISTS `jbdd_devel`.`user_roles`;
+DROP TABLE IF EXISTS `jbdd_devel`.`users`;
+
 
 SET foreign_key_checks = 1;

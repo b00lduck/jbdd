@@ -24,19 +24,19 @@ import java.util.List;
 public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
     /**
-     * Resources of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity}.
+     * Goods of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity}.
      */
     @OneToMany(mappedBy = "id.playerId")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedGoodEntity> playerResourceList =
-            new ArrayList<>();
+    private final List<PlayerAssignedGoodEntity> playerGoodList = new ArrayList<>();
+
     /**
      * Buildings of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity}.
      */
     @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedBuildingEntity> playerBuildingList =
-            new ArrayList<>();
+    private final List<PlayerAssignedBuildingEntity> playerBuildingList = new ArrayList<>();
+
     /**
      * Technologies of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity}.
      */
@@ -51,6 +51,7 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
     @NotNull
     @Column(unique = true, nullable = false)
     private String nickname;
+
     /**
      * {@link UserEntity} object that owns the playerSubItem.
      */
@@ -80,9 +81,9 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
         this.user = user;
     }
 
-    public List<PlayerAssignedGoodEntity> getPlayerResourceList() {
-        return playerResourceList;
-    }
+	public List<PlayerAssignedGoodEntity> getPlayerGoodList() {
+		return playerGoodList;
+	}
 
     public List<PlayerAssignedBuildingEntity> getPlayerBuildingList() {
         return playerBuildingList;

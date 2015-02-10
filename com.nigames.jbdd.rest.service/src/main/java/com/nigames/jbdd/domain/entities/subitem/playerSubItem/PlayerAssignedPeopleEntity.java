@@ -1,13 +1,14 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
 import com.nigames.jbdd.domain.entities.PlayerEntity;
-import com.nigames.jbdd.domain.entities.facet.HasNameAndDescEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Abstract Database entity for Players People. This represents the people a a game character owns.
@@ -16,8 +17,7 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 @Table(name = "player_assigned_people")
-public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet,
-    PlayerAssignedSubItem<Long> {
+public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet {
 
     /**
      * The {@link PlayerAssignedBuildingEntity} in which the People work.
@@ -25,9 +25,8 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
     @ManyToOne
     private PlayerAssignedBuildingEntity playerBuilding;
 
-    @NotNull
-    @OneToOne(mappedBy = "player", cascade = CascadeType.ALL)
-    private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
+	@Embedded
+	private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
 
     /**
      * The workmode.
@@ -38,14 +37,6 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
      * The name of the inhabitant.
      */
     private String name;
-
-    /**
-     * Setup and link facet instances
-     * @param instance instance to be initialized with facets
-     */
-    protected static void initInstance(final PlayerAssignedPeopleEntity instance) {
-        instance.playerAssignedEntityFacet = new PlayerAssignedEntityFacetImpl(instance);
-    }
 
     /**
      * @return Get {@link PlayerAssignedPeopleEntity#playerBuilding}
@@ -100,8 +91,4 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
         playerAssignedEntityFacet.setPlayer(player);
     }
 
-    @Override
-    public void setId(final Long id) {
-
-    }
 }
