@@ -18,6 +18,9 @@ public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet {
     @EmbeddedId
     private PlayerAssignedGoodEntityPK id = new PlayerAssignedGoodEntityPK();
 
+	@Version
+	private int version;
+
 	@MapsId("goodId")
 	@JoinColumn(name = "good", referencedColumnName = "id", updatable = false, insertable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -53,7 +56,7 @@ public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet {
 		return good;
 	}
 
-	public void setGood(GoodEntity good) {
+	public void setGood(final GoodEntity good) {
 		this.good = good;
 		id.setGoodId(good.getId());
 	}
@@ -64,9 +67,31 @@ public class PlayerAssignedGoodEntity implements AssignableToPlayerEntityFacet {
 	}
 
 	@Override
-	public void setPlayer(PlayerEntity player) {
+	public void setPlayer(final PlayerEntity player) {
 		this.player = player;
 		id.setPlayerId(player.getId());
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedGoodEntity)) return false;
+
+		PlayerAssignedGoodEntity that = (PlayerAssignedGoodEntity) o;
+
+		if (!amount.equals(that.amount)) return false;
+		if (!good.equals(that.good)) return false;
+		if (!player.equals(that.player)) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = good.hashCode();
+		result = 31 * result + player.hashCode();
+		result = 31 * result + amount.hashCode();
+		return result;
 	}
 
 }

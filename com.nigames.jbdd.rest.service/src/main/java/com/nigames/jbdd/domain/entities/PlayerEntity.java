@@ -103,6 +103,4 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
         this.enabled = enabled;
     }
 
-    // TODO: equals, hashCode, toString
-
 }

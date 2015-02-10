@@ -70,4 +70,28 @@ public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl 
         playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
     }
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedTechnologyEntity)) return false;
+
+		PlayerAssignedTechnologyEntity that = (PlayerAssignedTechnologyEntity) o;
+
+		if (stage != that.stage) return false;
+		if (!building.equals(that.building)) return false;
+		if (!playerAssignedBuyableEntityFacet.equals(that.playerAssignedBuyableEntityFacet)) return false;
+		if (!playerAssignedEntityFacet.equals(that.playerAssignedEntityFacet)) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = playerAssignedEntityFacet.hashCode();
+		result = 31 * result + playerAssignedBuyableEntityFacet.hashCode();
+		result = 31 * result + building.hashCode();
+		result = 31 * result + stage;
+		return result;
+	}
+
 }

@@ -40,6 +40,32 @@ public class PlayerAssignedGoodEntityPK implements Serializable {
 		this.goodId = goodId;
 	}
 
-    // TODO: equals, hashCode and toString
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedGoodEntityPK)) return false;
+
+		PlayerAssignedGoodEntityPK that = (PlayerAssignedGoodEntityPK) o;
+
+		if (goodId != that.goodId) return false;
+		if (playerId != that.playerId) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = (int) (playerId ^ (playerId >>> 32));
+		result = 31 * result + (int) (goodId ^ (goodId >>> 32));
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerAssignedGoodEntityPK{" +
+				"playerId=" + playerId +
+				", goodId=" + goodId +
+				'}';
+	}
 
 }
