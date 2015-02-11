@@ -5,6 +5,7 @@ import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity;
+import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -42,8 +43,14 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
      */
     @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedTechnologyEntity> playerTechnologyList =
-            new ArrayList<>();
+    private final List<PlayerAssignedTechnologyEntity> playerTechnologyList = new ArrayList<>();
+
+	/**
+	 * People of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity}.
+	 */
+	@OneToMany(mappedBy = "playerAssignedEntityFacet.player")
+	@Fetch(FetchMode.SELECT)
+	private final List<PlayerAssignedPeopleEntity> playerPeopleList = new ArrayList<>();
 
     /**
      * Nickname of the playerSubItem.
