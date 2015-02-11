@@ -16,10 +16,12 @@ compileAspect {
 }
 
 dependencies {
+
     aspectpath(
             [group: 'org.springframework', name: 'spring-aspects', version: springVersion],
             [group: 'org.springframework.security', name: 'spring-security-aspects', version: springSecurityVersion],
     )
+
     compile(
             [project(":${group}.rest.model")],
 
@@ -84,8 +86,8 @@ dependencies {
 
             [group: 'com.google.guava', name: 'guava', version: guavaVersion],
 
-            [group: 'com.wordnik', name: 'swagger-core', version: '1.3.12'],
-            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: '1.3.12']
+            [group: 'com.wordnik', name: 'swagger-core_2.10', version: swaggerVersion],
+            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: swaggerVersion]
 
     )
 
@@ -99,6 +101,7 @@ dependencies {
             [group: 'org.jboss.resteasy', name: 'resteasy-client', version: restEasyVersion],
 
             [group: 'org.springframework', name: 'spring-test', version: springVersion],
+            [group: 'nl.jqno.equalsverifier',  name: 'equalsverifier',    version: equalsverifierVersion]
     )
 }
 

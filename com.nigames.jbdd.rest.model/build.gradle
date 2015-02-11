@@ -10,8 +10,9 @@ dependencies {
     )
 
     testCompile(
-			[group: 'junit',         name: 'junit',             version: jUnitVersion],
-			[group: 'org.hamcrest',  name: 'hamcrest-core',     version: hamcrestVersion]
+			[group: 'junit',                   name: 'junit',             version: jUnitVersion],
+			[group: 'org.hamcrest',            name: 'hamcrest-core',     version: hamcrestVersion],
+            [group: 'nl.jqno.equalsverifier',  name: 'equalsverifier',    version: equalsverifierVersion]
 	)
 }
 

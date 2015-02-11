@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author Daniel
  */
 @Embeddable
-public class CostEntityPK implements Serializable {
+public final class CostEntityPK implements Serializable {
 
 	/**
 	 * The serialVersionUID.
