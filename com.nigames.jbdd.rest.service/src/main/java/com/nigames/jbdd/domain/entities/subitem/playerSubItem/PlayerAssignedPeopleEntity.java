@@ -1,6 +1,14 @@
 package com.nigames.jbdd.domain.entities.subitem.playerSubItem;
 
-import javax.persistence.*;
+import com.nigames.jbdd.domain.entities.PlayerEntity;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacet;
+import com.nigames.jbdd.domain.entities.facet.PlayerAssignedEntityFacetImpl;
+import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Abstract Database entity for Players People. This represents the people a a game character owns.
@@ -8,12 +16,8 @@ import javax.persistence.*;
  * @author Daniel
  */
 @Entity
-@Table(name = "player_people")
-@NamedQueries({
-        @NamedQuery(name = "findAllPlayerPeople", query = "FROM PlayerAssignedPeopleEntity"),
-        @NamedQuery(name = "findPlayerPeopleByPlayer",
-                query = "FROM PlayerAssignedPeopleEntity WHERE player=:player")})
-public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
+@Table(name = "player_assigned_people")
+public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl implements PlayerAssignedEntityFacet {
 
     /**
      * The {@link PlayerAssignedBuildingEntity} in which the People work.
@@ -21,10 +25,13 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
     @ManyToOne
     private PlayerAssignedBuildingEntity playerBuilding;
 
+	@Embedded
+	private PlayerAssignedEntityFacetImpl playerAssignedEntityFacet;
+
     /**
      * The workmode.
      */
-    private PlayerAssignedPeopleEntity.Workmode workmode;
+    private PeopleWorkmode workmode;
 
     /**
      * The name of the inhabitant.
@@ -48,14 +55,14 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
     /**
      * @return Get {@link PlayerAssignedPeopleEntity#workmode}
      */
-    public PlayerAssignedPeopleEntity.Workmode getWorkmode() {
+    public PeopleWorkmode getWorkmode() {
         return workmode;
     }
 
     /**
      * @param workmode The {@link PlayerAssignedPeopleEntity#workmode} to setLang
      */
-    public void setWorkmode(final PlayerAssignedPeopleEntity.Workmode workmode) {
+    public void setWorkmode(final PeopleWorkmode workmode) {
         this.workmode = workmode;
     }
 
@@ -73,20 +80,45 @@ public class PlayerAssignedPeopleEntity extends AbstractPlayerAssignedEntity {
         this.name = name;
     }
 
-    /**
-     * Peoples workmode enum.
-     */
-    // TODO: export to external class
-    public enum Workmode {
-        /**
-         * People is producing goods in the building.
-         */
-        PRODUCING,
 
-        /**
-         * People is building the Building.
-         */
-        BUILDING
+    @Override
+    public PlayerEntity getPlayer() {
+        return playerAssignedEntityFacet.getPlayer();
     }
 
+    @Override
+    public void setPlayer(final PlayerEntity player) {
+        playerAssignedEntityFacet.setPlayer(player);
+    }
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof PlayerAssignedPeopleEntity)) return false;
+
+		PlayerAssignedPeopleEntity that = (PlayerAssignedPeopleEntity) o;
+
+		if (!name.equals(that.name)) return false;
+		if (!playerAssignedEntityFacet.equals(that.playerAssignedEntityFacet)) return false;
+		if (!playerBuilding.equals(that.playerBuilding)) return false;
+		if (workmode != that.workmode) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = playerBuilding.hashCode();
+		result = 31 * result + playerAssignedEntityFacet.hashCode();
+		result = 31 * result + workmode.hashCode();
+		result = 31 * result + name.hashCode();
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "PlayerAssignedPeopleEntity{" +
+				"name='" + name + "' " +
+				"player='" + getPlayer().getNickname() + "}";
+	}
 }

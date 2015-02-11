@@ -1,6 +1,6 @@
 package com.nigames.jbdd.service.conversion.dto;
 
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedResourceEntity;
+import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity;
 import com.nigames.jbdd.rest.dto.PlayerResource;
 import com.nigames.jbdd.service.conversion.dto.module.IdConversionServiceModule;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PlayerResourceConversionService extends
-        AbstractConversionService<PlayerAssignedResourceEntity, PlayerResource> {
+        AbstractConversionService<PlayerAssignedGoodEntity, PlayerResource> {
 
     @Autowired
     private IdConversionServiceModule idConversionServiceModule;
@@ -19,8 +19,8 @@ public class PlayerResourceConversionService extends
     }
 
     @Override
-    public PlayerAssignedResourceEntity getNewEntityInstance() {
-        return new PlayerAssignedResourceEntity();
+    public PlayerAssignedGoodEntity getNewEntityInstance() {
+        return new PlayerAssignedGoodEntity();
     }
 
     @Override
@@ -29,12 +29,12 @@ public class PlayerResourceConversionService extends
     }
 
     @Override
-    protected void updateDtoFromEntity(final PlayerResource dto, final PlayerAssignedResourceEntity entity) {
+    protected void updateDtoFromEntity(final PlayerResource dto, final PlayerAssignedGoodEntity entity) {
         // nothing to do here.
     }
 
     @Override
-    public void updateEntityFromDto(final PlayerResource dto, final PlayerAssignedResourceEntity entity) {
+    public void updateEntityFromDto(final PlayerResource dto, final PlayerAssignedGoodEntity entity) {
         // nothing to do here.
     }
 

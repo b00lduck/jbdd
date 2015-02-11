@@ -4,12 +4,11 @@ import com.nigames.jbdd.domain.entities.auth.UserEntity;
 import com.nigames.jbdd.domain.entities.facet.CanBeEnabledEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity;
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuyableEntity;
-import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedResourceEntity;
+import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity;
+import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity;
 import com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,28 +25,32 @@ import java.util.List;
 public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
     /**
-     * Resources of this Player represented as a List of {@link PlayerAssignedResourceEntity}.
+     * Goods of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedGoodEntity}.
      */
     @OneToMany(mappedBy = "id.playerId")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedResourceEntity> playerResourceList =
-            new ArrayList<>();
+    private final List<PlayerAssignedGoodEntity> playerGoodList = new ArrayList<>();
+
     /**
      * Buildings of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity}.
      */
-    @OneToMany(mappedBy = "player", targetEntity = PlayerAssignedBuyableEntity.class)
+    @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    @Where(clause = "DTYPE='PlayerBuilding'")
-    private final List<PlayerAssignedBuildingEntity> playerBuildingList =
-            new ArrayList<>();
+    private final List<PlayerAssignedBuildingEntity> playerBuildingList = new ArrayList<>();
+
     /**
      * Technologies of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity}.
      */
-    @OneToMany(mappedBy = "player", targetEntity = PlayerAssignedBuyableEntity.class)
+    @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    @Where(clause = "DTYPE='PlayerTechnology'")
-    private final List<PlayerAssignedTechnologyEntity> playerTechnologyList =
-            new ArrayList<>();
+    private final List<PlayerAssignedTechnologyEntity> playerTechnologyList = new ArrayList<>();
+
+	/**
+	 * People of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity}.
+	 */
+	@OneToMany(mappedBy = "playerAssignedEntityFacet.player")
+	@Fetch(FetchMode.SELECT)
+	private final List<PlayerAssignedPeopleEntity> playerPeopleList = new ArrayList<>();
 
     /**
      * Nickname of the playerSubItem.
@@ -55,6 +58,7 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
     @NotNull
     @Column(unique = true, nullable = false)
     private String nickname;
+
     /**
      * {@link UserEntity} object that owns the playerSubItem.
      */
@@ -84,9 +88,9 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
         this.user = user;
     }
 
-    public List<PlayerAssignedResourceEntity> getPlayerResourceList() {
-        return playerResourceList;
-    }
+	public List<PlayerAssignedGoodEntity> getPlayerGoodList() {
+		return playerGoodList;
+	}
 
     public List<PlayerAssignedBuildingEntity> getPlayerBuildingList() {
         return playerBuildingList;
@@ -105,7 +109,5 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
     public void setEnabled(final boolean enabled) {
         this.enabled = enabled;
     }
-
-    // TODO: equals, hashCode, toString
 
 }
