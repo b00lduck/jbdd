@@ -10,7 +10,7 @@ import javax.persistence.*;
  *
  * @author Daniel
  */
-//@Entity
+@Entity
 @Table(name = "player_assigned_people_experience")
 public class PlayerAssignedPeopleExperienceEntity {
 
@@ -31,7 +31,7 @@ public class PlayerAssignedPeopleExperienceEntity {
      */
     @ManyToOne
     @MapsId("playerPeopleId")
-    @JoinColumn(name = "player_people_id", referencedColumnName = "id")
+    @JoinColumn(name = "player_people", referencedColumnName = "id")
     private PlayerAssignedPeopleEntity playerPeople;
 
     /**
@@ -39,13 +39,13 @@ public class PlayerAssignedPeopleExperienceEntity {
      */
     @ManyToOne
     @MapsId("jobId")
-    @JoinColumn(name = "job_id", referencedColumnName = "id")
+    @JoinColumn(name = "job", referencedColumnName = "id")
     private JobEntity job;
 
     /**
      * The experience.
      */
-    private Integer experience;
+    private int experience;
 
     /**
      * @return Get {@link PlayerAssignedPeopleExperienceEntity#playerPeople}
@@ -92,17 +92,43 @@ public class PlayerAssignedPeopleExperienceEntity {
     /**
      * @return Get {@link PlayerAssignedPeopleExperienceEntity#experience}
      */
-    public Integer getExperience() {
+    public int getExperience() {
         return experience;
     }
 
     /**
      * @param experience The {@link PlayerAssignedPeopleExperienceEntity#experience} to setLang
      */
-    public void setExperience(final Integer experience) {
+    public void setExperience(final int experience) {
         this.experience = experience;
     }
 
-    // TODO: equals, hashCode and toString
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof PlayerAssignedPeopleExperienceEntity)) {
+			return false;
+		}
 
+		final PlayerAssignedPeopleExperienceEntity that = (PlayerAssignedPeopleExperienceEntity) o;
+
+		if (experience != that.experience) {
+			return false;
+		}
+		if (!job.equals(that.job)) {
+			return false;
+		}
+		return playerPeople.equals(that.playerPeople);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = playerPeople.hashCode();
+		result = (31 * result) + job.hashCode();
+		result = (31 * result) + experience;
+		return result;
+	}
 }

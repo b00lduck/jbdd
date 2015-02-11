@@ -7,6 +7,7 @@ import java.io.Serializable;
 /**
  * Composite primary key for {@link PlayerAssignedPeopleExperienceEntity}.
  */
+@SuppressWarnings("DuplicateStringLiteralInspection")
 @Embeddable
 public class PlayerAssignedPeopleExperienceEntityPK implements Serializable {
 
@@ -15,54 +16,51 @@ public class PlayerAssignedPeopleExperienceEntityPK implements Serializable {
     /**
      * The id of the {@link PlayerAssignedPeopleEntity}.
      */
-    @Column(name = "player_people_id")
-    private Long playerPeopleId;
+    @Column(name = "player_people")
+    private long playerPeopleId;
 
     /**
      * The id of the {@link com.nigames.jbdd.domain.entities.item.JobEntity}.
      */
-    @Column(name = "job_id")
-    private Long jobId;
+    @Column(name = "job")
+    private long jobId;
 
     /**
      * @return Get {@link PlayerAssignedPeopleExperienceEntityPK#playerPeopleId}
      */
-    public Long getPlayerPeopleId() {
+    public long getPlayerPeopleId() {
         return playerPeopleId;
     }
 
     /**
      * @return Get {@link PlayerAssignedPeopleExperienceEntityPK#jobId}
      */
-    public Long getJobId() {
+    public long getJobId() {
         return jobId;
     }
 
-    @Override
-    public boolean equals(final Object other) {
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof PlayerAssignedPeopleExperienceEntityPK)) {
+			return false;
+		}
 
-        if (this == other) {
-            return true;
-        }
+		final PlayerAssignedPeopleExperienceEntityPK that = (PlayerAssignedPeopleExperienceEntityPK) o;
 
-        if (!(other instanceof PlayerAssignedPeopleExperienceEntityPK)) {
-            return false;
-        }
+		if (jobId != that.jobId) {
+			return false;
+		}
+		return playerPeopleId == that.playerPeopleId;
 
-        final PlayerAssignedPeopleExperienceEntityPK that = (PlayerAssignedPeopleExperienceEntityPK) other;
+	}
 
-        if (!jobId.equals(that.jobId)) {
-            return false;
-        }
-
-        return playerPeopleId.equals(that.playerPeopleId);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = playerPeopleId.hashCode();
-        result = (31 * result) + jobId.hashCode();
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		int result = (int) (playerPeopleId ^ (playerPeopleId >>> 32));
+		result = (31 * result) + (int) (jobId ^ (jobId >>> 32));
+		return result;
+	}
 }
