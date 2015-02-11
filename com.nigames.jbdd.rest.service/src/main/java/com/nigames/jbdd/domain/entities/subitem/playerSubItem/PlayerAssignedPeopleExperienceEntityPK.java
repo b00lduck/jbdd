@@ -16,8 +16,8 @@ public class PlayerAssignedPeopleExperienceEntityPK implements Serializable {
     /**
      * The id of the {@link PlayerAssignedPeopleEntity}.
      */
-    @Column(name = "player_people")
-    private long playerPeopleId;
+    @Column(name = "player_assigned_people")
+    private long playerAssignedPeopleId;
 
     /**
      * The id of the {@link com.nigames.jbdd.domain.entities.item.JobEntity}.
@@ -26,10 +26,10 @@ public class PlayerAssignedPeopleExperienceEntityPK implements Serializable {
     private long jobId;
 
     /**
-     * @return Get {@link PlayerAssignedPeopleExperienceEntityPK#playerPeopleId}
+     * @return Get {@link PlayerAssignedPeopleExperienceEntityPK#playerAssignedPeopleId}
      */
-    public long getPlayerPeopleId() {
-        return playerPeopleId;
+    public long getPlayerAssignedPeopleId() {
+	    return playerAssignedPeopleId;
     }
 
     /**
@@ -53,13 +53,13 @@ public class PlayerAssignedPeopleExperienceEntityPK implements Serializable {
 		if (jobId != that.jobId) {
 			return false;
 		}
-		return playerPeopleId == that.playerPeopleId;
+		return playerAssignedPeopleId == that.playerAssignedPeopleId;
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = (int) (playerPeopleId ^ (playerPeopleId >>> 32));
+		int result = (int) (playerAssignedPeopleId ^ (playerAssignedPeopleId >>> 32));
 		result = (31 * result) + (int) (jobId ^ (jobId >>> 32));
 		return result;
 	}

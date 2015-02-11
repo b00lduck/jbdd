@@ -31,7 +31,7 @@ public class PlayerAssignedPeopleExperienceEntity {
      */
     @ManyToOne
     @MapsId("playerPeopleId")
-    @JoinColumn(name = "player_people", referencedColumnName = "id")
+    @JoinColumn(name = "player_assigned_people", referencedColumnName = "id")
     private PlayerAssignedPeopleEntity playerPeople;
 
     /**
