@@ -19,4 +19,5 @@ public abstract class AbstractTest {
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
     }
+
 }

@@ -9,7 +9,7 @@ import com.nigames.jbdd.service.conversion.impl.modules.EnabledIdConversionServi
 import com.nigames.jbdd.service.conversion.impl.modules.NameDescConversionServiceTestModule;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
@@ -19,7 +19,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @author Daniel
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = TestApplicationConfig.class)
+@SpringApplicationConfiguration(classes = TestApplicationConfig.class)
 @WebAppConfiguration
 public class TechnologyConversionServiceTest extends
         AbstractConversionServiceTest<Technology, TechnologyEntity> {
