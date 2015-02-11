@@ -177,43 +177,40 @@ define(['angularAMD'], function (angularAMD) {
             };
 
 
-            service.getAddableProductionGoods = function (resourceName, buildingId) {
-                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production/addable';
+            service.getAddableProductionGoods = function (resourceName, jobId) {
+                var url = getSpecificResourceUrl(resourceName, jobId) + '/production/addable';
                 return queryRestServiceGet(url);
             };
 
-            service.addProductionToBuilding = function (resourceName, buildingId, goodId) {
-                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+            service.addProductionToJob = function (resourceName, jobId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, jobId) + '/production';
                 var data = {
-                    buildingId: parseInt(buildingId),
+                    jobId: parseInt(jobId),
                     goodId: parseInt(goodId),
                     amount: 1
                 };
                 return queryRestServicePost(url, data);
             };
 
-            service.removeProductionFromBuilding = function (resourceName, buildingId, goodId) {
-                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production/' + goodId;
+            service.removeProductionFromJob = function (resourceName, jobId, goodId) {
+                var url = getSpecificResourceUrl(resourceName, jobId) + '/production/' + goodId;
                 return queryRestServiceDelete(url);
             };
 
-            service.getBuildingProductions = function (resourceName, buildingId) {
-                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+            service.getJobProductions = function (resourceName, jobId) {
+                var url = getSpecificResourceUrl(resourceName, jobId) + '/production';
                 return queryRestServiceGet(url);
             };
 
-            service.updateProduction = function (resourceName, buildingId, goodId, amount) {
-                var url = getSpecificResourceUrl(resourceName, buildingId) + '/production';
+            service.updateProduction = function (resourceName, jobId, goodId, amount) {
+                var url = getSpecificResourceUrl(resourceName, jobId) + '/production';
                 var data = {
-                    buildingId: parseInt(buildingId),
+                    jobId: parseInt(jobId),
                     goodId: parseInt(goodId),
                     amount: parseInt(amount)
                 };
                 return queryRestServicePut(url, data);
             };
-
-
-
 
             return service;
 

@@ -62,8 +62,8 @@ public enum UserRoleEnum {
 	ROLE_ADMIN_BUYABLE_REQUIREMENT,
 
 	/**
-	 * User may administrate production of buildings.
+	 * User may administrate production of jobs..
 	 */
-	ROLE_ADMIN_BUILDING_PRODUCTION
+	ROLE_ADMIN_JOB_PRODUCTION
 
 }

@@ -3,13 +3,13 @@
 
 define(['angularAMD', 'DataService'], function (angularAMD) {
 
-    angularAMD.controller('BuildingProductionEditorController', ['$scope', 'DataService', '$q', '$translate',
+    angularAMD.controller('JobProductionEditorController', ['$scope', 'DataService', '$q', '$translate',
 
         function ($scope, DataService, $q, $translate) {
 
 
             function editProduction(goodId, amount) {
-                DataService.updateProduction($scope.resourceName, $scope.getBuildingId(), goodId, amount).then(
+                DataService.updateProduction($scope.resourceName, $scope.getJobId(), goodId, amount).then(
                     function (payload) {
                     },
                     function () {
@@ -20,11 +20,11 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
 
             $scope.doubleGridConfig = {
 
-                panelTitle: 'admin.doubleGrid.buildingProductionEditor.header',
+                panelTitle: 'admin.doubleGrid.jobProductionEditor.header',
 
                 leftGridConfig: {
                     columnDefs: [
-                        {name: 'buildingId', visible: false},
+                        {name: 'jobId', visible: false},
                         {name: 'goodId', width: 55},
                         {name: 'good.name', i18nField: true},
                         {name: 'amount', enableCellEdit: true, validator: 'nonzero_int'}],
@@ -52,19 +52,19 @@ define(['angularAMD', 'DataService'], function (angularAMD) {
                 },
 
                 getLeftGridData: function () {
-                    return DataService.getBuildingProductions($scope.resourceName, $scope.getBuildingId());
+                    return DataService.getJobProductions($scope.resourceName, $scope.getJobId());
                 },
 
                 getRightGridData: function () {
-                    return DataService.getAddableProductionGoods($scope.resourceName, $scope.getBuildingId());
+                    return DataService.getAddableProductionGoods($scope.resourceName, $scope.getJobId());
                 },
 
                 moveItemToLeft: function (obj) {
-                    return DataService.addProductionToBuilding($scope.resourceName, $scope.getBuildingId(), obj.id);
+                    return DataService.addProductionToJob($scope.resourceName, $scope.getJobId(), obj.id);
                 },
 
                 moveItemToRight: function (obj) {
-                    return DataService.removeProductionFromBuilding($scope.resourceName, $scope.getBuildingId(), obj.goodId);
+                    return DataService.removeProductionFromJob($scope.resourceName, $scope.getJobId(), obj.goodId);
                 },
 
                 onRegisterLeftApi: function (gridApi) {

@@ -14,7 +14,7 @@ public class Production implements IsDto {
 
 	private Good good;
 
-	private long buildingId;
+	private long jobId;
 
 	private long amount;
 
@@ -26,12 +26,12 @@ public class Production implements IsDto {
 		this.goodId = goodId;
 	}
 
-	public long getBuildingId() {
-		return buildingId;
+	public long getJobId() {
+		return jobId;
 	}
 
-	public void setBuildingId(final long buildingId) {
-		this.buildingId = buildingId;
+	public void setJobId(final long jobId) {
+		this.jobId = jobId;
 	}
 
 	public long getAmount() {

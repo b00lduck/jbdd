@@ -15,10 +15,10 @@ import java.util.List;
  */
 public interface ProductionRepository extends PagingAndSortingRepository<ProductionEntity, ProductionEntityPK> {
 
-	long countByIdBuildingId(Long buildingId);
+	long countByIdJobId(Long jobId);
 
-	Page<ProductionEntity> findByIdBuildingId(Long buildingId, Pageable pageable);
+	Page<ProductionEntity> findByIdJobId(Long jobId, Pageable pageable);
 
-	List<ProductionEntity> findByIdBuildingId(Long buildingId);
+	List<ProductionEntity> findByIdJobId(Long jobId);
 
 }

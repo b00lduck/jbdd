@@ -1,11 +1,12 @@
 package com.nigames.jbdd.service.service.item;
 
+import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Job;
 import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
+import com.nigames.jbdd.types.ResultList;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_ADMIN_JOB;
-import static com.nigames.jbdd.service.service.SecurityElConstants.HAS_ROLE_SYSTEM_OR_ADMIN_JOB;
+import static com.nigames.jbdd.service.service.SecurityElConstants.*;
 
 /**
  * JobService interface.
@@ -23,5 +24,8 @@ public interface JobService extends AbstractDtoServiceInterface<Job> {
 	@Override
 	@PreAuthorize(HAS_ROLE_SYSTEM_OR_ADMIN_JOB)
 	Job create(final Job dto);
+
+	@PreAuthorize(HAS_ROLE_ADMIN_JOB_PRODUCTION)
+	ResultList<Good> getAddableProductionGoods(long jobId);
 
 }

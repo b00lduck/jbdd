@@ -7,7 +7,7 @@ define(['angularAMD',
     'adminFormElements',
     'adminBuyableCostEditor',
     'adminBuyableRequirementsEditor',
-    'adminBuildingProductionEditor',
+    'adminJobProductionEditor',
     'DataService',
 	'AuthenticationService',
 
@@ -82,7 +82,7 @@ define(['angularAMD',
 	        };
 
             $scope.showProductionTab = function () {
-                return AuthenticationService.hasRole('ROLE_ADMIN_BUILDING_PRODUCTION');
+                return AuthenticationService.hasRole('ROLE_ADMIN_JOB_PRODUCTION');
             };
 
 

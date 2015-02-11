@@ -24,14 +24,14 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 	 * This is a passive backlink. Gets all {@link CostEntity} objects who use this Good.
 	 */
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "good_id", updatable = false, insertable = false)
+	@JoinColumn(name = "good", updatable = false, insertable = false)
 	private final List<CostEntity> referencedCosts = new ArrayList<>();
 
 	/**
 	 * This is a passive backlink. Gets all {@link ProductionEntity} objects who use this Good.
 	 */
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "good_id", updatable = false, insertable = false)
+	@JoinColumn(name = "good", updatable = false, insertable = false)
 	private final List<ProductionEntity> referencedProductions = new ArrayList<>();
 
 	@OneToOne(mappedBy = "item", cascade = CascadeType.ALL)

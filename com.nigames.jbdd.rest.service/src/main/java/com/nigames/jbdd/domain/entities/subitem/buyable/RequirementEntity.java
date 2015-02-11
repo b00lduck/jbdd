@@ -25,7 +25,7 @@ public class RequirementEntity extends AbstractAmountSubItemEntity {
 	 * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
 	 */
 	@MapsId("buyableId")
-	@JoinColumn(name = "buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
+	@JoinColumn(name = "buyable", referencedColumnName = "id", updatable = false, insertable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
 	private BuyableEntityFacetImpl buyableFacet;
 
@@ -34,7 +34,7 @@ public class RequirementEntity extends AbstractAmountSubItemEntity {
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("requiredBuyableId")
-	@JoinColumn(name = "required_buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
+	@JoinColumn(name = "required_buyable", referencedColumnName = "id", updatable = false, insertable = false)
 	private BuyableEntityFacetImpl requiredBuyableFacet;
 
 	/**

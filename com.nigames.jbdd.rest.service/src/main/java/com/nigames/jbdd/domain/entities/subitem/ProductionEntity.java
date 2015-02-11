@@ -1,13 +1,13 @@
 package com.nigames.jbdd.domain.entities.subitem;
 
-import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
+import com.nigames.jbdd.domain.entities.item.JobEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.AbstractAmountSubItemEntity;
 
 import javax.persistence.*;
 
 /**
- * Database entity of the Production of buildings. The data is kept in the
+ * Database entity of the Production of jobs. The data is kept in the
  * composite primary key {@link com.nigames.jbdd.domain.entities.subitem.ProductionEntityPK}.
  *
  * @author Daniel
@@ -23,19 +23,19 @@ public class ProductionEntity extends AbstractAmountSubItemEntity {
 	private ProductionEntityPK id = new ProductionEntityPK();
 
 	/**
-	 * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
+	 * The {@link com.nigames.jbdd.domain.entities.item.JobEntity}.
 	 */
-	@MapsId("buildingId")
-	@JoinColumn(name = "building_id", referencedColumnName = "id", updatable = false, insertable = false)
+	@MapsId("jobId")
+	@JoinColumn(name = "job", referencedColumnName = "id", updatable = false, insertable = false)
 	@ManyToOne(fetch = FetchType.LAZY)
-	private BuildingEntity building;
+	private JobEntity job;
 
 	/**
 	 * The {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@MapsId("goodId")
-	@JoinColumn(name = "good_id", referencedColumnName = "id", updatable = false, insertable = false)
+	@JoinColumn(name = "good", referencedColumnName = "id", updatable = false, insertable = false)
 	private GoodEntity good;
 
 	/**
@@ -53,17 +53,17 @@ public class ProductionEntity extends AbstractAmountSubItemEntity {
 	}
 
 	/**
-	 * @return Get the Building item
+	 * @return Get the Job item
 	 */
-	public BuildingEntity getBuilding() {
-		return building;
+	public JobEntity getJob() {
+		return job;
 	}
 
 	/**
-	 * @param building The Building item to set
+	 * @param job The Job item to set
 	 */
-	public void setBuilding(final BuildingEntity building) {
-		this.building = building;
+	public void setJob(final JobEntity job) {
+		this.job = job;
 	}
 
 	/**

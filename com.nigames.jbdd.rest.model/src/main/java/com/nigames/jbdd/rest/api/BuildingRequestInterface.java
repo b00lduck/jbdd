@@ -1,7 +1,10 @@
 package com.nigames.jbdd.rest.api;
 
 import com.nigames.jbdd.rest.api.aspect.BuyableRequestInterface;
-import com.nigames.jbdd.rest.dto.*;
+import com.nigames.jbdd.rest.dto.Building;
+import com.nigames.jbdd.rest.dto.Cost;
+import com.nigames.jbdd.rest.dto.DtoList;
+import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.statics.Constants;
 import com.wordnik.swagger.annotations.*;
 
@@ -86,42 +89,6 @@ public interface BuildingRequestInterface extends BuyableRequestInterface {
 	@Path("/{itemId}/cost")
 	@ApiOperation("updateCost")
 	Cost updateCost(@PathParam("itemId") final long itemId, final Cost dto);
-
-
-	// Production
-
-	@GET
-	@Path("/{itemId}/production")
-	@ApiOperation("getProductions")
-	DtoList<Production> getProductions(@PathParam("itemId") final long itemId,
-	                                   @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                                   @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-	                                   @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-	                                   @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
-
-	@GET
-	@Path("/{itemId}/production/addable")
-	@ApiOperation("getAddableProductionGoods")
-	DtoList<Good> getAddableProductionGoods(@PathParam("itemId") final long itemId,
-	                                        @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
-	                                        @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
-	                                        @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
-	                                        @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
-
-	@POST
-	@Path("/{itemId}/production")
-	@ApiOperation("createProduction")
-	Production createProduction(@PathParam("itemId") final long itemId, final Production dto);
-
-	@DELETE
-	@Path("/{itemId}/production/{goodId}")
-	@ApiOperation("deleteProduction")
-	void deleteProduction(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
-
-	@PUT
-	@Path("/{itemId}/production/")
-	@ApiOperation("updateProduction")
-	Production updateProduction(@PathParam("itemId") final long itemId, final Production dto);
 
 
 }

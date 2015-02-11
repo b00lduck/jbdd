@@ -26,7 +26,7 @@ public class CostEntity extends AbstractAmountSubItemEntity {
      * The {@link com.nigames.jbdd.domain.entities.item.AbstractItemEntity}.
      */
     @MapsId("buyableId")
-    @JoinColumn(name = "buyable_id", referencedColumnName = "id", updatable = false, insertable = false)
+    @JoinColumn(name = "buyable", referencedColumnName = "id", updatable = false, insertable = false)
     @ManyToOne(fetch = FetchType.LAZY)
     private BuyableEntityFacetImpl buyableFacet;
 
@@ -35,7 +35,7 @@ public class CostEntity extends AbstractAmountSubItemEntity {
      */
     @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("goodId")
-    @JoinColumn(name = "good_id", referencedColumnName = "id", updatable = false, insertable = false)
+    @JoinColumn(name = "good", referencedColumnName = "id", updatable = false, insertable = false)
     private GoodEntity good;
 
     /**

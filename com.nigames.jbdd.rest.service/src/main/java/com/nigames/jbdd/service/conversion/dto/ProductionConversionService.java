@@ -1,7 +1,7 @@
 package com.nigames.jbdd.service.conversion.dto;
 
-import com.nigames.jbdd.domain.entities.item.BuildingEntity;
 import com.nigames.jbdd.domain.entities.item.GoodEntity;
+import com.nigames.jbdd.domain.entities.item.JobEntity;
 import com.nigames.jbdd.domain.entities.subitem.ProductionEntity;
 import com.nigames.jbdd.domain.entities.subitem.ProductionEntityPK;
 import com.nigames.jbdd.rest.dto.Production;
@@ -37,7 +37,7 @@ public class ProductionConversionService extends AbstractConversionService<Produ
 
 	@Override
 	protected void updateDtoFromEntity(final Production dto, final ProductionEntity entity) {
-		dto.setBuildingId(entity.getId().getBuildingId());
+		dto.setJobId(entity.getId().getJobId());
 		dto.setGood(goodConversionService.convertToDto(entity.getGood()));
 		dto.setGoodId(entity.getId().getGoodId());
 		dto.setAmount(entity.getAmount());
@@ -49,12 +49,12 @@ public class ProductionConversionService extends AbstractConversionService<Produ
 
 		// On the contrary to the other converters, in this particulary case the ID has to be setLang.
 		// (composite key which is not auto generated)
-		final ProductionEntityPK productionEntityPK = new ProductionEntityPK(dto.getBuildingId(), dto.getGoodId());
+		final ProductionEntityPK productionEntityPK = new ProductionEntityPK(dto.getJobId(), dto.getGoodId());
 		entity.setId(productionEntityPK);
 
-		final BuildingEntity building = entityManager.find(BuildingEntity.class,
-				dto.getBuildingId());
-		entity.setBuilding(building);
+		final JobEntity job = entityManager.find(JobEntity.class,
+				dto.getJobId());
+		entity.setJob(job);
 
 		final GoodEntity good = entityManager.find(GoodEntity.class, dto.getGoodId());
 		entity.setGood(good);

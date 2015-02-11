@@ -49,30 +49,30 @@ public class ProductionServiceImpl extends AbstractRepositoryBackedService<Produ
 	@Override
 	@Transactional
 	public Production update(final Production dto) {
-		final ProductionEntityPK id = new ProductionEntityPK(dto.getBuildingId(), dto.getGoodId());
+		final ProductionEntityPK id = new ProductionEntityPK(dto.getJobId(), dto.getGoodId());
 		return update(id, dto);
 	}
 
 	@Override
 	@Transactional
-	public void delete(final long buildingId, final long goodId) {
-		final ProductionEntityPK id = new ProductionEntityPK(buildingId, goodId);
+	public void delete(final long jobId, final long goodId) {
+		final ProductionEntityPK id = new ProductionEntityPK(jobId, goodId);
 		delete(id);
 	}
 
 	@Override
-	public ResultList<Production> findByBuildingId(final long buildingId, final LimitParams limitParams, final SortParams sortParams) {
+	public ResultList<Production> findByJobId(final long jobId, final LimitParams limitParams, final SortParams sortParams) {
 		final Pageable pageable = createPageable(limitParams, sortParams);
 
-		final List<ProductionEntity> productionEntityList = productionRepository.findByIdBuildingId(buildingId, pageable).getContent();
+		final List<ProductionEntity> productionEntityList = productionRepository.findByIdJobId(jobId, pageable).getContent();
 		final List<Production> list = productionConversionService.convertToDto(productionEntityList);
 
-		return ResultList.create(list, productionRepository.countByIdBuildingId(buildingId));
+		return ResultList.create(list, productionRepository.countByIdJobId(jobId));
 	}
 
 	@Override
-	public ResultList<Production> findByBuildingId(final long buildingId) {
-		final List<ProductionEntity> productionEntityList = productionRepository.findByIdBuildingId(buildingId);
+	public ResultList<Production> findByJobId(final long jobId) {
+		final List<ProductionEntity> productionEntityList = productionRepository.findByIdJobId(jobId);
 
 		final List<Production> list = productionConversionService.convertToDto(productionEntityList);
 

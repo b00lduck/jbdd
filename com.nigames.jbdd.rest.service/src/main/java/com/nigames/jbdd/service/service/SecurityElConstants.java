@@ -42,11 +42,11 @@ public final class SecurityElConstants {
 	public static final String HAS_ROLE_ADMIN_BUILDING =
 			"hasRole(" + ROLE_ADMIN_BUILDING + ")";
 
-	private static final String ROLE_ADMIN_BUILDING_PRODUCTION =
-			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_BUILDING_PRODUCTION";
+	private static final String ROLE_ADMIN_JOB_PRODUCTION =
+			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_JOB_PRODUCTION";
 
-	public static final String HAS_ROLE_ADMIN_BUILDING_PRODUCTION =
-			"hasRole(" + ROLE_ADMIN_BUILDING_PRODUCTION + ")";
+	public static final String HAS_ROLE_ADMIN_JOB_PRODUCTION =
+			"hasRole(" + ROLE_ADMIN_JOB_PRODUCTION + ")";
 
 
 	private static final String ROLE_ADMIN_GOOD =

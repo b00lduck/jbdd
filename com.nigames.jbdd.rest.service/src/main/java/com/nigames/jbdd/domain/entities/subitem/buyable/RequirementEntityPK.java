@@ -20,13 +20,13 @@ public class RequirementEntityPK implements Serializable {
     /**
      * The id of the requiring {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
-    @Column(name = "buyable_id")
+    @Column(name = "buyable")
     private Long buyableId;
 
     /**
      * The id of the required {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
      */
-    @Column(name = "required_buyable_id")
+    @Column(name = "required_buyable")
     private Long requiredBuyableId;
 
 	public RequirementEntityPK() {

@@ -20,13 +20,13 @@ public final class CostEntityPK implements Serializable {
 	/**
 	 * The id of the {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl}.
 	 */
-	@Column(name = "buyable_id")
+	@Column(name = "buyable")
 	private long buyableId;
 
 	/**
 	 * The id of the {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
 	 */
-	@Column(name = "good_id")
+	@Column(name = "good")
 	private long goodId;
 
 	public CostEntityPK() {

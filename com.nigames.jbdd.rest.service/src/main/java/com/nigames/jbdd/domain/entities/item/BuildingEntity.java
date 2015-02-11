@@ -2,12 +2,10 @@ package com.nigames.jbdd.domain.entities.item;
 
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet;
 import com.nigames.jbdd.domain.entities.facet.BuyableEntityFacetImpl;
-import com.nigames.jbdd.domain.entities.subitem.ProductionEntity;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +13,7 @@ import java.util.List;
  *
  * @author Daniel
  */
+@SuppressWarnings("DuplicateStringLiteralInspection")
 @Entity
 @Table(name = "ITEM_BUILDING")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -27,17 +26,11 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 	private BuyableEntityFacetImpl buyableFacet;
 
 	/**
-	 * The goods produced and consumed by this building as a list of {@link ProductionEntity}.
+	 * The jobs offered by this building with according productivity factors (Anderskoeffizient (TM))
 	 */
 	@OneToMany(mappedBy = "id.buildingId", fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SELECT)
-	private List<ProductionEntity> productionList = new ArrayList<>();
-
-	/**
-	 * The {@link JobEntity} offered by this Building.
-	 */
-	@OneToOne(optional = true)
-	private JobEntity job;
+	private List<BuildingJobEntity> buildingJobEntity;
 
 	/**
 	 * Create instance and setup/link facet instances.
@@ -100,22 +93,6 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 	@Override
 	public boolean hasCost(final GoodEntity good) {
 		return buyableFacet.hasCost(good);
-	}
-
-	public List<ProductionEntity> getProductionList() {
-		return productionList;
-	}
-
-	public void setProductionList(final List<ProductionEntity> productionList) {
-		this.productionList = productionList;
-	}
-
-	public JobEntity getJob() {
-		return job;
-	}
-
-	public void setJob(final JobEntity job) {
-		this.job = job;
 	}
 
 	// TODO: hashCode, equals and toString

@@ -1,7 +1,9 @@
 package com.nigames.jbdd.rest.api;
 
 import com.nigames.jbdd.rest.dto.DtoList;
+import com.nigames.jbdd.rest.dto.Good;
 import com.nigames.jbdd.rest.dto.Job;
+import com.nigames.jbdd.rest.dto.Production;
 import com.nigames.jbdd.statics.Constants;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -43,5 +45,41 @@ public interface JobRequestInterface {
 	@Path("/{id}")
 	@ApiOperation(value = "deleteById")
 	void deleteById(@PathParam("id") final long id);
+
+	// Production
+
+	@GET
+	@Path("/{itemId}/production")
+	@ApiOperation("getProductions")
+	DtoList<Production> getProductions(@PathParam("itemId") final long itemId,
+	                                   @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                                   @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                                   @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                                   @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
+
+	@GET
+	@Path("/{itemId}/production/addable")
+	@ApiOperation("getAddableProductionGoods")
+	DtoList<Good> getAddableProductionGoods(@PathParam("itemId") final long itemId,
+	                                        @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
+	                                        @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
+	                                        @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
+	                                        @QueryParam(Constants.QUERY_PARAM_DESC) final Boolean desc);
+
+	@POST
+	@Path("/{itemId}/production")
+	@ApiOperation("createProduction")
+	Production createProduction(@PathParam("itemId") final long itemId, final Production dto);
+
+	@DELETE
+	@Path("/{itemId}/production/{goodId}")
+	@ApiOperation("deleteProduction")
+	void deleteProduction(@PathParam("itemId") final long itemId, @PathParam("goodId") final long goodId);
+
+	@PUT
+	@Path("/{itemId}/production/")
+	@ApiOperation("updateProduction")
+	Production updateProduction(@PathParam("itemId") final long itemId, final Production dto);
+
 
 }

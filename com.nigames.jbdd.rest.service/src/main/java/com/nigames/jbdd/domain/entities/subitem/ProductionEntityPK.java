@@ -20,28 +20,28 @@ public class ProductionEntityPK implements Serializable {
 	/**
 	 * The id of the {@link com.nigames.jbdd.domain.entities.item.BuildingEntity}.
 	 */
-	@Column(name = "building_id")
-	private long buildingId;
+	@Column(name = "job")
+	private long jobId;
 
 	/**
 	 * The id of the {@link com.nigames.jbdd.domain.entities.item.GoodEntity}.
 	 */
-	@Column(name = "good_id")
+	@Column(name = "good")
 	private long goodId;
 
 	public ProductionEntityPK() {
 	}
 
-	public ProductionEntityPK(final long buildingId, final long goodId) {
-		this.buildingId = buildingId;
+	public ProductionEntityPK(final long jobId, final long goodId) {
+		this.jobId = jobId;
 		this.goodId = goodId;
 	}
 
 	/**
-	 * @return Get {@link com.nigames.jbdd.domain.entities.subitem.ProductionEntityPK#buildingId}
+	 * @return Get {@link com.nigames.jbdd.domain.entities.subitem.ProductionEntityPK#jobId}
 	 */
-	public long getBuildingId() {
-		return buildingId;
+	public long getJobId() {
+		return jobId;
 	}
 
 	/**
@@ -53,7 +53,7 @@ public class ProductionEntityPK implements Serializable {
 
 	@Override
 	public int hashCode() {
-		int result = (int) (buildingId ^ (buildingId >>> 32));
+		int result = (int) (jobId ^ (jobId >>> 32));
 		result = (31 * result) + (int) (goodId ^ (goodId >>> 32));
 		return result;
 	}
@@ -71,7 +71,7 @@ public class ProductionEntityPK implements Serializable {
 			return false;
 		}
 		final ProductionEntityPK other = (ProductionEntityPK) obj;
-		if (buildingId != other.buildingId) {
+		if (jobId != other.jobId) {
 			return false;
 		}
 		return goodId == other.goodId;

@@ -28,14 +28,6 @@
         </my-buyable-requirements-editor>
     </tab>
 
-    <tab ng-if="showProductionTab()">
-        <tab-heading>
-            {{ 'admin.title.productionEditor' | translate }}
-        </tab-heading>
-        <my-building-production-editor ng-if="id !== 'new'" resourceName="building" buildingId="id">
-        </my-building-production-editor>
-    </tab>
-
 </tabset>
 
 
