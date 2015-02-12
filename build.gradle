@@ -1,6 +1,8 @@
 
 buildscript {
 	repositories {
+
+        // this is for the equal/hashcode test tool
 		maven {
 			url "https://maven.eveoh.nl/content/repositories/releases"
 		}
@@ -75,10 +77,12 @@ configure(allprojects) { project ->
     repositories {
 		mavenCentral()
 	}
+
 }
 
 configure(subprojects) { project ->
 
+    apply plugin: 'groovy'
 	apply plugin: 'java'
 
 	compileJava {
@@ -97,7 +101,8 @@ configure(subprojects) { project ->
 		options.encoding = "UTF-8"
 	}
 
-	sourceSets.test.resources.srcDirs = ["src/test/resources", "src/test/java"]
+    sourceSets.test.resources.srcDirs = ["src/test/resources", "src/test/java", "src/test/groovy"]
+
 }
 
 apply plugin: 'idea'

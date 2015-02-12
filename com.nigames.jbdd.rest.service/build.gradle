@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'idea'
 apply plugin: 'aspectj'
 apply plugin: 'application'
@@ -87,7 +88,9 @@ dependencies {
             [group: 'com.google.guava', name: 'guava', version: guavaVersion],
 
             [group: 'com.wordnik', name: 'swagger-core_2.10', version: swaggerVersion],
-            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: swaggerVersion]
+            [group: 'com.wordnik', name: 'swagger-jersey2-jaxrs_2.10', version: swaggerVersion],
+
+
 
     )
 
@@ -101,7 +104,10 @@ dependencies {
             [group: 'org.jboss.resteasy', name: 'resteasy-client', version: restEasyVersion],
 
             [group: 'org.springframework', name: 'spring-test', version: springVersion],
-            [group: 'nl.jqno.equalsverifier',  name: 'equalsverifier',    version: equalsverifierVersion]
+            [group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: equalsverifierVersion],
+
+            'org.spockframework:spock-core:0.7-groovy-2.0'
+
     )
 }
 
