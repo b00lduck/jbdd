@@ -5,7 +5,6 @@ import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntityPK;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,10 +15,10 @@ import java.util.List;
  */
 public interface RequirementRepository extends PagingAndSortingRepository<RequirementEntity, RequirementEntityPK> {
 
-	long countByIdBuyableId(@Param("buyableId") Long buyableId);
+	long countByIdBuyableId(Long buyableId);
 
-	List<RequirementEntity> findByIdBuyableId(@Param("buyableId") Long buyableId);
+	List<RequirementEntity> findByIdBuyableId(Long buyableId);
 
-	Page<RequirementEntity> findByIdBuyableId(@Param("buyableId") Long buyableId, Pageable pageable);
+	Page<RequirementEntity> findByIdBuyableId(Long buyableId, Pageable pageable);
 
 }

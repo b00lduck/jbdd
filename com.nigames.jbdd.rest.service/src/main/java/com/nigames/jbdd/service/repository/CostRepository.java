@@ -5,7 +5,6 @@ import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntityPK;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -16,10 +15,10 @@ import java.util.List;
  */
 public interface CostRepository extends PagingAndSortingRepository<CostEntity, CostEntityPK> {
 
-	long countByIdBuyableId(@Param("buyableId") Long buyableId);
+	long countByIdBuyableId(Long buyableId);
 
-	Page<CostEntity> findByIdBuyableId(@Param("buyableId") Long buyableId, Pageable pageable);
+	Page<CostEntity> findByIdBuyableId(Long buyableId, Pageable pageable);
 
-	List<CostEntity> findByIdBuyableId(@Param("buyableId") Long buyableId);
+	List<CostEntity> findByIdBuyableId(Long buyableId);
 
 }

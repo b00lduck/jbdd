@@ -51,4 +51,5 @@ public class GoodServiceImpl extends AbstractRepositoryBackedService<GoodEntity,
 		final List<GoodEntity> entityList = goodRepository.findByEnabled(true);
 		return goodConversionService.convertToDto(entityList);
 	}
+
 }
