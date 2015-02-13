@@ -29,6 +29,18 @@ class SortParamsSpec extends Specification {
 
     }
 
+
+    def "createDefault"() {
+
+        when:
+        def sp = SortParams.createDefault()
+
+        then:
+        sp.getSort() == null
+        sp.isDesc() == false
+    }
+
+
     @Unroll
     def "createFixed testCase \"#testCase\""() {
 

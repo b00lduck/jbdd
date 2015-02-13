@@ -42,4 +42,14 @@ class LimitParamsSpec extends Specification {
 
     }
 
+    def "createDefault"() {
+
+        when:
+        def lp = LimitParams.createDefault()
+
+        then:
+        lp.getFirst() == 0
+        lp.getSize() == 100
+    }
+
 }
