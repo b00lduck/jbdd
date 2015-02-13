@@ -10,12 +10,12 @@ import java.util.Collection;
 public final class SortParams {
 
     private final String sort;
-    private final Boolean desc;
+	private final boolean desc;
 
-    private SortParams(final String sort, final Boolean desc) {
-        this.sort = sort;
-        this.desc = desc;
-    }
+	private SortParams(final String sort, final boolean desc) {
+		this.sort = sort;
+		this.desc = desc;
+	}
 
     /**
      * Static builder for sort parameter fixing
@@ -26,15 +26,15 @@ public final class SortParams {
     public static SortParams createFixed(final SortParams sortParams, final Collection<String> allowedSortFields) {
 
         if (!allowedSortFields.contains(sortParams.getSort())) {
-            return new SortParams("id", Boolean.FALSE);
+	        return new SortParams("id", false);
         }
 
         return new SortParams(sortParams.getSort(), sortParams.isDesc());
 
     }
 
-    public static SortParams create(final String sort, final Boolean desc) {
-        return new SortParams(sort, desc);
+	public static SortParams create(final String sort, final boolean desc) {
+		return new SortParams(sort, desc);
     }
 
     public static SortParams createDefault() {
@@ -45,8 +45,7 @@ public final class SortParams {
         return sort;
     }
 
-    public Boolean isDesc() {
-	    if (desc == null) return false;
+	public boolean isDesc() {
 	    return desc;
     }
 
