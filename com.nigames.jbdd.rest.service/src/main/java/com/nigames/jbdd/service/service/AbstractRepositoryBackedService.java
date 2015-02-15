@@ -1,6 +1,5 @@
 package com.nigames.jbdd.service.service;
 
-import com.google.common.collect.Lists;
 import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
@@ -50,8 +49,7 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 
 	@Nonnull
 	protected Pageable createPageable(@Nonnull final LimitParams limitParams,
-	                                         @Nonnull final SortParams sortParams) {
-
+	                                  @Nonnull final SortParams sortParams) {
 		return createPageable(limitParams, createSort(sortParams));
 	}
 
@@ -119,26 +117,16 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 	@Transactional
 	public DtoType findById(final KeyType id) {
 		final EntityType entity = getRepository().findOne(id);
-		if (entity == null) {
+		if (null == entity) {
 			throw new ContentNotFoundException();
 		}
 		return getConversionService().convertToDto(entity);
 	}
 
 	private List<EntityType> getList(final LimitParams limitParams, final SortParams sortParams) {
-
 		final Sort sort = createSort(sortParams);
-
-		if (0 == limitParams.getSize()) {
-			if (null == sort) {
-				return Lists.newArrayList(getRepository().findAll());
-			}
-			return Lists.newArrayList(getRepository().findAll(sort));
-		} else {
-			final Pageable pageable = createPageable(limitParams, sort);
-			return getRepository().findAll(pageable).getContent();
-		}
-
+		final Pageable pageable = createPageable(limitParams, sort);
+		return getRepository().findAll(pageable).getContent();
 	}
 
 	protected void addSortParamTransformator(final SortParamTransformator sortParamTransformator) {
