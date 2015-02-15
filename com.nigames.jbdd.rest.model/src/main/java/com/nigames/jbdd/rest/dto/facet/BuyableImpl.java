@@ -1,38 +1,33 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public class BuyableImpl implements Buyable {
+public final class BuyableImpl implements Buyable {
 
 	private int buildtime;
 
 	@Override
-	public final int getBuildtime() {
+	public int getBuildtime() {
 		return buildtime;
 	}
 
 	@Override
-	public final void setBuildtime(final int buildtime) {
+	public void setBuildtime(final int buildtime) {
 		this.buildtime = buildtime;
 	}
 
-	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
 	@Override
-	public boolean equals(final Object o) {
-		if (this == o) {
-			return true;
-		}
-		if ((null == o) || (getClass() != o.getClass())) {
-			return false;
-		}
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BuyableImpl)) return false;
 
-		final BuyableImpl buyable = (BuyableImpl) o;
+		BuyableImpl buyable = (BuyableImpl) o;
 
-		return buildtime == buyable.buildtime;
+		if (buildtime != buyable.buildtime) return false;
 
+		return true;
 	}
 
 	@Override
 	public int hashCode() {
 		return buildtime;
 	}
-
 }

@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public class IdentifiableImpl implements Identifiable {
+public final class IdentifiableImpl implements Identifiable {
 
     private long id;
 

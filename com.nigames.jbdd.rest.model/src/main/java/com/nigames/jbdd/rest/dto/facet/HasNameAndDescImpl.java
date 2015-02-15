@@ -3,7 +3,7 @@ package com.nigames.jbdd.rest.dto.facet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HasNameAndDescImpl implements HasNameAndDesc {
+public final class HasNameAndDescImpl implements HasNameAndDesc {
 
 	private Map<String, String> name = new HashMap<>();
 
@@ -32,27 +32,23 @@ public class HasNameAndDescImpl implements HasNameAndDesc {
     @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
 
     @Override
-    public boolean equals(final Object o) {
-	    if (this == o) {
-		    return true;
-	    }
-	    if (!(o instanceof HasNameAndDescImpl)) {
-		    return false;
-	    }
+    public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (!(o instanceof HasNameAndDescImpl)) return false;
 
-	    final HasNameAndDescImpl that = (HasNameAndDescImpl) o;
+	    HasNameAndDescImpl that = (HasNameAndDescImpl) o;
 
-	    if (!description.equals(that.description)) {
-		    return false;
-	    }
-	    return name.equals(that.name);
+	    if (description != null ? !description.equals(that.description) : that.description != null) return false;
+	    if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
+	    return true;
     }
 
 	@Override
 	public int hashCode() {
-		int result = name.hashCode();
-		result = (31 * result) + description.hashCode();
+		int result = name != null ? name.hashCode() : 0;
+		result = 31 * result + (description != null ? description.hashCode() : 0);
 		return result;
 	}
+
 }

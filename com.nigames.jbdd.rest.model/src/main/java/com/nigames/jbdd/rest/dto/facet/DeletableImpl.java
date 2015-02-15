@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public class DeletableImpl implements Deletable {
+public final class DeletableImpl implements Deletable {
 
 	private boolean deletable;
 

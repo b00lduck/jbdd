@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public class CanBeEnabledImpl implements CanBeEnabled {
+public final class CanBeEnabledImpl implements CanBeEnabled {
 
     private boolean enabled;
 
@@ -14,24 +14,21 @@ public class CanBeEnabledImpl implements CanBeEnabled {
         this.enabled = enabled;
     }
 
-    @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if ((null == o) || (getClass() != o.getClass())) {
-            return false;
-        }
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof CanBeEnabledImpl)) return false;
 
-        final CanBeEnabledImpl that = (CanBeEnabledImpl) o;
+		CanBeEnabledImpl that = (CanBeEnabledImpl) o;
 
-        return enabled == that.enabled;
-    }
+		if (enabled != that.enabled) return false;
 
-    @Override
-    public int hashCode() {
-        return (enabled ? 1 : 0);
-    }
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return (enabled ? 1 : 0);
+	}
 
 }

@@ -1,6 +1,6 @@
 package com.nigames.jbdd.rest.dto.facet;
 
-public class IsStorableImpl implements IsStorable {
+public final class IsStorableImpl implements IsStorable {
 
     private int weight;
 
