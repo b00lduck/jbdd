@@ -28,22 +28,27 @@ public final class AuthenticationInfo {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof AuthenticationInfo)) return false;
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof AuthenticationInfo)) {
+			return false;
+		}
 
-		AuthenticationInfo that = (AuthenticationInfo) o;
+		final AuthenticationInfo that = (AuthenticationInfo) o;
 
-		if (roles != null ? !roles.equals(that.roles) : that.roles != null) return false;
-		if (username != null ? !username.equals(that.username) : that.username != null) return false;
+		if ((null != roles) ? !roles.equals(that.roles) : (null != that.roles)) {
+			return false;
+		}
+		return !((null != username) ? !username.equals(that.username) : (null != that.username));
 
-		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = username != null ? username.hashCode() : 0;
-		result = 31 * result + (roles != null ? roles.hashCode() : 0);
+		int result = (null != username) ? username.hashCode() : 0;
+		result = (31 * result) + ((null != roles) ? roles.hashCode() : 0);
 		return result;
 	}
 

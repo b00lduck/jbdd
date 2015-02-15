@@ -9,7 +9,7 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Technology implements Identifiable, HasNameAndDesc, CanBeEnabled, Deletable, Buyable {
+public final class Technology implements Identifiable, HasNameAndDesc, CanBeEnabled, Deletable, Buyable {
 
     private final Identifiable isIdentifiable = new IdentifiableImpl();
     private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();

@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Player implements IsDto, Identifiable, CanBeEnabled, Deletable {
+public final class Player implements IsDto, Identifiable, CanBeEnabled, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final CanBeEnabled canBeEnabled = new CanBeEnabledImpl();

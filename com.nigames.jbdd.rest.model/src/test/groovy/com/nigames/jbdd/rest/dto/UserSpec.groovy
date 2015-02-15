@@ -12,13 +12,13 @@ import java.lang.reflect.Modifier
  *
  * Created by Daniel on 15.02.2015.
  */
-class CostSpec extends Specification {
+class UserSpec extends Specification {
 
     @Unroll
     def "#getter/#setter works and is public"() {
 
         given:
-        def testSubject = new Cost()
+        def testSubject = new User()
 
         when:
         testSubject.invokeMethod(setter, testObject)
@@ -29,17 +29,20 @@ class CostSpec extends Specification {
         testSubject.getClass().getMethod(setter, testType).getModifiers() == Modifier.PUBLIC
 
         where:
-        getter         | setter         | testObject | testType
-        "getGoodId"    | "setGoodId"    | 42         | long
-        "getBuyableId" | "setBuyableId" | 52         | long
-        "getAmount"    | "setAmount"    | 62         | long
-        "getGood"      | "setGood"      | new Good() | Good.class
-
+        getter          | setter          | testObject     | testType
+        "getUsername"   | "setUsername"   | "testUsername" | String.class
+        "getPassword"   | "setPassword"   | "testPassword" | String.class
+        "getEmail"      | "setEmail"      | "testEmail"    | String.class
+        "getRoles"      | "setRoles"      | Mock(List)     | List.class
+        "getNumPlayers" | "setNumPlayers" | 42             | int
+        "isEnabled"     | "setEnabled"    | true           | boolean
+        "isDeletable"   | "setDeletable"  | true           | boolean
+        "getId"         | "setId"         | 666            | long
     }
 
     def "testHashCodeAndEquals"() {
         when:
-        EqualsVerifier.forClass(Cost.class)
+        EqualsVerifier.forClass(User.class)
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
 

@@ -20,7 +20,7 @@ public interface BuildingRequestInterface extends BuyableRequestInterface {
 
 	@GET
 	@Path("/")
-	@ApiOperation(value = "getAll")
+	@ApiOperation("getAll")
 	DtoList<Building> getAll(@ApiParam(value = "index of the first item to display", required = false) @QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 	                         @ApiParam(value = "number of results to fetch", required = false) @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
 	                         @ApiParam(value = "sort column name", required = false) @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
@@ -28,24 +28,24 @@ public interface BuildingRequestInterface extends BuyableRequestInterface {
 
 	@GET
 	@Path("/{itemId}")
-	@ApiOperation(value = "getById")
+	@ApiOperation("getById")
 	Building getById(@ApiParam(value = "ID of building to fetch", required = true)
 	                 @PathParam("itemId")
 	                 final long itemId);
 
 	@PUT
 	@Path("/{itemId}")
-	@ApiOperation(value = "update")
+	@ApiOperation("update")
 	Building update(@PathParam("itemId") final long itemId, final Building dto);
 
 	@POST
 	@Path("/")
-	@ApiOperation(value = "create")
+	@ApiOperation("create")
 	Building create(final Building dto);
 
 	@DELETE
 	@Path("/{id}")
-	@ApiOperation(value = "deleteById")
+	@ApiOperation("deleteById")
 	@ApiResponses({
 			@ApiResponse(code = 204, message = "The building was successfully deleted."),
 			@ApiResponse(code = 404, message = "Building nonexistant, no deletitions performed.")

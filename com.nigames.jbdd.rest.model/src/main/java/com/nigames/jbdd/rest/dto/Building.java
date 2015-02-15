@@ -12,7 +12,7 @@ import java.util.Map;
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 @ApiModel("building")
-public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
+public final class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buyable, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
@@ -82,36 +82,41 @@ public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buy
 	}
 
 	@SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
+
 	@Override
 	public boolean equals(final Object o) {
 		if (this == o) {
 			return true;
 		}
-		if ((null == o) || (getClass() != o.getClass())) {
+		if (!(o instanceof Building)) {
 			return false;
 		}
 
 		final Building building = (Building) o;
 
-		if (!buyable.equals(building.buyable)) {
+		if ((null != buyable) ? !buyable.equals(building.buyable) : (null != building.buyable)) {
 			return false;
 		}
-		if (!canBeEnabled.equals(building.canBeEnabled)) {
+		if ((null != canBeEnabled) ? !canBeEnabled.equals(building.canBeEnabled) : (null != building.canBeEnabled)) {
 			return false;
 		}
-		if (!deletable.equals(building.deletable)) {
+		if ((null != deletable) ? !deletable.equals(building.deletable) : (null != building.deletable)) {
 			return false;
 		}
-		return hasNameAndDesc.equals(building.hasNameAndDesc);
+		if ((null != hasNameAndDesc) ? !hasNameAndDesc.equals(building.hasNameAndDesc) : (null != building.hasNameAndDesc)) {
+			return false;
+		}
+		return !((null != isIdentifiable) ? !isIdentifiable.equals(building.isIdentifiable) : (null != building.isIdentifiable));
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = hasNameAndDesc.hashCode();
-		result = (31 * result) + canBeEnabled.hashCode();
-		result = (31 * result) + buyable.hashCode();
-		result = (31 * result) + deletable.hashCode();
+		int result = (null != isIdentifiable) ? isIdentifiable.hashCode() : 0;
+		result = (31 * result) + ((null != hasNameAndDesc) ? hasNameAndDesc.hashCode() : 0);
+		result = (31 * result) + ((null != canBeEnabled) ? canBeEnabled.hashCode() : 0);
+		result = (31 * result) + ((null != buyable) ? buyable.hashCode() : 0);
+		result = (31 * result) + ((null != deletable) ? deletable.hashCode() : 0);
 		return result;
 	}
 

@@ -3,6 +3,9 @@ package com.nigames.jbdd.rest.dto
 import nl.jqno.equalsverifier.EqualsVerifier
 import nl.jqno.equalsverifier.Warning
 import spock.lang.Specification
+import spock.lang.Unroll
+
+import java.lang.reflect.Modifier
 
 /**
  * This file is part of JBdD by nigames.de
@@ -11,30 +14,24 @@ import spock.lang.Specification
  */
 class AuthenticationInfoSpec extends Specification {
 
-    def "testSetUsername"() {
+    @Unroll
+    def "#getter/#setter works and is public"() {
 
         given:
         def testSubject = new AuthenticationInfo()
 
         when:
-        testSubject.setUsername("abc")
+        testSubject.invokeMethod(setter, testObject)
 
         then:
-        testSubject.getUsername() == "abc"
+        testSubject.invokeMethod(getter, null) == testObject
+        testSubject.getClass().getMethod(getter).getModifiers() == Modifier.PUBLIC
+        testSubject.getClass().getMethod(setter, testType).getModifiers() == Modifier.PUBLIC
 
-    }
-
-    def "testSetRoles"() {
-
-        given:
-        def testSubject = new AuthenticationInfo()
-        def list = new ArrayList<String>()
-
-        when:
-        testSubject.setRoles(list)
-
-        then:
-        testSubject.getRoles() == list
+        where:
+        getter        | setter        | testObject              | testType
+        "getUsername" | "setUsername" | "abc"                   | String.class
+        "getRoles"    | "setRoles"    | new ArrayList<String>() | List.class
 
     }
 

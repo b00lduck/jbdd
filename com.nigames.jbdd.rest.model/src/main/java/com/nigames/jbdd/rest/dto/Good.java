@@ -9,7 +9,7 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, IsStorable, Deletable {
+public final class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, IsStorable, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();
@@ -94,31 +94,36 @@ public class Good implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, 
 		if (this == o) {
 			return true;
 		}
-		if ((null == o) || (getClass() != o.getClass())) {
+		if (!(o instanceof Good)) {
 			return false;
 		}
 
 		final Good good = (Good) o;
 
-		if (!canBeEnabled.equals(good.canBeEnabled)) {
+		if ((null != canBeEnabled) ? !canBeEnabled.equals(good.canBeEnabled) : (null != good.canBeEnabled)) {
 			return false;
 		}
-		if (!deletable.equals(good.deletable)) {
+		if ((null != deletable) ? !deletable.equals(good.deletable) : (null != good.deletable)) {
 			return false;
 		}
-		if (!hasNameAndDesc.equals(good.hasNameAndDesc)) {
+		if ((null != hasNameAndDesc) ? !hasNameAndDesc.equals(good.hasNameAndDesc) : (null != good.hasNameAndDesc)) {
 			return false;
 		}
-		return isStorable.equals(good.isStorable);
+		if ((null != isIdentifiable) ? !isIdentifiable.equals(good.isIdentifiable) : (null != good.isIdentifiable)) {
+			return false;
+		}
+		return !((null != isStorable) ? !isStorable.equals(good.isStorable) : (null != good.isStorable));
 
 	}
 
 	@Override
 	public int hashCode() {
-		int result = hasNameAndDesc.hashCode();
-		result = (31 * result) + canBeEnabled.hashCode();
-		result = (31 * result) + isStorable.hashCode();
-		result = (31 * result) + deletable.hashCode();
+		int result = (null != isIdentifiable) ? isIdentifiable.hashCode() : 0;
+		result = (31 * result) + ((null != hasNameAndDesc) ? hasNameAndDesc.hashCode() : 0);
+		result = (31 * result) + ((null != canBeEnabled) ? canBeEnabled.hashCode() : 0);
+		result = (31 * result) + ((null != isStorable) ? isStorable.hashCode() : 0);
+		result = (31 * result) + ((null != deletable) ? deletable.hashCode() : 0);
 		return result;
 	}
+
 }

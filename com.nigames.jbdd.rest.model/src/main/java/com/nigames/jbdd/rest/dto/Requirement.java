@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Requirement implements IsDto {
+public final class Requirement implements IsDto {
 
 	private long requiredBuyableId;
 
@@ -49,6 +49,39 @@ public class Requirement implements IsDto {
 
 	public void setAmount(final long amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Requirement)) {
+			return false;
+		}
+
+		final Requirement that = (Requirement) o;
+
+		if (amount != that.amount) {
+			return false;
+		}
+		if (buyableId != that.buyableId) {
+			return false;
+		}
+		if (requiredBuyableId != that.requiredBuyableId) {
+			return false;
+		}
+		return !((null != requiredBuyable) ? !requiredBuyable.equals(that.requiredBuyable) : (null != that.requiredBuyable));
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = (int) (requiredBuyableId ^ (requiredBuyableId >>> 32));
+		result = (31 * result) + ((null != requiredBuyable) ? requiredBuyable.hashCode() : 0);
+		result = (31 * result) + (int) (buyableId ^ (buyableId >>> 32));
+		result = (31 * result) + (int) (amount ^ (amount >>> 32));
+		return result;
 	}
 
 }

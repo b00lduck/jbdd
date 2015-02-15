@@ -10,11 +10,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class Meta {
 
-	private Long totalItems;
+	private final long totalItems;
 
-	private Long first;
+	private final long first;
 
-	private Long size;
+	private final long size;
+
+	private Meta(long first, long size, long totalItems) {
+		this.first = first;
+		this.size = size;
+		this.totalItems = totalItems;
+	}
 
 	/**
      * Create the {@link com.nigames.jbdd.rest.dto.Meta} DTO for a {@link com.nigames.jbdd.rest.dto.DtoList}.
@@ -29,19 +35,13 @@ public final class Meta {
         Long fixedSize = limitParams.getSize();
 	    Long fixedFirst = limitParams.getFirst();
 
-        final Meta ret = new Meta();
-
         if ((null == fixedSize) || (null == fixedFirst)) {
-
             if (null == fixedSize) {
                 fixedSize = 0L;
             }
-
             if (null == fixedFirst) {
                 fixedFirst = 0L;
             }
-
-            ret.setSize(fixedSize);
         } else {
             final Long numResults = total - fixedFirst;
             if (numResults < fixedSize) {
@@ -50,12 +50,9 @@ public final class Meta {
 	        if (0 > fixedSize) {
 		        fixedSize = 0L;
             }
-            ret.setSize(fixedSize);
         }
-        ret.setTotalItems(total);
-        ret.setFirst(fixedFirst);
 
-        return ret;
+	    return new Meta(fixedFirst, fixedSize, total);
 
     }
 
@@ -63,24 +60,12 @@ public final class Meta {
 		return totalItems;
 	}
 
-	private void setTotalItems(final Long totalItems) {
-		this.totalItems = totalItems;
-	}
-
 	public Long getFirst() {
 		return first;
 	}
 
-	private void setFirst(final Long first) {
-		this.first = first;
-	}
-
 	public Long getSize() {
 		return size;
-	}
-
-	private void setSize(final Long size) {
-		this.size = size;
 	}
 
 	@Override
@@ -90,18 +75,19 @@ public final class Meta {
 
 		Meta meta = (Meta) o;
 
-		if (first != null ? !first.equals(meta.first) : meta.first != null) return false;
-		if (size != null ? !size.equals(meta.size) : meta.size != null) return false;
-		if (totalItems != null ? !totalItems.equals(meta.totalItems) : meta.totalItems != null) return false;
+		if (first != meta.first) return false;
+		if (size != meta.size) return false;
+		if (totalItems != meta.totalItems) return false;
 
 		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = totalItems != null ? totalItems.hashCode() : 0;
-		result = 31 * result + (first != null ? first.hashCode() : 0);
-		result = 31 * result + (size != null ? size.hashCode() : 0);
+		int result = (int) (totalItems ^ (totalItems >>> 32));
+		result = 31 * result + (int) (first ^ (first >>> 32));
+		result = 31 * result + (int) (size ^ (size >>> 32));
 		return result;
 	}
+
 }

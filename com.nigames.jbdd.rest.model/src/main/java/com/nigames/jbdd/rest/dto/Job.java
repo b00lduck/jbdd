@@ -9,7 +9,7 @@ import java.util.Map;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class Job implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Deletable {
+public final class Job implements IsDto, Identifiable, HasNameAndDesc, CanBeEnabled, Deletable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 	private final HasNameAndDesc hasNameAndDesc = new HasNameAndDescImpl();

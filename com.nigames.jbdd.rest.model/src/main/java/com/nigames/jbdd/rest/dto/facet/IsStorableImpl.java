@@ -40,11 +40,8 @@ public class IsStorableImpl implements IsStorable {
 
 		final IsStorableImpl that = (IsStorableImpl) o;
 
-		if ((density != that.density) || (weight != that.weight)) {
-			return false;
-		}
+		return !((density != that.density) || (weight != that.weight));
 
-		return true;
 	}
 
 	@Override

@@ -12,13 +12,13 @@ import java.lang.reflect.Modifier
  *
  * Created by Daniel on 15.02.2015.
  */
-class CostSpec extends Specification {
+class ProductionSpec extends Specification {
 
     @Unroll
     def "#getter/#setter works and is public"() {
 
         given:
-        def testSubject = new Cost()
+        def testSubject = new Production()
 
         when:
         testSubject.invokeMethod(setter, testObject)
@@ -29,17 +29,17 @@ class CostSpec extends Specification {
         testSubject.getClass().getMethod(setter, testType).getModifiers() == Modifier.PUBLIC
 
         where:
-        getter         | setter         | testObject | testType
-        "getGoodId"    | "setGoodId"    | 42         | long
-        "getBuyableId" | "setBuyableId" | 52         | long
-        "getAmount"    | "setAmount"    | 62         | long
-        "getGood"      | "setGood"      | new Good() | Good.class
+        getter      | setter      | testObject | testType
+        "getGoodId" | "setGoodId" | 42         | long
+        "getJobId"  | "setJobId"  | 52         | long
+        "getAmount" | "setAmount" | 62         | long
+        "getGood"   | "setGood"   | new Good() | Good.class
 
     }
 
     def "testHashCodeAndEquals"() {
         when:
-        EqualsVerifier.forClass(Cost.class)
+        EqualsVerifier.forClass(Production.class)
                 .suppress(Warning.NONFINAL_FIELDS)
                 .verify();
 

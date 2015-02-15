@@ -20,22 +20,22 @@ public interface JobRequestInterface {
 
 	@GET
 	@Path("/{id}")
-	@ApiOperation(value = "getById")
+	@ApiOperation("getById")
 	Job getById(@PathParam("id") final long id);
 
 	@PUT
 	@Path("/{id}")
-	@ApiOperation(value = "update")
+	@ApiOperation("update")
 	Job update(@PathParam("id") final long id, final Job dto);
 
 	@POST
 	@Path("/")
-	@ApiOperation(value = "create")
+	@ApiOperation("create")
 	Job create(final Job dto);
 
 	@GET
 	@Path("/")
-	@ApiOperation(value = "getAll")
+	@ApiOperation("getAll")
 	DtoList<Job> getAll(@QueryParam(Constants.QUERY_PARAM_FIRST) final Long first,
 	                    @QueryParam(Constants.QUERY_PARAM_SIZE) final Long size,
 	                    @QueryParam(Constants.QUERY_PARAM_SORT) final String sort,
@@ -43,7 +43,7 @@ public interface JobRequestInterface {
 
 	@DELETE
 	@Path("/{id}")
-	@ApiOperation(value = "deleteById")
+	@ApiOperation("deleteById")
 	void deleteById(@PathParam("id") final long id);
 
 	// Production

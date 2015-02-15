@@ -51,26 +51,35 @@ public final class Cost implements IsDto {
 	}
 
 	@Override
-	public final boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Cost)) return false;
+	public final boolean equals(final Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Cost)) {
+			return false;
+		}
 
-		Cost cost = (Cost) o;
+		final Cost cost = (Cost) o;
 
-		if (amount != cost.amount) return false;
-		if (buyableId != cost.buyableId) return false;
-		if (goodId != cost.goodId) return false;
-		if (good != null ? !good.equals(cost.good) : cost.good != null) return false;
+		if (amount != cost.amount) {
+			return false;
+		}
+		if (buyableId != cost.buyableId) {
+			return false;
+		}
+		if (goodId != cost.goodId) {
+			return false;
+		}
+		return !((null != good) ? !good.equals(cost.good) : (null != cost.good));
 
-		return true;
 	}
 
 	@Override
 	public final int hashCode() {
 		int result = (int) (goodId ^ (goodId >>> 32));
-		result = 31 * result + (good != null ? good.hashCode() : 0);
-		result = 31 * result + (int) (buyableId ^ (buyableId >>> 32));
-		result = 31 * result + (int) (amount ^ (amount >>> 32));
+		result = (31 * result) + ((null != good) ? good.hashCode() : 0);
+		result = (31 * result) + (int) (buyableId ^ (buyableId >>> 32));
+		result = (31 * result) + (int) (amount ^ (amount >>> 32));
 		return result;
 	}
 

@@ -30,29 +30,29 @@ public class HasNameAndDescImpl implements HasNameAndDesc {
     }
 
     @SuppressWarnings("AccessingNonPublicFieldOfAnotherObject")
+
     @Override
     public boolean equals(final Object o) {
-        if (this == o) {
-            return true;
-        }
-        if ((null == o) || (getClass() != o.getClass())) {
-            return false;
-        }
+	    if (this == o) {
+		    return true;
+	    }
+	    if (!(o instanceof HasNameAndDescImpl)) {
+		    return false;
+	    }
 
-        final HasNameAndDescImpl that = (HasNameAndDescImpl) o;
+	    final HasNameAndDescImpl that = (HasNameAndDescImpl) o;
 
-        if (!description.equals(that.description)) {
-            return false;
-        }
+	    if (!description.equals(that.description)) {
+		    return false;
+	    }
+	    return name.equals(that.name);
 
-        return name.equals(that.name);
     }
 
-    @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = (31 * result) + description.hashCode();
-        return result;
-    }
-
+	@Override
+	public int hashCode() {
+		int result = name.hashCode();
+		result = (31 * result) + description.hashCode();
+		return result;
+	}
 }
