@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
-public class PlayerBuilding implements IsDto, Identifiable {
+public final class PlayerBuilding implements IsDto, Identifiable {
 
 	private final Identifiable isIdentifiable = new IdentifiableImpl();
 

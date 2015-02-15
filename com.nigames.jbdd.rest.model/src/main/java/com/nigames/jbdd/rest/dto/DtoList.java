@@ -19,7 +19,7 @@ import java.util.List;
 		Player.class,
 		PlayerBuilding.class,
 		PlayerPeople.class,
-		PlayerResource.class,
+		PlayerGood.class,
 		PlayerTechnology.class,
 		Requirement.class,
 		Technology.class,
