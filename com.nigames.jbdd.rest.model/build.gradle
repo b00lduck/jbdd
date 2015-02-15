@@ -6,16 +6,15 @@ dependencies {
 	compile(
 			[group: 'org.slf4j',     name: 'slf4j-api',         version: slf4jVersion],
             [group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: wsrsVersion],
-            'com.wordnik:swagger-annotations:1.3.12'
-
+            [group: 'com.google.guava', name: 'guava', version: guavaVersion],
+            [group: 'com.wordnik', name: 'swagger-annotations', version: '1.3.12']
     )
 
     testCompile(
 			[group: 'junit',                   name: 'junit',             version: jUnitVersion],
 			[group: 'org.hamcrest',            name: 'hamcrest-core',     version: hamcrestVersion],
             [group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: equalsverifierVersion],
-
-            'org.spockframework:spock-core:0.7-groovy-2.0'
+            [group: 'org.spockframework', name: 'spock-core', version: '0.7-groovy-2.0']
 	)
 }
 
