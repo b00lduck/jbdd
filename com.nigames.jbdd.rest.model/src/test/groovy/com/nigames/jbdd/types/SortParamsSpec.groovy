@@ -24,8 +24,10 @@ class SortParamsSpec extends Specification {
         sort        | desc  | outSort     | outDesc
         null        | true  | null        | true
         null        | false | null        | false
+        null        | null | null        | false
         "sortField" | true  | "sortField" | true
         "sortField" | false | "sortField" | false
+        "sortField" | null | "sortField" | false
 
     }
 
@@ -56,12 +58,13 @@ class SortParamsSpec extends Specification {
         testCase | sort   | desc  | list             | outSort | outDesc
         "a"      | null   | true  | ['sf_a', 'sf_b'] | "id"    | false
         "b"      | null   | false | ['sf_a', 'sf_b'] | "id"    | false
-        "c"      | "sf_a" | true  | ['sf_a', 'sf_b'] | "sf_a"  | true
-        "d"      | "sf_a" | false | ['sf_a', 'sf_b'] | "sf_a"  | false
-        "e"      | "sf_b" | true  | ['sf_a', 'sf_b'] | "sf_b"  | true
-        "f"      | "sf_b" | false | ['sf_a', 'sf_b'] | "sf_b"  | false
-        "g"      | "sf_c" | true  | ['sf_a', 'sf_b'] | "id"    | false
-        "h"      | "sf_c" | false | ['sf_a', 'sf_b'] | "id"    | false
+        "c" | null   | null  | ['sf_a', 'sf_b'] | "id"   | false
+        "d" | "sf_a" | true  | ['sf_a', 'sf_b'] | "sf_a" | true
+        "e" | "sf_a" | false | ['sf_a', 'sf_b'] | "sf_a" | false
+        "f" | "sf_b" | true  | ['sf_a', 'sf_b'] | "sf_b" | true
+        "g" | "sf_b" | false | ['sf_a', 'sf_b'] | "sf_b" | false
+        "h" | "sf_c" | true  | ['sf_a', 'sf_b'] | "id"   | false
+        "i" | "sf_c" | false | ['sf_a', 'sf_b'] | "id"   | false
 
     }
 

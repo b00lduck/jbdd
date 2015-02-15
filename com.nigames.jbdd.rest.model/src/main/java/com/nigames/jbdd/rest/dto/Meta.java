@@ -16,6 +16,12 @@ public final class Meta {
 
 	private final long size;
 
+	public Meta() {
+		totalItems = 0;
+		first = 0;
+		size = 0;
+	}
+
 	private Meta(long first, long size, long totalItems) {
 		this.first = first;
 		this.size = size;

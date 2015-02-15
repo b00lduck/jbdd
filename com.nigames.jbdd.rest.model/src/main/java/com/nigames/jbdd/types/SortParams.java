@@ -12,7 +12,7 @@ public final class SortParams {
     private final String sort;
 	private final boolean desc;
 
-	private SortParams(final String sort, final boolean desc) {
+	private SortParams(final String sort, final Boolean desc) {
 		this.sort = sort;
 		this.desc = desc;
 	}
@@ -33,9 +33,13 @@ public final class SortParams {
 
     }
 
-	public static SortParams create(final String sort, final boolean desc) {
-		return new SortParams(sort, desc);
-    }
+	public static SortParams create(final String sort, final Boolean desc) {
+		if (null == desc) {
+			return new SortParams(sort, false);
+		} else {
+			return new SortParams(sort, desc);
+		}
+	}
 
     public static SortParams createDefault() {
         return new SortParams(null, false);

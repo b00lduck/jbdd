@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
@@ -30,6 +31,11 @@ public final class DtoList<T> {
 
 	private final List<T> data;
 	private final Meta meta;
+
+	public DtoList() {
+		data = new ArrayList<>();
+		meta = new Meta();
+	}
 
 	private DtoList(final List<T> data, final Meta meta) {
 		this.data = data;
