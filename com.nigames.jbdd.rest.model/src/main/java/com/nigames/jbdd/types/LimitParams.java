@@ -21,10 +21,10 @@ public final class LimitParams {
 	    return new LimitParams(fixFirst(first), fixSize(size));
     }
 
-	private static Long fixSize(final Long size) {
+	private static long fixSize(final Long size) {
 		final Long fixedSize;
 
-		if ((null == size) || (0L == size) || (MAX_SIZE < size)) {
+		if ((null == size) || (0L == size) || (MAX_SIZE < size) || (0L > size)) {
 			fixedSize = MAX_SIZE;
 		} else {
 			fixedSize = size;
@@ -32,10 +32,10 @@ public final class LimitParams {
 		return fixedSize;
 	}
 
-	private static Long fixFirst(final Long first) {
+	private static long fixFirst(final Long first) {
 		final Long fixedFirst;
 
-		if (null == first) {
+		if ((null == first) || (0L > first)) {
 			fixedFirst = 0L;
 		} else {
 			fixedFirst = first;

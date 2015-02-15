@@ -36,29 +36,17 @@ public final class Meta {
      * @return Meta object with the given values
      */
     @SuppressWarnings("ReuseOfLocalVariable")
-	public static Meta create(final Long total, final LimitParams limitParams) {
+    public static Meta create(final long total, final LimitParams limitParams) {
 
         Long fixedSize = limitParams.getSize();
-	    Long fixedFirst = limitParams.getFirst();
+	    final Long first = limitParams.getFirst();
 
-        if ((null == fixedSize) || (null == fixedFirst)) {
-            if (null == fixedSize) {
-                fixedSize = 0L;
-            }
-            if (null == fixedFirst) {
-                fixedFirst = 0L;
-            }
-        } else {
-            final Long numResults = total - fixedFirst;
-            if (numResults < fixedSize) {
-                fixedSize = numResults;
-            }
-	        if (0 > fixedSize) {
-		        fixedSize = 0L;
-            }
-        }
+	    final Long numResults = total - first;
+	    if (numResults < fixedSize) {
+		    fixedSize = numResults;
+	    }
 
-	    return new Meta(fixedFirst, fixedSize, total);
+	    return new Meta(first, fixedSize, total);
 
     }
 

@@ -33,22 +33,17 @@ public final class DtoList<T> {
 	private final Meta meta;
 
 	public DtoList() {
-		data = new ArrayList<>();
-		meta = new Meta();
+		this(new ArrayList<>(), new Meta());
 	}
+
+    public DtoList(final ResultList<T> data, final LimitParams limitParams) {
+	    this(data, Meta.create(data.getTotalCount(), limitParams));
+    }
 
 	private DtoList(final List<T> data, final Meta meta) {
 		this.data = data;
 		this.meta = meta;
 	}
-
-    public DtoList(final ResultList<T> data, final LimitParams limitParams) {
-        this(data, data.getTotalCount(), limitParams);
-    }
-
-    private DtoList(final List<T> data, final Long total, final LimitParams limitParams) {
-	    this(data, Meta.create(total, limitParams));
-    }
 
 	public List<T> getData() {
 		return data;
