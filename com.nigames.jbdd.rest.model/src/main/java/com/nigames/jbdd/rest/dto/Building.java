@@ -21,7 +21,7 @@ public class Building implements Identifiable, HasNameAndDesc, CanBeEnabled, Buy
 	private final Deletable deletable = new DeletableImpl();
 
 	@Override
-	@ApiModelProperty(value = "enabled or not")
+	@ApiModelProperty("enabled or not")
 	public boolean isEnabled() {
 		return canBeEnabled.isEnabled();
 	}

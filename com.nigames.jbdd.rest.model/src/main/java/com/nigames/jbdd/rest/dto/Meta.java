@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Meta {
+public final class Meta {
 
 	private Long totalItems;
 
@@ -83,4 +83,25 @@ public class Meta {
 		this.size = size;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Meta)) return false;
+
+		Meta meta = (Meta) o;
+
+		if (first != null ? !first.equals(meta.first) : meta.first != null) return false;
+		if (size != null ? !size.equals(meta.size) : meta.size != null) return false;
+		if (totalItems != null ? !totalItems.equals(meta.totalItems) : meta.totalItems != null) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = totalItems != null ? totalItems.hashCode() : 0;
+		result = 31 * result + (first != null ? first.hashCode() : 0);
+		result = 31 * result + (size != null ? size.hashCode() : 0);
+		return result;
+	}
 }
