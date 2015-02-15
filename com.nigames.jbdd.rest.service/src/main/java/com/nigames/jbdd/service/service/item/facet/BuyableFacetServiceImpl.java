@@ -7,15 +7,13 @@ import com.nigames.jbdd.service.service.item.BuildingService;
 import com.nigames.jbdd.service.service.item.GoodService;
 import com.nigames.jbdd.service.service.item.TechnologyService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
+import com.nigames.jbdd.service.service.subitem.buyable.CyclicRequirementException;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
 import com.nigames.jbdd.types.ResultList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -65,7 +63,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 	}
 
 	@Override
-	public ResultList<Buyable> getAddableRequirementBuyables(final long buyableId) {
+	public ResultList<Buyable> getAddableRequirementBuyables(final long buyableId) throws CyclicRequirementException {
 
 		final List<Building> buildingList = buildingService.findAllEnabled();
 		final List<Technology> technologyList = technologyService.findAllEnabled();
@@ -90,7 +88,9 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 			}
 
 			// Cannot create cyclic requirements
-			if (getRequirementsForBuyableRecursive(((Identifiable) b).getId()).contains(buyableId)) {
+			final Identifiable identifiable = (Identifiable) b;
+			final long id = identifiable.getId();
+			if (getRequirementsForBuyableRecursive(id, new HashSet<>()).contains(buyableId)) {
 				continue;
 			}
 
@@ -101,9 +101,13 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 		return ResultList.create(ret);
 	}
 
-	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId) {
+	private Set<Long> getRequirementsForBuyableRecursive(final long buyableId, final Set<Long> visitedItems) {
 
-		// TODO: prevent endless loop in case of cyclic requirements in DB
+		if (visitedItems.contains(buyableId)) {
+			throw new CyclicRequirementException();
+		}
+
+		visitedItems.add(buyableId);
 
 		final Set<Long> ret = new HashSet<>();
 
@@ -111,7 +115,7 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		for (final Requirement r : reqList) {
 			ret.add(r.getRequiredBuyableId());
-			ret.addAll(getRequirementsForBuyableRecursive(r.getRequiredBuyableId()));
+			ret.addAll(getRequirementsForBuyableRecursive(r.getRequiredBuyableId(), visitedItems));
 		}
 
 		return ret;
@@ -123,7 +127,10 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final List<Requirement> reqList = requirementService.findByBuyableId(buyableId);
 
-		ret.addAll(reqList.stream().map(Requirement::getRequiredBuyableId).collect(Collectors.toList()));
+		final Collection<Long> collection = reqList.stream()
+				.map(Requirement::getRequiredBuyableId)
+				.collect(Collectors.toList());
+		ret.addAll(collection);
 
 		return ret;
 	}
@@ -134,8 +141,10 @@ public class BuyableFacetServiceImpl implements BuyableFacetService {
 
 		final ResultList<Cost> reqList = costService.findByBuyableId(buyableId);
 
-        // TODO think about syntax vs. performance
-		ret.addAll(reqList.stream().map(Cost::getGoodId).collect(Collectors.toList()));
+		final Collection<Long> collection = reqList.stream()
+				.map(Cost::getGoodId)
+				.collect(Collectors.toList());
+		ret.addAll(collection);
 
 		return ret;
 	}

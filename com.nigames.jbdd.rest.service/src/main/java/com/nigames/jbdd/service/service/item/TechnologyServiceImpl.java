@@ -7,7 +7,6 @@ import com.nigames.jbdd.service.conversion.dto.TechnologyConversionService;
 import com.nigames.jbdd.service.repository.TechnologyRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
 import com.nigames.jbdd.service.service.sortParamTransformator.NameSortParamTransformator;
-import com.nigames.jbdd.service.service.sortParamTransformator.WeightSortParamTransformator;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +32,6 @@ public class TechnologyServiceImpl extends AbstractRepositoryBackedService<Techn
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		addSortParamTransformator(new NameSortParamTransformator());
-		addSortParamTransformator(new WeightSortParamTransformator());
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import com.nigames.jbdd.service.service.AbstractDtoServiceInterface;
 import com.nigames.jbdd.types.ResultList;
 import org.springframework.security.access.prepost.PreAuthorize;
 
+import java.util.List;
+
 import static com.nigames.jbdd.service.service.SecurityElConstants.*;
 
 /**
@@ -27,5 +29,8 @@ public interface JobService extends AbstractDtoServiceInterface<Job> {
 
 	@PreAuthorize(HAS_ROLE_ADMIN_JOB_PRODUCTION)
 	ResultList<Good> getAddableProductionGoods(long jobId);
+
+	@PreAuthorize(HAS_ROLE_ADMIN_JOB)
+	List<Job> findAllEnabled();
 
 }

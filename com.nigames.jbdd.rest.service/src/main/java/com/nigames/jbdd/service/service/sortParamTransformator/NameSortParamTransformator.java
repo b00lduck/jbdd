@@ -9,12 +9,16 @@ import com.nigames.jbdd.statics.Languages;
  */
 public class NameSortParamTransformator implements SortParamTransformator {
 
-	public boolean isResponsible(final String sortParam) {
+	public String transform(final String sortParam) {
+		if (isResponsible(sortParam)) {
+			return "nameAndDescFacet.name." + Languages.tagToDbTag(sortParam.substring(5));
+		}
+		return sortParam;
+	}
+
+	private boolean isResponsible(final String sortParam) {
 		return sortParam.startsWith("name.");
 	}
 
-	public String transform(final String sortParam) {
-		return "nameAndDescFacet.name." + Languages.tagToDbTag(sortParam.substring(5));
-	}
 
 }

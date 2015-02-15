@@ -9,12 +9,16 @@ public class WeightSortParamTransformator implements SortParamTransformator {
 
 	public static final String SORT_FIELD_WEIGHT = "weight";
 
-	public boolean isResponsible(final String sortParam) {
+	public String transform(final String sortParam) {
+		if (isResponsible(sortParam)) {
+			return "isStorableFacet.weight";
+		}
+		return sortParam;
+	}
+
+	private boolean isResponsible(final String sortParam) {
 		return sortParam.equals(SORT_FIELD_WEIGHT);
 	}
 
-	public String transform(final String sortParam) {
-		return "isStorableFacet.weight";
-	}
 
 }

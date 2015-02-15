@@ -7,8 +7,6 @@ package com.nigames.jbdd.service.service.sortParamTransformator;
  */
 public interface SortParamTransformator {
 
-	boolean isResponsible(final String sortParam);
-
 	String transform(String sortParam);
 
 }

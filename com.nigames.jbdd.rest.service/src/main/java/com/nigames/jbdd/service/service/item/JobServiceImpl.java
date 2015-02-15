@@ -8,8 +8,10 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.JobConversionService;
 import com.nigames.jbdd.service.repository.JobRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
+import com.nigames.jbdd.service.service.sortParamTransformator.NameSortParamTransformator;
 import com.nigames.jbdd.service.service.subitem.ProductionService;
 import com.nigames.jbdd.types.ResultList;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ import java.util.stream.Collectors;
  */
 @Service
 public class JobServiceImpl extends AbstractRepositoryBackedService<JobEntity, Long, Job>
-		implements JobService {
+		implements JobService, InitializingBean {
 
 	@Autowired
 	private JobConversionService jobConversionService;
@@ -40,6 +42,11 @@ public class JobServiceImpl extends AbstractRepositoryBackedService<JobEntity, L
 
 	@Autowired
 	private ProductionService productionService;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		addSortParamTransformator(new NameSortParamTransformator());
+	}
 
 	@Override
 	protected JobRepository getRepository() {
@@ -85,6 +92,13 @@ public class JobServiceImpl extends AbstractRepositoryBackedService<JobEntity, L
 		ret.addAll(reqList.stream().map(Production::getGoodId).collect(Collectors.toList()));
 
 		return ret;
+	}
+
+
+	@Override
+	public List<Job> findAllEnabled() {
+		final List<JobEntity> entityList = jobRepository.findByEnabled(true);
+		return jobConversionService.convertToDto(entityList);
 	}
 
 

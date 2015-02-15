@@ -8,9 +8,10 @@ import com.nigames.jbdd.rest.dto.Requirement;
 import com.nigames.jbdd.rest.dto.facet.Buyable;
 import com.nigames.jbdd.service.service.item.facet.BuyableFacetService;
 import com.nigames.jbdd.service.service.subitem.buyable.CostService;
+import com.nigames.jbdd.service.service.subitem.buyable.CyclicRequirementException;
 import com.nigames.jbdd.service.service.subitem.buyable.RequirementService;
-import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -86,7 +87,8 @@ public class BuyableRequestFacet implements BuyableRequestInterface {
 	@Override
 	public DtoList<Buyable> getAddableRequirementBuyables(final long itemId,
 	                                                      final Long first, final Long size,
-	                                                      final String sort, final Boolean desc) {
+	                                                      final String sort, final Boolean desc)
+			throws CyclicRequirementException {
 
 		final LimitParams limitParams = LimitParams.create(first, size);
 		// final SortParams sortParams = SortParams.create(sort, desc);

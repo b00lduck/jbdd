@@ -5,8 +5,8 @@ import com.nigames.jbdd.rest.dto.facet.IsDto;
 import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.rest.exceptionprovider.ContentNotFoundException;
 import com.nigames.jbdd.service.service.sortParamTransformator.SortParamTransformator;
-import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.SortParams;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -72,9 +72,7 @@ public abstract class AbstractRepositoryBackedService<EntityType, KeyType extend
 				String sortParam = sortParams.getSort();
 
 				for (SortParamTransformator spt : sortParamTransformatorList) {
-					if (spt.isResponsible(sortParam)) {
-						sortParam = spt.transform(sortParam);
-					}
+					sortParam = spt.transform(sortParam);
 				}
 
 				if (null != sortParam) {
