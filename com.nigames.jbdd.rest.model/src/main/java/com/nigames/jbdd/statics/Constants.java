@@ -12,4 +12,8 @@ public final class Constants {
 	public static final String QUERY_PARAM_FIRST = "first";
 	public static final String QUERY_PARAM_SIZE = "size";
 
+	private Constants() {
+		// Utility class
+	}
+
 }
