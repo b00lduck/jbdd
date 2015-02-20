@@ -31,67 +31,43 @@ public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl 
 	@JoinColumn(referencedColumnName = "id")
 	private BuildingEntity building;
 
-    /**
-     * Development stage of the {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity} instance.
-     */
-    private int stage;
+	/**
+	 * Development stage of the {@link com.nigames.jbdd.domain.entities.item.TechnologyEntity} instance.
+	 */
+	private int stage;
 
-    /**
-     * @return Get {@link PlayerAssignedTechnologyEntity#stage}
-     */
-    public int getStage() {
-        return stage;
-    }
+	/**
+	 * @return Get {@link PlayerAssignedTechnologyEntity#stage}
+	 */
+	public int getStage() {
+		return stage;
+	}
 
-    /**
-     * @param stage The {@link PlayerAssignedTechnologyEntity#stage} to setLang
-     */
-    public void setStage(final int stage) {
-        this.stage = stage;
-    }
-
-    @Override
-    public PlayerEntity getPlayer() {
-        return playerAssignedEntityFacet.getPlayer();
-    }
-
-    @Override
-    public void setPlayer(PlayerEntity player) {
-        playerAssignedEntityFacet.setPlayer(player);
-    }
-
-    @Override
-    public long getRemainingBuildtime() {
-        return playerAssignedBuyableEntityFacet.getRemainingBuildtime();
-    }
-
-    @Override
-    public void setRemainingBuildtime(long remainingBuildtime) {
-        playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
-    }
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof PlayerAssignedTechnologyEntity)) return false;
-
-		PlayerAssignedTechnologyEntity that = (PlayerAssignedTechnologyEntity) o;
-
-		if (stage != that.stage) return false;
-		if (!building.equals(that.building)) return false;
-		if (!playerAssignedBuyableEntityFacet.equals(that.playerAssignedBuyableEntityFacet)) return false;
-		if (!playerAssignedEntityFacet.equals(that.playerAssignedEntityFacet)) return false;
-
-		return true;
+	/**
+	 * @param stage The {@link PlayerAssignedTechnologyEntity#stage} to setLang
+	 */
+	public void setStage(final int stage) {
+		this.stage = stage;
 	}
 
 	@Override
-	public int hashCode() {
-		int result = playerAssignedEntityFacet.hashCode();
-		result = 31 * result + playerAssignedBuyableEntityFacet.hashCode();
-		result = 31 * result + building.hashCode();
-		result = 31 * result + stage;
-		return result;
+	public PlayerEntity getPlayer() {
+		return playerAssignedEntityFacet.getPlayer();
+	}
+
+	@Override
+	public void setPlayer(PlayerEntity player) {
+		playerAssignedEntityFacet.setPlayer(player);
+	}
+
+	@Override
+	public long getRemainingBuildtime() {
+		return playerAssignedBuyableEntityFacet.getRemainingBuildtime();
+	}
+
+	@Override
+	public void setRemainingBuildtime(long remainingBuildtime) {
+		playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
 	}
 
 }

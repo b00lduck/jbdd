@@ -6,8 +6,8 @@ import com.nigames.jbdd.service.conversion.dto.ConversionServiceInterface;
 import com.nigames.jbdd.service.conversion.dto.PlayerConversionService;
 import com.nigames.jbdd.service.repository.PlayerRepository;
 import com.nigames.jbdd.service.service.AbstractRepositoryBackedService;
-import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.LimitParams;
+import com.nigames.jbdd.types.ResultList;
 import com.nigames.jbdd.types.SortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +57,8 @@ public class PlayerServiceImpl extends AbstractRepositoryBackedService<PlayerEnt
 		    return playerConversionService.convertToDto(playerEntity);
 	    } catch (final IncorrectResultSizeDataAccessException ignored) {
 		    LOG.error("There ist more that one player with nickname {}");
+
+		    // TODO: throw execption
 		    return null;
 	    }
     }

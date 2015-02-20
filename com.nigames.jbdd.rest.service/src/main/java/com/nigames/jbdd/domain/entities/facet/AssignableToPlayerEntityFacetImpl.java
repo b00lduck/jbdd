@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * Created by zerlettd on 19.12.2014.
  */
 @Embeddable
-public class AssignableToPlayerEntityFacetImpl implements AssignableToPlayerEntityFacet {
+public final class AssignableToPlayerEntityFacetImpl implements AssignableToPlayerEntityFacet {
 
     /**
      * The owning {@link com.nigames.jbdd.domain.entities.PlayerEntity}.
@@ -22,12 +22,12 @@ public class AssignableToPlayerEntityFacetImpl implements AssignableToPlayerEnti
     private PlayerEntity player;
 
     @Override
-    public final PlayerEntity getPlayer() {
+    public PlayerEntity getPlayer() {
         return player;
     }
 
     @Override
-    public final void setPlayer(final PlayerEntity player) {
+    public void setPlayer(final PlayerEntity player) {
         this.player = player;
     }
 

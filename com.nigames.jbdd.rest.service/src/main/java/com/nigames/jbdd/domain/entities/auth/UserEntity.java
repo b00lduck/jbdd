@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "users")
-public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
+public final class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnabledEntityFacet {
 
 	/**
 	 * Max length of the username.
@@ -39,12 +39,24 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	 * Max length of the email address.
 	 */
 	private static final int MAX_EMAIL_LENGTH = 64;
-
+	/**
+	 * The list of {@link UserRoleEnum} assigned to the User.
+	 */
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "user_roles",
+			joinColumns = @JoinColumn(name = "user_id"),
+			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"}))
+	@Enumerated(EnumType.ORDINAL)
+	private final List<UserRoleEnum> userRoleList = new ArrayList<>();
+	/**
+	 * The list of {@link PlayerEntity} objects assigned to the User.
+	 */
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private final List<PlayerEntity> playerList = new ArrayList<>();
 	/**
 	 * enabled flag
 	 */
 	private boolean enabled;
-
 	/**
 	 * The username used to login.
 	 */
@@ -52,14 +64,12 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	@Column(unique = true)
 	@Size(max = MAX_USERNAME_LENGTH)
 	private String username;
-
 	/**
 	 * The encrypted (hashed) password used to login.
 	 */
 	@NotNull
 	@Size(min = MIN_HASH_LENGTH, max = MAX_HASH_LENGTH)
 	private String password;
-
 	/**
 	 * The email address of the User.
 	 */
@@ -68,61 +78,45 @@ public class UserEntity extends IdentifyableEntityFacetImpl implements CanBeEnab
 	@Size(max = MAX_EMAIL_LENGTH)
 	private String email;
 
-	/**
-	 * The list of {@link UserRoleEnum} assigned to the User.
-	 */
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable (name = "user_roles",
-			joinColumns = @JoinColumn(name = "user_id"),
-			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"}))
-	@Enumerated(EnumType.ORDINAL)
-	private List<UserRoleEnum> userRoleList = new ArrayList<>();
-
-	/**
-	 * The list of {@link PlayerEntity} objects assigned to the User.
-	 */
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private List<PlayerEntity> playerList = new ArrayList<>();
-
-	public final String getUsername() {
+	public String getUsername() {
 		return username;
 	}
 
-	public final void setUsername(final String username) {
+	public void setUsername(final String username) {
 		this.username = username;
 	}
 
-	public final String getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public final void setPassword(final String password) {
+	public void setPassword(final String password) {
 		this.password = password;
 	}
 
-	public final String getEmail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public final void setEmail(final String email) {
+	public void setEmail(final String email) {
 		this.email = email;
 	}
 
-	public final List<UserRoleEnum> getUserRoleList() {
+	public List<UserRoleEnum> getUserRoleList() {
 		return userRoleList;
 	}
 
-	public final List<PlayerEntity> getPlayerList() {
+	public List<PlayerEntity> getPlayerList() {
 		return playerList;
 	}
 
 	@Override
-	public final boolean isEnabled() {
+	public boolean isEnabled() {
 		return enabled;
 	}
 
 	@Override
-	public final void setEnabled(final boolean enabled) {
+	public void setEnabled(final boolean enabled) {
 		this.enabled = enabled;
 	}
 

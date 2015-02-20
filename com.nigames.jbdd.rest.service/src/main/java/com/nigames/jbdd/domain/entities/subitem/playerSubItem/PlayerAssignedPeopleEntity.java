@@ -92,30 +92,6 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
     }
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof PlayerAssignedPeopleEntity)) return false;
-
-		PlayerAssignedPeopleEntity that = (PlayerAssignedPeopleEntity) o;
-
-		if (!name.equals(that.name)) return false;
-		if (!playerAssignedEntityFacet.equals(that.playerAssignedEntityFacet)) return false;
-		if (!playerBuilding.equals(that.playerBuilding)) return false;
-		if (workmode != that.workmode) return false;
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = playerBuilding.hashCode();
-		result = 31 * result + playerAssignedEntityFacet.hashCode();
-		result = 31 * result + workmode.hashCode();
-		result = 31 * result + name.hashCode();
-		return result;
-	}
-
-	@Override
 	public String toString() {
 		return "PlayerAssignedPeopleEntity{" +
 				"name='" + name + "' " +
