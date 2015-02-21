@@ -70,4 +70,9 @@ public class PlayerAssignedBuildingEntity extends IdentifyableEntityFacetImpl im
         playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
     }
 
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof PlayerAssignedBuildingEntity;
+    }
+
 }

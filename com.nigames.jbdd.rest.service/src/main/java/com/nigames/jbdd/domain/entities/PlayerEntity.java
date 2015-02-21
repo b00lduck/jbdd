@@ -110,4 +110,8 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
         this.enabled = enabled;
     }
 
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof PlayerEntity;
+    }
 }

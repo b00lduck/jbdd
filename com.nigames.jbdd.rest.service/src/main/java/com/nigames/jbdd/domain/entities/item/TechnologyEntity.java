@@ -66,4 +66,9 @@ public class TechnologyEntity extends AbstractItemEntity implements BuyableEntit
 	public boolean hasCost(final GoodEntity good) {
 		return buyableFacet.hasCost(good);
 	}
+
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof TechnologyEntity;
+    }
 }

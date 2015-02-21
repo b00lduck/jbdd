@@ -49,6 +49,9 @@ public class JobEntity extends AbstractItemEntity {
 		this.productionList = productionList;
 	}
 
-    // TODO: equals and hashcode
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof JobEntity;
+    }
 
 }

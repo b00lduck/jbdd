@@ -91,7 +91,12 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
         playerAssignedEntityFacet.setPlayer(player);
     }
 
-	@Override
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof PlayerAssignedPeopleEntity;
+    }
+
+    @Override
 	public String toString() {
 		return "PlayerAssignedPeopleEntity{" +
 				"name='" + name + "' " +

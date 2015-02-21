@@ -22,7 +22,13 @@ class IdentifyableEntityFacetImplSpec extends Specification {
     def "id getter"() {
 
         when:
-        def testSubject = new IdentifyableEntityFacetImpl() {}
+        def testSubject = new IdentifyableEntityFacetImpl() {
+
+            @Override
+            protected boolean isEqual(Object object) {
+                return false
+            }
+        }
 
         def idField = IdentifyableEntityFacetImpl.class.getDeclaredField("id")
         idField.setAccessible(true)

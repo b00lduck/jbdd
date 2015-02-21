@@ -120,4 +120,9 @@ public final class UserEntity extends IdentifyableEntityFacetImpl implements Can
 		this.enabled = enabled;
 	}
 
+    @Override
+    protected boolean isEqual(final Object object) {
+        return object instanceof UserEntity;
+    }
+
 }
