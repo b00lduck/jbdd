@@ -25,7 +25,7 @@ configure(allprojects) { project ->
 	ext.javaVersion = '1.8'
 	ext.javaLanguageVersion = '1.8'
 
-	ext.aspectjVersion = '1.8.4'
+	ext.aspectjVersion = '1.8.5'
 
 	ext.jsr305Version = '3.0.0'
 

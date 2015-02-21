@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+apply plugin: 'aspectj'
+
+configurations {
+    all*.exclude group: 'org.jboss.resteasy', module: 'resteasy-jettison-provider'
+    all*.exclude group: 'commons-logging', module: 'commons-logging'
+}
+
+dependencies {
+
+    aspectpath(
+            [group: 'org.springframework', name: 'spring-aspects', version: springVersion],
+            [group: 'org.springframework.security', name: 'spring-security-aspects', version: springSecurityVersion],
+    )
+
+    testCompile(
+            [project(":${group}.rest.service")],
+
+            [group: 'com.google.code.findbugs', name: 'jsr305', version: jsr305Version],
+
+            [group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion],
+
+            [group: 'junit', name: 'junit', version: jUnitVersion],
+            [group: 'org.hamcrest', name: 'hamcrest-core', version: hamcrestVersion],
+
+            [group: 'com.h2database', name: 'h2', version: h2Version],
+
+            [group: 'com.jayway.restassured', name: 'rest-assured', version: restAssuredVersion],
+            [group: 'org.jboss.resteasy', name: 'resteasy-client', version: restEasyVersion],
+
+            [group: 'org.springframework', name: 'spring-test', version: springVersion],
+            [group: 'nl.jqno.equalsverifier', name: 'equalsverifier', version: equalsverifierVersion],
+
+            'org.spockframework:spock-core:0.7-groovy-2.0'
+    )
+}
+
+idea {
+    module {
+        jdkName = javaVersion
+        name = "${group}.integrationtests"
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+

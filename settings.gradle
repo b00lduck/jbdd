@@ -2,3 +2,4 @@ rootProject.name = 'jbdd'
 
 include 'com.nigames.jbdd.rest.model'
 include 'com.nigames.jbdd.rest.service'
+include 'com.nigames.jbdd.integrationtests'
