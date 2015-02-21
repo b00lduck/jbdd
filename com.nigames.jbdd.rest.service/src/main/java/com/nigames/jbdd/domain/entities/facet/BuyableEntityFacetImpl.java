@@ -6,6 +6,8 @@ import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Abstract Database Entity for all {@link BuyableEntityFacetImpl} objects (
@@ -51,10 +53,8 @@ public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
 	/**
 	 * Costs of this {@link BuyableEntityFacetImpl} object represented as a List of
 	 * {@link CostEntity}.
-	 *
-	 @SuppressWarnings({"FieldMayBeFinal", "CanBeFinal"})
+	 */
 	 @OneToMany(mappedBy = "id.buyableId", fetch = FetchType.LAZY)
-	 @Fetch(FetchMode.SELECT)
 	 private List<CostEntity> costList = new ArrayList<>();
 
 	 /**
@@ -140,13 +140,13 @@ public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
 
 	@Override
 	public boolean hasCost(final GoodEntity good) {
-		// TODO: implement
-		/*for (final CostEntity cost : costList) {
-			if (cost.getGood().getId().equals(good.getId())) {
+
+		for (final CostEntity cost : costList) {
+			if (cost.getGood().equals(good)) {
 				return true;
 			}
 		}
-		*/
+
 		return false;
 	}
 

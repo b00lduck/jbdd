@@ -24,6 +24,7 @@ class AssignableToPlayerEntityFacetImplSpec extends Specification {
 
         then:
         testSubject.invokeMethod(getter, null) == testObject
+        testSubject.getClass().getModifiers() == Modifier.PUBLIC + Modifier.FINAL
         testSubject.getClass().getMethod(getter).getModifiers() == Modifier.PUBLIC
         testSubject.getClass().getMethod(setter, testType).getModifiers() == Modifier.PUBLIC
 
