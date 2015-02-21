@@ -125,4 +125,13 @@ public final class UserEntity extends IdentifyableEntityFacetImpl implements Can
         return object instanceof UserEntity;
     }
 
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id='" + getId() + '\'' +
+                "username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
 }
