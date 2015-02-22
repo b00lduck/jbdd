@@ -20,69 +20,50 @@ public final class SecurityElConstants {
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_PLAYER";
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_PLAYER =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_PLAYER + ")";
-
 	public static final String HAS_ROLE_ADMIN_PLAYER =
 			"hasRole(" + ROLE_ADMIN_PLAYER + ")";
-
 	private static final String ROLE_ADMIN_TECHNOLOGY =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_TECHNOLOGY";
-
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_TECHNOLOGY =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_TECHNOLOGY + ")";
-
 	public static final String HAS_ROLE_ADMIN_TECHNOLOGY =
 			"hasRole(" + ROLE_ADMIN_TECHNOLOGY + ")";
-
 	private static final String ROLE_ADMIN_BUILDING =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_BUILDING";
-
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_BUILDING =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_BUILDING + ")";
-
 	public static final String HAS_ROLE_ADMIN_BUILDING =
 			"hasRole(" + ROLE_ADMIN_BUILDING + ")";
-
 	private static final String ROLE_ADMIN_JOB_PRODUCTION =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_JOB_PRODUCTION";
-
 	public static final String HAS_ROLE_ADMIN_JOB_PRODUCTION =
 			"hasRole(" + ROLE_ADMIN_JOB_PRODUCTION + ")";
-
-
 	private static final String ROLE_ADMIN_GOOD =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_GOOD";
-
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_GOOD =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_GOOD + ")";
-
 	public static final String HAS_ROLE_ADMIN_GOOD =
 			"hasRole(" + ROLE_ADMIN_GOOD + ")";
-
 	private static final String ROLE_ADMIN_JOB =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_JOB";
-
 	public static final String HAS_ROLE_SYSTEM_OR_ADMIN_JOB =
 			"hasAnyRole(" + ROLE_SYSTEM + "," + ROLE_ADMIN_JOB + ")";
-
 	public static final String HAS_ROLE_ADMIN_JOB =
 			"hasRole(" + ROLE_ADMIN_JOB + ")";
-
 	private static final String ROLE_ADMIN_STORAGETYPE =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_STORAGETYPE";
-
 	public static final String HAS_ROLE_ADMIN_STORAGETYPE =
 			"hasRole(" + ROLE_ADMIN_STORAGETYPE + ")";
-
 	private static final String ROLE_ADMIN_BUYABLE_COST =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_BUYABLE_COST";
-
 	public static final String HAS_ROLE_ADMIN_BUYABLE_COST =
 			"hasRole(" + ROLE_ADMIN_BUYABLE_COST + ")";
-
 	private static final String ROLE_ADMIN_BUYABLE_REQUIREMENT =
 			"T(com.nigames.jbdd.rest.dto.UserRoleEnum).ROLE_ADMIN_BUYABLE_REQUIREMENT";
-
 	public static final String HAS_ROLE_ADMIN_BUYABLE_REQUIREMENT =
 			"hasRole(" + ROLE_ADMIN_BUYABLE_REQUIREMENT + ")";
+
+	private SecurityElConstants() {
+	}
 
 }
