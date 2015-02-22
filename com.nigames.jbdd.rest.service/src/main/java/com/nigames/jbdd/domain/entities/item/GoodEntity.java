@@ -76,8 +76,4 @@ public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFa
 		isStorableFacet.setDensity(density);
 	}
 
-    @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof GoodEntity;
-    }
 }

@@ -49,9 +49,4 @@ public class JobEntity extends AbstractItemEntity {
 		this.productionList = productionList;
 	}
 
-    @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof JobEntity;
-    }
-
 }

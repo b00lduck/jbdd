@@ -70,8 +70,4 @@ public class PlayerAssignedTechnologyEntity extends IdentifyableEntityFacetImpl 
 		playerAssignedBuyableEntityFacet.setRemainingBuildtime(remainingBuildtime);
 	}
 
-    @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof PlayerAssignedTechnologyEntity;
-    }
 }

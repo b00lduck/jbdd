@@ -56,29 +56,4 @@ public final class IsStorableEntityFacetImpl implements IsStorableEntityFacet {
 		this.density = density;
 	}
 
-    @Override
-    public boolean equals(final Object other) {
-
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof IsStorableEntityFacetImpl)) {
-            return false;
-        }
-
-        final IsStorableEntityFacetImpl that = (IsStorableEntityFacetImpl) other;
-
-        if (density != that.density || weight != that.weight || !item.equals(that.item)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = item.hashCode();
-        result = (31 * result) + weight;
-        return (31 * result) + density;
-    }
 }

@@ -92,11 +92,6 @@ public class PlayerAssignedPeopleEntity extends IdentifyableEntityFacetImpl impl
     }
 
     @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof PlayerAssignedPeopleEntity;
-    }
-
-    @Override
 	public String toString() {
 		return "PlayerAssignedPeopleEntity{" +
 				"name='" + name + "' " +

@@ -1,5 +1,7 @@
 package com.nigames.jbdd.domain.entities.facet.identifyable
 
+import com.nigames.jbdd.domain.entities.PlayerEntity
+import com.nigames.jbdd.domain.entities.item.GoodEntity
 import spock.lang.Specification
 
 /**
@@ -30,4 +32,47 @@ class IdentifyableEntityFacetImplSpec extends Specification {
 
     }
 
+    def "player id 1 does not equal good id 1"() {
+
+        given: "a good and a player with both ID 1"
+        def player1 = new PlayerEntity()
+        def good1 = new GoodEntity()
+
+        def field = IdentifyableEntityFacetImpl.class.getDeclaredField("id")
+        field.setAccessible(true)
+        field.setLong(good1, 1L)
+        field.setLong(player1, 1L)
+
+        when: "equals is called with each other"
+        def res1 = player1.equals(good1)
+        def res2 = good1.equals(player1)
+
+        then: "results are false"
+        res1 == false
+        res2 == false
+        noExceptionThrown()
+    }
+
+    def "player id 1 has different hashcode than good id 1"() {
+
+        given: "a good and a player with both ID 1"
+        def player1 = new PlayerEntity()
+        def good1 = new GoodEntity()
+
+        def field = IdentifyableEntityFacetImpl.class.getDeclaredField("id")
+        field.setAccessible(true)
+        field.setLong(good1, 1L)
+        field.setLong(player1, 1L)
+
+        when: "hashcode is called"
+        def hash1 = player1.hashCode()
+        def hash2 = good1.hashCode()
+
+        then: "results are unequal"
+        hash1 != hash2
+        noExceptionThrown()
+    }
+
+
 }
+

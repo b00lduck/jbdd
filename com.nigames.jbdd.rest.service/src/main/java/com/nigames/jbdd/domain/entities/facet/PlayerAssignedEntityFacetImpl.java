@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
  * Created by andersg on 09.02.2015.
  */
 @Embeddable
-public class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet {
+public final class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "player", referencedColumnName = "id", updatable = false, insertable = false)
@@ -29,20 +29,4 @@ public class PlayerAssignedEntityFacetImpl implements PlayerAssignedEntityFacet 
         this.player = player;
     }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof PlayerAssignedEntityFacetImpl)) return false;
-
-		PlayerAssignedEntityFacetImpl that = (PlayerAssignedEntityFacetImpl) o;
-
-		if (!player.equals(that.player)) return false;
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		return player.hashCode();
-	}
 }

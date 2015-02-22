@@ -9,15 +9,15 @@ import java.lang.reflect.Modifier
 /**
  * This file is part of JBdD by nigames.de
  *
- * Created by Daniel on 20.02.2015.
+ * Created by Daniel on 22.02.2015.
  */
-class AssignableToPlayerEntityFacetImplSpec extends Specification {
+class PlayerAssignedEntityFacetImplSpec extends Specification {
 
     @Unroll
     def "#getter/#setter works and is public"() {
 
         given:
-        def testSubject = new AssignableToPlayerEntityFacetImpl()
+        def testSubject = new PlayerAssignedEntityFacetImpl()
 
         when:
         testSubject.invokeMethod(setter, testObject)
@@ -31,7 +31,6 @@ class AssignableToPlayerEntityFacetImplSpec extends Specification {
         where:
         getter      | setter      | testObject         | testType
         "getPlayer" | "setPlayer" | new PlayerEntity() | PlayerEntity.class
-
     }
 
 }

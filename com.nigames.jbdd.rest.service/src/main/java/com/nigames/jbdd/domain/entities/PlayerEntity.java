@@ -29,28 +29,28 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
      */
     @OneToMany(mappedBy = "id.playerId")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedGoodEntity> playerGoodList = new ArrayList<>();
+    private List<PlayerAssignedGoodEntity> playerGoodList = new ArrayList<>();
 
     /**
      * Buildings of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedBuildingEntity}.
      */
     @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedBuildingEntity> playerBuildingList = new ArrayList<>();
+    private List<PlayerAssignedBuildingEntity> playerBuildingList = new ArrayList<>();
 
     /**
      * Technologies of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedTechnologyEntity}.
      */
     @OneToMany(mappedBy = "playerAssignedEntityFacet.player")
     @Fetch(FetchMode.SELECT)
-    private final List<PlayerAssignedTechnologyEntity> playerTechnologyList = new ArrayList<>();
+    private List<PlayerAssignedTechnologyEntity> playerTechnologyList = new ArrayList<>();
 
 	/**
 	 * People of this Player represented as a List of {@link com.nigames.jbdd.domain.entities.subitem.playerSubItem.PlayerAssignedPeopleEntity}.
 	 */
 	@OneToMany(mappedBy = "playerAssignedEntityFacet.player")
 	@Fetch(FetchMode.SELECT)
-	private final List<PlayerAssignedPeopleEntity> playerPeopleList = new ArrayList<>();
+	private List<PlayerAssignedPeopleEntity> playerPeopleList = new ArrayList<>();
 
     /**
      * Nickname of the playerSubItem.
@@ -110,8 +110,4 @@ public class PlayerEntity extends IdentifyableEntityFacetImpl implements CanBeEn
         this.enabled = enabled;
     }
 
-    @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof PlayerEntity;
-    }
 }

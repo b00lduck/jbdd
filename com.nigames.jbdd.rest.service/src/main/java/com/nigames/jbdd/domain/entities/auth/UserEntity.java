@@ -47,12 +47,12 @@ public final class UserEntity extends IdentifyableEntityFacetImpl implements Can
 			joinColumns = @JoinColumn(name = "user_id"),
 			uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "userRoleList"}))
 	@Enumerated(EnumType.ORDINAL)
-	private final List<UserRoleEnum> userRoleList = new ArrayList<>();
+	private List<UserRoleEnum> userRoleList = new ArrayList<>();
 	/**
 	 * The list of {@link PlayerEntity} objects assigned to the User.
 	 */
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-	private final List<PlayerEntity> playerList = new ArrayList<>();
+	private List<PlayerEntity> playerList = new ArrayList<>();
 	/**
 	 * enabled flag
 	 */
@@ -121,11 +121,6 @@ public final class UserEntity extends IdentifyableEntityFacetImpl implements Can
 	}
 
     @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof UserEntity;
-    }
-
-    @Override
     public String toString() {
         return "UserEntity{" +
                 "id='" + getId() + '\'' +
@@ -134,4 +129,5 @@ public final class UserEntity extends IdentifyableEntityFacetImpl implements Can
                 ", enabled=" + enabled +
                 '}';
     }
+
 }

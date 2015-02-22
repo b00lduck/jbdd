@@ -21,7 +21,7 @@ class RandomPasswordGeneratorTest extends Specification {
         then:
         pw1 != pw2
         !pw1.equals(pw2)
-        pw1.length() >= 6
+        pw1.length() >= 5
 
     }
 }

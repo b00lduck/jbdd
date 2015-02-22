@@ -1,6 +1,5 @@
 package com.nigames.jbdd.domain.entities.facet
 
-import com.nigames.jbdd.domain.entities.PlayerEntity
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -9,15 +8,15 @@ import java.lang.reflect.Modifier
 /**
  * This file is part of JBdD by nigames.de
  *
- * Created by Daniel on 20.02.2015.
+ * Created by Daniel on 22.02.2015.
  */
-class AssignableToPlayerEntityFacetImplSpec extends Specification {
+class IsStorableEntityFacetImplSpec extends Specification {
 
     @Unroll
     def "#getter/#setter works and is public"() {
 
         given:
-        def testSubject = new AssignableToPlayerEntityFacetImpl()
+        def testSubject = new IsStorableEntityFacetImpl()
 
         when:
         testSubject.invokeMethod(setter, testObject)
@@ -29,9 +28,18 @@ class AssignableToPlayerEntityFacetImplSpec extends Specification {
         testSubject.getClass().getMethod(setter, testType).getModifiers() == Modifier.PUBLIC
 
         where:
-        getter      | setter      | testObject         | testType
-        "getPlayer" | "setPlayer" | new PlayerEntity() | PlayerEntity.class
+        getter       | setter       | testObject | testType
+        "getWeight"  | "setWeight"  | 42         | int
+        "getDensity" | "setDensity" | 42         | int
+    }
 
+    def "default tests"() {
+        when:
+        def clazz = IsStorableEntityFacetImpl.class
+        then:
+        FieldTestTools.checkIdAndVersionField(clazz)
+        FieldTestTools.checkItemField(clazz)
+        FieldTestTools.checkConstructorWithItem(clazz)
     }
 
 }

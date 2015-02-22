@@ -1,8 +1,6 @@
 package com.nigames.jbdd.domain.entities.facet
 
-import com.nigames.jbdd.domain.entities.PlayerEntity
 import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl
-import com.nigames.jbdd.domain.entities.item.AbstractItemEntity
 import com.nigames.jbdd.domain.entities.item.GoodEntity
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity
 import spock.lang.Specification
@@ -39,16 +37,13 @@ class BuyableEntityFacetImplSpec extends Specification {
         "isMulti"       | "setMulti"      | true               | boolean
     }
 
-    def "getItem"() {
-
-        given: "BuyableEntityFacetImpl with injected AbstractItemEntity"
-        def mockedEntity = Mock(AbstractItemEntity)
-
-        when: "default constructor is called"
-        def testSubject = new BuyableEntityFacetImpl(mockedEntity)
-
-        then: "getItem will return a mocked entity"
-        testSubject.getItem() == mockedEntity
+    def "default tests"() {
+        when:
+        def clazz = BuyableEntityFacetImpl.class
+        then:
+        FieldTestTools.checkIdAndVersionField(clazz)
+        FieldTestTools.checkItemField(clazz)
+        FieldTestTools.checkConstructorWithItem(clazz)
     }
 
     def "hasCost"() {

@@ -95,9 +95,4 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 		return buyableFacet.hasCost(good);
 	}
 
-    @Override
-    protected boolean isEqual(final Object object) {
-        return object instanceof BuildingEntity;
-    }
-
 }

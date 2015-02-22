@@ -1,5 +1,6 @@
 package com.nigames.jbdd.domain.entities.auth
 
+import nl.jqno.equalsverifier.EqualsVerifier
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -52,5 +53,20 @@ class UserEntitySpec extends Specification {
 
     }
 
+    def "toString returns String"() {
+        when:
+        def testSubject = new UserEntity()
+
+        then:
+        testSubject.toString().length() > 5
+        noExceptionThrown()
+    }
+
+    def "equals and hashcode contract"() {
+        expect:
+        EqualsVerifier.forClass(UserEntity)
+                .withRedefinedSuperclass()
+                .verify()
+    }
 
 }
