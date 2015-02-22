@@ -130,4 +130,46 @@ class AbstractI18nEntitySpec extends Specification {
     }
 
 
+    def "longi18n id 1 does not equal shorti18n id 1"() {
+
+        given: "a longi18n and a shorti18n with both ID 1"
+        def i18nlong = new I18nLongEntity()
+        def i18nshort = new I18nShortEntity()
+
+        def field = AbstractI18nEntity.class.getDeclaredField("id")
+        field.setAccessible(true)
+        field.setLong(i18nshort, 1L)
+        field.setLong(i18nlong, 1L)
+
+        when: "equals is called with each other"
+        def res1 = i18nlong.equals(i18nshort)
+        def res2 = i18nshort.equals(i18nlong)
+
+        then: "results are false"
+        res1 == false
+        res2 == false
+        noExceptionThrown()
+    }
+
+    def "longi18n id 1 has different hashcode than shorti18n id 1"() {
+
+        given: "a good and a player with both ID 1"
+        def i18nlong = new I18nLongEntity()
+        def i18nshort = new I18nShortEntity()
+
+        def field = AbstractI18nEntity.class.getDeclaredField("id")
+        field.setAccessible(true)
+        field.setLong(i18nlong, 1L)
+        field.setLong(i18nshort, 1L)
+
+        when: "hashcode is called"
+        def hash1 = i18nlong.hashCode()
+        def hash2 = i18nshort.hashCode()
+
+        then: "results are unequal"
+        hash1 != hash2
+        noExceptionThrown()
+    }
+
+
 }

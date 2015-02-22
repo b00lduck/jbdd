@@ -77,5 +77,4 @@ public abstract class AbstractItemEntity extends IdentifyableEntityFacetImpl
 				" BuyableFacet only.");
 	}
 
-    // TODO: equals and hashcode
 }
