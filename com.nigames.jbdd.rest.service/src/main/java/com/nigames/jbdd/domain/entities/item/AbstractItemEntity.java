@@ -43,36 +43,36 @@ public abstract class AbstractItemEntity extends IdentifyableEntityFacetImpl
 	}
 
     @Override
-    public I18n getName() {
+    public final I18n getName() {
         return nameAndDescFacet.getName();
     }
 
     @Override
-    public void setName(final I18nShortEntity name) {
+    public final void setName(final I18nShortEntity name) {
         nameAndDescFacet.setName(name);
     }
 
     @Override
-    public I18n getDescription() {
+    public final I18n getDescription() {
         return nameAndDescFacet.getDescription();
     }
 
     @Override
-    public void setDescription(final I18nLongEntity description) {
+    public final void setDescription(final I18nLongEntity description) {
         nameAndDescFacet.setDescription(description);
     }
 
     @Override
-    public boolean isEnabled() {
+    public final boolean isEnabled() {
         return enabled;
     }
 
     @Override
-    public void setEnabled(final boolean enabled) {
+    public final void setEnabled(final boolean enabled) {
         this.enabled = enabled;
     }
 
-	public AbstractItemEntity getItem() {
+	public final AbstractItemEntity getItem() {
 		throw new IllegalArgumentException("do not call getItem on concrete item entity. This makes sense on the" +
 				" BuyableFacet only.");
 	}
