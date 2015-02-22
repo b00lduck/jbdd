@@ -18,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "ITEM_GOOD")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class GoodEntity extends AbstractItemEntity implements IsStorableEntityFacet {
+public final class GoodEntity extends AbstractItemEntity implements IsStorableEntityFacet {
 
 	/**
 	 * This is a passive backlink. Gets all {@link CostEntity} objects who use this Good.

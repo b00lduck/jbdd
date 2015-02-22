@@ -61,32 +61,20 @@ public class BuildingJobEntity {
 	}
 
 	@Override
-	public boolean equals(final Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (!(o instanceof BuildingJobEntity)) {
-			return false;
-		}
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof BuildingJobEntity)) return false;
 
-		final BuildingJobEntity that = (BuildingJobEntity) o;
+		BuildingJobEntity that = (BuildingJobEntity) o;
 
-		if (efficiency != that.efficiency) {
-			return false;
-		}
-		if (!building.equals(that.building)) {
-			return false;
-		}
-		return job.equals(that.job);
+		if (id != null ? !id.equals(that.id) : that.id != null) return false;
 
+		return true;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = (int) (efficiency ^ (efficiency >>> 32));
-		result = (31 * result) + building.hashCode();
-		result = (31 * result) + job.hashCode();
-		return result;
+		return id != null ? id.hashCode() : 0;
 	}
 
 }

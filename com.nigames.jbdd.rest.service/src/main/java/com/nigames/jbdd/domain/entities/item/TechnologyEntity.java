@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "ITEM_TECHNOLOGY")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class TechnologyEntity extends AbstractItemEntity implements BuyableEntityFacet {
+public final class TechnologyEntity extends AbstractItemEntity implements BuyableEntityFacet {
 
 	/**
 	 * The {@link com.nigames.jbdd.domain.entities.facet.BuyableEntityFacet} of this technology.
@@ -60,11 +60,6 @@ public class TechnologyEntity extends AbstractItemEntity implements BuyableEntit
 	@Override
 	public void setMulti(final boolean multi) {
 		buyableFacet.setMulti(multi);
-	}
-
-	@Override
-	public boolean hasCost(final GoodEntity good) {
-		return buyableFacet.hasCost(good);
 	}
 
 }

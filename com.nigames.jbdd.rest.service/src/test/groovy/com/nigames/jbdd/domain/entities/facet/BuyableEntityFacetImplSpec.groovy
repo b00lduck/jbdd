@@ -1,8 +1,5 @@
 package com.nigames.jbdd.domain.entities.facet
 
-import com.nigames.jbdd.domain.entities.facet.identifyable.IdentifyableEntityFacetImpl
-import com.nigames.jbdd.domain.entities.item.GoodEntity
-import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -46,26 +43,4 @@ class BuyableEntityFacetImplSpec extends Specification {
         FieldTestTools.checkConstructorWithItem(clazz)
     }
 
-    def "hasCost"() {
-
-        given: "assume Good is contained in list"
-        def good1 = new GoodEntity()
-        def field = IdentifyableEntityFacetImpl.class.getDeclaredField("id")
-        field.setAccessible(true)
-        field.setLong(good1, 1L)
-        def good2 = new GoodEntity()
-        field.setLong(good2, 2L)
-        def good3 = new GoodEntity()
-        field.setLong(good2, 3L)
-
-        def constEntities = [new CostEntity(good: good1), new CostEntity(good: good3)]
-
-        when:
-        def testSubject = new BuyableEntityFacetImpl(costList: constEntities)
-
-        then:
-        testSubject.hasCost(good1)
-        !testSubject.hasCost(good2)
-        testSubject.hasCost(good3)
-    }
 }

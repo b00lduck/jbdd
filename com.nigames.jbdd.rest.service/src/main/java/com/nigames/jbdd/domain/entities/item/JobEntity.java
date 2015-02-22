@@ -16,7 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "ITEM_JOB")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class JobEntity extends AbstractItemEntity {
+public final class JobEntity extends AbstractItemEntity {
 
 	/**
 	 * This is a passive backlink. Gets all {@link com.nigames.jbdd.domain.entities.subitem.ProductionEntity} objects who use this Good.

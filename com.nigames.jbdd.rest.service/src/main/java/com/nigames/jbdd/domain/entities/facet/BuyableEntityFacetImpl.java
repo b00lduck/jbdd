@@ -1,7 +1,6 @@
 package com.nigames.jbdd.domain.entities.facet;
 
 import com.nigames.jbdd.domain.entities.item.AbstractItemEntity;
-import com.nigames.jbdd.domain.entities.item.GoodEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.CostEntity;
 import com.nigames.jbdd.domain.entities.subitem.buyable.RequirementEntity;
 
@@ -109,25 +108,6 @@ public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
 		return item;
 	}
 
-	/*
-
-	@Override
-	public List<CostEntity> getCostList() {
-		return costList;
-	}
-
-	@Override
-	public List<RequirementEntity> getRequirementList() {
-		return requirementList;
-	}
-
-	@Override
-	public List<RequirementEntity> getReferencedRequirements() {
-		return referencedRequirements;
-	}
-
-	*/
-
 	@Override
 	public boolean isMulti() {
 		return multi;
@@ -136,18 +116,6 @@ public final class BuyableEntityFacetImpl implements BuyableEntityFacet {
 	@Override
 	public void setMulti(final boolean multi) {
 		this.multi = multi;
-	}
-
-	@Override
-	public boolean hasCost(final GoodEntity good) {
-
-		for (final CostEntity cost : costList) {
-			if (cost.getGood().equals(good)) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 }

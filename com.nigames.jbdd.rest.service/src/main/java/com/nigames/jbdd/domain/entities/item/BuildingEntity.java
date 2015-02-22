@@ -62,23 +62,6 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 		buyableFacet.setBuildtime(buildtime);
 	}
 
-	/*
-	@Override
-	public List<CostEntity> getCostList() {
-		return buyableFacet.getCostList();
-	}
-
-	@Override
-	public List<RequirementEntity> getRequirementList() {
-		return buyableFacet.getRequirementList();
-	}
-
-	@Override
-	public List<RequirementEntity> getReferencedRequirements() {
-		return buyableFacet.getReferencedRequirements();
-	}
-	*/
-
 	@Override
 	public boolean isMulti() {
 		return buyableFacet.isMulti();
@@ -88,11 +71,6 @@ public final class BuildingEntity extends AbstractItemEntity implements BuyableE
 	@Override
 	public void setMulti(final boolean multi) {
 		buyableFacet.setMulti(multi);
-	}
-
-	@Override
-	public boolean hasCost(final GoodEntity good) {
-		return buyableFacet.hasCost(good);
 	}
 
 }
