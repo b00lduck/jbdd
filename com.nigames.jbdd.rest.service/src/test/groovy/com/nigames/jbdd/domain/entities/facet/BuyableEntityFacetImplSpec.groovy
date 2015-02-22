@@ -58,13 +58,19 @@ class BuyableEntityFacetImplSpec extends Specification {
         def field = IdentifyableEntityFacetImpl.class.getDeclaredField("id")
         field.setAccessible(true)
         field.setLong(good1, 1L)
+        def good2 = new GoodEntity()
+        field.setLong(good2, 2L)
+        def good3 = new GoodEntity()
+        field.setLong(good2, 3L)
 
-        def constEntities = [new CostEntity(good: good1)]
+        def constEntities = [new CostEntity(good: good1), new CostEntity(good: good3)]
 
         when:
         def testSubject = new BuyableEntityFacetImpl(costList: constEntities)
 
         then:
         testSubject.hasCost(good1)
+        !testSubject.hasCost(good2)
+        testSubject.hasCost(good3)
     }
 }
