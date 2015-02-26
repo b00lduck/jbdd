@@ -99,6 +99,16 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+
+        wiredep: {
+            task: {
+                src: [
+                    'test/test-config.js',
+                    'app/config.js'
+                ],
+                options: {}
+            }
         }
 
     });

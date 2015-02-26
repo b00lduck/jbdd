@@ -12,7 +12,7 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'requirejs'],
 
         preprocessors: {
-            'app/!(bower_components)/**/*.html': ['ng-html2js'],
+            'app/!(bower_components)/**/*!(const).html': ['ng-html2js'],
             'app/!(bower_components)/**/*.js': ['coverage']
         },
 
@@ -36,6 +36,7 @@ module.exports = function (config) {
             {pattern: 'app/bower_components/bootstrap/dist/js/bootstrap.js', included: false},
             {pattern: 'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js', included: false},
             {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
+            {pattern: 'app/bower_components/requirejs-plugins/lib/text.js', included: false},
 
             {pattern: 'app/modules/**/*.js', included: false},
             {pattern: 'app/modules/**/*.html', included: false},
