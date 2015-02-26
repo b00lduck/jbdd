@@ -30,6 +30,7 @@ module.exports = function (config) {
             {pattern: 'app/bower_components/angularAMD/angularAMD.js', included: false},
             {pattern: 'app/bower_components/angularAMD/ngload.js', included: false},
             {pattern: 'app/bower_components/angular-cookies/angular-cookies.js', included: false},
+            {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
             {pattern: 'app/bower_components/angular-touch/angular-touch.js', included: false},
             {pattern: 'app/bower_components/angular-ui-grid/ui-grid.js', included: false},
             {pattern: 'app/bower_components/angular-translate/angular-translate.js', included: false},
@@ -39,7 +40,7 @@ module.exports = function (config) {
             },
             {pattern: 'app/bower_components/bootstrap/dist/js/bootstrap.js', included: false},
             {pattern: 'app/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js', included: false},
-            {pattern: 'app/bower_components/angular-mocks/angular-mocks.js', included: false},
+
             {pattern: 'app/bower_components/requirejs-plugins/lib/text.js', included: false},
 
             {pattern: 'app/modules/**/*.js', included: false},
@@ -91,7 +92,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-        logLevel: config.LOG_DEBUG,
+        logLevel: config.LOG_INFO,
 
         reporters: ['progress']
 

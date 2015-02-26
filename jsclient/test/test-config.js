@@ -20,7 +20,6 @@ function testsRun() {
 requirejs.config({
     baseUrl: '/base/app',
     paths: {
-        app: 'app',
         angular: 'bower_components/angular/angular',
         'angular-route': 'bower_components/angular-route/angular-route',
         async: 'bower_components/requirejs-plugins/src/async',
