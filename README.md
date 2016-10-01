@@ -2,4 +2,4 @@
 
 Just REST-experiments with AngularJS and Spring.
 
-
+Deprecated, just for historical reasons.
